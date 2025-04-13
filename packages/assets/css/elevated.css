@@ -1,0 +1,30 @@
+/* 使用 @utility 语法来获取代码提示 */
+@utility elevated-sm {
+  & {
+    @apply transition-transform duration-300;
+  }
+
+  &:hover {
+    @apply translate-y-[-1px];
+  }
+}
+
+@utility elevated {
+  & {
+    @apply transition-transform duration-300;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility elevated-lg {
+  & {
+    @apply transition-transform duration-300;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}

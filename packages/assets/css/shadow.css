@@ -1,0 +1,17 @@
+@utility outline-glow-sm {
+  & {
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@utility outline-glow {
+  & {
+    box-shadow: 0 0px 4px 4px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@utility outline-glow-lg {
+  & {
+    box-shadow: 0 0px 5px 5px rgba(0, 0, 0, 0.15);
+  }
+}

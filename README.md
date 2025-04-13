@@ -31,4 +31,3 @@ pnpm dev
 ```sh
 pnpm build
 ```
-# li-daisy

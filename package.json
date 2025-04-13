@@ -1,0 +1,57 @@
+{
+  "name": "li-daisy-dev",
+  "version": "0.0.3",
+  "private": false,
+  "type": "module",
+  "main": "./dist/li-daisy.umd.js",
+  "module": "./dist/li-daisy.es.js",
+  "types": "./dist/types/index.d.ts",
+  "style": "./dist/style.css",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/li-daisy.es.js",
+      "require": "./dist/li-daisy.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "format": "prettier --write packages/ examples/",
+    "type-check": "vue-tsc --noEmit",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist/types",
+    "build:dev": "vite build --mode development",
+    "lint": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\"",
+    "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\" --fix"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.3",
+    "daisyui": "^5.0.19",
+    "pinia": "^3.0.2",
+    "tailwindcss": "^4.1.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@eslint/css": "^0.6.0",
+    "@eslint/js": "^9.24.0",
+    "@eslint/markdown": "^6.3.0",
+    "@types/node": "^22.14.1",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-vue": "^10.0.0",
+    "globals": "^16.0.0",
+    "nuxt": "^3.16.2",
+    "prettier": "3.5.3",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "vite": "^6.2.6",
+    "vite-plugin-dts": "^4.5.3",
+    "vue-eslint-parser": "^10.1.3",
+    "vue-tsc": "^2.2.8"
+  }
+}
