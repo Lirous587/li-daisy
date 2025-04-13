@@ -33,12 +33,9 @@ const install = (app: App) => {
   return app
 }
 
-// 创建插件对象
+// 只保留命名导出
 export const LiDaisy = {
   install,
   Avatar,
   Button,
 }
-
-// 默认导出插件对象
-export default LiDaisy

@@ -1,6 +1,7 @@
 {
-  "name": "li-daisy-dev",
-  "version": "0.0.3",
+  "name": "li-daisy",
+  "version": "0.0.1",
+  "license": "MIT",
   "private": false,
   "type": "module",
   "main": "./dist/li-daisy.umd.js",
@@ -15,7 +16,8 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/li-daisy.es.js",
       "require": "./dist/li-daisy.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",
@@ -30,6 +32,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.3",
     "daisyui": "^5.0.19",
+    "li-daisy": "0.0.3",
     "pinia": "^3.0.2",
     "tailwindcss": "^4.1.3",
     "vue": "^3.5.13",
