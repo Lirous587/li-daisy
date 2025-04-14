@@ -1,9 +1,9 @@
 @import 'tailwindcss';
-/* @import './elevated.css';
+@import './elevated.css';
 @import './hover.css';
 @import './shadow.css';
 @import './scroll.css';
-@import './focus.css'; */
+@import './focus.css';
 
 @plugin "daisyui" {
   /* themes: light --default, dark --prefersdark, cupcake; */
@@ -12,22 +12,23 @@
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *,
-        [data-theme=synthwave], [data-theme=synthwave] *,
-        [data-theme=halloween], [data-theme=halloween] *,
-        [data-theme=forest], [data-theme=forest] *,
-        [data-theme=aqua], [data-theme=aqua] *,
-        [data-theme=black], [data-theme=black] *,
-        [data-theme=luxury], [data-theme=luxury] *,
-        [data-theme=dracula], [data-theme=dracula] *,
-        [data-theme=business], [data-theme=business] *,
-        [data-theme=night], [data-theme=night] *,
-        [data-theme=coffee], [data-theme=coffee] *,
-        [data-theme=dim], [data-theme=dim] *,
-        [data-theme=sunset], [data-theme=sunset] *,
-        [data-theme=abyss], [data-theme=abyss] *));
+    [data-theme=synthwave], [data-theme=synthwave] *,
+    [data-theme=halloween], [data-theme=halloween] *,
+    [data-theme=forest], [data-theme=forest] *,
+    [data-theme=aqua], [data-theme=aqua] *,
+    [data-theme=black], [data-theme=black] *,
+    [data-theme=luxury], [data-theme=luxury] *,
+    [data-theme=dracula], [data-theme=dracula] *,
+    [data-theme=business], [data-theme=business] *,
+    [data-theme=night], [data-theme=night] *,
+    [data-theme=coffee], [data-theme=coffee] *,
+    [data-theme=dim], [data-theme=dim] *,
+    [data-theme=sunset], [data-theme=sunset] *,
+    [data-theme=abyss], [data-theme=abyss] *));
 
 /* 移除 input 默认聚焦状态  */
 @layer override {
+
   /* 聚焦状态 */
   .input:focus,
   .input:focus-visible,
@@ -37,6 +38,7 @@
 }
 
 @utility no-spinner {
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;

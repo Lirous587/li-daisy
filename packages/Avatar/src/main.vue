@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-1">
     <div v-if="ifFailed" class="avatar avatar-placeholder">
       <div class="bg-base-300 text-neutral-content font-bold rounded-full" :class="sizeClass">
         <span class="text-base-content">{{ props.name ? props.name[0] : '' }}</span>
