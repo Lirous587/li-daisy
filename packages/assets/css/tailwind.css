@@ -5,6 +5,24 @@
 @import './scroll.css';
 @import './focus.css';
 
+
+
+/* hover.css 内容 */
+.hover-shadow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* elevated.css 内容 */
+.elevated-lg {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: all 0.5s;
+}
+
+
 @plugin "daisyui" {
   /* themes: light --default, dark --prefersdark, cupcake; */
   themes: all;

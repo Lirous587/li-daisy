@@ -1,9 +1,9 @@
 # li-daisy 组件库列表
 
-1. `Avatar`  ✅
-2. `button` 
+1. `Avatar` ✅
+2. `button`
 3. `Card`
-4. `Drawer` 
+4. `Drawer`
 5. `DropDown` ✅
 6. `Input`
 7. `Form`
