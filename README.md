@@ -31,3 +31,9 @@ pnpm dev
 ```sh
 pnpm build
 ```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+pnpm lint
+```

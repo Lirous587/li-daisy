@@ -4,8 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-import './assets/css/tailwind.css'
-
+// 再导入组件库样式
 import { LiDaisy } from '../packages/index'
 import '../dist/style.css'
 

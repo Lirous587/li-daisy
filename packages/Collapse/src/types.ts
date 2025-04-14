@@ -1,11 +1,13 @@
-import { InjectionKey, Ref } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
-// 定义折叠面板上下文的接口
 export interface CollapseContext {
+  // 定义折叠面板上下文的接口
   registerItem: () => number
   toggleItem: (id: number) => void
   isItemActive: (id: number) => boolean
   activeItem: Ref<number>
+  showBorder: boolean
+  icon?: 'plus' | 'arrow'
 }
 
 // 创建供注入使用的Key

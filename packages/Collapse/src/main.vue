@@ -6,8 +6,15 @@
 
 <script lang="ts" setup>
 import { ref, provide } from 'vue'
-import { collapseInjectionKey } from './interface'
-import type { CollapseContext } from './interface'
+import { collapseInjectionKey } from './types'
+import type { CollapseContext } from './types'
+
+interface CollapseProps {
+  showBorder?: boolean | false
+  icon?: 'plus' | 'arrow'
+}
+
+const props = defineProps<CollapseProps>()
 
 const activeItem = ref<number>(0)
 
@@ -43,5 +50,13 @@ provide<CollapseContext>(collapseInjectionKey, {
   toggleItem,
   isItemActive,
   activeItem,
+  showBorder: props.showBorder,
+  icon: props.icon,
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'LiCollapse',
+}
 </script>

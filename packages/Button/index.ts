@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue'
+import type { App, Plugin } from 'vue'
 import Button from './src/main.vue'
 
 // 定义组件类型

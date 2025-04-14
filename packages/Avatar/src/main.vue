@@ -18,12 +18,7 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from 'vue'
-
-export interface AvatarProps {
-  name?: string
-  avatar: string
-  size?: 'sm' | 'md' | 'lg'
-}
+import type { AvatarProps } from './types'
 
 const props = withDefaults(defineProps<AvatarProps>(), {
   name: '',

@@ -5,22 +5,15 @@ import type { App } from 'vue'
 // 导入所有组件
 import Avatar from './Avatar'
 import Button from './Button'
-// import Card from './Card'
-// ...其他组件
+import Collapse from './Collapse'
 
 // 导出组件类型和组件
 export * from './Avatar'
 export * from './Button'
-// export * from './Card'
-// ...其他组件导出
+export * from './Collapse'
 
 // 组件列表 - 用于全局注册
-const components = [
-  Avatar,
-  Button,
-  // Card,
-  // ...其他组件
-]
+const components = [Avatar, Button]
 
 const install = (app: App) => {
   components.forEach((component) => {
@@ -38,4 +31,5 @@ export const LiDaisy = {
   install,
   Avatar,
   Button,
+  Collapse,
 }
