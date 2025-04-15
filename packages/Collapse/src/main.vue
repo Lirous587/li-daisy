@@ -7,16 +7,12 @@
 <script lang="ts" setup>
 import { ref, provide } from 'vue'
 import { collapseInjectionKey } from './types'
-import type { CollapseContext } from './types'
+import type { CollapseContext, CollapseProps } from './types'
 
-interface CollapseProps {
-  showBorder?: boolean | false
-  icon?: 'plus' | 'arrow'
-  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
-  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
-}
-
-const props = defineProps<CollapseProps>()
+const props = withDefaults(defineProps<CollapseProps>(), {
+  showBorder: true,
+  icon: 'plus',
+})
 
 const activeItem = ref<number>(0)
 

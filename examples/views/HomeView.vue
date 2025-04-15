@@ -44,5 +44,11 @@ const list = ref<ComponetItem[]>([
     title: 'Collapse折叠面板',
     details: '用于在界面中显示的缩略图',
   },
+  {
+    img: 'https://picsum.photos/600/600',
+    url: '/drawer',
+    title: 'Drawer抽屉',
+    details: '用于显示/隐藏页面左侧或右侧的侧边栏',
+  },
 ])
 </script>

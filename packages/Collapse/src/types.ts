@@ -1,5 +1,17 @@
 import type { InjectionKey, Ref } from 'vue'
 
+export interface CollapseProps {
+  showBorder?: boolean
+  icon?: 'plus' | 'arrow'
+  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+}
+
+export interface CollapseItemProps {
+  title: string
+  defaultOpen?: boolean
+}
+
 export interface CollapseContext {
   // 定义折叠面板上下文的接口
   registerItem: () => number

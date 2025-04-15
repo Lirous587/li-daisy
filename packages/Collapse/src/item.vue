@@ -15,14 +15,12 @@
 <script lang="ts" setup>
 import { computed, inject, onMounted, ref } from 'vue'
 import { collapseInjectionKey } from './types'
-import type { CollapseContext } from './types'
+import type { CollapseContext, CollapseItemProps } from './types'
 
-interface CollapseItemProps {
-  title: string
-  defaultOpen?: boolean
-}
+const props = withDefaults(defineProps<CollapseItemProps>(), {
+  defaultOpen: false,
+})
 
-const props = defineProps<CollapseItemProps>()
 const id = ref<number>(0)
 
 // 获取父组件提供的上下文，使用类型安全的注入方式

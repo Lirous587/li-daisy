@@ -10,19 +10,28 @@
     <div class="drawer-content">
       <!-- Page content here  -->
       <label :for="drawerId">
-        <slot />
+        <!-- 这里不再对外暴露 避免发生一些掌控之外的操作
+          统一改为调用expose方法 通过组件实例去手动调用-->
+        <!-- <slot /> -->
       </label>
     </div>
 
     <div class="drawer-side z-[100]">
       <!-- 蒙层 -->
-      <label :for="drawerId" aria-label="close sidebar" class="drawer-overlay"></label>
+      <label
+        :for="drawerId"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+        :class="closeOnClickModal ? '' : 'pointer-events-none'"
+      ></label>
       <div class="bg-base-200 text-base-content min-h-full p-4" :style="{ width: props.size }">
+        <div class="absolute cursor-pointer right-2 translate-x-[-100%]">
+          <CloseIcon v-if="showCloseIcon" @click="close" />
+        </div>
         <h3 class="text-xl font-bold text-base-content mb-3">
           {{ props.title }}
         </h3>
-        <!-- Sidebar content here -->
-        <slot name="content" />
+        <slot />
       </div>
     </div>
   </div>
@@ -30,22 +39,19 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import type { DrawerExpose } from './drawer'
-import { useRouter } from 'vue-router'
+import type { DrawerRef, DrawerProps } from './types'
+import { useRoute } from 'vue-router'
 
-interface DrawerProps {
-  title?: string
-  direction?: 'ltr' | 'rtl'
-  size?: string
-}
+import CloseIcon from '../../icon/IconClose.vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
-  title: '',
   direction: 'ltr',
   size: '40%',
+  closeOnClickModal: true,
+  showCloseIcon: false,
 })
 
-const route = useRouter()
+const route = useRoute()
 
 const status = ref(false)
 const drawerToggleRef = ref<HTMLInputElement | null>(null)
@@ -62,6 +68,15 @@ const drawerDirection = computed(() => {
       return 'drawer-end'
     default:
       return 'drawer-start'
+  }
+})
+
+const showCloseIcon = computed(() => {
+  console.log(props.closeOnClickModal)
+  if (!props.closeOnClickModal) {
+    return true
+  } else {
+    return props.showCloseIcon
   }
 })
 
@@ -82,13 +97,23 @@ watch(status, (newStatus) => {
   }
 })
 
-watch(route, () => {
-  close()
-})
+watch(
+  () => route.fullPath,
+  () => {
+    close()
+  },
+)
 
-const exposeObject: DrawerExpose = {
+const exposeObject: DrawerRef = {
   open,
   close,
 }
+
 defineExpose(exposeObject)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'LiDrawer',
+}
 </script>

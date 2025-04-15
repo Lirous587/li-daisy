@@ -6,14 +6,16 @@ import type { App } from 'vue'
 import Avatar from './Avatar'
 import Button from './Button'
 import Collapse from './Collapse'
+import Drawer from './Drawer'
 
 // 导出组件类型和组件
 export * from './Avatar'
 export * from './Button'
 export * from './Collapse'
+export * from './Drawer'
 
 // 组件列表 - 用于全局注册
-const components = [Avatar, Button, Collapse]
+const components = [Avatar, Button, Collapse, Drawer]
 
 const install = (app: App) => {
   components.forEach((component) => {
@@ -27,4 +29,4 @@ const install = (app: App) => {
 }
 
 // 只保留命名导出
-export { install, Avatar, Button, Collapse }
+export { install, Avatar, Button, Collapse, Drawer }

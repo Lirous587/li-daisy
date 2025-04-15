@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/HomeView.vue'
 import AvartarView from '../views/AvatarView.vue'
 import CollapseView from '../views/CollapseView.vue'
+import DrawerView from '../views/DrawerView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
       path: '/collapse',
       name: 'collapse',
       component: CollapseView,
+    },
+    {
+      path: '/drawer',
+      name: 'drawer',
+      component: DrawerView,
     },
   ],
 })

@@ -64,7 +64,7 @@
       <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
     </Collapse>
     <Collapse class="w-full" :show-border="true" default="info" active="primary">
-      <CollapseItem title="只要设置了default或active"> border不再展示 </CollapseItem>
+      <CollapseItem title="只要设置了border"> default或active不再展示  </CollapseItem>
     </Collapse>
 </div>
 

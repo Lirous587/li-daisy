@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import type { DrawerExpose } from './drawer'
-import type { FormExpose } from '../form'
+import type { FormExpose } from './form'
 import { ref } from 'vue'
 import { computed } from 'vue'
 import { watch } from 'vue'
