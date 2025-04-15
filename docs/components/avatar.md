@@ -1,6 +1,11 @@
 # Avatar头像
 
 ## 调整尺寸
+
+> 可选尺寸有 `sm` `lg` `xl`
+>
+> `md`即默认尺寸 无对外暴露
+
 <div class="flex gap-4 items-center m-3">
     <Avatar avatar="https://picsum.photos/600/600" size="sm"/>
     <Avatar avatar="https://picsum.photos/600/600"/>
@@ -18,23 +23,29 @@
 ```
 
 ## 加载失败显示文字
+
+通过**text**设置
+
 <div class="flex gap-4 items-center m-3">
-    <Avatar avatar="noexist" text="L" size="sm"/>
-    <Avatar avatar="noexist" text="Li"/>
-    <Avatar avatar="noexist" text="Lirous" size="lg"/>
-    <Avatar avatar="noexist" text="Li-daisy" size="xl"/>
+    <Avatar avatar="https://picsum.photos/xx" text="L" size="sm"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Li"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Lirous" size="lg"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Li-daisy" size="xl"/>
 </div>
 
 ```vue
 <div class="flex gap-4 items-center m-3">
-    <Avatar avatar="noexist" text="L" size="sm"/>
-    <Avatar avatar="noexist" text="Li"/>
-    <Avatar avatar="noexist" text="Lirous" size="lg"/>
-    <Avatar avatar="noexist" text="Li-daisy" size="xl"/>
+    <Avatar avatar="https://picsum.photos/xx" text="L" size="sm"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Li"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Lirous" size="lg"/>
+    <Avatar avatar="https://picsum.photos/xx" text="Li-daisy" size="xl"/>
 </div>
 ```
 
 ## 加载之后的回调
+
+组件emit两个方法 `success`和 `failed`
+
 <div class="flex gap-4 items-center m-3">
     <Avatar avatar="https://picsum.photos/600/600"  @success="handleSuccess"/>
     <Avatar avatar="noexist" text="Li" @failed="handleFailed"/>

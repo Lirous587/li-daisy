@@ -54,7 +54,7 @@
 > [!IMPORTANT]
 > 为了美观，当设置了样式之后，border不再显示
 >
-> > 同时激活状态只建议存在一条折叠信息的时候使用
+> 同时激活状态只建议存在一条折叠信息的时候使用
 
 <div class="spacy-4">
     <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
