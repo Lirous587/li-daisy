@@ -8,8 +8,8 @@ export interface CollapseContext {
   activeItem: Ref<number>
   showBorder: boolean
   icon?: 'plus' | 'arrow'
-  default?: 'primary' | 'secondary' | 'accent' | 'neutral'
-  active?: 'primary' | 'secondary' | 'accent' | 'neutral'
+  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
 }
 
 // 创建供注入使用的Key

@@ -6,14 +6,16 @@ import router from './router'
 
 import '@/assets/css/tailwind.css'
 
-// import { LiDaisy } from 'li-daisy'
-// import 'li-daisy/dist/style.css'
+import * as LiDaisy from '../packages/index.ts'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+
 // 全局注册组件
-// app.use(LiDaisy)
+Object.entries(LiDaisy).forEach(([name, component]) => {
+  app.component(name, component)
+})
 
 app.mount('#app')

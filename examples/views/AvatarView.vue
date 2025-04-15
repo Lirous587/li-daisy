@@ -1,10 +1,15 @@
 <template>
-  <div>
-    <p class="text-xl font-bold">Avatar头像</p>
-    <!-- <LiDaisy.Avatar name="用户名" avatar="https://picsum.photos/600/600" size="md" /> -->
+  <div class="flex gap-4 items-center m-3">
+    <Avatar avatar="https://picsum.photos/600/600" @success="handleSuccess" />
+    <Avatar avatar="noexist" text="Li" @failed="handleFailed" />
   </div>
 </template>
 
 <script setup lang="ts">
-// import { LiDaisy } from '@/index'
+const handleSuccess = () => {
+  console.log('load success')
+}
+const handleFailed = () => {
+  console.log('load failed')
+}
 </script>

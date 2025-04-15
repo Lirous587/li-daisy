@@ -59,6 +59,9 @@ const defaultClass = computed(() => {
     case 'secondary': {
       return 'bg-secondary text-secondary-content '
     }
+    case 'info': {
+      return 'bg-info peer-checked:text-info-content '
+    }
     case 'neutral': {
       return 'bg-neutral text-neutral-content '
     }
@@ -80,6 +83,9 @@ const activeClass = computed(() => {
     }
     case 'secondary': {
       return 'peer-checked:bg-secondary peer-checked:text-secondary-content '
+    }
+    case 'info': {
+      return 'peer-checked:bg-info peer-checked:text-info-content '
     }
     case 'neutral': {
       return 'peer-checked:bg-neutral peer-checked:text-neutral-content '

@@ -23,6 +23,20 @@ export default defineConfig({
       },
     ],
 
+    // 启用最后更新时间
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: "medium",
+        timeStyle: "medium",
+      },
+    },
+
+    outline: {
+      level: 'deep',
+      label: '导航',
+    },
+
     socialLinks: [{ icon: 'github', link: 'https://github.com/Lirous587/Li-Daisy' }],
   },
   vite: {

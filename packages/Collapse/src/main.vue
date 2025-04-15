@@ -1,5 +1,5 @@
 <template>
-  <div class="join join-vertical">
+  <div class="join join-vertical my-1">
     <slot />
   </div>
 </template>
@@ -12,8 +12,8 @@ import type { CollapseContext } from './types'
 interface CollapseProps {
   showBorder?: boolean | false
   icon?: 'plus' | 'arrow'
-  default?: 'primary' | 'secondary' | 'accent' | 'neutral'
-  active?: 'primary' | 'secondary' | 'accent' | 'neutral'
+  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
 }
 
 const props = defineProps<CollapseProps>()
