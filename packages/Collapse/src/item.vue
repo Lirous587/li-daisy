@@ -16,6 +16,7 @@
 import { computed, inject, onMounted, ref } from 'vue'
 import { collapseInjectionKey } from './types'
 import type { CollapseContext, CollapseItemProps } from './types'
+import { onBeforeMount } from 'vue'
 
 const props = withDefaults(defineProps<CollapseItemProps>(), {
   defaultOpen: false,
@@ -106,7 +107,7 @@ const collapseStyle = computed(() => {
 })
 
 // 在挂载时注册自己并设置默认打开状态
-onMounted(() => {
+onBeforeMount(() => {
   id.value = collapseContext.registerItem()
   if (props.defaultOpen) {
     collapseContext.toggleItem(id.value)

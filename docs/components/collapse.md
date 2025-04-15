@@ -3,14 +3,14 @@
 ## 基础用法
 
 <Collapse class="w-full">
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
+<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 
 ```vue
 <Collapse class="w-full">
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 ```
 
@@ -18,14 +18,14 @@
 
 使用 `show-border` 来控制是否显示边框
 <Collapse class="w-full" :show-border="true">
-<CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
-<CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
+<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 
 ```vue
 <Collapse class="w-full" :show-border="true">
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 ```
 
@@ -36,12 +36,12 @@
 > 可选值有 `plus` `arrow`
 
 <Collapse class="w-full" :show-border="true" icon="arrow">
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 
 ```vue
 <Collapse class="w-full" :show-border="true" icon="arrow">
-    <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
 </Collapse>
 ```
 
@@ -58,10 +58,10 @@
 
 <div class="spacy-4">
     <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
     </Collapse>
     <Collapse class="w-full" icon="arrow" default="info" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
     </Collapse>
     <Collapse class="w-full" :show-border="true" default="info" active="primary">
       <CollapseItem title="只要设置了border"> default或active不再展示  </CollapseItem>
@@ -71,10 +71,10 @@
 ```vue
 <div class="spacy-4">
     <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
     </Collapse>
     <Collapse class="w-full" icon="arrow" default="info" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件 </CollapseItem>
+      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
     </Collapse>
     <Collapse class="w-full" :show-border="true" default="info" active="primary">
       <CollapseItem title="只要设置了border">
@@ -83,6 +83,24 @@
     </Collapse>
 </div>
 ```
+
+## 设置默认打开子项
+
+`defaultOpen`设置默认打开项，如有多个多个后者覆盖前者
+
+<Collapse class="w-full">
+<CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
+<CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
+</Collapse>
+
+```vue
+<Collapse class="w-full">
+    <CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
+    <CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
+</Collapse>
+```
+
+此时默认打开的第二个
 
 ## API
 
