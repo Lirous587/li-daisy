@@ -3,7 +3,6 @@
     <input type="checkbox" :checked="isOpen" class="peer" @change="toggle" />
     <div class="collapse-title font-semibold" :class="collapseStyle">
       {{ props.title }}
-      {{ borderClass === '' }}
     </div>
     <div class="collapse-content !border-none" :class="collapseStyle">
       <div class="p-[1rem]">

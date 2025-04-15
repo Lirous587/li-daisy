@@ -13,7 +13,7 @@ export * from './Button'
 export * from './Collapse'
 
 // 组件列表 - 用于全局注册
-const components = [Avatar, Button]
+const components = [Avatar, Button, Collapse]
 
 const install = (app: App) => {
   components.forEach((component) => {
