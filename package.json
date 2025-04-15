@@ -28,9 +28,9 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\"",
     "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\" --fix",
-    "docs:dev": "vitepress dev doc",
-    "docs:build": "vitepress build doc",
-    "docs:preview": "vitepress preview doc"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.3",
