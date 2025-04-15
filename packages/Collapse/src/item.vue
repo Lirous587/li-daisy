@@ -1,13 +1,11 @@
 <template>
   <div class="collapse join-item" :class="iconClass">
-    <input type="checkbox" :checked="isOpen" class="collapse-input" @change="toggle" />
-    <div
-      class="collapse-title text-sm text-base-content"
-      :class="showBorder ? 'border-y border-base-300' : ''"
-    >
+    <input type="checkbox" :checked="isOpen" class="peer" @change="toggle" />
+    <div class="collapse-title font-semibold" :class="collapseStyle">
       {{ props.title }}
+      {{ borderClass === '' }}
     </div>
-    <div class="collapse-content !p-0">
+    <div class="collapse-content !border-none" :class="collapseStyle">
       <div class="p-[1rem]">
         <slot />
       </div>
@@ -38,16 +36,69 @@ if (!collapseContext) {
 
 const showBorder = computed(() => collapseContext.showBorder)
 
+const borderClass = computed(() => {
+  return showBorder.value ? 'border-y border-base-300' : ''
+})
+
 const icon = computed(() => collapseContext.icon)
 
 const iconClass = computed(() => {
   switch (icon.value) {
     case 'arrow':
       return 'collapse-arrow'
-      break
     default:
       return 'collapse-plus'
-      break
+  }
+})
+
+const defaultComputed = computed(() => collapseContext.default)
+const defaultClass = computed(() => {
+  switch (defaultComputed.value) {
+    case 'primary': {
+      return 'bg-primary text-primary-content'
+    }
+    case 'secondary': {
+      return 'bg-secondary text-secondary-content '
+    }
+    case 'neutral': {
+      return 'bg-neutral text-neutral-content '
+    }
+    case 'accent': {
+      return 'bg-accent text-accent-content '
+    }
+    default: {
+      return 'bg-base-100 text-base-content'
+    }
+  }
+})
+
+const activeComputed = computed(() => collapseContext.active)
+
+const activeClass = computed(() => {
+  switch (activeComputed.value) {
+    case 'primary': {
+      return 'peer-checked:bg-primary peer-checked:text-primary-content'
+    }
+    case 'secondary': {
+      return 'peer-checked:bg-secondary peer-checked:text-secondary-content '
+    }
+    case 'neutral': {
+      return 'peer-checked:bg-neutral peer-checked:text-neutral-content '
+    }
+    case 'accent': {
+      return 'peer-checked:bg-accent peer-checked:text-accent-content '
+    }
+    default: {
+      return 'peer-checked:bg-base-100 peer-checked:text-base-content'
+    }
+  }
+})
+
+const collapseStyle = computed(() => {
+  if (borderClass.value !== '') {
+    return borderClass.value
+  } else {
+    return [defaultClass.value, activeClass.value]
   }
 })
 

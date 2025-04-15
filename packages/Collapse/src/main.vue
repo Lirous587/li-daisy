@@ -12,6 +12,8 @@ import type { CollapseContext } from './types'
 interface CollapseProps {
   showBorder?: boolean | false
   icon?: 'plus' | 'arrow'
+  default?: 'primary' | 'secondary' | 'accent' | 'neutral'
+  active?: 'primary' | 'secondary' | 'accent' | 'neutral'
 }
 
 const props = defineProps<CollapseProps>()
@@ -52,6 +54,8 @@ provide<CollapseContext>(collapseInjectionKey, {
   activeItem,
   showBorder: props.showBorder,
   icon: props.icon,
+  default: props.default,
+  active: props.active,
 })
 </script>
 

@@ -10,12 +10,8 @@ hero:
     - theme: brand
       text: 组件列表
       link: /components/overview.md
-    # - theme: alt
-    #   text: md-api示例
-    #   link: /api-examples
-    # - theme: alt
-    #   text: md示例
-    #   link: /markdown-examples
+    - theme: alt
+      text: 待补充
 
 features:
   - title: 特点一

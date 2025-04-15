@@ -27,9 +27,4 @@ const install = (app: App) => {
 }
 
 // 只保留命名导出
-export const LiDaisy = {
-  install,
-  Avatar,
-  Button,
-  Collapse,
-}
+export { install, Avatar, Button, Collapse }

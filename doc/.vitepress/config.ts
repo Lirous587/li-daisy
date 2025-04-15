@@ -18,6 +18,7 @@ export default defineConfig({
         items: [
           { text: '总览', link: '/components/overview' },
           { text: 'Avatar头像', link: '/components/avatar' },
+          { text: 'Collapse折叠面板', link: '/components/collapse' },
         ],
       },
     ],
