@@ -106,13 +106,11 @@ const collapseStyle = computed(() => {
   }
 })
 
-// 在挂载时注册自己并设置默认打开状态
-onBeforeMount(() => {
-  id.value = collapseContext.registerItem()
-  if (props.defaultOpen) {
-    collapseContext.toggleItem(id.value)
-  }
-})
+// 注册自己并设置默认打开状态
+id.value = collapseContext.registerItem()
+if (props.defaultOpen) {
+  collapseContext.toggleItem(id.value)
+}
 
 // 计算当前是否打开
 const isOpen = computed(() => {

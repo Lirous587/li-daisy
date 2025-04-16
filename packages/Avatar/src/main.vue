@@ -64,9 +64,3 @@ onMounted(() => {
   ifFailed.value = !props.avatar
 })
 </script>
-
-<script lang="ts">
-export default {
-  name: 'LiAvatar',
-}
-</script>

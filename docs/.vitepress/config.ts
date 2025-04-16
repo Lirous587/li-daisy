@@ -19,6 +19,7 @@ export default defineConfig({
           { text: '总览', link: '/components/overview' },
           { text: 'Avatar头像', link: '/components/avatar' },
           { text: 'Collapse折叠面板', link: '/components/collapse' },
+          { text: 'Drawer折叠面板', link: '/components/drawer' },
         ],
       },
     ],
@@ -27,8 +28,8 @@ export default defineConfig({
     lastUpdated: {
       text: '最后更新于',
       formatOptions: {
-        dateStyle: "medium",
-        timeStyle: "medium",
+        dateStyle: 'medium',
+        timeStyle: 'medium',
       },
     },
 

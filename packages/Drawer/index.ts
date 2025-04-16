@@ -1,25 +1,14 @@
-import type { App, Plugin } from 'vue'
+import type { App } from 'vue'
+import type { InstallOptions } from '@/types'
 import Drawer from './src/main.vue'
-// import CollapseItem from './src/item.vue'
+import type { DrawerRef, DrawerProps } from './src/types'
 
-// 为组件添加 install 方法，用于按需引入
-Drawer.install = (app: App): void => {
-  app.component('LiDrawer', Drawer)
-  //   app.component('LiCollapseItem', CollapseItem)
+Drawer.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
+  app.component(`${prefix}Drawer`, Drawer)
 }
 
-// 将 CollapseItem 挂载到 Collapse 上
-type DrawerType = typeof Drawer &
-  Plugin & {
-    // Item: typeof CollapseItem
-  }
-
-// 挂载子组件
-// ;(Drawer as DrawerType).Item = CollapseItem
-
-// 命名导出两个组件
-// export { Collapse, CollapseItem }
 export { Drawer }
 
-// 默认导出组合后的组件
-export default Drawer as DrawerType
+export type { DrawerRef, DrawerProps }
+
+export default Drawer

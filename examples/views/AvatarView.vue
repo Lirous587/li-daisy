@@ -6,6 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import { Avatar } from '@/index'
+
 const handleSuccess = () => {
   console.log('load success')
 }

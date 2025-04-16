@@ -19,5 +19,5 @@
 </template>
 
 <script setup lang="ts">
-import { Collapse, CollapseItem } from '@/Collapse'
+import { Collapse, CollapseItem } from '@/index'
 </script>

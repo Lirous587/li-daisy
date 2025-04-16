@@ -72,7 +72,6 @@ const drawerDirection = computed(() => {
 })
 
 const showCloseIcon = computed(() => {
-  console.log(props.closeOnClickModal)
   if (!props.closeOnClickModal) {
     return true
   } else {

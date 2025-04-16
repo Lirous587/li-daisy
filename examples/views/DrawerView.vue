@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { Drawer } from '@/Drawer'
-import type { DrawerRef } from '@/Drawer/src/drawer'
+import Drawer, { type DrawerRef } from '@/index'
+
 import { ref } from 'vue'
 
 const drawerRef = ref<DrawerRef>()

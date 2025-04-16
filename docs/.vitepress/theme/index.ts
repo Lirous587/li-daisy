@@ -1,6 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 
-import ComponentGrid from './components/ComponentGrid.vue'
+import ComponentGrid from './components/OverviewGrid.vue'
 
 import '../../../packages/assets/css/tailwind.css'
 // 导入组件库和安装函数
@@ -15,6 +15,9 @@ export default {
     app.component('ComponentGrid', ComponentGrid)
 
     Object.entries(LiDaisy).forEach(([name, component]) => {
+      console.log(name)
+      console.log(component)
+
       app.component(name, component)
     })
   },
