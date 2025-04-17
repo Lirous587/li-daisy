@@ -8,7 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import type { DrawerRef } from '@/index'
+import { Drawer } from 'li-daisy'
+import type { DrawerRef } from 'li-daisy'
 import { ref } from 'vue'
 
 const drawerRef = ref<DrawerRef>()

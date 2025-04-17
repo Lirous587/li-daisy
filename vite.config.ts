@@ -9,9 +9,9 @@ export default defineConfig({
     tailwindcss(),
     vue(),
     dts({
-      tsconfigPath: './tsconfig.json',
+      tsconfigPath: './tsconfig.app.json',
       outDir: 'dist/types',
-      include: ['packages/**/*.ts', 'packages/**/*.d.ts', 'packages/**/*.vue'],
+      rollupTypes: true,
     }),
   ],
   build: {
@@ -23,14 +23,14 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['vue', 'vue-router'],
+      external: ['vue'],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
           vue: 'Vue',
-          'vue-router': 'VueRouter',
         },
         assetFileNames: 'style.css',
+        exports: 'named',
       },
     },
     cssCodeSplit: false,
@@ -38,7 +38,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './packages'),
-      '@examples': resolve(__dirname, './examples'),
     },
   },
 })

@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import type { InstallOptions } from '@/types'
+import type { InstallOptions } from '../types'
 import Drawer from './src/main.vue'
 import type { DrawerRef, DrawerProps } from './src/types'
 

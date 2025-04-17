@@ -6,3 +6,7 @@
     <Avatar avatar="https://picsum.photos/xx" text="Li-daisy" size="xl" />
   </div>
 </template>
+
+<script setup lang="ts">
+import { Avatar } from 'li-daisy'
+</script>

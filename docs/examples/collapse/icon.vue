@@ -8,3 +8,7 @@
     </Collapse>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Collapse, CollapseItem } from 'li-daisy'
+</script>

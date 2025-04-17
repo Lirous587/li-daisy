@@ -8,7 +8,8 @@ import Layout from './Layout.vue'
 
 // 导入组件库
 import '../../../packages/assets/css/tailwind.css'
-import * as LiDaisy from '../../../packages/index'
+// import * as LiDaisy from 'li-daisy'
+// LiDaisy.default.install
 
 // 引入自定义样式
 import './css/custom.css'
@@ -22,8 +23,8 @@ export default {
     // eslint-disable-next-line vue/multi-word-component-names
     app.component('Demo', Demo)
 
-    Object.entries(LiDaisy).forEach(([name, component]) => {
-      app.component(name, component)
-    })
+    // Object.entries(LiDaisy).forEach(([name, component]) => {
+    //   app.component(name, component)
+    // })
   },
 }
