@@ -22,7 +22,6 @@ export default defineConfig({
           { text: 'Avatar头像', link: '/components/avatar' },
           { text: 'Collapse折叠面板', link: '/components/collapse' },
           { text: 'Drawer折叠面板', link: '/components/drawer' },
-          { text: 'demo', link: '/components/demo' },
         ],
       },
     ],

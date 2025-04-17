@@ -25,13 +25,15 @@
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
       <div class="bg-base-200 text-base-content min-h-full p-4" :style="{ width: props.size }">
-        <div class="absolute cursor-pointer right-2 translate-x-[-100%]">
+        <span class="text-xl font-bold text-base-content">
+          {{ props.title }}
+        </span>
+        <div class="absolute cursor-pointer top-4 right-2 translate-x-[-100%]">
           <CloseIcon v-if="showCloseIcon" @click="close" />
         </div>
-        <h3 class="text-xl font-bold text-base-content mb-3">
-          {{ props.title }}
-        </h3>
-        <slot />
+        <div class="p-4">
+          <slot />
+        </div>
       </div>
     </div>
   </div>

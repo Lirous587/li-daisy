@@ -10,7 +10,7 @@ import { collapseInjectionKey } from './types'
 import type { CollapseContext, CollapseProps } from './types'
 
 const props = withDefaults(defineProps<CollapseProps>(), {
-  showBorder: true,
+  showBorder: false,
   icon: 'plus',
 })
 

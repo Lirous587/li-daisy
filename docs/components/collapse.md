@@ -2,32 +2,15 @@
 
 ## 基础用法
 
-<Collapse class="w-full">
-<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
-
-```vue
-<Collapse class="w-full">
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
-```
+:::demo collapse/basic
+:::
 
 ## 显示边框
 
 使用 `show-border` 来控制是否显示边框
-<Collapse class="w-full" :show-border="true">
-<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-<CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
 
-```vue
-<Collapse class="w-full" :show-border="true">
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
-```
+:::demo collapse/border
+:::
 
 ## 设置图标
 
@@ -35,15 +18,8 @@
 
 > 可选值有 `plus` `arrow`
 
-<Collapse class="w-full" :show-border="true" icon="arrow">
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
-
-```vue
-<Collapse class="w-full" :show-border="true" icon="arrow">
-    <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-</Collapse>
-```
+:::demo collapse/icon
+:::
 
 ## 默认样式与激活样式
 
@@ -56,49 +32,15 @@
 >
 > 同时激活状态只建议存在一条折叠信息的时候使用
 
-<div class="spacy-4">
-    <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    </Collapse>
-    <Collapse class="w-full" icon="arrow" default="info" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    </Collapse>
-    <Collapse class="w-full" :show-border="true" default="info" active="primary">
-      <CollapseItem title="只要设置了border"> default或active不再展示  </CollapseItem>
-    </Collapse>
-</div>
-
-```vue
-<div class="spacy-4">
-    <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    </Collapse>
-    <Collapse class="w-full" icon="arrow" default="info" active="primary">
-      <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
-    </Collapse>
-    <Collapse class="w-full" :show-border="true" default="info" active="primary">
-      <CollapseItem title="只要设置了border">
-        default或active不再展示 
-      </CollapseItem>
-    </Collapse>
-</div>
-```
+:::demo collapse/active
+:::
 
 ## 设置默认打开子项
 
 `defaultOpen`设置默认打开项，如有多个多个后者覆盖前者
 
-<Collapse class="w-full">
-<CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
-<CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
-</Collapse>
-
-```vue
-<Collapse class="w-full">
-    <CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
-    <CollapseItem title="Li-Daisy" :defaultOpen="true"> 小而美的组件库 </CollapseItem>
-</Collapse>
-```
+:::demo collapse/defaultOpen
+:::
 
 此时默认打开的第二个
 
