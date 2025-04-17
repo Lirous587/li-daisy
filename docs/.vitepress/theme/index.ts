@@ -11,7 +11,8 @@ import '../../../packages/assets/css/tailwind.css'
 import * as LiDaisy from '../../../packages/index'
 
 // 引入自定义样式
-import './custom.css'
+import './css/custom.css'
+import './css/daisyui.css'
 
 export default {
   ...DefaultTheme,
