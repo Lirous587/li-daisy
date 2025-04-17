@@ -13,10 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, onMounted, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { collapseInjectionKey } from './types'
 import type { CollapseContext, CollapseItemProps } from './types'
-import { onBeforeMount } from 'vue'
 
 const props = withDefaults(defineProps<CollapseItemProps>(), {
   defaultOpen: false,
@@ -120,11 +119,5 @@ const isOpen = computed(() => {
 // 切换状态
 function toggle() {
   collapseContext.toggleItem(id.value)
-}
-</script>
-
-<script lang="ts">
-export default {
-  name: 'LiCollapseItem',
 }
 </script>

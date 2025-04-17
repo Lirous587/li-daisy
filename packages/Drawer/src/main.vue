@@ -96,12 +96,9 @@ watch(status, (newStatus) => {
   }
 })
 
-watch(
-  () => route.fullPath,
-  () => {
-    close()
-  },
-)
+watch(route, () => {
+  close()
+})
 
 const exposeObject: DrawerRef = {
   open,
@@ -109,10 +106,4 @@ const exposeObject: DrawerRef = {
 }
 
 defineExpose(exposeObject)
-</script>
-
-<script lang="ts">
-export default {
-  name: 'LiDrawer',
-}
 </script>

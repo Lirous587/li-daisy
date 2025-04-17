@@ -1,3 +1,21 @@
 .last-updated {
     margin-left: auto;
 }
+
+.VPNavBarAppearance,
+.VPNavScreenAppearance,
+.VPNavBarExtra {
+    display: none !important;
+}
+
+/* [data-theme='dark'] .shiki,
+[data-theme='dark'] .shiki span {
+    background-color: var(--s-plastic-bg) !important;
+    color: var(--s-plastic) !important;
+}
+
+[data-theme='light'] .shiki,
+[data-theme='light'] .shiki span {
+    background-color: var(--s-light-bg) !important;
+    color: var(--s-light) !important;
+} */

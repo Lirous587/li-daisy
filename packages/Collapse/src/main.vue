@@ -54,9 +54,3 @@ provide<CollapseContext>(collapseInjectionKey, {
   active: props.active,
 })
 </script>
-
-<script lang="ts">
-export default {
-  name: 'LiCollapse',
-}
-</script>

@@ -1,8 +1,7 @@
 <template>
   <div class="mx-auto mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
     <a
-      class="hover:bg-base-300 hover-shadow rounded-md p-4 elevated-lg transition-all duration-500"
-      style="transition: 500ms all"
+      class="hover:bg-base-300 hover-shadow rounded-md p-4 elevated-lg !transition-all duration-500"
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"

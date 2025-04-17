@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress'
 import tailwindcssPlugin from '@tailwindcss/postcss'
 
+import { demoBlockPlugin } from './plugins/demo'
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Li-Daisy组件库',
@@ -20,6 +22,7 @@ export default defineConfig({
           { text: 'Avatar头像', link: '/components/avatar' },
           { text: 'Collapse折叠面板', link: '/components/collapse' },
           { text: 'Drawer折叠面板', link: '/components/drawer' },
+          { text: 'demo', link: '/components/demo' },
         ],
       },
     ],
@@ -40,6 +43,13 @@ export default defineConfig({
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/Lirous587/Li-Daisy' }],
   },
+
+  markdown: {
+    config: (md) => {
+      md.use(demoBlockPlugin)
+    },
+  },
+
   vite: {
     css: {
       postcss: {

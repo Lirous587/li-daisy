@@ -5,7 +5,9 @@
 @import './scroll.css';
 @import './focus.css';
 
-
+:root {
+  interpolate-size: allow-keywords;
+}
 
 /* hover.css 内容 */
 .hover-shadow {
@@ -24,9 +26,7 @@
 
 
 @plugin "daisyui" {
-  /* themes: light --default, dark --prefersdark, cupcake; */
   themes: all;
-  /* exclude: rootscrollgutter; */
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *,
