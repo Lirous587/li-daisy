@@ -7,6 +7,8 @@ import { demoBlockPlugin } from './plugins/demo'
 export default defineConfig({
   title: 'Li-Daisy组件库',
   description: 'Li-Daisy组件库文档',
+  head: [['link', { rel: 'icon', href: 'https://lirous.com/favicon.ico' }]],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
