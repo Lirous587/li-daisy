@@ -28,20 +28,19 @@
         class="overflow-hidden text-sm transition-[height] duration-500 border-t border-base-300"
         :class="codeClass"
       >
-        <div class="language-vue !my-0 !rounded-none">
-          <pre class="!p-0" v-html="highlightedHtml"></pre>
+        <div class="language-vue !m-0 !rounded-none">
+          <div v-html="highlightedHtml"></div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-import { ref, shallowRef, onMounted, markRaw, type Component, computed } from 'vue'
+import { ref, shallowRef, onMounted, markRaw, type Component, computed, inject, watch } from 'vue'
+import type { Highlighter } from 'shiki'
 
-import { createHighlighter } from 'shiki'
-
-// @ts-ignore  组件模块
-
+import { codeToHtml } from 'shiki'
 // @ts-ignore  组件模块
 const modules = import.meta.glob<{ default: Component }>('../../../examples/**/*.vue')
 // @ts-ignore  源码模块
@@ -60,42 +59,66 @@ const showCode = ref(false)
 const demoComponent = shallowRef<Component | null>(null)
 const highlightedHtml = ref('')
 
-const toggleCode = () => {
-  showCode.value = !showCode.value
-}
+const shikiHighlighter = inject<import('vue').Ref<Highlighter | null>>('shiki')
 
 const codeClass = computed(() => (showCode.value ? 'h-fit' : 'h-[0]'))
 
-onMounted(async () => {
-  const highlighter = await createHighlighter({
-    themes: ['github-light', 'plastic'],
-    langs: ['vue-html'],
-  })
+const toggleCode = async () => {
+  showCode.value = !showCode.value
+  if (showCode.value && !highlightedHtml.value) {
+    await highlightCode()
+  }
+}
 
+// 4. 高亮代码的核心逻辑
+async function highlightCode() {
+  // 检查 highlighter 是否已准备好
+  if (!shikiHighlighter?.value) {
+    console.warn('Shiki highlighter is not ready yet.')
+    // 可以选择显示更明确的提示，或者稍后重试
+    highlightedHtml.value =
+      '<div class="p-4 text-center text-warning">高亮器正在初始化，请稍候...</div>'
+    return
+  }
+
+  try {
+    const highlighter = shikiHighlighter.value
+    const importPath = `../../../examples/${props.path}.vue`
+    const matchingRawPath = Object.keys(rawModules).find(
+      (p) => p.toLowerCase() === importPath.toLowerCase(),
+    )
+
+    if (matchingRawPath) {
+      const code = (await rawModules[matchingRawPath]()) as string
+      // 使用注入的 highlighter 进行高亮
+      highlightedHtml.value = highlighter.codeToHtml(code, {
+        lang: 'vue',
+        theme: 'plastic',
+      })
+    } else {
+      highlightedHtml.value = '<div class="p-4 text-center text-error">源码文件未找到</div>'
+    }
+  } catch (err) {
+    console.error(`高亮代码失败: ${err instanceof Error ? err.message : String(err)}`)
+    highlightedHtml.value = '<div class="p-4 text-center text-error">代码高亮失败</div>'
+  }
+}
+
+//onMounted 只负责加载组件预览
+onMounted(async () => {
   try {
     const importPath = `../../../examples/${props.path}.vue`
     const matchingPath = Object.keys(modules).find(
       (p) => p.toLowerCase() === importPath.toLowerCase(),
     )
-    const matchingRawPath = Object.keys(rawModules).find(
-      (p) => p.toLowerCase() === importPath.toLowerCase(),
-    )
-
     if (matchingPath) {
       const mod = await modules[matchingPath]()
       demoComponent.value = markRaw(mod.default)
-    }
-
-    if (matchingRawPath) {
-      const code = await rawModules[matchingRawPath]()
-
-      highlightedHtml.value = highlighter.codeToHtml(code, {
-        lang: 'vue-html',
-        theme: 'plastic',
-      })
+    } else {
+      console.error(`找不到组件预览: ${importPath}`)
     }
   } catch (err) {
-    console.error(`加载组件失败: ${err instanceof Error ? err.message : String(err)}`)
+    console.error(`加载组件预览失败: ${err instanceof Error ? err.message : String(err)}`)
   }
 })
 </script>

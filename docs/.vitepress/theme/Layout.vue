@@ -15,13 +15,33 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { nextTick, provide, ref } from 'vue'
+// 导入需要的 Vue 函数和 Shiki 类型
+import { nextTick, onMounted, provide, ref, shallowRef } from 'vue'
+
+import type { Highlighter } from 'shiki'
 
 import DarkModeSwitch from './components/DarkModeSwitch.vue'
 
 const isTransitioning = ref(false)
-
 const { isDark } = useData()
+
+// 创建 shallowRef 存储实例
+const shikiHighlighter = shallowRef<Highlighter | null>(null)
+
+onMounted(async () => {
+  try {
+    const { createHighlighter } = await import('shiki')
+    shikiHighlighter.value = await createHighlighter({
+      themes: ['plastic'], // 只加载 plastic 主题
+      langs: ['vue'], // 只加载 vue 语言
+    })
+    console.log('Shiki highlighter initialized in Layout.')
+  } catch (error) {
+    console.error('Failed to initialize Shiki highlighter:', error)
+  }
+})
+
+provide('shiki', shikiHighlighter)
 
 const enableTransitions = () =>
   'startViewTransition' in document &&
