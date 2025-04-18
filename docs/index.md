@@ -10,7 +10,7 @@ hero:
     - theme: brand
       text: 组件列表
       link: /components/overview.md
-    - theme: alt
+    - theme: brand
       text: 待补充
 
 features:

@@ -9,7 +9,7 @@
       @submit="handleSubmit"
     >
       <div class="btn btn-secondary">这是抽屉内容</div>
-      <button class="btn btn-primary" @click="handleOpenDrawer">打开抽屉</button>
+      <button class="btn btn-secondary" @click="handleOpenDrawer">打开抽屉</button>
     </DrawerConfirm>
     <div class="btn btn-primary" @click="handleOpenDrawer">打开抽屉</div>
   </div>
