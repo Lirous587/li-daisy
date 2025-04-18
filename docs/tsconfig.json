@@ -1,0 +1,34 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+
+  "compilerOptions": {
+    // --- 基本选项 ---
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler", // 推荐用于 Vite
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true, // Vite 需要
+    "noEmit": true, // 因为 Vite 处理编译，tsc 只做类型检查
+
+    // --- Vue & VitePress 相关 ---
+    "jsx": "preserve", // 保留 JSX 供 Vue 处理
+    "types": [
+      "vite/client", // Vite 客户端类型
+      "vitepress" // VitePress 类型
+    ]
+  },
+  "include": [
+    // 包含 docs 目录下的所有 TS 和 Vue 文件
+    "./**/*.ts",
+    "./**/*.vue",
+    ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue",
+    // 如果有其他 TS/JS 文件需要包含，在这里添加
+    "../packages/**/*.d.ts" // 包含库生成的类型声明，帮助解析
+  ],
+  "exclude": ["node_modules", "dist", "../dist"]
+}

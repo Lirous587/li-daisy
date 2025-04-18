@@ -9,7 +9,6 @@ import Layout from './Layout.vue'
 // 导入组件库
 import '../../../packages/assets/css/tailwind.css'
 // import * as LiDaisy from 'li-daisy'
-// LiDaisy.default.install
 
 // 引入自定义样式
 import './css/custom.css'

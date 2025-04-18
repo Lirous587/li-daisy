@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { Drawer } from 'li-daisy'
-// import { Drawer } from '../../../packages/index'
 import type { DrawerRef } from 'li-daisy'
 import { ref } from 'vue'
 

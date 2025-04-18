@@ -2,10 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.node.json" // 用于 Node 环境的配置 (如 vite.config.ts)
     },
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.app.json" // 用于库 (packages) 的配置
+    },
+    {
+      "path": "./docs/tsconfig.json" // 添加对 docs 配置的引用
     }
   ]
 }
