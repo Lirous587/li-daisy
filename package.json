@@ -1,6 +1,6 @@
 {
   "name": "li-daisy",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -28,7 +28,7 @@
     "lint": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\"",
     "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\" --fix",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:build": "pnpm run build && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
