@@ -8,14 +8,10 @@
     display: none !important;
 }
 
-/* [data-theme='dark'] .shiki,
-[data-theme='dark'] .shiki span {
-    background-color: var(--s-plastic-bg) !important;
-    color: var(--s-plastic) !important;
-}
 
-[data-theme='light'] .shiki,
-[data-theme='light'] .shiki span {
-    background-color: var(--s-light-bg) !important;
-    color: var(--s-light) !important;
-} */
+/* Reset link styles specifically */
+.vp-doc a {
+    color: inherit;
+    text-decoration: inherit;
+    font-weight: unset;
+}

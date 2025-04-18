@@ -70,8 +70,8 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
       li-daisy:
-        specifier: 0.1.4
-        version: 0.1.4(typescript@5.8.3)(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
+        specifier: 0.1.5
+        version: 0.1.5(typescript@5.8.3)(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
       markdown-it-container:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1862,8 +1862,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  li-daisy@0.1.4:
-    resolution: {integrity: sha512-bjFGmOqCHjDSgcMlfggAsW7OYu5EQ6ZvNNQxWZmvxW9SDX9IH59PugLBqdARjy+DbvVNz2FBxjTEp+CGQAtQ0g==}
+  li-daisy@0.1.5:
+    resolution: {integrity: sha512-GfHuQKT+G3tDLisrhGOSQJwlfKzeez46c7vm1gV4ZyxoD85Uj4L7tku3QdKONmzlKfnj+YENDRZToS3BCI32mQ==}
 
   lightningcss-darwin-arm64@1.29.2:
     resolution: {integrity: sha512-cK/eMabSViKn/PG8U/a7aCorpeKLMlK0bQeNHmdb7qUnBkNPnL+oV5DjJUo0kqWsJUapZsM4jCfYItbqBDvlcA==}
@@ -4434,7 +4434,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  li-daisy@0.1.4(typescript@5.8.3)(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)):
+  li-daisy@0.1.5(typescript@5.8.3)(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)):
     dependencies:
       '@tailwindcss/vite': 4.1.3(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))
       daisyui: 5.0.19

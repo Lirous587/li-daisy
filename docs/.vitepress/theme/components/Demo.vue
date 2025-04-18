@@ -1,8 +1,8 @@
 <template>
-  <div class="card my-3 rounded-lg border border-base-300">
+  <div class="card rounded-lg border border-base-300">
     <div class="card-body">
       <!-- 组件预览区域 -->
-      <div class="relative">
+      <div class="relative overflow-x-auto">
         <ClientOnly>
           <component :is="demoComponent" v-if="demoComponent" />
         </ClientOnly>

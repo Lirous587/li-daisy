@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Drawer ref="drawerRef" title="抽屉标题" size="max(300px, 40%)" direction="ltr">
+    <Drawer ref="drawerRef" title="抽屉标题" :close-on-click-modal="false">
       <div class="btn btn-secondary">这是抽屉内容</div>
     </Drawer>
     <div class="btn btn-primary" @click="handleOpenDrawer">打开抽屉</div>
@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { Drawer } from 'li-daisy'
-// import { Drawer } from '../../../packages/index'
 import type { DrawerRef } from 'li-daisy'
 import { ref } from 'vue'
 
@@ -18,5 +17,3 @@ const handleOpenDrawer = () => {
   drawerRef.value?.open()
 }
 </script>
-
-<script lang="ts"></script>

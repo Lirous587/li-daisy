@@ -24,14 +24,17 @@
         class="drawer-overlay"
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
-      <div class="bg-base-200 text-base-content min-h-full p-4" :style="{ width: props.size }">
-        <span class="text-xl font-bold text-base-content">
-          {{ props.title }}
-        </span>
-        <div class="absolute cursor-pointer top-4 right-2 translate-x-[-100%]">
-          <CloseIcon v-if="showCloseIcon" @click="close" />
+      <div
+        class="bg-base-200 text-base-content min-h-full p-4 flex flex-col"
+        :style="{ width: props.size }"
+      >
+        <div class="flex items-center justify-between w-full flex-nowrap overflow-auto">
+          <div class="text-lg font-bold text-base-content">
+            {{ props.title }}
+          </div>
+          <Close class="w-6 h-6 cursor-pointer" v-if="showCloseIcon" @click="close" />
         </div>
-        <div class="p-4">
+        <div class="mt-3 flex-1">
           <slot />
         </div>
       </div>
@@ -44,11 +47,11 @@ import { computed, ref, watch } from 'vue'
 import type { DrawerRef, DrawerProps } from './types'
 import { useRoute } from 'vue-router'
 
-import CloseIcon from '../../icon/IconClose.vue'
+import Close from '../../icon/Close.vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
-  size: '40%',
+  size: 'max(300px, 40%)',
   closeOnClickModal: true,
   showCloseIcon: false,
 })
