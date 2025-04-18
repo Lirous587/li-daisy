@@ -6,24 +6,14 @@ import Demo from './components/Demo.vue'
 
 import Layout from './Layout.vue'
 
-// 导入组件库
+// 导入样式
 import '../../../packages/assets/css/tailwind.css'
-// import * as LiDaisy from 'li-daisy'
-
-// 引入自定义样式
-import './css/custom.css'
-import './css/daisyui.css'
 
 export default {
   ...DefaultTheme,
   Layout: Layout,
   enhanceApp({ app }) {
     app.component('ComponentGrid', ComponentGrid)
-    // eslint-disable-next-line vue/multi-word-component-names
     app.component('Demo', Demo)
-
-    // Object.entries(LiDaisy).forEach(([name, component]) => {
-    //   app.component(name, component)
-    // })
   },
 }

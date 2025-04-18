@@ -1,3 +1,5 @@
+import type { Reactive } from 'vue'
+
 export interface DrawerProps {
   title: string
   direction?: 'ltr' | 'rtl'
@@ -11,9 +13,17 @@ export interface DrawerRef {
   close: () => void
 }
 
-export interface FormExpose {
-  isValidate: () => boolean
-  validateField: (fieldName: string) => Promise<void>
-  // submit?: Function;
-  // errors?: Record<string, string>;
+export interface DrawerConfirmProps {
+  title: string
+  direction?: 'ltr' | 'rtl'
+  size?: string
+  confirmText?: string
+  cancelText?: string
+  form: Reactive<Record<string, unknown>>
+}
+
+export interface DrawerConfirmRef {
+  open: () => void
+  close: () => void
+  sumbit: () => void
 }

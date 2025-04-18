@@ -1,14 +1,20 @@
 import type { App } from 'vue'
 import type { InstallOptions } from '../types'
 import Drawer from './src/main.vue'
-import type { DrawerRef, DrawerProps } from './src/types'
+import DrawerConfirm from './src/confirm.vue'
+
+import type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef } from './src/types'
 
 Drawer.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
   app.component(`${prefix}Drawer`, Drawer)
 }
 
-export { Drawer }
+DrawerConfirm.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
+  app.component(`${prefix}DrawerConfirm`, DrawerConfirm)
+}
 
-export type { DrawerRef, DrawerProps }
+export { Drawer, DrawerConfirm }
+
+export type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef }
 
 export default Drawer

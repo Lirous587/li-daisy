@@ -30,6 +30,12 @@
 :::demo drawer/modal
 :::
 
+
+## ConfirmDrawer
+:::demo drawer/confirm
+:::
+
+
 ## API
 
 > none

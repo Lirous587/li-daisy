@@ -8,15 +8,15 @@ export type { AvatarProps } from './Avatar'
 import { Collapse, CollapseItem } from './Collapse'
 export type { CollapseProps, CollapseItemProps } from './Collapse'
 
-import { Drawer } from './Drawer'
+import { Drawer, DrawerConfirm } from './Drawer'
 import type { InstallOptions } from './types'
-export type { DrawerProps, DrawerRef } from './Drawer'
+export type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef } from './Drawer'
 
 // 创建组件列表
-const components = [Avatar, Collapse, CollapseItem, Drawer]
+const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm]
 
 // 导出单个组件（用于按需引入）
-export { Avatar, Collapse, CollapseItem, Drawer }
+export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm }
 
 // 默认导出（标准 Vue 插件格式）
 export default {
