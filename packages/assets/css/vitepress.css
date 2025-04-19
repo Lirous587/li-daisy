@@ -15,39 +15,6 @@
     font-weight: unset;
 }
 
-.vp-doc button {
-    @apply btn;
-}
-
-.vp-doc .btn-primary {
-    color: var(--color-primary-content) !important;
-}
-
-.vp-doc .btn-secondary {
-    color: var(--color-secondary-content);
-}
-
-.vp-doc .btn-neutral {
-    color: var(--color-neutral-content);
-}
-
-.vp-doc .btn-success {
-    color: var(--color-success-content);
-}
-
-.vp-doc .btn-info {
-    color: var(--color-info-content);
-}
-
-.vp-doc .btn-warning {
-    color: var(--color-warning-content);
-}
-
-.vp-doc .btn-error {
-    color: var(--color-error-content);
-}
-
-
 :root {
     /* --- 背景色 --- */
     /* 主要背景 */

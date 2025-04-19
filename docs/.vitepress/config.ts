@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import tailwindcssPlugin from '@tailwindcss/postcss'
+import { postcssIsolateStyles } from 'vitepress'
 
 import { demoBlockPlugin } from './plugins/demo'
 
@@ -24,6 +25,7 @@ export default defineConfig({
           { text: 'Avatar头像', link: '/components/avatar' },
           { text: 'Collapse折叠面板', link: '/components/collapse' },
           { text: 'Drawer抽屉', link: '/components/drawer' },
+          { text: 'Modal对话框', link: '/components/modal' },
         ],
       },
     ],
@@ -54,7 +56,7 @@ export default defineConfig({
   vite: {
     css: {
       postcss: {
-        plugins: [tailwindcssPlugin()],
+        plugins: [tailwindcssPlugin(), postcssIsolateStyles({})],
       },
     },
   },

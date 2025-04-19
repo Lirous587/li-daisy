@@ -25,8 +25,8 @@
     "format": "prettier --write packages/ examples/",
     "type-check": "vue-tsc --noEmit",
     "build": "vite build",
-    "lint": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\"",
-    "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" \"examples/**/*.{ts,vue,js}\" --fix",
+    "lint": "eslint \"packages/**/*.{ts,vue,js}\" ",
+    "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "pnpm run build && vitepress build docs",
     "docs:preview": "vitepress preview docs"

@@ -4,7 +4,7 @@
       <!-- 组件预览区域 -->
       <div class="relative overflow-x-auto">
         <ClientOnly>
-          <component :is="demoComponent" v-if="demoComponent" />
+          <component class="vp-raw" :is="demoComponent" v-if="demoComponent" />
         </ClientOnly>
       </div>
     </div>
@@ -42,7 +42,6 @@
 import { ref, shallowRef, onMounted, markRaw, type Component, computed, inject, watch } from 'vue'
 import type { Highlighter } from 'shiki'
 
-import { codeToHtml } from 'shiki'
 // @ts-ignore  组件模块
 const modules = import.meta.glob<{ default: Component }>('../../../examples/**/*.vue')
 // @ts-ignore  源码模块
