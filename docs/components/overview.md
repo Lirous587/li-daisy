@@ -28,6 +28,12 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，提供了一系列简洁�
     url: '/components/drawer',
     title: 'Drawer抽屉', 
     details: '用于显示/隐藏页面左侧或右侧的侧边栏'
+  },
+    {
+    img: 'https://picsum.photos/600/600',
+    url: '/components/modal',
+    title: 'Modal对话框', 
+    details: '用于点击按钮时显示对话框'
   }
 ]" />
 

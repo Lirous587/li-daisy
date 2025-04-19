@@ -9,16 +9,19 @@ import { Collapse, CollapseItem } from './Collapse'
 export type { CollapseProps, CollapseItemProps } from './Collapse'
 
 import { Drawer, DrawerConfirm } from './Drawer'
-import type { InstallOptions } from './types'
 export type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef } from './Drawer'
 
-// 创建组件列表
-const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm]
+import { Modal } from './Modal'
+export type { ModalProps, ModalRef } from './Modal'
 
 // 导出单个组件（用于按需引入）
-export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm }
+export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal }
+
+// 创建组件列表
+const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal]
 
 // 默认导出（标准 Vue 插件格式）
+import type { InstallOptions } from './types'
 export default {
   install: (app: App, { prefix = 'Li' }: InstallOptions = {}): App => {
     // 获取用户配置的前缀，默认为'Li'

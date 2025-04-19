@@ -1,7 +1,7 @@
 <template>
   <div class="drawer" :class="drawerDirection">
     <input
-      :id="drawerId"
+      :id="uniqueID"
       ref="drawerToggleRef"
       v-model="status"
       type="checkbox"
@@ -9,7 +9,7 @@
     />
     <div class="drawer-content">
       <!-- Page content here  -->
-      <label :for="drawerId">
+      <label :for="uniqueID">
         <!-- 这里不再对外暴露 避免发生一些掌控之外的操作
           统一改为调用expose方法 通过组件实例去手动调用-->
         <!-- <slot /> -->
@@ -19,7 +19,7 @@
     <div class="drawer-side z-[100]">
       <!-- 蒙层 -->
       <label
-        :for="drawerId"
+        :for="uniqueID"
         aria-label="close sidebar"
         class="drawer-overlay"
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
@@ -43,11 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
 import type { DrawerRef, DrawerProps } from './types'
-import { useRoute } from 'vue-router'
-
 import Close from '../../icon/Close.vue'
+import { getUniqueID } from '../../utils/random'
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
@@ -62,8 +62,7 @@ const status = ref(false)
 const drawerToggleRef = ref<HTMLInputElement | null>(null)
 
 // 生成唯一 ID
-const uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2)
-const drawerId = computed(() => `drawer-${uniqueId}`)
+const uniqueID = getUniqueID()
 
 const drawerDirection = computed(() => {
   switch (props.direction) {

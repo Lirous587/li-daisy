@@ -39,9 +39,9 @@
     /* 主要文本 */
     --vp-c-text-1: var(--color-base-content);
     /* 次要文本 */
-    --vp-c-text-2: var(--color-neutral-content);
+    --vp-c-text-2: var(--color-base-content);
     /* 提示/禁用文本 */
-    --vp-c-text-3: var(--color-info-content);
+    --vp-c-text-3: var(--color-base-content);
 
     /* --vp-button-alt-text:var */
 
