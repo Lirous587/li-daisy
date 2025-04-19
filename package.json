@@ -1,6 +1,6 @@
 {
   "name": "li-daisy",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -65,5 +65,9 @@
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitepress": "^1.6.3",
     "vue-tsc": "^2.2.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lirous587/Li-Daisy.git"
   }
 }
