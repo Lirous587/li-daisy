@@ -24,10 +24,7 @@
         class="drawer-overlay"
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
-      <div
-        class="bg-base-200 text-base-content min-h-full p-4 flex flex-col"
-        :style="{ width: props.size }"
-      >
+      <div class="bg-base-200 text-base-content min-h-full p-4 flex flex-col" :class="props.size">
         <div class="flex items-center justify-between w-full flex-nowrap overflow-auto">
           <div class="text-lg font-bold text-base-content">
             {{ props.title }}
@@ -51,7 +48,7 @@ import { useRoute } from 'vue-router'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
-  size: 'max(300px, 40%)',
+  size: 'w-[40vw] min-w-[250px]',
   closeOnClickModal: true,
   showCloseIcon: false,
 })

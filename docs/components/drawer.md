@@ -2,13 +2,23 @@
 
 ## 基础用法
 > 通过title设置抽屉的标题
->>
-> 通过size设置宽度大小，其值可为任意有效css宽度传函数 `calc()`，`min()`，`max()`，`clamp()` 也是可以的，默认值为 `max(300px, 40%)`
->>
->  direction可选值有 `ltr` `rtl`，默认值为 `ltr`
->
 
 :::demo drawer/basic
+:::
+
+## 打开方向 
+>  direction可选值有 `ltr` `rtl`，默认值为 `ltr`
+
+:::demo drawer/direction
+:::
+
+## 设置大小/支持响应式
+> 通过size设置宽度大小，支持 Tailwind CSS 的任意宽度值（包括响应式写法）
+> >
+> 默认值为设置了 `w-[40vw] min-w-[250px]` 
+
+
+:::demo drawer/size
 :::
 
 ## 显示关闭图标

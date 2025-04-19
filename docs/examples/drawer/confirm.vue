@@ -3,12 +3,11 @@
     <DrawerConfirm
       ref="drawerConfirmRef"
       title="抽屉标题"
-      size="max(300px, 40%)"
       direction="ltr"
       :form="form"
       @submit="handleSubmit"
     >
-      <div class="btn btn-secondary">这是抽屉内容</div>
+      <p class="font-bold">这是抽屉内容</p>
     </DrawerConfirm>
     <div class="btn btn-primary" @click="handleOpenDrawer">打开抽屉</div>
   </div>
