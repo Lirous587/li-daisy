@@ -18,11 +18,23 @@ export type { ModalProps, ModalRef } from './Modal'
 import { ThemeController } from './ThemeController'
 export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController'
 
+import { Paging } from './Paging'
+export type { PagingProps } from './Paging'
+
 // 导出单个组件（用于按需引入）
-export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController }
+export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController, Paging }
 
 // 创建组件列表
-const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController]
+const components = [
+  Avatar,
+  Collapse,
+  CollapseItem,
+  Drawer,
+  DrawerConfirm,
+  Modal,
+  ThemeController,
+  Paging,
+]
 
 // 默认导出（标准 Vue 插件格式）
 import type { InstallOptions } from './types'

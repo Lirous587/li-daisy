@@ -35,6 +35,12 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，提供了一系列简洁�
     title: 'Modal对话框', 
     details: '用于点击按钮时显示对话框'
   },
+    {     
+    img: 'https://picsum.photos/600/600',
+    url: '/components/paging',
+    title: 'Paging分页', 
+    details: '用于切换不同主题'
+  },
   {
     img: 'https://picsum.photos/600/600',
     url: '/components/themeController',

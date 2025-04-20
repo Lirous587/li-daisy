@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
     <p class="font-bold">theme:{{ theme }}</p>
     <p class="font-bold">ifDark:{{ ifDark }}</p>
-    <div class="h-100 flex justify-around w-full">
+    <div class="h-100 w-full flex justify-around">
       <ThemeController
         v-model:theme="theme"
         v-model:ifDark="ifDark"

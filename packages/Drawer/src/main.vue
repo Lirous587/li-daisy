@@ -25,7 +25,7 @@
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
       <div class="bg-base-200 text-base-content min-h-full p-4 flex flex-col" :class="props.size">
-        <div class="flex items-center justify-between w-full flex-nowrap overflow-auto">
+        <div class="w-full flex items-center justify-between flex-nowrap overflow-auto">
           <div class="text-lg font-bold text-base-content">
             {{ props.title }}
           </div>
