@@ -39,7 +39,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，提供了一系列简洁�
     img: 'https://picsum.photos/600/600',
     url: '/components/paging',
     title: 'Paging分页', 
-    details: '用于切换不同主题'
+    details: '用于将海量数据批量显示'
   },
   {
     img: 'https://picsum.photos/600/600',
