@@ -28,6 +28,14 @@
     transition: none !important;
 }
 
+.content {
+    padding-right: 0 !important;
+}
+
+.wrapper {
+    padding-right: 1rem !important;
+}
+
 :root {
     /* --- 背景色 --- */
     /* 主要背景 */
@@ -58,16 +66,15 @@
 
     /* --vp-button-alt-text:var */
 
-
     /* --- 功能性颜色 (品牌色) --- */
     /* 品牌色 1 (主要) */
-    --vp-c-brand-1: var(--color-primary);
+    --vp-c-brand-1: var(--color-info);
     /* 品牌色 2 (悬停/聚焦) */
-    --vp-c-brand-2: var(--color-primary);
+    --vp-c-brand-2: var(--color-info);
     /* 品牌色 3 (激活/实色)  */
     --vp-c-brand-3: var(--color-primary);
     /* 品牌柔和背景   */
-    --vp-c-brand-soft: var(--color-primary);
+    --vp-c-brand-soft: var(--color-secondary);
 
     /* --- 功能性颜色 (提示 Tip / Info) --- */
     /* Tip/Info 颜色 1  */

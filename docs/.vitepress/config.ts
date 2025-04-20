@@ -6,11 +6,14 @@ import { demoBlockPlugin } from './plugins/demo'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Li-Daisy组件库',
+  title: 'Li-Daisy',
   description: 'Li-Daisy组件库文档',
   head: [['link', { rel: 'icon', href: 'https://lirous.com/favicon.ico' }]],
 
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },

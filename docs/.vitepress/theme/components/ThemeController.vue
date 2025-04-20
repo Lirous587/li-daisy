@@ -3,21 +3,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { ThemeController } from '../../../../packages/index'
 import { useMyThemeStore } from '../store/theme'
-import { onMounted } from 'vue'
-
-const theme = ref('dark')
+import { onBeforeMount } from 'vue'
 
 const themeStore = useMyThemeStore()
+
+const theme = computed(() => themeStore.theme)
 
 const handleThemeChange = (theme: string) => {
   themeStore.setTheme(theme)
   // document.documentElement.setAttribute('data-theme', theme)
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   themeStore.initTheme()
 })
 </script>

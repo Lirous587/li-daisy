@@ -6,6 +6,9 @@ export const useMyThemeStore = defineStore('myThemeStore', () => {
 
   const initTheme = () => {
     const nowTheme = localStorage.theme || 'synthwave'
+    theme.value = nowTheme
+    console.log(nowTheme)
+
     setTheme(nowTheme)
   }
 
