@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ThemeController } from 'li-daisy'
+import { ThemeController } from '../../../packages/index'
 
 const theme = ref('dark')
 const ifDark = ref(false)

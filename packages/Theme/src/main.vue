@@ -12,7 +12,7 @@
           class="flex items-center justify-stretch gap-x-1"
           :key="index"
         >
-          <a class="w-full">
+          <div class="w-full">
             <div
               :data-theme="theme"
               class="bg-base-100 grid shrink-0 grid-cols-2 grid-rows-2 gap-0.5 rounded-md p-1 shadow-sm"
@@ -24,7 +24,7 @@
             </div>
             {{ theme }}
             <IconCheck v-if="nowTheme === theme" class="shrink-0 m-auto w-6 h-6" />
-          </a>
+          </div>
         </li>
       </div>
     </ul>
