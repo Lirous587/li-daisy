@@ -26,6 +26,17 @@
 :::demo themeController/slot
 :::
 
+## 对齐方式 
+> 设置 `align` 来设置对齐方式，可选值有 `left` `center` `right` ，默认值为 `right`
+>>
+> 对齐的参照是**下拉框容器相对于按钮**
+>>
+> 具体来说就是：设置为 `left` 时下拉框容器时左侧与按钮对齐，`center` 为中间， `right` 为右侧
+
+
+:::demo themeController/align
+:::
+
 ## API
 
 
@@ -35,6 +46,7 @@
 | :--------: | :----------: | :------: | :------------------------------: | :------------: |
 |   themes   |   定义主题   | string[] |   ['default','dark','cupcake']   | daisy官方主题  |
 | darkThemes | 定义暗黑主题 | string[] | ['dark','synthwave','halloween'] | 其上的暗系主题 |
+|   align    |   对齐方式   |   enum   |    ['left','center','right']     |    'right'     |
 
 
 ### Event

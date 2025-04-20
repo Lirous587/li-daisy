@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown dropdown-end">
+  <div class="dropdown" :class="alignClass">
     <div tabindex="0" role="button" class="flex w-6 h-6 items-center justify-center">
       <slot v-if="slots.default" />
       <IconBookshelf v-else />
@@ -96,6 +96,20 @@ const props = withDefaults(defineProps<ThemeControllerProps>(), {
     'sunset',
     'abyss',
   ],
+  align: 'right',
+})
+
+const alignClass = computed(() => {
+  switch (props.align) {
+    case 'left':
+      return 'dropdown-start'
+    case 'center':
+      return 'dropdown-center'
+    case 'right':
+      return 'dropdown-end'
+    default:
+      return 'dropdown-start'
+  }
 })
 
 const slots = useSlots()
