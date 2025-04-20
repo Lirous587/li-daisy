@@ -3,7 +3,12 @@
     <p class="font-bold">theme:{{ theme }}</p>
     <p class="font-bold">ifDark:{{ ifDark }}</p>
     <div class="h-100">
-      <ThemeController v-model:theme="theme" v-model:ifDark="ifDark" @change="handleThemeChange">
+      <ThemeController
+        v-model:theme="theme"
+        v-model:ifDark="ifDark"
+        @change="handleThemeChange"
+        align="center"
+      >
         <div class="btn">修改主题</div>
       </ThemeController>
     </div>

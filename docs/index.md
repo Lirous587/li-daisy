@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'Li-Daisy组件库'
   text: 'Li-Daisy组件库文档'
-  tagline: 使用daisyui+tailwindcss构建的小而美的组件库库
+  tagline: 使用daisyui+tailwindcss构建的小而美的组件库
   actions:
     - theme: brand
       text: 组件列表
