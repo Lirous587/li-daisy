@@ -1,5 +1,9 @@
 # li-daisy
 
+[![npm version](https://img.shields.io/npm/v/li-daisy.svg)](https://www.npmjs.com/package/li-daisy)
+[![npm downloads](https://img.shields.io/npm/dt/li-daisy.svg)](https://www.npmjs.com/package/li-daisy)
+
+
 ## 官方文档
 
 [官方文档](https://li-daisy.lirous.com/)

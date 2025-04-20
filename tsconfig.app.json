@@ -5,7 +5,7 @@
     "packages/**/*.d.ts", // 包含 packages 下所有 .d.ts 文件
     "packages/**/*.tsx", // 如果使用 tsx
     "packages/**/*.vue" // **必须包含 .vue 文件**
-  ],
+, "docs/.vitepress/theme/store/theme.ts", "docs/.vitepress/theme/store/theme.ts"  ],
   "exclude": ["node_modules", "dist", "docs"],
 
   "compilerOptions": {

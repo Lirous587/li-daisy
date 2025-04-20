@@ -9,10 +9,23 @@
 }
 
 
-.vp-doc a {
+/* .vp-doc a {
     color: inherit;
     text-decoration: inherit;
     font-weight: unset;
+} */
+
+.VPNavBarMenu {
+    flex-direction: row !important;
+}
+
+.VPNavScreenMenu {
+    width: 100%;
+}
+
+.VPNavBar,
+.content-body {
+    transition: none !important;
 }
 
 :root {

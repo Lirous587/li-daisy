@@ -15,7 +15,7 @@
 ## 设置大小/支持响应式
 > 通过size设置宽度大小，支持 Tailwind CSS 的任意宽度值（包括响应式写法）
 > >
-> 默认值为设置了 `w-[40vw] min-w-[250px]` 
+> 默认值为 `w-[40vw] min-w-[250px]` 
 
 
 :::demo drawer/size
@@ -47,8 +47,6 @@
 
 
 ## API
-
-> none
 
 ### Attributes
 

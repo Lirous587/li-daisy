@@ -46,8 +46,6 @@
 
 ## API
 
-> none
-
 ### Attributes
 
 #### Collapse

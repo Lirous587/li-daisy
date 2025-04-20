@@ -4,8 +4,6 @@
 @import './shadow.css';
 @import './scroll.css';
 @import './focus.css';
-@import './vitepress.css';
-
 
 :root {
   interpolate-size: allow-keywords;

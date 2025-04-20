@@ -53,8 +53,6 @@
 
 ## API
 
-> none
-
 ### Attributes
 
 

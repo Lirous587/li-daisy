@@ -26,6 +26,7 @@ export default defineConfig({
           { text: 'Collapse折叠面板', link: '/components/collapse' },
           { text: 'Drawer抽屉', link: '/components/drawer' },
           { text: 'Modal对话框', link: '/components/modal' },
+          { text: 'ThemeController主题控制器', link: '/components/themeController' },
         ],
       },
     ],

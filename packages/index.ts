@@ -1,4 +1,5 @@
 import './assets/css/tailwind.css'
+
 import type { App } from 'vue'
 
 // 导入组件 导出需要的类型（明确指定而不是 export *）
@@ -14,11 +15,13 @@ export type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef } fro
 import { Modal } from './Modal'
 export type { ModalProps, ModalRef } from './Modal'
 
+import { ThemeController } from './Theme'
+
 // 导出单个组件（用于按需引入）
-export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal }
+export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController }
 
 // 创建组件列表
-const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal]
+const components = [Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController]
 
 // 默认导出（标准 Vue 插件格式）
 import type { InstallOptions } from './types'
