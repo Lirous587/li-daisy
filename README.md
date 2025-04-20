@@ -19,5 +19,5 @@
 7. `Textarea`
 8. `Pagination`
 9. `Skeleton`
-10. `Theme`
+10. `ThemeController` ✅
 11. `Toast`

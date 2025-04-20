@@ -26,10 +26,10 @@
 
 ### Attributes
 
-|   属性值   |     说明     |   类型   |          具体类型/示范           | 默认值 |
-| :--------: | :----------: | :------: | :------------------------------: | :----: |
-|   themes   |   定义主题   | string[] |   ['default','dark','cupcake']   |  "-"   |
-| darkThemes | 定义暗黑主题 | string[] | ['dark','synthwave','halloween'] |  '-'   |
+|   属性值   |     说明     |   类型   |          具体类型/示范           |     默认值     |
+| :--------: | :----------: | :------: | :------------------------------: | :------------: |
+|   themes   |   定义主题   | string[] |   ['default','dark','cupcake']   | daisy官方主题  |
+| darkThemes | 定义暗黑主题 | string[] | ['dark','synthwave','halloween'] | 其上的暗系主题 |
 
 
 ### Event
