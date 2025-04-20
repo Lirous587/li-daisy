@@ -1,11 +1,11 @@
 <template>
   <div class="dropdown dropdown-end">
-    <div tabindex="0" role="button" class="flex btn">
-      <IconBookshelf class="w-6 h-6" />
+    <div tabindex="0" role="button" class="flex w-6 h-6 items-center justify-center">
+      <IconBookshelf />
     </div>
 
     <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box z-1 p-2 shadow-sm">
-      <div class="h-80 w-40 overflow-auto no-scrollbar">
+      <div class="h-80 w-40 overflow-auto no-scrollbar p-2">
         <li
           v-for="(theme, index) in list"
           @click="setTheme(theme)"

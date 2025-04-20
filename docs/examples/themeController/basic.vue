@@ -3,14 +3,19 @@
     <p class="font-bold">theme:{{ theme }}</p>
     <p class="font-bold">ifDark:{{ ifDark }}</p>
     <div class="h-100">
-      <ThemeController v-model:theme="theme" v-model:ifDark="ifDark" @change="handleThemeChange" />
+      <ThemeController
+        class="btn"
+        v-model:theme="theme"
+        v-model:ifDark="ifDark"
+        @change="handleThemeChange"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ThemeController } from '../../../packages/index'
+import { ThemeController } from 'li-daisy'
 
 const theme = ref('dark')
 const ifDark = ref(false)
