@@ -16,6 +16,7 @@ import { Modal } from './Modal'
 export type { ModalProps, ModalRef } from './Modal'
 
 import { ThemeController } from './ThemeController'
+export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController'
 
 // 导出单个组件（用于按需引入）
 export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController }

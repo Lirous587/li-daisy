@@ -5,7 +5,7 @@
       <template #nav-bar-content-after>
         <div class="h-[24px] w-[1px] ml-[16px] mr-[8px] bg-[var(--vp-c-divider)]"></div>
         <div class="flex w-[36px]">
-          <DarkModeSwitch class="m-auto" />
+          <ThemeController class="m-auto vp-raw" />
         </div>
       </template>
     </DefaultTheme.Layout>
@@ -21,7 +21,7 @@ import { nextTick, onMounted, provide, ref, shallowRef } from 'vue'
 
 import type { Highlighter } from 'shiki'
 
-import DarkModeSwitch from './components/DarkModeSwitch.vue'
+import ThemeController from './components/ThemeController.vue'
 
 const isTransitioning = ref(false)
 const { isDark } = useData()

@@ -1,15 +1,16 @@
 <template>
   <div class="dropdown dropdown-end">
     <div tabindex="0" role="button" class="flex w-6 h-6 items-center justify-center">
-      <IconBookshelf />
+      <slot v-if="slots.default" />
+      <IconBookshelf v-else />
     </div>
 
     <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box z-1 p-2 shadow-sm">
-      <div class="h-80 w-40 overflow-auto no-scrollbar p-2">
+      <div class="h-80 w-40 overflow-auto no-scrollbar space-y-1">
         <li
           v-for="(theme, index) in list"
           @click="setTheme(theme)"
-          class="flex items-center justify-stretch gap-x-1"
+          class="flex items-center justify-stretch"
           :key="index"
         >
           <div class="w-full">
@@ -32,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { useSlots, watch } from 'vue'
 import IconBookshelf from '../../icon/Bookshelf.vue'
 import IconCheck from '../../icon/Check.vue'
 import type { ThemeControllerProps } from './types'
@@ -96,6 +97,8 @@ const props = withDefaults(defineProps<ThemeControllerProps>(), {
     'abyss',
   ],
 })
+
+const slots = useSlots()
 
 // 主题列表
 const list = computed(() => props.themes)

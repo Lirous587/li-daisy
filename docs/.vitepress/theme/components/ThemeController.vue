@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ThemeController } from 'li-daisy'
+import { ThemeController } from '../../../../packages/index'
 import { useMyThemeStore } from '../store/theme'
 import { onMounted } from 'vue'
 
