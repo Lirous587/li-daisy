@@ -23,7 +23,7 @@
 
 ## 默认样式与激活样式
 
-通过设置`default`与`active`来设置默认样式与激活样式:本质就是控制**背景色**和**文字颜色**
+通过设置 `default` 与 `active` 来设置默认样式与激活样式:本质就是控制**背景色**和**文字颜色**
 
 > 默认样式和激活样式可选值为 `primary` `secondary` `info` `accent` `neutral`
 
@@ -37,7 +37,7 @@
 
 ## 设置默认打开子项
 
-`defaultOpen`设置默认打开项，如有多个多个后者覆盖前者
+`default-open` 设置默认打开项，如有多个多个后者覆盖前者
 
 :::demo collapse/defaultOpen
 :::
@@ -50,13 +50,20 @@
 
 #### Collapse
 
-|   属性值    |        说明        |  类型   |                 具体类型/示范                  | 默认值  |
-| :---------: | :----------------: | :-----: | :--------------------------------------------: | :-----: |
-|    title    | Collapse显示的文字 | string  |                    Li-Daisy                    |    -    |
-| show-border |    是否展示边框    | boolean |                     false                      |  false  |
-|    icon     |     显式的图标     |  enum   |                ['plus','arrow']                | 'arrow' |
-|   default   |     未激活样式     |  enum   | ['primary','secondary','info','accent','info'] |    -    |
-|   active    |      激活样式      |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+|   属性值   |        说明        |  类型   |                 具体类型/示范                  | 默认值  |
+| :--------: | :----------------: | :-----: | :--------------------------------------------: | :-----: |
+|   title    | Collapse显示的文字 | string  |                    Li-Daisy                    |    -    |
+| showBorder |    是否展示边框    | boolean |                     false                      |  false  |
+|    icon    |     显式的图标     |  enum   |                ['plus','arrow']                | 'arrow' |
+|  default   |     未激活样式     |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+|   active   |      激活样式      |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+
+
+#### CollapseItem
+|   属性值    |      说明      |  类型   | 具体类型/示范 | 默认值 |
+| :---------: | :------------: | :-----: | :-----------: | :----: |
+| defaultOpen | 是否为打开子项 | boolean |     true      |   -    |
+
 
 ### Event
 

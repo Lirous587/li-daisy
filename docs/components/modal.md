@@ -30,8 +30,7 @@
 
 
 ## 显示关闭图标
-
-通过设置show-close-icon来控制是否显示图标，默认值为 `false`
+>通过设置 `show-close-icon` 来控制是否显示图标，默认值为 `false`
 
 :::demo modal/icon
 :::
@@ -39,7 +38,7 @@
 
 ## 点击蒙层关闭
 
-通过设置 `close-on-click-modal` 来控制点击图层是否关闭，默认值为 `true`
+>通过设置 `close-on-click-modal` 来控制点击图层是否关闭，默认值为 `true`
 
 
 > [!IMPORTANT]
@@ -56,11 +55,11 @@
 ### Attributes
 
 
-|        属性值        |         说明         |  类型   |      具体类型/示范      |         默认值          |
-| :------------------: | :------------------: | :-----: | :---------------------: | :---------------------: |
-|         size         |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-11/12 max-w-[512px]' |
-|   show-close-icon    |   是否现在关闭图标   | boolean |          false          |          false          |
-| close-on-click-modal | 点击蒙层是否关闭抽屉 | boolean |          true           |          true           |
+|      属性值       |         说明         |  类型   |      具体类型/示范      |         默认值          |
+| :---------------: | :------------------: | :-----: | :---------------------: | :---------------------: |
+|       size        |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-11/12 max-w-[512px]' |
+|   showCloseIcon   |   是否现在关闭图标   | boolean |          false          |          false          |
+| closeOnClickModal | 点击蒙层是否关闭抽屉 | boolean |          true           |          true           |
 
 
 ### Event
@@ -68,14 +67,12 @@
 > none
 
 ### Slots
-
-
 | 插槽名  |      说明      |
 | :-----: | :------------: |
 | default | 填充对话框内容 |
 
 ### Expose
-| 方法名 |     说明     |
-| :----: | :----------: |
-|  open  | 控制抽屉打开 |
-| close  | 控制抽屉关闭 |
+| 方法名 |     说明     |   类型   | 具体类型/示范 |
+| :----: | :----------: | :------: | :-----------: |
+|  open  | 控制抽屉打开 | Function |  () => void   |
+| close  | 控制抽屉关闭 | Function |  () => void   |

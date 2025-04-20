@@ -23,15 +23,14 @@
 
 ## 显示关闭图标
 
-通过设置show-close-icon来控制是否显示图标，默认值为 `false`
+>通过设置 `show-close-icon` 来控制是否显示图标，默认值为 `false`
 
 :::demo drawer/icon
 :::
 
 
 ## 点击蒙层关闭
-
-通过设置 `close-on-click-modal` 来控制点击图层是否关闭，默认值为 `true`
+>通过设置 `close-on-click-modal` 来控制点击图层是否关闭，默认值为 `true`
 
 
 > [!IMPORTANT]
@@ -52,13 +51,13 @@
 
 #### Drawer
 
-|        属性值        |         说明         |  类型   |      具体类型/示范      |          默认值          |
-| :------------------: | :------------------: | :-----: | :---------------------: | :----------------------: |
-|        title         |       抽屉标题       | string  |        Li-Daisy         |            -             |
-|         size         |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-[40vw] min-w-[250px]' |
-|      direction       |       打开方向       |  enum   |      ['ltr','rtl']      |          'ltr'           |
-|   show-close-icon    |   是否现在关闭图标   | boolean |          false          |          false           |
-| close-on-click-modal | 点击蒙层是否关闭抽屉 | boolean |          true           |           true           |
+|      属性值       |         说明         |  类型   |      具体类型/示范      |          默认值          |
+| :---------------: | :------------------: | :-----: | :---------------------: | :----------------------: |
+|       title       |       抽屉标题       | string  |        Li-Daisy         |            -             |
+|       size        |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-[40vw] min-w-[250px]' |
+|     direction     |       打开方向       |  enum   |      ['ltr','rtl']      |          'ltr'           |
+|   showCloseIcon   |   是否现在关闭图标   | boolean |          false          |          false           |
+| closeOnClickModal | 点击蒙层是否关闭抽屉 | boolean |          true           |           true           |
 
 ### Event
 
@@ -73,7 +72,7 @@
 | default | 填充抽屉内容 |
 
 ### Expose
-| 方法名 |     说明     |
-| :----: | :----------: |
-|  open  | 控制抽屉打开 |
-| close  | 控制抽屉关闭 |
+| 方法名 |     说明     |   类型   | 具体类型/示范 |
+| :----: | :----------: | :------: | :-----------: |
+|  open  | 控制抽屉打开 | Function |  () => void   |
+| close  | 控制抽屉关闭 | Function |  () => void   |

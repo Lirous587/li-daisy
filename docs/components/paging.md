@@ -50,23 +50,23 @@
 
 ### Attributes
 
-|      属性值      |   说明   |   类型   |      具体类型/示范       | 默认值 |
-| :--------------: | :------: | :------: | :----------------------: | :----: |
-|      pages       | 头像大小 |  number  |            10            |   -    |
-| hideOnSinglePage | 头像大小 | boolean  |           true           | false  |
-|      offset      | 头像大小 |  number  |            2             |   1    |
-|     showIcon     | 头像大小 | boolean  |          false           |  ture  |
-|     preHref      | 头像大小 |  string  |        'article'         |   -    |
-|  hrefGenerator   | 头像大小 | Function | (page: number) => string |   -    |
+#### Props
+|      属性值      |        说明        |   类型   |      具体类型/示范       | 默认值 |
+| :--------------: | :----------------: | :------: | :----------------------: | :----: |
+|      pages       |      分页总数      |  number  |            10            |   -    |
+| hideOnSinglePage |   单页时是否隐藏   | boolean  |           true           | false  |
+|      offset      |       偏移量       |  number  |            2             |   1    |
+|     showIcon     | 否显示左右箭头图标 | boolean  |          false           |  ture  |
+|     preHref      |    简单路径前缀    |  string  |        '/article'        |   -    |
+|  hrefGenerator   | 自定义路径生成逻辑 | Function | (page: number) => string |   -    |
 
 
 
 ### Event
 
-|  名称   |     说明     |   类型   | 具体类型/示范 |
-| :-----: | :----------: | :------: | :-----------: |
-| success | 加载成功触发 | Function |    ()=>{}     |
-
+|  名称  |     说明     |       具体类型        |
+| :----: | :----------: | :-------------------: |
+| change | 页面跳转回调 | (page:number) => void |
 ### Slots
 
 > none
