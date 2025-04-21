@@ -15,14 +15,28 @@ export type { DrawerProps, DrawerRef, DrawerConfirmProps, DrawerConfirmRef } fro
 import { Modal } from './Modal'
 export type { ModalProps, ModalRef } from './Modal'
 
-import { ThemeController } from './ThemeController'
-export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController'
-
 import { Paging } from './Paging'
 export type { PagingProps } from './Paging'
 
+import { Skeleton, SkeletonItem } from './Skeleton'
+export type { SkeletonProps } from './Skeleton'
+
+import { ThemeController } from './ThemeController'
+export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController'
+
 // 导出单个组件（用于按需引入）
-export { Avatar, Collapse, CollapseItem, Drawer, DrawerConfirm, Modal, ThemeController, Paging }
+export {
+  Avatar,
+  Collapse,
+  CollapseItem,
+  Drawer,
+  DrawerConfirm,
+  Modal,
+  Paging,
+  Skeleton,
+  SkeletonItem,
+  ThemeController,
+}
 
 // 创建组件列表
 const components = [
@@ -32,8 +46,10 @@ const components = [
   Drawer,
   DrawerConfirm,
   Modal,
-  ThemeController,
   Paging,
+  Skeleton,
+  SkeletonItem,
+  ThemeController,
 ]
 
 // 默认导出（标准 Vue 插件格式）

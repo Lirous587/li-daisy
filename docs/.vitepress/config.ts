@@ -30,6 +30,7 @@ export default defineConfig({
           { text: 'Drawer抽屉', link: '/components/drawer' },
           { text: 'Modal对话框', link: '/components/modal' },
           { text: 'Paging分页', link: '/components/paging' },
+          { text: 'Skeleton骨架屏', link: '/components/skeleton' },
           { text: 'ThemeController主题控制器', link: '/components/themeController' },
         ],
       },
