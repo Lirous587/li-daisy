@@ -3,6 +3,7 @@ export interface PagingProps {
   hideOnSinglePage?: boolean
   offset?: number
   showIcon?: boolean
+  smHideIcon?: boolean
   preHref?: string
   hrefGenerator?: (page: number) => string
 }

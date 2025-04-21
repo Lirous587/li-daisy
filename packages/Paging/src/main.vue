@@ -8,13 +8,14 @@
         <a v-if="currentPage < pages" :href="generateSeoHref(currentPage + 1)">Next Page</a>
       </div>
     </div>
+
     <div class="join select-none mx-auto font-mono" v-if="pageConfim()" :class="displayClass">
       <!-- last -->
       <div
-        class="join-item btn btn-sm btn-soft hidden md:flex"
+        class="join-item btn btn-sm btn-soft flex"
         :class="ifMin ? 'pointer-events-none' : ''"
         @click="changePage(Math.max(1, currentPage - 1))"
-        v-if="props.showIcon"
+        v-if="shouldRenderIcons"
       >
         <ArrowLeft class="m-auto w-3 h-3 text-base-content/80" />
       </div>
@@ -34,10 +35,10 @@
 
       <!-- next -->
       <div
-        class="join-item btn btn-sm btn-soft hidden md:flex"
+        class="join-item btn btn-sm btn-soft flex"
         :class="ifMax ? 'pointer-events-none' : ''"
         @click="changePage(Math.min(pages, currentPage + 1))"
-        v-if="props.showIcon"
+        v-if="shouldRenderIcons"
       >
         <ArrowRight class="m-auto h-3 w-3 text-base-content/80" />
       </div>
@@ -50,13 +51,14 @@ import ArrowLeft from '../../icon/ArrowLeft.vue'
 import ArrowRight from '../../icon/ArrowRight.vue'
 import type { PagingProps, PagingItem } from './types'
 import { formatUrl } from '../../utils/format.ts'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
   hideOnSinglePage: false,
   offset: 1,
   showIcon: true,
+  smHideIcon: true,
 })
 
 const generateSeoHref = (page: number): string => {
@@ -157,4 +159,41 @@ const changePage = (page: number) => {
   emit('change', page)
   currentPage.value = page
 }
+
+const isSmallScreen = ref(false) // 初始值可以根据需要设置，或在 onMounted 中立即检查
+let mediaQueryList: MediaQueryList | null = null
+const mediaQueryString = '(max-width: 639px)' // Tailwind md 断点 - 1px
+
+const handleResize = (event: MediaQueryListEvent | MediaQueryList) => {
+  isSmallScreen.value = event.matches
+}
+
+onMounted(() => {
+  // 确保在浏览器环境中执行
+  if (typeof window !== 'undefined') {
+    mediaQueryList = window.matchMedia(mediaQueryString)
+    handleResize(mediaQueryList) // 立即检查一次初始状态
+    mediaQueryList.addEventListener('change', handleResize)
+  }
+})
+
+onUnmounted(() => {
+  if (mediaQueryList) {
+    mediaQueryList.removeEventListener('change', handleResize)
+  }
+})
+
+// 计算是否应该渲染图标
+const shouldRenderIcons = computed(() => {
+  // 如果 props.showIcon 为 false，则始终不渲染
+  if (!props.showIcon) {
+    return false
+  }
+  // 如果 props.smHideIcon 为 false，则始终渲染 (只要 showIcon 为 true)
+  if (!props.smHideIcon) {
+    return true
+  }
+  // 如果 smHideIcon 为 true，则仅在非小屏幕时渲染
+  return !isSmallScreen.value
+})
 </script>
