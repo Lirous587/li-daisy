@@ -30,6 +30,11 @@ export type { TextInputProps } from './TextInput'
 import { Textarea } from './Textarea'
 export type { TextareaProps } from './Textarea'
 
+import { Form, FormItem } from './Form'
+export type { FormRef, FormItemProps } from './Form'
+
+export { useYup } from './Form'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -44,6 +49,8 @@ export {
   ThemeController,
   TextInput,
   Textarea,
+  Form,
+  FormItem,
 }
 
 // 创建组件列表
@@ -60,6 +67,8 @@ const components = [
   ThemeController,
   TextInput,
   Textarea,
+  Form,
+  FormItem,
 ]
 
 // 默认导出（标准 Vue 插件格式）
