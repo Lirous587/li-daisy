@@ -176,24 +176,3 @@ const shouldShowCounter = computed<boolean>(() => {
   return props.maxlength !== undefined
 })
 </script>
-
-<style scoped>
-/* 隐藏 Edge/IE 的原生图标 */
-input[type='password']::-ms-reveal {
-  display: none;
-}
-
-/* 隐藏 Webkit (Chrome/Safari) 的原生按钮 */
-input[type='password']::-webkit-clear-button,
-input[type='password']::-webkit-reveal-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button,
-input::-webkit-search-results-button,
-input::-webkit-search-results-decoration {
-  display: none;
-}
-</style>
