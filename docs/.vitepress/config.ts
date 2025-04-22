@@ -9,6 +9,7 @@ export default defineConfig({
   title: 'Li-Daisy',
   description: 'Li-Daisy组件库文档',
   head: [['link', { rel: 'icon', href: 'https://lirous.com/favicon.ico' }]],
+  lang: 'zh',
 
   themeConfig: {
     search: {

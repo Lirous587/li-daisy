@@ -4,6 +4,7 @@
       class="input w-full px-0"
       :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none' : '']"
     >
+      <!-- prefix -->
       <div
         v-if="hasPrefix"
         class="h-full flex items-center justify-center px-2 border-r border-base-300"
@@ -12,17 +13,40 @@
       </div>
 
       <input
+        ref="inputRef"
         v-model="value"
-        :type="props.type"
+        :type="passwordFieldType"
         :placeholder="placeholder"
         :maxlength="maxlength"
-        :disabled="props.disabled"
         class="px-2.5"
+        @blur="handleBlur"
+        @input="handleInput"
       />
+
+      <!-- eye -->
+      <div
+        v-if="props.type === 'password' && isEyeIconShow"
+        class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-2 shrink-0"
+        @mousedown.prevent="togglePasswordVisibility"
+      >
+        <Eye v-if="isPasswordVisible" class="w-4 h-4" />
+        <EyeClose v-else class="w-4 h-4" />
+      </div>
+
+      <div
+        v-if="props.type === 'search' && isXIconShow"
+        class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-2 shrink-0"
+        @mousedown.prevent="clearSearch"
+      >
+        <XMark class="w-4 h-4" />
+      </div>
+
+      <!-- counter -->
       <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
         {{ currentLength }}/{{ props.maxlength }}
       </div>
 
+      <!-- suffix -->
       <div
         v-if="hasSuffix"
         class="h-full flex items-center justify-center px-2 border-l border-base-300"
@@ -34,8 +58,12 @@
 </template>
 
 <script lang="ts" setup>
+import Eye from '../../icon/Eye.vue'
+import EyeClose from '../../icon/EyeClose.vue'
+import XMark from '../../icon/XMark.vue'
+
 import type { TextInputProps } from './types'
-import { computed, useSlots } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 
 const props = withDefaults(defineProps<TextInputProps>(), {
   type: 'text',
@@ -47,6 +75,44 @@ const props = withDefaults(defineProps<TextInputProps>(), {
 const value = defineModel<string>({
   default: '',
 })
+
+const inputRef = ref<HTMLInputElement>()
+const isPasswordVisible = ref(false)
+const isEyeIconShow = ref(false)
+const isXIconShow = ref(false)
+
+const handleBlur = () => {
+  isPasswordVisible.value = false
+  isEyeIconShow.value = false
+  isXIconShow.value = false
+}
+
+const handleInput = () => {
+  if (inputRef.value?.value === '') {
+    isEyeIconShow.value = true
+    isXIconShow.value = false
+  } else {
+    isXIconShow.value = true
+  }
+}
+
+const togglePasswordVisibility = () => {
+  isPasswordVisible.value = !isPasswordVisible.value
+  inputRef.value?.focus()
+}
+
+const passwordFieldType = computed(() => {
+  if (props.type !== 'password') {
+    return props.type
+  }
+  return isPasswordVisible.value ? 'text' : 'password'
+})
+
+const clearSearch = () => {
+  if (inputRef.value) {
+    inputRef.value.value = ''
+  }
+}
 
 const slots = useSlots()
 const hasPrefix = computed(() => !!slots.prefix)
@@ -88,7 +154,7 @@ const colorClass = computed(() => {
     case 'warning':
       return 'input-warning'
     case 'error':
-      return 'input-warning'
+      return 'input-error'
     default:
       return ''
   }
@@ -110,3 +176,24 @@ const shouldShowCounter = computed<boolean>(() => {
   return props.maxlength !== undefined
 })
 </script>
+
+<style scoped>
+/* 隐藏 Edge/IE 的原生图标 */
+input[type='password']::-ms-reveal {
+  display: none;
+}
+
+/* 隐藏 Webkit (Chrome/Safari) 的原生按钮 */
+input[type='password']::-webkit-clear-button,
+input[type='password']::-webkit-reveal-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration {
+  display: none;
+}
+</style>

@@ -77,7 +77,7 @@ const colorClass = computed(() => {
     case 'warning':
       return 'textarea-warning'
     case 'error':
-      return 'textarea-warning'
+      return 'textarea-error'
     default:
       return ''
   }
