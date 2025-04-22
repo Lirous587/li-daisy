@@ -21,6 +21,7 @@
         class="px-2.5"
         @blur="handleBlur"
         @input="handleInput"
+        @focus="handleFocus"
       />
 
       <!-- eye -->
@@ -85,6 +86,12 @@ const handleBlur = () => {
   isPasswordVisible.value = false
   isEyeIconShow.value = false
   isXIconShow.value = false
+}
+
+const handleFocus = () => {
+  if (inputRef.value?.value === '') {
+    isEyeIconShow.value = true
+  }
 }
 
 const handleInput = () => {
