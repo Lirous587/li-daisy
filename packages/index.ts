@@ -27,8 +27,8 @@ export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController
 import { TextInput } from './TextInput'
 export type { TextInputProps } from './TextInput'
 
-// import { Textarea } from './Textarea'
-// export type { TextareaProps } from './Textarea'
+import { Textarea } from './Textarea'
+export type { TextareaProps } from './Textarea'
 
 // 导出单个组件（用于按需引入）
 export {
@@ -43,6 +43,7 @@ export {
   SkeletonItem,
   ThemeController,
   TextInput,
+  Textarea,
 }
 
 // 创建组件列表
@@ -58,6 +59,7 @@ const components = [
   SkeletonItem,
   ThemeController,
   TextInput,
+  Textarea,
 ]
 
 // 默认导出（标准 Vue 插件格式）

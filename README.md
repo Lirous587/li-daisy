@@ -15,7 +15,7 @@
 3. `Drawer` ✅
 4. `Modal` ✅
 5. `Form` 
-6. `Input`
+6. `TextInput` ✅
 7. `Textarea`
 8. `Paging` ✅
 9. `Skeleton` ✅

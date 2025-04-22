@@ -1,35 +1,32 @@
-# TextInput文本输入框
+# Textarea文本输入框
 
 ## 基本使用 
-:::demo textInput/basic
+:::demo textarea/basic
 :::
 
 ## 尺寸
-> 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
-:::demo textInput/size
+> 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
+>>
+> 此处尺寸并不影响 `textarea` 这一元素的大小，而是影响其内文字大小
+:::demo textarea/size
 :::
 
 ## 占位符文本
 > 通过 `placeholder` 来设置默认占位符
 
 ## 禁用状态
-:::demo textInput/disable
+:::demo textarea/disable
 :::
 
-
-## 输入类型
->为了更好的浏览器补全，支持以下类型
->>
-> `text`， `password`， `email`， `url`， `tel`， `search`
-:::demo textInput/type
-:::
 
 ## 最大长度
 > 通过 `maxlength` 来设置最大文本长度
 
-## 使用插槽
-> 通过 `prefix` 和 `suffix` 来设置前后插槽
-:::demo textInput/slot
+## 设置行数
+> 通过 `min-rows` `max-rows` 来分别设置最小和最大行数
+>>
+> 行数超出 `max-rows` 时将显示滚动条
+:::demo textarea/rows
 :::
 
 ## color颜色
@@ -37,7 +34,7 @@
 >>
 > 可选值  `ghost`, `daisyui通用颜色`
 
-:::demo textInput/color
+:::demo textarea/color
 :::
 
 ## API
@@ -46,7 +43,6 @@
 
 |   属性值    |     说明     |  类型   |         具体类型/示范          | 默认值 |
 | :---------: | :----------: | :-----: | :----------------------------: | :----: |
-|    type     |     类型     |  enum   |         浏览器原生属性         | 'text' |
 |    size     |     尺寸     |  enum   |   ['xs','sm','md','lg','xl']   |  'md'  |
 | placeholder |    占位符    | string  |           请输入文本           |   -    |
 |  disabled   |   是否禁用   | boolean |              true              | false  |
@@ -54,12 +50,8 @@
 |    color    |     颜色     | number  | ['ghost',...'daisyui通用颜色'] |   -    |
 
 ### Event
-
 > none
 
 ### Slots
+> none
 
-| 插槽名 |   说明   |
-| :----: | :------: |
-| prefix | 前缀插槽 |
-| suffix | 后缀插槽 |

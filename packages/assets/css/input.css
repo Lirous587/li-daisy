@@ -1,10 +1,17 @@
-/* 移除 input 默认聚焦状态  */
+/* 移除 input 和textarea 默认聚焦状态  */
 @layer override {
 
     /* 聚焦状态 */
     .input:focus,
     .input:focus-visible,
     .input:focus-within {
+        outline: none;
+    }
+
+    /* 聚焦状态 */
+    .textarea:focus,
+    .textarea:focus-visible,
+    .textarea:focus-within {
         outline: none;
     }
 }
@@ -21,15 +28,3 @@
         -moz-appearance: textfield;
     }
 }
-
-/* 针对 WebKit 浏览器 (Chrome, Safari, Edge) */
-/* input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-} */
-
-/* 针对 Firefox */
-/* input[type='number'] {
-    -moz-appearance: textfield;
-} */
