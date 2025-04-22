@@ -55,9 +55,9 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，提供了一系列简洁�
   },
   {
     img: 'https://picsum.photos/600/600',
-    url: '/components/input',
-    title: 'Input输入框', 
-    details: '用于输入各种数据'
+    url: '/components/textInput',
+    title: 'TextInput文本输入框', 
+    details: '用于输入文本数据'
   },
   {
     img: 'https://picsum.photos/600/600',
