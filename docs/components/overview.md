@@ -52,7 +52,19 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，提供了一系列简洁�
     url: '/components/themeController',
     title: 'ThemeController主题控制器', 
     details: '用于切换不同主题'
-  }
+  },
+  {
+    img: 'https://picsum.photos/600/600',
+    url: '/components/input',
+    title: 'Input输入框', 
+    details: '用于输入各种数据'
+  },
+  {
+    img: 'https://picsum.photos/600/600',
+    url: '/components/textarea',
+    title: 'Textarea多行文本输入框', 
+    details: '用于输入较长文本数据'
+  },
 ]" />
 
 ## 快速导航

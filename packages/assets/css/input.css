@@ -1,0 +1,35 @@
+/* 移除 input 默认聚焦状态  */
+@layer override {
+
+    /* 聚焦状态 */
+    .input:focus,
+    .input:focus-visible,
+    .input:focus-within {
+        outline: none;
+    }
+}
+
+@utility no-spinner {
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    & {
+        -moz-appearance: textfield;
+    }
+}
+
+/* 针对 WebKit 浏览器 (Chrome, Safari, Edge) */
+/* input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+
+/* 针对 Firefox */
+/* input[type='number'] {
+    -moz-appearance: textfield;
+} */

@@ -32,6 +32,8 @@ export default defineConfig({
           { text: 'Paging分页', link: '/components/paging' },
           { text: 'Skeleton骨架屏', link: '/components/skeleton' },
           { text: 'ThemeController主题控制器', link: '/components/themeController' },
+          { text: 'Input输入框', link: '/components/input' },
+          { text: 'Textarea多行文本输入框', link: '/components/textarea' },
         ],
       },
     ],

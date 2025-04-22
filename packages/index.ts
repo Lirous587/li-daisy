@@ -24,6 +24,12 @@ export type { SkeletonProps } from './Skeleton'
 import { ThemeController } from './ThemeController'
 export type { ThemeControllerProps, ThemeControllerRef } from './ThemeController'
 
+import { Input } from './Input'
+export type { InputProps } from './Input'
+
+// import { Textarea } from './Textarea'
+// export type { TextareaProps } from './Textarea'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -36,6 +42,7 @@ export {
   Skeleton,
   SkeletonItem,
   ThemeController,
+  Input,
 }
 
 // 创建组件列表
@@ -50,6 +57,7 @@ const components = [
   Skeleton,
   SkeletonItem,
   ThemeController,
+  Input,
 ]
 
 // 默认导出（标准 Vue 插件格式）

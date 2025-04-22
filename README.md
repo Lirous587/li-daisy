@@ -18,6 +18,6 @@
 6. `Input`
 7. `Textarea`
 8. `Paging` ✅
-9. `Skeleton`  
+9. `Skeleton` ✅
 10. `ThemeController` ✅
 11. `Toast` 

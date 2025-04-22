@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './input.css';
 @import './elevated.css';
 @import './hover.css';
 @import './shadow.css';
@@ -33,27 +34,3 @@
     [data-theme=dim], [data-theme=dim] *,
     [data-theme=sunset], [data-theme=sunset] *,
     [data-theme=abyss], [data-theme=abyss] *));
-
-/* 移除 input 默认聚焦状态  */
-@layer override {
-
-  /* 聚焦状态 */
-  .input:focus,
-  .input:focus-visible,
-  .input:focus-within {
-    outline: none;
-  }
-}
-
-@utility no-spinner {
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  & {
-    -moz-appearance: textfield;
-  }
-}
