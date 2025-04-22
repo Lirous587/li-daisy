@@ -35,6 +35,7 @@ export default defineConfig({
           { text: 'ThemeController主题控制器', link: '/components/themeController' },
           { text: 'TextInput文本输入框', link: '/components/textInput' },
           { text: 'Textarea多行文本输入框', link: '/components/textarea' },
+          { text: 'Form表单', link: '/components/form' },
         ],
       },
     ],
