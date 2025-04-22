@@ -31,6 +31,8 @@ const sizeClass = computed(() => {
   switch (props.size) {
     case 'sm':
       return 'w-8 h-8'
+    case 'md':
+      return 'w-12 h-12'
     case 'lg':
       return 'w-16 h-16'
     case 'xl':

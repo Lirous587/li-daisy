@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select-none w-full p-3 relative"
+    class="select-none w-full relative"
     :class="props.disabled ? 'hover:cursor-not-allowed' : ''"
   >
     <textarea
@@ -14,7 +14,7 @@
       :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none' : '']"
     ></textarea>
 
-    <div v-if="maxlength" class="absolute right-5.5 bottom-5.5 text-sm text-base-content/70">
+    <div v-if="maxlength" class="absolute right-2.5 bottom-2.5 text-sm text-base-content/70">
       {{ currentLength }}/{{ maxlength }}
     </div>
 

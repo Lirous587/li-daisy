@@ -7,7 +7,7 @@
 ## 尺寸
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
 >>
-> 此处尺寸并不影响 `textarea` 这一元素的大小，而是影响其内文字大小
+> 与 `daisyui` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度
 :::demo textarea/size
 :::
 
