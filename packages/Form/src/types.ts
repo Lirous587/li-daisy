@@ -1,11 +1,17 @@
+import type { GenericObject } from 'vee-validate'
+
+export interface FormProps {
+  schema: GenericObject
+  labelWidth?: string
+}
+
 export interface FormRef {
-  isValidate: () => boolean
+  validate: () => Promise<boolean>
   validateField: (fieldName: string) => Promise<void>
-  // submit?: Function;
-  // errors?: Record<string, string>;
 }
 
 export interface FormItemProps {
   name: string
   label?: string
+  trigger: 'change' | 'blur' | 'input'
 }

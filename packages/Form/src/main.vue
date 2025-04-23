@@ -1,82 +1,78 @@
 <template>
-  <VeeForm>
-    <slot />
-  </VeeForm>
+  <div>
+    <VeeForm>
+      <slot />
+    </VeeForm>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-import type { BaseFieldProps, GenericObject } from 'vee-validate'
-import { provide, reactive, watch, type Ref } from 'vue'
-import type { FormRef } from './types'
-
-// 完善类型定义
-interface FormProps {
-  schema: GenericObject
-  labelWidth?: string
-}
+import { Form as VeeForm } from 'vee-validate'
+import { onMounted, provide, readonly, watch } from 'vue'
+import type { FormProps, FormRef } from './types'
 
 const model = defineModel<Record<string, unknown>>()
 
-const props = defineProps<FormProps>()
+const props = withDefaults(defineProps<FormProps>(), {
+  labelWidth: '60px',
+})
 
 provide('labelWidth', props.labelWidth)
 
-// 使用vee-validate初始化表单
 const {
-  defineField,
   errors,
-  handleSubmit,
-  setFieldValue,
   meta,
-  validateField: validateFormField,
+  defineField,
+  setFieldValue,
+  validate: veeValidate,
+  validateField: veeValidateField,
 } = useForm({
   validationSchema: props.schema,
 })
 
-type FieldValues = Record<string, any>
-type FieldAttrs = Record<string, Ref<BaseFieldProps & GenericObject>>
-
-const fields = reactive<FieldValues>({})
-const attrs = reactive<FieldAttrs>({})
-
 // 初始化表单字段
-if (model.value) {
-  for (const fieldName in model.value) {
-    const [value, meta] = defineField(fieldName)
-    fields[fieldName] = value
-    attrs[fieldName] = meta
+onMounted(() => {
+  if (model.value) {
+    for (const fieldName in model.value) {
+      if (Object.prototype.hasOwnProperty.call(model.value, fieldName)) {
+        setFieldValue(fieldName, model.value[fieldName])
+      }
+    }
   }
-}
-
-// 向子组件提供errors
-provide('errors', errors)
+})
 
 watch(
   model,
   (newValue) => {
-    for (const fieldName in newValue) {
-      setFieldValue(fieldName, newValue[fieldName])
-      // fields[fieldName] = newValue[fieldName];
+    if (newValue) {
+      for (const fieldName in newValue) {
+        // 确保只设置 model 中存在的属性
+        if (Object.prototype.hasOwnProperty.call(newValue, fieldName)) {
+          setFieldValue(fieldName, newValue[fieldName])
+        }
+      }
     }
   },
   { deep: true },
 )
 
-// 验证整个表单
-const validate = () => meta.value.valid
+provide('errors', readonly(errors))
 
-// 验证指定字段
-const validateField = async (fieldName: string) => {
-  if (fieldName in fields) {
-    await validateFormField(fieldName).then((result) => {
-      return result.value
-    })
-  }
+// 包装 validate 函数
+const validate = async (): Promise<boolean> => {
+  const result = await veeValidate()
+  return result.valid
+}
+
+// 包装 validateField 函数
+const validateField = async (fieldName: string): Promise<void> => {
+  await veeValidateField(fieldName) // 调用 vee-validate 的 validateField，忽略返回值
+  // 不需要显式 return undefined，async 函数默认返回 Promise<void>
 }
 
 const exposeObject: FormRef = {
-  isValidate: validate,
+  validate,
   validateField,
 }
 

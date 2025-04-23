@@ -31,7 +31,7 @@ import { Textarea } from './Textarea'
 export type { TextareaProps } from './Textarea'
 
 import { Form, FormItem } from './Form'
-export type { FormRef, FormItemProps } from './Form'
+export type { FormProps, FormRef, FormItemProps } from './Form'
 
 export { useYup } from './Form'
 
