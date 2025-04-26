@@ -13,7 +13,7 @@ export const useYup = () => {
       max: '${path} 最多 ${max} 个字符',
       matches: '${path} 必须匹配以下格式: "${regex}"',
       email: '${path} 必须是有效的邮箱地址',
-      url: '请输入有效的网址', // 自定义URL错误消息
+      url: '请输入有效的网址',
       trim: '${path} 不能包含首尾空格',
       lowercase: '${path} 只能包含小写字母',
       uppercase: '${path} 只能包含大写字母',

@@ -6,16 +6,22 @@
     <FormItem name="password" label="密码" trigger="blur">
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
-    <FormItem name="status" label="状态" trigger="change" align="horizontal">
-      <input type="checkbox" v-model="form.status" class="checkbox" />
-    </FormItem>
   </Form>
 </template>
 
 <script setup lang="ts">
-// import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+import { Form, FormItem, TextInput } from 'li-daisy'
+import * as yupInstance from 'yup'
 import { ref } from 'vue'
-import { Form, FormItem, useYup, TextInput } from '../../../packages'
+
+const useYup = () => {
+  yupInstance.setLocale({
+    string: {
+      email: '${path} 必须是有效的邮箱地址',
+    },
+  })
+  return yupInstance
+}
 
 const form = ref({
   email: '',
@@ -24,9 +30,9 @@ const form = ref({
 })
 
 const yup = useYup()
+
 const schema = yup.object({
   email: yup.string().email().required('请输入邮箱').trim(),
   password: yup.string().required('请输入密码').trim(),
-  status: yup.bool().isTrue('状态错误'),
 })
 </script>

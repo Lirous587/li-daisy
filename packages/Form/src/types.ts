@@ -3,15 +3,19 @@ import type { GenericObject } from 'vee-validate'
 export interface FormProps {
   schema: GenericObject
   labelWidth?: string
+  align?: 'horizontal' | 'vertical'
 }
 
 export interface FormRef {
-  validate: () => Promise<boolean>
+  validate: () => boolean
+  // validatePromise: () => Promise<boolean>
   validateField: (fieldName: string) => Promise<void>
+  // validateFieldPromise: (fieldName: string) => Promise<void>
 }
 
 export interface FormItemProps {
-  name: string
+  name?: string
   label?: string
-  trigger: 'change' | 'blur' | 'input'
+  trigger?: 'change' | 'blur' | 'input'
+  align?: 'horizontal' | 'vertical'
 }

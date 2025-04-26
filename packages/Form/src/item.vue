@@ -1,11 +1,11 @@
 <template>
   <div class="p-1 my-1">
-    <div class="flex items-center">
-      <div :style="{ width: labelWidth }" class="text-sm font-bold mr-1">
+    <div class="flex gap-1.5" :class="alignClass">
+      <div :style="widthStyle" class="text-sm font-bold mr-1">
         <label v-if="label">{{ label }}</label>
       </div>
       <div
-        class="flex-1"
+        :class="align === 'horizontal' ? 'flex-1' : 'w-full'"
         @focusout="handleInteraction('blur')"
         @input="handleInteraction('input')"
         @change="handleInteraction('change')"
@@ -13,7 +13,7 @@
         <slot></slot>
       </div>
     </div>
-    <div class="h-[1rem]">
+    <div class="h-[1rem] mx-2">
       <transition
         enter-active-class="transition ease-out duration-300"
         enter-from-class="opacity-0 -translate-y-2"
@@ -25,7 +25,7 @@
         <!-- 使用 v-if 控制元素渲染 -->
         <div
           v-show="showError"
-          :style="{ marginLeft: labelWidth }"
+          :style="marginLeftStyle"
           class="truncate text-error text-sm"
           :title="error"
         >
@@ -35,15 +35,47 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
 
+<script lang="ts" setup>
 import type { FormItemProps } from './types'
 
 import { computed, inject, ref, watch } from 'vue'
 
-const props = defineProps<FormItemProps>()
+const props = withDefaults(defineProps<FormItemProps>(), {
+  trigger: 'blur',
+})
 
 const labelWidth = inject<string>('labelWidth', '')
+
+const align = inject<string>('align', 'horizontal')
+
+const alignClass = computed(() => {
+  if (props.align === 'horizontal') {
+    return 'items-center'
+  } else if (props.align === 'vertical') {
+    return 'flex-col items-start'
+  }
+  if (align === 'horizontal') {
+    return 'items-center'
+  } else {
+    return 'flex-col items-start'
+  }
+})
+
+// label width
+const widthStyle = computed(() => {
+  if (align === 'horizontal' || props.align === 'horizontal') {
+    return { width: labelWidth }
+  }
+  return {}
+})
+// error marginLeft
+const marginLeftStyle = computed(() => {
+  if (align === 'horizontal' || props.align === 'horizontal') {
+    return { marginLeft: labelWidth }
+  }
+  return {}
+})
 
 const errors = inject<Record<string, string>>('errors', {})
 
@@ -52,9 +84,11 @@ const error = ref('')
 watch(
   errors,
   (newError) => {
-    error.value = newError[props.name]
+    if (props.name) {
+      error.value = newError[props.name]
+    }
   },
-  { deep: true, immediate: true },
+  { deep: true },
 )
 
 const interactionState = ref({
