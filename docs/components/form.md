@@ -66,7 +66,6 @@
 
 ### Event
 
-> none
 
 ### Slots
 
@@ -80,3 +79,11 @@
 | :-----: | :------: |
 | default | 默认插槽 |
 
+### Expose
+
+#### Form
+
+|    方法名     |     说明     |   类型   |                               具体类型/示范                                |
+| :-----------: | :----------: | :------: | :------------------------------------------------------------------------: |
+|   validate    | 验证整个表单 | Function |                        () => Promise&lt;boolean&gt;                        |
+| validateField | 验证某个字段 | Function | (fieldName: string) => Promise&lt;{ valid: boolean; errors: string[] }&gt; |

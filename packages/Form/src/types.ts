@@ -7,10 +7,8 @@ export interface FormProps {
 }
 
 export interface FormRef {
-  validate: () => boolean
-  // validatePromise: () => Promise<boolean>
-  validateField: (fieldName: string) => Promise<void>
-  // validateFieldPromise: (fieldName: string) => Promise<void>
+  validate: () => Promise<boolean>
+  validateField: (fieldName: string) => Promise<{ valid: boolean; errors: string[] }>
 }
 
 export interface FormItemProps {

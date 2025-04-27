@@ -50,18 +50,10 @@ const schema = yup.object({
 })
 
 const handleRegister = async () => {
-  formRef.value
-    ?.validateField('password')
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  //   const ok = formRef.value?.validate()
-  //   if (ok) {
-  //     window.alert('注册成功')
-  //     return
-  //   }
+  formRef.value?.validate().then((status) => {
+    if (status) {
+      window.alert('注册成功')
+    }
+  })
 }
 </script>

@@ -15,7 +15,7 @@
     </div>
     <div class="h-[1rem] mx-2">
       <transition
-        enter-active-class="transition ease-out duration-300"
+        enter-active-class="transition ease-out duration-200"
         enter-from-class="opacity-0 -translate-y-2"
         enter-to-class="opacity-100 translate-y-0"
         leave-active-class="transition ease-in duration-200"
@@ -39,7 +39,7 @@
 <script lang="ts" setup>
 import type { FormItemProps } from './types'
 
-import { computed, inject, ref, watch } from 'vue'
+import { computed, inject, ref, watch, type Ref } from 'vue'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
   trigger: 'blur',
@@ -69,6 +69,7 @@ const widthStyle = computed(() => {
   }
   return {}
 })
+
 // error marginLeft
 const marginLeftStyle = computed(() => {
   if (align === 'horizontal' || props.align === 'horizontal') {
@@ -102,11 +103,18 @@ const handleInteraction = (type: 'blur' | 'input' | 'change') => {
   interactionState.value[type] = true
 }
 
+const isExecuteErrorAnimation = inject<Ref<boolean>>('isExecuteErrorAnimation', ref(false))
+
 // 计算属性，决定是否应该显示错误
 const showError = computed(() => {
   // 首先，必须有错误信息存在
   if (!error.value) {
     return false
+  }
+
+  // 如果验证被主动触发，直接显示错误，忽略交互条件
+  if (isExecuteErrorAnimation.value) {
+    return true
   }
 
   // 检查是否发生过任何一种交互

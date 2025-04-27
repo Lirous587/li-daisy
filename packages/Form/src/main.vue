@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
 import { Form as VeeForm } from 'vee-validate'
-import { onMounted, provide, readonly, watch } from 'vue'
+import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
 const model = defineModel<Record<string, unknown>>({})
@@ -61,37 +61,27 @@ watch(
 
 provide('errors', readonly(errors))
 
-// 包装 validate 函数
-const validate = (): boolean => {
-  return meta.value.valid
-}
+const isExecuteErrorAnimation = ref(false)
 
-// const validatePromise = async (): Promise<boolean> => {
-//   const result = await veeValidate()
-//   return result.valid
-// }
+// 包装 validate 函数
+const validate = async (): Promise<boolean> => {
+  isExecuteErrorAnimation.value = true
+  const result = await veeValidate()
+
+  return result.valid
+}
 
 // 包装 validateField 函数
-const validateField = async (fieldName: string): Promise<void> => {
-  await veeValidateField(fieldName)
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+const validateField = async (fieldName: string): Promise<{ valid: boolean; errors: string[] }> => {
+  const result = await veeValidateField(fieldName)
+  return result
 }
 
-// const validateFieldPromise = async (fieldName: string): Promise<void> => {
-//   await veeValidateField(fieldName) // 调用 vee-validate 的 validateField，忽略返回值
-//   // 不需要显式 return undefined，async 函数默认返回 Promise<void>
-// }
+provide('isExecuteErrorAnimation', readonly(isExecuteErrorAnimation))
 
 const exposeObject: FormRef = {
   validate,
-  // validatePromise,
   validateField,
-  // validateFieldPromise,
 }
 
 defineExpose(exposeObject)
