@@ -30,8 +30,8 @@
         class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-2 shrink-0"
         @mousedown.prevent="togglePasswordVisibility"
       >
-        <Eye v-if="isPasswordVisible" class="w-4 h-4" />
-        <EyeClose v-else class="w-4 h-4" />
+        <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
+        <EyeSlashIcon v-else class="w-4 h-4" />
       </div>
 
       <div
@@ -39,7 +39,7 @@
         class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-2 shrink-0"
         @mousedown.prevent="clearSearch"
       >
-        <XMark class="w-4 h-4" />
+        <XMarkIcon class="w-4 h-4" />
       </div>
 
       <!-- counter -->
@@ -59,9 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import Eye from '../../icon/Eye.vue'
-import EyeClose from '../../icon/EyeClose.vue'
-import XMark from '../../icon/XMark.vue'
+import { EyeIcon, EyeSlashIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 import type { TextInputProps } from './types'
 import { computed, ref, useSlots } from 'vue'

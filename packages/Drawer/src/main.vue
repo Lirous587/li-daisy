@@ -29,7 +29,7 @@
           <div class="text-lg font-bold text-base-content">
             {{ props.title }}
           </div>
-          <Close class="w-6 h-6 cursor-pointer" v-if="showCloseIcon" @click="close" />
+          <XMarkIcon class="w-6 h-6 cursor-pointer" v-if="showCloseIcon" @click="close" />
         </div>
         <div class="mt-3 flex-1">
           <slot />
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import type { DrawerRef, DrawerProps } from './types'
-import Close from '../../icon/Close.vue'
+import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { getUniqueID } from '../../utils/random'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'

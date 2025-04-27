@@ -17,7 +17,7 @@
         @click="changePage(Math.max(1, currentPage - 1))"
         v-if="shouldRenderIcons"
       >
-        <ArrowLeft class="m-auto w-3 h-3 text-base-content/80" />
+        <ArrowLeftIcon class="m-auto w-3 h-3 text-base-content/80" />
       </div>
 
       <!-- middle -->
@@ -40,15 +40,14 @@
         @click="changePage(Math.min(pages, currentPage + 1))"
         v-if="shouldRenderIcons"
       >
-        <ArrowRight class="m-auto h-3 w-3 text-base-content/80" />
+        <ArrowRightIcon class="m-auto h-3 w-3 text-base-content/80" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ArrowLeft from '../../icon/ArrowLeft.vue'
-import ArrowRight from '../../icon/ArrowRight.vue'
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import type { PagingProps, PagingItem } from './types'
 import { formatUrl } from '../../utils/format.ts'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'

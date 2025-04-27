@@ -24,7 +24,7 @@
               <div class="bg-neutral size-1 rounded-full"></div>
             </div>
             {{ theme }}
-            <IconCheck v-if="nowTheme === theme" class="shrink-0 m-auto w-6 h-6" />
+            <CheckIcon v-if="nowTheme === theme" class="shrink-0 m-auto w-5 h-5" />
           </div>
         </li>
       </div>
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { useSlots, watch } from 'vue'
 import IconBookshelf from '../../icon/Bookshelf.vue'
-import IconCheck from '../../icon/Check.vue'
+import { CheckIcon } from '@heroicons/vue/24/outline'
 import type { ThemeControllerProps } from './types'
 import { computed } from 'vue'
 
