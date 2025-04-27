@@ -1,18 +1,21 @@
 <template>
-  <div class="mx-auto mt-5 grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-5">
     <a
-      class="hover:bg-base-300 hover-shadow rounded-md p-4 elevated-lg !transition-all duration-500"
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"
+      class="rounded-md card elevated-lg hover:bg-base-200 duration-500 !transition-all !no-underline"
     >
-      <div class="card card-body bg-base-200">
-        <div class="m-auto w-25 h-25">
-          <img :src="item.img" class="rounded-md" />
+      <figure class="px-8 pt-8">
+        <div class="h-24 w-full overflow-hidden rounded-xl">
+          <img :src="item.img" :alt="item.title" class="object-cover w-full" />
         </div>
+      </figure>
+
+      <div class="card-body">
+        <div class="card-title">{{ item.title }}</div>
+        <div class="text-xs font-serif opacity-70 mt-2">{{ item.details }}</div>
       </div>
-      <p class="font-bold">{{ item.title }}</p>
-      <p class="text-xs font-serif opacity-70">{{ item.details }}</p>
     </a>
   </div>
 </template>
