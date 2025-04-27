@@ -16,8 +16,9 @@
 4. `Modal` ✅
 5. `Form` ✅
 6. `TextInput` ✅
-7. `Textarea` ✅
-8. `Paging` ✅
-9. `Skeleton` ✅
-10. `ThemeController` ✅
-11. `Toast` 
+7. `NumberInput` ✅
+8. `Textarea` ✅
+9. `Paging` ✅
+10. `Skeleton` ✅
+11. `ThemeController` ✅
+12. `Toast` 

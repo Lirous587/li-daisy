@@ -16,10 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput } from '../../../packages'
-import type { FormRef } from '../../../packages'
+import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+import type { FormRef } from 'li-daisy'
 
-// import type { FormRef } from 'li-daisy'
 import { ref } from 'vue'
 
 const formRef = ref<FormRef>()

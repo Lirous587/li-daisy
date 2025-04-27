@@ -53,4 +53,17 @@
     input[type='search']::-webkit-search-results-decoration {
         display: none;
     }
+
+
+    /* 隐藏 Chrome, Safari, Edge, Opera 的上下箭头 */
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
+
+    /* 隐藏 Firefox 的上下箭头 */
+    input[type='number'] {
+        -moz-appearance: textfield !important;
+    }
 }

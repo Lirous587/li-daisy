@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ThemeController } from '../../../../packages/index'
+import { ThemeController } from 'li-daisy'
 import { useMyThemeStore } from '../store/theme'
 import { onBeforeMount } from 'vue'
 

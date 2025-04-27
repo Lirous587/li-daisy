@@ -35,6 +35,9 @@ export type { FormProps, FormRef, FormItemProps } from './Form'
 
 export { useYup } from './Form'
 
+import { NumberInput } from './NumberInput'
+export type { NumberInputProps } from './NumberInput'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -51,6 +54,7 @@ export {
   Textarea,
   Form,
   FormItem,
+  NumberInput,
 }
 
 // 创建组件列表
@@ -69,6 +73,7 @@ const components = [
   Textarea,
   Form,
   FormItem,
+  NumberInput,
 ]
 
 // 默认导出（标准 Vue 插件格式）
