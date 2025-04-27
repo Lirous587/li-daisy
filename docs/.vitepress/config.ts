@@ -37,6 +37,7 @@ export default defineConfig({
           { text: 'Textarea多行文本输入框', link: '/components/textarea' },
           { text: 'Form表单', link: '/components/form' },
           { text: 'NumberInput数字输入框', link: '/components/numberInput' },
+          { text: 'Toast消息提示', link: '/components/toast' },
         ],
       },
     ],

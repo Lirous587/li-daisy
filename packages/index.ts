@@ -38,6 +38,10 @@ export { useYup } from './Form'
 import { NumberInput } from './NumberInput'
 export type { NumberInputProps } from './NumberInput'
 
+import { toast, Toast } from './Toast'
+export { toast }
+export type { ToastInstance, ToastOptions, ToastProps, ToastRef, ToastService } from './Toast'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -55,6 +59,7 @@ export {
   Form,
   FormItem,
   NumberInput,
+  Toast,
 }
 
 // 创建组件列表
@@ -74,6 +79,7 @@ const components = [
   Form,
   FormItem,
   NumberInput,
+  Toast,
 ]
 
 // 默认导出（标准 Vue 插件格式）
