@@ -1,5 +1,10 @@
 # Avatar头像
 
+
+## 基础用法
+:::demo avatar/basic
+:::
+
 ## 调整尺寸
 
 > 可选尺寸有 `sm` `md` `lg` `xl`， `md` 为默认值

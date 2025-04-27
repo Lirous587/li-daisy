@@ -2,6 +2,9 @@
 
 > Modal的用法大致和Drawer一致
 
+## 基础用法
+:::demo modal/basic
+:::
 
 ## 打开方向 
 >  direction可选值有 `ltr` `rtl` `ttb` `btt`，默认值为 无打开方向居中显示

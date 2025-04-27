@@ -1,6 +1,6 @@
 # Textarea文本输入框
 
-## 基本使用 
+## 基础用法 
 :::demo textarea/basic
 :::
 

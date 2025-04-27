@@ -1,6 +1,6 @@
 # ThemeController主题控制器
 
-## 基本使用 
+## 基础用法 
 > `props` 有 `themes` `darkThemes` 
 >>
 > `themes` 定义包含的的主题

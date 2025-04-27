@@ -1,6 +1,6 @@
 # Skeleton骨架屏
 
-## 基本使用 
+## 基础用法 
 :::demo skeleton/basic
 :::
 

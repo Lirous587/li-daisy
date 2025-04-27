@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Modal ref="modalRef" direction="ttb" size="300px">
+    <Modal ref="modalRef" :close-on-click-modal="false">
       <h3 class="font-bold text-lg">Hello!</h3>
-      <p class="py-4">This is the modal content.</p>
+      <p class="">This is the modal content.</p>
     </Modal>
 
     <button class="btn btn-primary" @click="handleOpenModal">打开modal</button>
