@@ -1,6 +1,6 @@
 import { createApp, h, nextTick, onMounted, ref } from 'vue'
 import Toast from './main.vue'
-import type { ToastRef, ToastInstance, ToastOptions, ToastService } from './types'
+import type { ToastRef, ToastInstance, ToastOptions, ToastService, MinimalToastApp } from './types'
 
 // 创建 toast API 函数
 export function createToastApi(): ToastService {
@@ -23,7 +23,7 @@ export function createToastApi(): ToastService {
     // 默认选项
     const defaultOptions: ToastOptions = {
       duration: 2000,
-      direction: 'top-end',
+      position: 'top-end',
       showClose: true,
     }
 
@@ -35,8 +35,33 @@ export function createToastApi(): ToastService {
       message,
     }
 
+    // 定义统一的关闭和清理函数
+    const performClose = () => {
+      // 检查 app 是否存在，防止重复卸载
+      if (!app) return
+      try {
+        app.unmount()
+      } catch (e) {
+        console.error('Error unmounting toast app:', e)
+      }
+      app = null // 标记为 null，防止重复操作
+
+      if (container.parentNode) {
+        container.parentNode.removeChild(container)
+      }
+      // 从活动Toast列表中移除
+      const index = toasts.value.findIndex((t) => t.id === id)
+      if (index !== -1) {
+        toasts.value.splice(index, 1)
+      }
+    }
+
+    // 声明 app 变量，以便 performClose 可以访问
+    // 使用 ReturnType<typeof createApp> 获取 createApp 的确切返回类型
+    let app: ReturnType<typeof createApp> | null = null
+
     // 创建Vue应用实例
-    const app = createApp({
+    app = createApp({
       setup() {
         const toastRef = ref<ToastRef | null>(null)
 
@@ -48,19 +73,9 @@ export function createToastApi(): ToastService {
           })
         })
 
-        // 处理关闭事件
+        // 处理组件内部触发的关闭事件
         const handleClose = (): void => {
-          // 卸载组件应用
-          app.unmount()
-          // 从文档中移除容器
-          if (container.parentNode) {
-            container.parentNode.removeChild(container)
-          }
-          // 从活动Toast列表中移除
-          const index = toasts.value.findIndex((t) => t.id === id)
-          if (index !== -1) {
-            toasts.value.splice(index, 1)
-          }
+          performClose()
         }
 
         return () =>
@@ -78,14 +93,9 @@ export function createToastApi(): ToastService {
     // 存储Toast实例信息
     const toastInstance: ToastInstance = {
       id,
-      app,
+      app: app as MinimalToastApp,
       container,
-      close: () => {
-        app.unmount()
-        if (container.parentNode) {
-          container.parentNode.removeChild(container)
-        }
-      },
+      close: performClose,
     }
 
     toasts.value.push(toastInstance)

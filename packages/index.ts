@@ -40,7 +40,7 @@ export type { NumberInputProps } from './NumberInput'
 
 import { toast, Toast } from './Toast'
 export { toast }
-export type { ToastInstance, ToastOptions, ToastProps, ToastRef, ToastService } from './Toast'
+export type { ToastProps, ToastRef } from './Toast'
 
 // 导出单个组件（用于按需引入）
 export {

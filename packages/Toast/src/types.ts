@@ -1,5 +1,3 @@
-import type { App } from 'vue'
-
 export interface ToastProps {
   position?: 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-end'
   type?: 'info' | 'success' | 'warning' | 'error'
@@ -17,9 +15,13 @@ export interface ToastOptions extends Partial<ToastProps> {
   [key: string]: unknown
 }
 
+export interface MinimalToastApp {
+  unmount: () => void
+}
+
 export interface ToastInstance {
   id: string
-  app: App
+  app: MinimalToastApp
   container: HTMLElement
   close: () => void
 }
