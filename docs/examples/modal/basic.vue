@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal ref="modalRef" :close-on-click-modal="false">
+    <Modal ref="modalRef" :close-on-click-modal="true">
       <h3 class="font-bold text-lg">Hello!</h3>
       <p class="">This is the modal content.</p>
     </Modal>

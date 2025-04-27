@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal ref="modalRef" direction="ttb" size="300px">
+    <Modal ref="modalRef" direction="ttb">
       <h3 class="font-bold text-lg">Hello!</h3>
       <p class="py-4">This is the modal content.</p>
     </Modal>
