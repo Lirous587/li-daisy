@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-around">
+  <div class="w-full flex justify-around gap-x-3">
     <button class="btn" @click="toastInfo">info</button>
     <button class="btn" @click="toastSuccess">success</button>
     <button class="btn" @click="toastWarning">warning</button>

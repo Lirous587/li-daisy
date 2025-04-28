@@ -1,6 +1,6 @@
 export interface ToastProps {
   position?: 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-end'
-  type?: 'info' | 'success' | 'warning' | 'error'
+  type?: 'info' | 'success' | 'warning' | 'error' | 'custom'
   duration?: number
   showClose?: boolean
   message?: string

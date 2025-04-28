@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-around">
+  <div class="w-full flex justify-around gap-x-3">
     <button class="btn" @click="toastTopStart">top start</button>
     <button class="btn" @click="toastTopCenter">top center</button>
     <button class="btn" @click="toastTopEnd">top end</button>

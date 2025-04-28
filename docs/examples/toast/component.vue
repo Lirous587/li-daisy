@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Toast type="success" position="top-center" ref="toastRef">
+    <Toast ref="toastRef" type="success" position="top-center">
       <div class="text-xl font-bold">这是插槽部分</div>
     </Toast>
     <button class="btn" @click="toastFunc">toast</button>

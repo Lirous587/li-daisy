@@ -1,12 +1,19 @@
 <template>
-  <div v-if="isVisiable" class="toast rounded-md z-[999]" :class="positionClass">
-    <div class="alert rounded-md relative overflow-hidden" :class="typeClass">
-      <component :is="iconComponent" class="w-5 h-5 mr-2"></component>
+  <div v-if="isVisiable" class="toast bg-white/0 rounded-md z-[999]" :class="positionClass">
+    <div
+      class="alert rounded-md relative overflow-hidden border-0"
+      :class="[typeClass, $attrs.class]"
+    >
+      <component
+        v-if="props.type !== 'custom'"
+        :is="iconComponent"
+        class="w-5 h-5 mr-2"
+      ></component>
       <span v-if="!slot.default">
         {{ message }}
       </span>
       <slot></slot>
-      <button class="btn btn-xs btn-ghost" @click="close">
+      <button v-if="props.showClose" class="btn btn-xs btn-ghost" @click="close">
         <XMarkIcon class="w-4 h-4" />
       </button>
       <div
@@ -71,7 +78,7 @@ const typeClass = computed(() => {
     case 'error':
       return 'alert-error'
     default:
-      return 'alert-info'
+      return ''
   }
 })
 
@@ -86,7 +93,7 @@ const progress = computed(() => {
     case 'error':
       return 'bg-error-content/50'
     default:
-      return 'bg-info-content/50'
+      return 'bg-base-content/50'
   }
 })
 
