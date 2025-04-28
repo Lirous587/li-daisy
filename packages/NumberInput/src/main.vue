@@ -17,6 +17,7 @@
         :placeholder="props.placeholder"
         :min="props.min"
         :max="props.max"
+        :disabled="props.disabled"
       />
       <button
         class="btn btn-soft join-item rounded-r-full"
