@@ -42,6 +42,9 @@ import { toast, Toast } from './Toast'
 export { toast }
 export type { ToastProps, ToastRef } from './Toast'
 
+import { Table, TableItem } from './Table'
+export type { TableProps, TableItemProps } from './Table'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -60,6 +63,8 @@ export {
   FormItem,
   NumberInput,
   Toast,
+  Table,
+  TableItem,
 }
 
 // 创建组件列表
@@ -80,6 +85,8 @@ const components = [
   FormItem,
   NumberInput,
   Toast,
+  Table,
+  TableItem,
 ]
 
 // 默认导出（标准 Vue 插件格式）

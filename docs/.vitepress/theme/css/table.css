@@ -1,0 +1,63 @@
+@reference "../../../../packages/assets/css/tailwind.css";
+
+
+.vp-doc table {
+    @apply !table;
+    border-collapse: collapse;
+    border-spacing: initial;
+    border: none;
+    margin: 0 !important;
+    border-radius: 0;
+}
+
+.vp-doc tr {
+    background-color: transparent;
+    border: none;
+    transition: none;
+}
+
+.vp-doc tr:nth-child(2n) {
+    /* 重置斑马纹 */
+    background-color: transparent;
+}
+
+.vp-doc th,
+.vp-doc td {
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-weight: normal;
+    color: inherit;
+    background-color: transparent;
+    text-align: inherit;
+}
+
+/* .vp-doc .li-demo table {
+    @apply !table;
+    border-collapse: collapse;
+    border-spacing: initial;
+    border: none;
+    margin: 0 !important;
+    border-radius: 0;
+}
+
+.vp-doc .li-demo tr {
+    background-color: transparent;
+    border: none;
+    transition: none;
+}
+
+.vp-doc .li-demo tr:nth-child(2n) {
+    background-color: transparent;
+}
+
+.vp-doc .li-demo th,
+.vp-doc .li-demo td {
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-weight: normal;
+    color: inherit;
+    background-color: transparent;
+    text-align: inherit;
+} */

@@ -8,13 +8,6 @@
     display: none !important;
 }
 
-
-/* .vp-doc a {
-    color: inherit;
-    text-decoration: inherit;
-    font-weight: unset;
-} */
-
 button.menu {
     flex-direction: row !important;
 }
@@ -30,14 +23,6 @@ button.menu {
 .VPNavBar,
 .content-body {
     transition: none !important;
-}
-
-.content {
-    /* padding-right: 0 !important; */
-}
-
-.wrapper {
-    /* padding-right: 1rem !important; */
 }
 
 :root {
