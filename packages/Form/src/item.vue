@@ -24,7 +24,7 @@
       >
         <!-- 使用 v-if 控制元素渲染 -->
         <div
-          v-show="showError"
+          v-if="showError"
           :style="marginLeftStyle"
           class="truncate text-error text-sm"
           :title="error"

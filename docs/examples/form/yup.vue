@@ -33,6 +33,6 @@ const yup = useYup()
 
 const schema = yup.object({
   email: yup.string().email().required('请输入邮箱').trim(),
-  password: yup.string().required('请输入密码').trim(),
+  password: yup.string().required('请输入密码').min(6).trim(),
 })
 </script>

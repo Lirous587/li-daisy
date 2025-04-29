@@ -1,6 +1,6 @@
 <template>
   <div :class="props.disabled ? 'hover:cursor-not-allowed' : ''">
-    <div class="w-full join justify-center">
+    <div class="w-full join">
       <!-- prefix -->
       <div
         v-if="hasPrefix"

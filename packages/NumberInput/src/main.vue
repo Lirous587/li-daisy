@@ -1,13 +1,13 @@
 <template>
   <div :class="props.disabled ? 'hover:cursor-not-allowed' : ''">
-    <div class="w-full join justify-center" :class="[props.disabled ? 'pointer-events-none' : '']">
-      <button
+    <div class="w-full join" :class="[props.disabled ? 'pointer-events-none' : '']">
+      <div
         class="btn btn-soft join-item rounded-l-full"
         :class="[btnSizeClass, btnColorClass]"
         @click="decrease"
       >
         -
-      </button>
+      </div>
       <input
         ref="inputRef"
         type="number"
@@ -19,13 +19,13 @@
         :max="props.max"
         :disabled="props.disabled"
       />
-      <button
+      <div
         class="btn btn-soft join-item rounded-r-full"
         :class="[btnSizeClass, btnColorClass]"
         @click="increase"
       >
         +
-      </button>
+      </div>
     </div>
   </div>
 </template>
