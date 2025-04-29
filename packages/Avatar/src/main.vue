@@ -29,6 +29,8 @@ const ifFailed = ref(!props.avatar)
 
 const sizeClass = computed(() => {
   switch (props.size) {
+    case 'xs':
+      return 'w-4 h-4'
     case 'sm':
       return 'w-8 h-8'
     case 'md':

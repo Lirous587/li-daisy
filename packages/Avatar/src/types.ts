@@ -1,5 +1,5 @@
 export interface AvatarProps {
   text?: string
   avatar: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
