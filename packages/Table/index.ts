@@ -1,20 +1,20 @@
 import type { App } from 'vue'
 import type { InstallOptions } from '../types'
 import Table from './src/main.vue'
-import TableItem from './src/item.vue'
+import TableColumn from './src/column.vue'
 
-import type { TableProps, TableItemProps } from './src/types'
+import type { TableProps, TableColumnProps } from './src/types'
 
 Table.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
   app.component(`${prefix}Table`, Table)
 }
 
-TableItem.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
-  app.component(`${prefix}TableItem`, TableItem)
+TableColumn.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
+  app.component(`${prefix}TableColumn`, TableColumn)
 }
 
-export { Table, TableItem }
+export { Table, TableColumn }
 
-export type { TableProps, TableItemProps }
+export type { TableProps, TableColumnProps }
 
 export default Table
