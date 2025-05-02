@@ -91,7 +91,7 @@
               class="checkbox checkbox-sm"
               :checked="selectedRowsSet.has(item)"
               @change="handleSelect($event, item)"
-              :disabled="!props.selectable?.(item)"
+              :disabled="props.selectable ? props.selectable?.(item) : false"
             />
           </th>
 
@@ -228,7 +228,6 @@ const processedColumns = computed(() => {
       }
     })
   }
-
   extractColumns(defaultSlot)
   return {
     regular: regularCols,
@@ -266,6 +265,8 @@ const selectableData = computed(() => {
   if (!props.selectable) {
     return props.data
   }
+  console.log(props.data)
+
   return props.data.filter((item) => props.selectable!(item))
 })
 
