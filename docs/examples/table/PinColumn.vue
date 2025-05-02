@@ -3,16 +3,13 @@
     <div class="overflow-x-auto">
       <Table :data="data" select>
         <TableColumn prop="id" label="ID" width="50px" pin-col="left" />
-        <TableColumn prop="name" label="编程语言" width="150px" pin-col="left" />
-        <TableColumn prop="score" label="得分" width="150px" />
+        <TableColumn prop="name" label="编程语言" />
+        <TableColumn prop="score" label="得分" />
         <TableColumn prop="description" label="描述" width="300px" />
-        <TableColumn prop="description" label="描述" width="300px" />
-        <TableColumn prop="description" label="描述" width="300px" />
-
-        <TableColumn prop="popularity" label="流行度" width="300px" />
-        <TableColumn prop="creator" label="创建者" width="300px" />
-        <TableColumn prop="year" label="诞生年份" width="300px" pin-col="right" />
-        <TableColumn prop="type" label="类型" width="200px" pin-col="right" />
+        <TableColumn prop="popularity" label="流行度" />
+        <TableColumn prop="creator" label="创建者" />
+        <TableColumn prop="year" label="诞生年份" />
+        <TableColumn prop="type" label="类型" pin-col="right" />
       </Table>
     </div>
   </div>

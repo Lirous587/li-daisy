@@ -10,7 +10,7 @@
       :class="[props.zebra ? '!table-zebra' : '', tableSizeClass]"
     >
       <thead>
-        <tr class="relative">
+        <tr>
           <!-- 固定选择列 -->
           <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky z-10 left-0">
             <input
@@ -25,19 +25,17 @@
           <th
             v-for="(column, index) in leftPinCols"
             :key="'header-left-' + index"
-            class="sticky z-10"
-            :style="{ width: column.width, left: (index + 1) * 40 + 'px !important' }"
+            class="sticky z-10 !shrink-0"
+            :style="{ left: (index + 1) * 40 + 'px !important' }"
           >
-            <template v-if="column.headerSlot">
-              <div :class="getTextAlgin(column.headerAlign)">
+            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
+              <template v-if="column.headerSlot">
                 <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.headerAlign)">
+              </template>
+              <template v-else>
                 {{ column.label || column.prop }}
-              </div>
-            </template>
+              </template>
+            </div>
           </th>
 
           <!-- 普通列头 -->
@@ -45,18 +43,16 @@
             v-for="(column, index) in regularCols"
             :key="'header-regular-' + index"
             :style="{ width: column.width }"
-            class="z-0"
+            class="!relative z-0"
           >
-            <template v-if="column.headerSlot">
-              <div :class="getTextAlgin(column.headerAlign)">
+            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
+              <template v-if="column.headerSlot">
                 <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.headerAlign)">
+              </template>
+              <template v-else>
                 {{ column.label || column.prop }}
-              </div>
-            </template>
+              </template>
+            </div>
           </th>
 
           <!-- 右固定列头 -->
@@ -69,16 +65,14 @@
               right: (rightPinCols.length - index - 1) * 40 + 'px !important',
             }"
           >
-            <template v-if="column.headerSlot">
-              <div :class="getTextAlgin(column.headerAlign)">
+            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
+              <template v-if="column.headerSlot">
                 <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.headerAlign)">
+              </template>
+              <template v-else>
                 {{ column.label || column.prop }}
-              </div>
-            </template>
+              </template>
+            </div>
           </th>
         </tr>
       </thead>
@@ -102,30 +96,26 @@
             class="sticky z-10"
             :style="{ width: column.width, left: (columnIndex + 1) * 40 + 'px !important' }"
           >
-            <template v-if="column.defaultSlot">
-              <div :class="getTextAlgin(column.align)">
+            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
+              <template v-if="column.defaultSlot">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.align)">
+              </template>
+              <template v-else>
                 {{ column.prop ? item[column.prop] : '' }}
-              </div>
-            </template>
+              </template>
+            </div>
           </th>
 
           <!-- 普通列单元格 -->
-          <td v-for="column in regularCols" :key="column.prop" class="z-0">
-            <template v-if="column.defaultSlot">
-              <div :class="getTextAlgin(column.align)">
+          <td v-for="column in regularCols" :key="column.prop" class="!relative z-0">
+            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
+              <template v-if="column.defaultSlot">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.align)">
+              </template>
+              <template v-else>
                 {{ column.prop ? item[column.prop] : '' }}
-              </div>
-            </template>
+              </template>
+            </div>
           </td>
 
           <!-- 右固定列单元格 -->
@@ -138,16 +128,14 @@
               right: (rightPinCols.length - columnIndex - 1) * 40 + 'px !important',
             }"
           >
-            <template v-if="column.defaultSlot">
-              <div :class="getTextAlgin(column.align)">
+            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
+              <template v-if="column.defaultSlot">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
-              </div>
-            </template>
-            <template v-else>
-              <div :class="getTextAlgin(column.align)">
+              </template>
+              <template v-else>
                 {{ column.prop ? item[column.prop] : '' }}
-              </div>
-            </template>
+              </template>
+            </div>
           </th>
         </tr>
       </tbody>
