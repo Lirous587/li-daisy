@@ -1,15 +1,18 @@
 <template>
   <div
+    ref="scrollContainer"
     class="overflow-auto bg-base-100 border-base-content/10"
     :class="[props.border ? 'rounded-box border' : 'border-y']"
+    @scroll="handleScroll"
   >
     <table
       class="table table-pin-rows table-pin-cols"
       :class="[props.zebra ? '!table-zebra' : '', tableSizeClass]"
     >
       <thead>
-        <tr>
-          <th v-if="props.select" class="!pl-4 !p-1 w-0">
+        <tr class="relative">
+          <!-- 固定选择列 -->
+          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky z-10 left-0">
             <input
               type="checkbox"
               class="checkbox checkbox-sm"
@@ -17,7 +20,55 @@
               @change="handleSelectAllChange"
             />
           </th>
-          <th v-for="(column, index) in columns" :key="index" :style="{ width: column.width }">
+
+          <!-- 左固定列头 -->
+          <th
+            v-for="(column, index) in leftPinCols"
+            :key="'header-left-' + index"
+            class="sticky z-10"
+            :style="{ width: column.width, left: (index + 1) * 40 + 'px !important' }"
+          >
+            <template v-if="column.headerSlot">
+              <div :class="getTextAlgin(column.headerAlign)">
+                <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
+              </div>
+            </template>
+            <template v-else>
+              <div :class="getTextAlgin(column.headerAlign)">
+                {{ column.label || column.prop }}
+              </div>
+            </template>
+          </th>
+
+          <!-- 普通列头 -->
+          <th
+            v-for="(column, index) in regularCols"
+            :key="'header-regular-' + index"
+            :style="{ width: column.width }"
+            class="z-0"
+          >
+            <template v-if="column.headerSlot">
+              <div :class="getTextAlgin(column.headerAlign)">
+                <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
+              </div>
+            </template>
+            <template v-else>
+              <div :class="getTextAlgin(column.headerAlign)">
+                {{ column.label || column.prop }}
+              </div>
+            </template>
+          </th>
+
+          <!-- 右固定列头 -->
+          <th
+            v-for="(column, index) in rightPinCols"
+            :key="'header-right-' + index"
+            class="sticky z-10"
+            :style="{
+              width: column.width,
+              right: (rightPinCols.length - index - 1) * 40 + 'px !important',
+            }"
+          >
             <template v-if="column.headerSlot">
               <div :class="getTextAlgin(column.headerAlign)">
                 <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
@@ -33,7 +84,8 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in props.data" :key="index">
-          <th v-if="props.select" class="!pl-4 !p-1 w-0">
+          <!-- 固定选择列单元格 -->
+          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky left-0 z-10">
             <input
               type="checkbox"
               class="checkbox checkbox-sm"
@@ -43,8 +95,13 @@
             />
           </th>
 
-          <!-- left-pin-row -->
-          <th v-for="column in leftPinCols" :key="column.prop">
+          <!-- 左固定列单元格 -->
+          <th
+            v-for="(column, columnIndex) in leftPinCols"
+            :key="column.prop"
+            class="sticky z-10"
+            :style="{ width: column.width, left: (columnIndex + 1) * 40 + 'px !important' }"
+          >
             <template v-if="column.defaultSlot">
               <div :class="getTextAlgin(column.align)">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
@@ -56,8 +113,9 @@
               </div>
             </template>
           </th>
-          <!-- no-pin-row -->
-          <td v-for="column in regularCols" :key="column.prop">
+
+          <!-- 普通列单元格 -->
+          <td v-for="column in regularCols" :key="column.prop" class="z-0">
             <template v-if="column.defaultSlot">
               <div :class="getTextAlgin(column.align)">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
@@ -69,8 +127,17 @@
               </div>
             </template>
           </td>
-          <!-- left-pin-row -->
-          <th v-for="column in rightPinCols" :key="column.prop">
+
+          <!-- 右固定列单元格 -->
+          <th
+            v-for="(column, columnIndex) in rightPinCols"
+            :key="column.prop"
+            class="sticky z-10"
+            :style="{
+              width: column.width,
+              right: (rightPinCols.length - columnIndex - 1) * 40 + 'px !important',
+            }"
+          >
             <template v-if="column.defaultSlot">
               <div :class="getTextAlgin(column.align)">
                 <component :is="column.defaultSlot" :row="item" :index="index" />
@@ -89,14 +156,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, type VNode } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, type VNode } from 'vue'
 import type { TableProps, TableColumnProps, TableColumnPropsWithSlot } from './types'
 import TableColumn from './column.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
   zebra: false,
-  pinCols: false,
   border: false,
 })
 
@@ -171,10 +237,6 @@ const processedColumns = computed(() => {
   }
 })
 
-const columns = computed(() => {
-  const { leftPin, regular, rightPin } = processedColumns.value
-  return [...leftPin, ...regular, ...rightPin]
-})
 const regularCols = computed(() => processedColumns.value.regular)
 const leftPinCols = computed(() => processedColumns.value.leftPin)
 const rightPinCols = computed(() => processedColumns.value.rightPin)
@@ -255,4 +317,24 @@ const getTextAlgin = (algin?: 'left' | 'center' | 'right'): string => {
       return ''
   }
 }
+
+// --- Refs and State ---
+const scrollContainer = ref<HTMLDivElement | null>(null) // Ref for the scrollable div
+const scrollState = ref({ left: false, right: false }) // State for shadow visibility
+
+// --- Scroll Handling ---
+const handleScroll = () => {
+  const el = scrollContainer.value
+  if (!el) return
+
+  const threshold = 1 // Small threshold to avoid flickering at edges
+  scrollState.value.left = el.scrollLeft > threshold
+  scrollState.value.right = el.scrollWidth - el.clientWidth - el.scrollLeft > threshold
+}
+
+onMounted(() => {
+  handleScroll()
+})
+
+onBeforeUnmount(() => {})
 </script>
