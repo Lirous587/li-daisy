@@ -1,15 +1,19 @@
 <template>
   <div class="p-4 space-y-6">
-    <Table :data="data" zebra border size="xs">
-      <TableColumn prop="id" label="ID" width="50px" header-align="center" align="center" />
-      <TableColumn prop="name" label="编程语言" header-align="center" align="center" />
-      <TableColumn prop="score" label="得分" header-align="center" align="center" />
+    <Table :data="data">
+      <TableColumn prop="id" label="ID">
+        <template #header="{ label, prop }">
+          <span class="font-bold text-info">{{ label }} - {{ prop }}</span>
+        </template>
+      </TableColumn>
+      <TableColumn prop="name" label="编程语言" />
+      <TableColumn prop="score" label="得分" />
     </Table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn } from '../../../packages'
+import { Table, TableColumn } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {

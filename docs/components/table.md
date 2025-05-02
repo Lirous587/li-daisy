@@ -1,8 +1,55 @@
 # Table表格
 
-## 基础用法 
+## 基础用法
+> `Table` 组件通过 `data` 属性接收需要渲染的表格数据数组。`TableColumn` 组件用于定义表格的列，其 `prop` 属性指定该列需要展示的数据对象的键名，`label` 属性则定义了该列的表头标题
+>> 
+> `zebra` 来设置是否显示斑马条纹，`border` 来设置是否显示边框
+>>
+> 可以使用 `width` 属性来定义列宽
+>>
+> `align` 和 `header-align` 来定义对齐方式
 :::demo table/basic
 :::
+
+
+## 自定义表头
+> 通过 `TableColumn` 下的 `header` 插槽来自定义表头，其内可以提取 `label` 和 `prop` 两个属性
+
+:::demo table/header
+:::
+
+## 自定义列
+> 通过 `TableColumn` 下的 `default` 插槽来自定义表头，其内可以提取 `row` 和 `index` 两个属性
+
+:::demo table/column
+:::
+
+
+## 固定表头
+> 为 `Table` 设置高度后，y轴溢出即可体现固定表头的效果
+
+:::demo table/PinHeader
+:::
+
+
+## 固定列
+> 
+
+:::demo table/PinColumn
+:::
+
+
+
+## 展开行
+
+## 选择列
+> `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
+>>
+> 当全选或选择列时会触发 `select-change` 回调
+
+:::demo table/select
+:::
+
 
 
 ## API
@@ -10,14 +57,15 @@
 ### Attributes
 
 #### Table
-| 属性值  |      说明      |              类型              |       具体类型/示范        | 默认值 |
-| :-----: | :------------: | :----------------------------: | :------------------------: | :----: |
-|  data   |    表格数据    | Array<Record<string, unknown>> |                            |   -    |
-|  size   |    表格大小    |              enum              | ['xs','sm','md','lg','xl'] | 'info' |
-|  zebra  | 是否带有斑马纹 |            boolean             |             -              |  true  |
-| border  |  是否显示边框  |            boolean             |             -              |  true  |
-| pinRows |  是否固定表头  |            boolean             |             -              | false  |
-| pinCols |   是否固定列   |            boolean             |             -              | false  |
+|   属性值   |         说明         |              类型              |       具体类型/示范        | 默认值 |
+| :--------: | :------------------: | :----------------------------: | :------------------------: | :----: |
+|    data    |       表格数据       | Array<Record<string, unknown>> |                            |   -    |
+|    size    |       表格大小       |              enum              | ['xs','sm','md','lg','xl'] | 'info' |
+|   zebra    |    是否带有斑马纹    |            boolean             |             -              | false  |
+|   border   |     是否显示边框     |            boolean             |             -              | false  |
+|   select   |       是否可选       |             select             |             -              | false  |
+| selectable | 设置可选列的回调函数 |            Function            |   (item: any) => boolean   | false  |
+|  pinCols   |      是否固定列      |            boolean             |             -              | false  |
 
 #### TableColumn
 | 属性值 |        说明        |  类型  | 具体类型/示范 | 默认值 |

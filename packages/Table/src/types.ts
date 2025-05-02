@@ -5,24 +5,31 @@ export interface TableProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   zebra?: boolean
   border?: boolean
-  pinRows?: boolean
-  pinCols?: boolean
+  select?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  selectable?: (item: any) => boolean
 }
 
 export interface TableColumnProps {
   prop?: string
   label?: string
   width?: string
+  align?: 'left' | 'center' | 'right'
+  headerAlign?: 'left' | 'center' | 'right'
+  pinCol?: 'left' | 'right'
 }
 
-export interface TableColumnPropsWithSlot {
-  prop?: string
-  label?: string
-  width?: string
-  slot?: (scope: TableColumnScope) => VNode[]
+export interface TableColumnPropsWithSlot extends TableColumnProps {
+  defaultSlot: (scope: TableColumnDefaultScope) => VNode[]
+  headerSlot: (scope: TableColumnHeaderScope) => VNode[]
 }
 
-export interface TableColumnScope<T = Record<string, unknown>> {
+interface TableColumnDefaultScope<T = Record<string, unknown>> {
   row: T
   index: number
+}
+
+interface TableColumnHeaderScope {
+  label?: string
+  prop?: string
 }
