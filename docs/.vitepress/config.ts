@@ -23,46 +23,46 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '总览',
+        text: '开始',
         items: [{ text: '组件列表', link: '/components/overview' }],
       },
       {
         text: '布局 (Layout)',
         items: [
-          { text: 'Collapse', link: '/components/collapse' },
-          { text: 'Drawer', link: '/components/drawer' },
-          { text: 'Menu(待完善)', link: '#' },
+          { text: 'Collapse 折叠面板', link: '/components/collapse' },
+          { text: 'Drawer 抽屉', link: '/components/drawer' },
+          { text: 'Menu 侧边栏菜单 (计划中)', link: '#' },
         ],
       },
       {
         text: '数据输入 (Data Entry)',
         items: [
-          { text: 'TextInput', link: '/components/textInput' },
-          { text: 'Textarea', link: '/components/textarea' },
-          { text: 'NumberInput', link: '/components/numberInput' },
-          { text: 'Select(待完善)', link: '#' },
-          { text: 'Form', link: '/components/form' },
+          { text: 'TextInput 文本输入框', link: '/components/textInput' },
+          { text: 'Textarea 多行文本输入框', link: '/components/textarea' },
+          { text: 'NumberInput 数字输入框', link: '/components/numberInput' },
+          { text: 'Form 表单', link: '/components/form' },
+          { text: 'Tree Select 树状多选 (计划中)', link: '#' },
         ],
       },
       {
         text: '数据展示 (Data Display)',
         items: [
-          { text: 'Avatar', link: '/components/avatar' },
-          { text: 'Table', link: '/components/table' },
-          { text: 'Paging', link: '/components/paging' },
+          { text: 'Avatar 头像', link: '/components/avatar' },
+          { text: 'Table 表格', link: '/components/table' },
+          { text: 'Paging 分页', link: '/components/paging' },
         ],
       },
       {
         text: '反馈 (Feedback)',
         items: [
-          { text: 'Modal', link: '/components/modal' },
-          { text: 'Toast', link: '/components/toast' },
-          { text: 'Skeleton', link: '/components/skeleton' },
+          { text: 'Modal 对话框', link: '/components/modal' },
+          { text: 'Toast 消息提示', link: '/components/toast' },
+          { text: 'Skeleton 骨架屏', link: '/components/skeleton' },
         ],
       },
       {
         text: '主题 (Theme)',
-        items: [{ text: 'ThemeController', link: '/components/themeController' }],
+        items: [{ text: 'ThemeController 主题控制器', link: '/components/themeController' }],
       },
     ],
 
