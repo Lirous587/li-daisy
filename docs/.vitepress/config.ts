@@ -23,23 +23,46 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '组件列表',
+        text: '总览',
+        items: [{ text: '组件列表', link: '/components/overview' }],
+      },
+      {
+        text: '布局 (Layout)',
         items: [
-          { text: '总览', link: '/components/overview' },
-          { text: 'Avatar头像', link: '/components/avatar' },
-          { text: 'Collapse折叠面板', link: '/components/collapse' },
-          { text: 'Drawer抽屉', link: '/components/drawer' },
-          { text: 'Modal对话框', link: '/components/modal' },
-          { text: 'Paging分页', link: '/components/paging' },
-          { text: 'Skeleton骨架屏', link: '/components/skeleton' },
-          { text: 'ThemeController主题控制器', link: '/components/themeController' },
-          { text: 'TextInput文本输入框', link: '/components/textInput' },
-          { text: 'Textarea多行文本输入框', link: '/components/textarea' },
-          { text: 'Form表单', link: '/components/form' },
-          { text: 'NumberInput数字输入框', link: '/components/numberInput' },
-          { text: 'Toast消息提示', link: '/components/toast' },
-          { text: 'Table表格', link: '/components/table' },
+          { text: 'Collapse', link: '/components/collapse' },
+          { text: 'Drawer', link: '/components/drawer' },
+          { text: 'Menu(待完善)', link: '#' },
         ],
+      },
+      {
+        text: '数据输入 (Data Entry)',
+        items: [
+          { text: 'TextInput', link: '/components/textInput' },
+          { text: 'Textarea', link: '/components/textarea' },
+          { text: 'NumberInput', link: '/components/numberInput' },
+          { text: 'Select(待完善)', link: '#' },
+          { text: 'Form', link: '/components/form' },
+        ],
+      },
+      {
+        text: '数据展示 (Data Display)',
+        items: [
+          { text: 'Avatar', link: '/components/avatar' },
+          { text: 'Table', link: '/components/table' },
+          { text: 'Paging', link: '/components/paging' },
+        ],
+      },
+      {
+        text: '反馈 (Feedback)',
+        items: [
+          { text: 'Modal', link: '/components/modal' },
+          { text: 'Toast', link: '/components/toast' },
+          { text: 'Skeleton', link: '/components/skeleton' },
+        ],
+      },
+      {
+        text: '主题 (Theme)',
+        items: [{ text: 'ThemeController', link: '/components/themeController' }],
       },
     ],
 
