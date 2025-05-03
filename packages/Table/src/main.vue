@@ -1,9 +1,7 @@
 <template>
   <div
-    ref="scrollContainer"
     class="overflow-auto bg-base-100 border-base-content/10"
     :class="[props.border ? 'rounded-box border' : 'border-y']"
-    @scroll="handleScroll"
   >
     <table
       class="table table-pin-rows table-pin-cols"
@@ -25,7 +23,6 @@
             v-for="(column, columnIndex) in leftPinCols"
             :key="column.prop"
             class="sticky z-10"
-            :class="columnIndex === leftPinCols.length - 1 && scrollState.left ? 'shadow-left' : ''"
             :style="getColumnStyle(columnIndex, column.pinCol)"
             :ref="(el) => setTheadThRef(el, column.pinCol)"
           >
@@ -58,7 +55,6 @@
             v-for="(column, columnIndex) in rightPinCols"
             :key="column.prop"
             class="sticky z-10"
-            :class="columnIndex === 0 && scrollState.right ? 'shadow-right' : ''"
             :style="getColumnStyle(columnIndex, column.pinCol)"
             :ref="(el) => setTheadThRef(el, column.pinCol)"
           >
@@ -91,7 +87,6 @@
           <th
             v-for="(column, columnIndex) in leftPinCols"
             :key="column.prop"
-            :class="columnIndex === leftPinCols.length - 1 && scrollState.left ? 'shadow-left' : ''"
             :style="getColumnStyle(columnIndex, column.pinCol)"
           >
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
@@ -122,7 +117,6 @@
           <th
             v-for="(column, columnIndex) in rightPinCols"
             :key="column.prop"
-            :class="columnIndex === 0 && scrollState.right ? 'shadow-right' : ''"
             :style="getColumnStyle(columnIndex, column.pinCol)"
           >
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
@@ -393,23 +387,10 @@ const getColumnStyle = (index: number, direction: 'left' | 'right' | undefined) 
 
 // --- Refs and State ---
 const scrollContainer = ref<HTMLDivElement | null>(null) // Ref for the scrollable div
-const scrollState = ref({ left: false, right: false }) // State for shadow visibility
-
-// --- Scroll Handling ---
-const handleScroll = () => {
-  const el = scrollContainer.value
-  if (!el) return
-
-  const threshold = 1 // Small threshold to avoid flickering at edges
-  scrollState.value.left = el.scrollLeft > threshold
-  scrollState.value.right = el.scrollWidth - el.clientWidth - el.scrollLeft > threshold
-}
 
 onMounted(async () => {
   // 初始计算宽度
   await nextTick(updateWidthArrays)
-  // 初始滚动状态检查
-  handleScroll()
   // 添加 resize 监听器
   window.addEventListener('resize', updateWidthArrays)
 })
@@ -428,26 +409,7 @@ watch(
     // 在下一个 tick 中更新宽度数组
     await nextTick(updateWidthArrays)
     // 列变化可能影响滚动状态，重新检查
-    handleScroll()
   },
   { deep: true }, // 使用 deep watch 以防列对象内部属性变化（虽然这里可能不需要）
 )
 </script>
-
-<style scoped>
-.shadow-left {
-  box-shadow:
-    inset -5px 0 5px -5px rgba(0, 0, 0, 0.15),
-    inset -5px 0 5px -5px rgba(255, 255, 255),
-    inset -5px 0 5px -5px rgba(255, 255, 255),
-    inset -5px 0 5px -5px rgba(255, 255, 255);
-}
-
-.shadow-right {
-  box-shadow:
-    inset 5px 0 5px -5px rgba(0, 0, 0, 0.15),
-    inset 5px 0 5px -5px rgba(255, 255, 255),
-    inset 5px 0 5px -5px rgba(255, 255, 255),
-    inset 5px 0 5px -5px rgba(255, 255, 255);
-}
-</style>
