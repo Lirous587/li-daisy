@@ -2,5 +2,8 @@
 
 <script setup lang="ts">
 import type { TableColumnProps } from './types'
-defineProps<TableColumnProps>()
+const props = withDefaults(defineProps<TableColumnProps>(), {
+  align: 'center',
+  headerAlign: 'center',
+})
 </script>

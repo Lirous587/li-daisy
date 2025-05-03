@@ -11,8 +11,8 @@
     >
       <thead>
         <tr>
-          <!-- 固定选择列 -->
-          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky z-10 left-0">
+          <!-- 全部选择 -->
+          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky z-10 left-0" ref="selectRef">
             <input
               type="checkbox"
               class="checkbox checkbox-sm"
@@ -21,64 +21,63 @@
             />
           </th>
 
-          <!-- 左固定列头 -->
           <th
-            v-for="(column, index) in leftPinCols"
-            :key="'header-left-' + index"
-            class="sticky z-10 !shrink-0"
-            :style="{ left: (index + 1) * 40 + 'px !important' }"
-          >
-            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
-              <template v-if="column.headerSlot">
-                <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </template>
-              <template v-else>
-                {{ column.label || column.prop }}
-              </template>
-            </div>
-          </th>
-
-          <!-- 普通列头 -->
-          <th
-            v-for="(column, index) in regularCols"
-            :key="'header-regular-' + index"
-            :style="{ width: column.width }"
-            class="!relative z-0"
-          >
-            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
-              <template v-if="column.headerSlot">
-                <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </template>
-              <template v-else>
-                {{ column.label || column.prop }}
-              </template>
-            </div>
-          </th>
-
-          <!-- 右固定列头 -->
-          <th
-            v-for="(column, index) in rightPinCols"
-            :key="'header-right-' + index"
+            v-for="(column, columnIndex) in leftPinCols"
+            :key="column.prop"
             class="sticky z-10"
-            :style="{
-              width: column.width,
-              right: (rightPinCols.length - index - 1) * 40 + 'px !important',
-            }"
+            :class="columnIndex === leftPinCols.length - 1 && scrollState.left ? 'shadow-left' : ''"
+            :style="getColumnStyle(columnIndex, column.pinCol)"
+            :ref="(el) => setTheadThRef(el, column.pinCol)"
           >
-            <div :class="getTextAlgin(column.headerAlign)" :style="{ width: column.width }">
-              <template v-if="column.headerSlot">
-                <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
-              </template>
-              <template v-else>
-                {{ column.label || column.prop }}
-              </template>
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.headerAlign)">
+                <template v-if="column.headerSlot">
+                  <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
+                </template>
+                <template v-else>
+                  {{ column.label || column.prop }}
+                </template>
+              </div>
+            </div>
+          </th>
+
+          <td v-for="column in regularCols" :key="column.prop" class="z-0">
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.headerAlign)">
+                <template v-if="column.headerSlot">
+                  <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
+                </template>
+                <template v-else>
+                  {{ column.label || column.prop }}
+                </template>
+              </div>
+            </div>
+          </td>
+
+          <th
+            v-for="(column, columnIndex) in rightPinCols"
+            :key="column.prop"
+            class="sticky z-10"
+            :class="columnIndex === 0 && scrollState.right ? 'shadow-right' : ''"
+            :style="getColumnStyle(columnIndex, column.pinCol)"
+            :ref="(el) => setTheadThRef(el, column.pinCol)"
+          >
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.headerAlign)">
+                <template v-if="column.headerSlot">
+                  <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
+                </template>
+                <template v-else>
+                  {{ column.label || column.prop }}
+                </template>
+              </div>
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in props.data" :key="index">
-          <!-- 固定选择列单元格 -->
+          <!-- 选择单元格 -->
           <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky left-0 z-10">
             <input
               type="checkbox"
@@ -89,52 +88,52 @@
             />
           </th>
 
-          <!-- 左固定列单元格 -->
           <th
             v-for="(column, columnIndex) in leftPinCols"
             :key="column.prop"
-            class="sticky z-10"
-            :style="{ width: column.width, left: (columnIndex + 1) * 40 + 'px !important' }"
+            :class="columnIndex === leftPinCols.length - 1 && scrollState.left ? 'shadow-left' : ''"
+            :style="getColumnStyle(columnIndex, column.pinCol)"
           >
-            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
-              <template v-if="column.defaultSlot">
-                <component :is="column.defaultSlot" :row="item" :index="index" />
-              </template>
-              <template v-else>
-                {{ column.prop ? item[column.prop] : '' }}
-              </template>
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.align)">
+                <template v-if="column.defaultSlot">
+                  <component :is="column.defaultSlot" :row="item" :index="index" />
+                </template>
+                <template v-else>
+                  {{ column.prop ? item[column.prop] : '' }}
+                </template>
+              </div>
             </div>
           </th>
 
-          <!-- 普通列单元格 -->
-          <td v-for="column in regularCols" :key="column.prop" class="!relative z-0">
-            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
-              <template v-if="column.defaultSlot">
-                <component :is="column.defaultSlot" :row="item" :index="index" />
-              </template>
-              <template v-else>
-                {{ column.prop ? item[column.prop] : '' }}
-              </template>
+          <td v-for="column in regularCols" :key="column.prop" class="z-0">
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.headerAlign)">
+                <template v-if="column.defaultSlot">
+                  <component :is="column.defaultSlot" :row="item" :index="index" />
+                </template>
+                <template v-else>
+                  {{ column.prop ? item[column.prop] : '' }}
+                </template>
+              </div>
             </div>
           </td>
 
-          <!-- 右固定列单元格 -->
           <th
             v-for="(column, columnIndex) in rightPinCols"
             :key="column.prop"
-            class="sticky z-10"
-            :style="{
-              width: column.width,
-              right: (rightPinCols.length - columnIndex - 1) * 40 + 'px !important',
-            }"
+            :class="columnIndex === 0 && scrollState.right ? 'shadow-right' : ''"
+            :style="getColumnStyle(columnIndex, column.pinCol)"
           >
-            <div :class="getTextAlgin(column.align)" :style="{ width: column.width }">
-              <template v-if="column.defaultSlot">
-                <component :is="column.defaultSlot" :row="item" :index="index" />
-              </template>
-              <template v-else>
-                {{ column.prop ? item[column.prop] : '' }}
-              </template>
+            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+              <div :class="getAlgin(column.align)">
+                <template v-if="column.defaultSlot">
+                  <component :is="column.defaultSlot" :row="item" :index="index" />
+                </template>
+                <template v-else>
+                  {{ column.prop ? item[column.prop] : '' }}
+                </template>
+              </div>
             </div>
           </th>
         </tr>
@@ -144,7 +143,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, type VNode } from 'vue'
+import {
+  computed,
+  nextTick,
+  onBeforeUpdate,
+  onMounted,
+  ref,
+  type VNode,
+  type ComponentPublicInstance,
+  watch,
+  onBeforeUnmount,
+} from 'vue'
 import type { TableProps, TableColumnProps, TableColumnPropsWithSlot } from './types'
 import TableColumn from './column.vue'
 
@@ -166,8 +175,8 @@ const slots = defineSlots<{
 const processedColumns = computed(() => {
   const defaultSlot = slots.default?.() ?? []
 
-  const regularCols: TableColumnPropsWithSlot[] = []
   const leftPinCols: TableColumnPropsWithSlot[] = []
+  const regularCols: TableColumnPropsWithSlot[] = []
   const rightPinCols: TableColumnPropsWithSlot[] = []
 
   const extractColumns = (nodes: VNode[]) => {
@@ -218,15 +227,15 @@ const processedColumns = computed(() => {
   }
   extractColumns(defaultSlot)
   return {
-    regular: regularCols,
-    leftPin: leftPinCols,
-    rightPin: rightPinCols,
+    leftPinCols,
+    regularCols,
+    rightPinCols,
   }
 })
 
-const regularCols = computed(() => processedColumns.value.regular)
-const leftPinCols = computed(() => processedColumns.value.leftPin)
-const rightPinCols = computed(() => processedColumns.value.rightPin)
+const leftPinCols = computed(() => processedColumns.value.leftPinCols)
+const regularCols = computed(() => processedColumns.value.regularCols)
+const rightPinCols = computed(() => processedColumns.value.rightPinCols)
 
 const tableSizeClass = computed(() => {
   switch (props.size) {
@@ -253,8 +262,6 @@ const selectableData = computed(() => {
   if (!props.selectable) {
     return props.data
   }
-  console.log(props.data)
-
   return props.data.filter((item) => props.selectable!(item))
 })
 
@@ -294,16 +301,93 @@ const handleSelect = (event: Event, rowData: Record<string, unknown>) => {
   emit('select-change', selectedRows.value)
 }
 
-const getTextAlgin = (algin?: 'left' | 'center' | 'right'): string => {
+// --- 样式 ---
+const getAlgin = (algin?: 'left' | 'center' | 'right'): string => {
   switch (algin) {
     case 'left':
-      return 'text-left'
+      return 'mr-auto'
     case 'center':
-      return 'text-center'
+      return 'mx-auto'
     case 'right':
-      return 'text-right'
+      return 'ml-auto'
     default:
-      return ''
+      return 'mx-auto'
+  }
+}
+
+// --- Refs for TH Elements ---
+const leftThRefs = ref<HTMLElement[]>([])
+const rightThRefs = ref<HTMLElement[]>([])
+// --- Refs for Calculated Widths ---
+const leftPinWidths = ref<number[]>([])
+const rightPinWidths = ref<number[]>([])
+
+const selectRef = ref<HTMLElement>()
+const selectColWidth = ref(0)
+
+// 修改 el 的类型以匹配 ref 函数提供的类型
+const setTheadThRef = (
+  el: Element | ComponentPublicInstance | null,
+  direction: 'left' | 'right' | undefined,
+) => {
+  if (el instanceof HTMLElement) {
+    if (direction === 'left') {
+      leftThRefs.value.push(el)
+    }
+    if (direction === 'right') {
+      rightThRefs.value.push(el)
+    }
+  }
+}
+
+onBeforeUpdate(() => {
+  leftThRefs.value = []
+  rightThRefs.value = []
+})
+
+// --- Update Width Arrays ---
+const updateWidthArrays = () => {
+  leftPinWidths.value = leftThRefs.value.map((thElement) => {
+    if (thElement && typeof thElement.getBoundingClientRect === 'function') {
+      return thElement.getBoundingClientRect().width
+    }
+    return 0
+  })
+
+  rightPinWidths.value = rightThRefs.value.map((thElement) => {
+    if (thElement && typeof thElement.getBoundingClientRect === 'function') {
+      return thElement.getBoundingClientRect().width
+    }
+    return 0
+  })
+
+  if (selectRef.value && typeof selectRef.value.getBoundingClientRect === 'function') {
+    selectColWidth.value = selectRef.value.getBoundingClientRect().width
+  }
+}
+
+const getColumnStyle = (index: number, direction: 'left' | 'right' | undefined) => {
+  if (direction === 'left') {
+    const baseOffset = props.select ? selectColWidth.value : 0
+    // 使用 slice 获取索引为 0 到 index-1 的宽度，然后用 reduce 求和
+    const precedingWidthSum = leftPinWidths.value
+      .slice(0, index) // 获取当前列之前的所有宽度
+      .reduce((sum, width) => sum + (width || 0), 0) // 累加求和，处理可能的 undefined
+
+    const offset = baseOffset + precedingWidthSum
+
+    return {
+      left: offset + 'px !important',
+    }
+  }
+  if (direction === 'right') {
+    const offset = rightPinWidths.value
+      .slice(index + 1) // 获取当前列之后的所有宽度
+      .reduce((sum, width) => sum + (width || 0), 0)
+
+    return {
+      right: offset + 'px !important',
+    }
   }
 }
 
@@ -321,9 +405,49 @@ const handleScroll = () => {
   scrollState.value.right = el.scrollWidth - el.clientWidth - el.scrollLeft > threshold
 }
 
-onMounted(() => {
+onMounted(async () => {
+  // 初始计算宽度
+  await nextTick(updateWidthArrays)
+  // 初始滚动状态检查
   handleScroll()
+  // 添加 resize 监听器
+  window.addEventListener('resize', updateWidthArrays)
 })
 
-onBeforeUnmount(() => {})
+onBeforeUnmount(() => {
+  // 移除 resize 监听器
+  window.removeEventListener('resize', updateWidthArrays)
+})
+
+// 监听列定义的变化
+watch(
+  // 监听决定列结构的计算属性
+  [leftPinCols, rightPinCols, () => props.select], // 也监听 select 状态，因为它影响 baseOffset
+  async () => {
+    // 当列或 select 状态变化后，DOM 会更新，refs 会被重新收集
+    // 在下一个 tick 中更新宽度数组
+    await nextTick(updateWidthArrays)
+    // 列变化可能影响滚动状态，重新检查
+    handleScroll()
+  },
+  { deep: true }, // 使用 deep watch 以防列对象内部属性变化（虽然这里可能不需要）
+)
 </script>
+
+<style scoped>
+.shadow-left {
+  box-shadow:
+    inset -5px 0 5px -5px rgba(0, 0, 0, 0.15),
+    inset -5px 0 5px -5px rgba(255, 255, 255),
+    inset -5px 0 5px -5px rgba(255, 255, 255),
+    inset -5px 0 5px -5px rgba(255, 255, 255);
+}
+
+.shadow-right {
+  box-shadow:
+    inset 5px 0 5px -5px rgba(0, 0, 0, 0.15),
+    inset 5px 0 5px -5px rgba(255, 255, 255),
+    inset 5px 0 5px -5px rgba(255, 255, 255),
+    inset 5px 0 5px -5px rgba(255, 255, 255);
+}
+</style>
