@@ -23,7 +23,7 @@
 
 ## 显示关闭图标
 
->通过设置 `show-close-icon` 来控制是否显示图标，默认值为 `false`
+>通过设置 `close-icon` 来控制是否显示图标，默认值为 `false`
 
 :::demo drawer/icon
 :::
@@ -50,23 +50,17 @@
 ### Attributes
 
 #### Drawer
-
-|      属性值       |         说明         |  类型   |      具体类型/示范      |          默认值          |
-| :---------------: | :------------------: | :-----: | :---------------------: | :----------------------: |
-|       title       |       抽屉标题       | string  |        Li-Daisy         |            -             |
-|       size        |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-[40vw] min-w-[250px]' |
-|     direction     |       打开方向       |  enum   |      ['ltr','rtl']      |          'ltr'           |
-|   showCloseIcon   |   是否现在关闭图标   | boolean |          false          |          false           |
-| closeOnClickModal | 点击蒙层是否关闭抽屉 | boolean |          true           |           true           |
-
-### Event
-
-> none
+|        属性值        |         说明         |  类型   |      具体类型/示范      |          默认值          |
+| :------------------: | :------------------: | :-----: | :---------------------: | :----------------------: |
+|        title         |       抽屉标题       | string  |        Li-Daisy         |            -             |
+|         size         |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-[40vw] min-w-[250px]' |
+|      direction       |       打开方向       |  enum   |      ['ltr','rtl']      |          'ltr'           |
+|      close-icon      |   是否显示关闭图标   | boolean |          false          |          false           |
+| close-on-click-modal | 点击蒙层是否关闭抽屉 | boolean |          true           |           true           |
 
 ### Slots
 
 #### Drawer
-
 | 插槽名  |     说明     |
 | :-----: | :----------: |
 | default | 填充抽屉内容 |

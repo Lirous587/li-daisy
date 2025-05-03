@@ -13,7 +13,7 @@
         {{ message }}
       </span>
       <slot></slot>
-      <button v-if="props.showClose" class="btn btn-xs btn-ghost" @click="close">
+      <button v-if="props.close" class="btn btn-xs btn-ghost" @click="close">
         <XMarkIcon class="w-4 h-4" />
       </button>
       <div
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<ToastProps>(), {
   direction: 'top-end',
   type: 'info',
   duration: 3000,
-  showClose: true,
+  close: true,
 })
 
 const slot = useSlots()

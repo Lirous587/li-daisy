@@ -33,7 +33,9 @@
 
 
 ## 固定列
-> 
+> 通过设置 `pin-col` 来设置固定列位置，可选值有 `left` `right`
+>>
+> 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
 
 :::demo table/PinColumn
 :::
@@ -65,14 +67,15 @@
 |   border   |     是否显示边框     |            boolean             |             -              | false  |
 |   select   |       是否可选       |             select             |             -              | false  |
 | selectable | 设置可选列的回调函数 |            Function            |   (item: any) => boolean   | false  |
-|  pinCols   |      是否固定列      |            boolean             |             -              | false  |
 
 #### TableColumn
-| 属性值 |        说明        |  类型  | 具体类型/示范 | 默认值 |
-| :----: | :----------------: | :----: | :-----------: | :----: |
-|  prop  | 对应列内容的字段名 | string |               |   -    |
-| label  |      表格大小      | string |     'id'      |   -    |
-| width  |  对应的单元格宽度  | string |    '200px'    |   -    |
+| 属性值 |        说明        |  类型  |  具体类型/示范   | 默认值 |
+| :----: | :----------------: | :----: | :--------------: | :----: |
+|  prop  | 对应列内容的字段名 | string |                  |   -    |
+| label  |      表格大小      | string |       'id'       |   -    |
+| width  |  对应的单元格宽度  | string |     '200px'      |   -    |
+| pinCol |      固定位置      |  enum  | ['left','right'] | false  |
+
 
 ### Event
 

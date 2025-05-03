@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
   size: 'w-[40vw] min-w-[250px]',
   closeOnClickModal: true,
-  showCloseIcon: false,
+  closeIcon: false,
 })
 
 const route = useRoute()
@@ -76,7 +76,7 @@ const showCloseIcon = computed(() => {
   if (!props.closeOnClickModal) {
     return true
   } else {
-    return props.showCloseIcon
+    return props.closeIcon
   }
 })
 

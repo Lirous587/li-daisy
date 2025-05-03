@@ -24,7 +24,7 @@ export function createToastApi(): ToastService {
     const defaultOptions: ToastOptions = {
       duration: 2000,
       position: 'top-end',
-      showClose: true,
+      close: true,
     }
 
     // 合并默认选项和用户选项

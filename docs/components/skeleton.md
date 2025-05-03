@@ -28,22 +28,14 @@
 ### Attributes
 
 #### Skeleton 
-
 | 属性值  |    说明     |  类型   | 具体类型/示范 | 默认值 |
 | :-----: | :---------: | :-----: | :-----------: | :----: |
 | loading |  加载状态   | boolean |     true      |   -    |
 |  delay  | 延迟时间/ms | number  |      500      |  300   |
 |  count  |  骨架数目   | number  |       3       |   1    |
 
-
-### Event
-
-> none
-
 ### Slots
-
 #### Skeleton 
-
 | 插槽名  |       说明       |
 | :-----: | :--------------: |
 | content | 实际要渲染的内容 |

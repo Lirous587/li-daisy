@@ -2,7 +2,7 @@ export interface ToastProps {
   position?: 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-end'
   type?: 'info' | 'success' | 'warning' | 'error' | 'custom'
   duration?: number
-  showClose?: boolean
+  close?: boolean
   message?: string
 }
 

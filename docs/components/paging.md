@@ -23,12 +23,12 @@
 
 
 ## 是否显示Icon
-> 通过 `show-icon` 设置是否显示箭头图标，默认为 `true`
+> 通过 `icon` 设置是否显示箭头图标，默认为 `true`
 :::demo paging/icon
 :::
 
 ## 小设备隐藏Icon
-> 通过 `sm-hide-icon` 设置是否隐藏小设备（宽度640px以下）上的箭头图标，默认为 `true`
+> 通过 `hide-icon-on-sm` 设置是否隐藏小设备（宽度640px以下）上的箭头图标，默认为 `true`
 :::demo paging/sm
 :::
 
@@ -56,27 +56,19 @@
 ### Attributes
 
 #### Props
-|      属性值      |            说明            |   类型   |      具体类型/示范       | 默认值 |
-| :--------------: | :------------------------: | :------: | :----------------------: | :----: |
-|      pages       |          分页总数          |  number  |            10            |   -    |
-| hideOnSinglePage |       单页时是否隐藏       | boolean  |           true           | false  |
-|      offset      |           偏移量           |  number  |            2             |   1    |
-|     showIcon     |       否显示箭头图标       | boolean  |          false           |  ture  |
-|    smHideIcon    | 是否隐藏小设备上的箭头图标 | boolean  |          false           |  ture  |
-|     preHref      |        简单路径前缀        |  string  |        '/article'        |   -    |
-|  hrefGenerator   |     自定义路径生成逻辑     | Function | (page: number) => string |   -    |
+|       属性值        |            说明            |   类型   |      具体类型/示范       | 默认值 |
+| :-----------------: | :------------------------: | :------: | :----------------------: | :----: |
+|        pages        |          分页总数          |  number  |            10            |   -    |
+| hide-on-single-page |       单页时是否隐藏       | boolean  |           true           | false  |
+|       offset        |           偏移量           |  number  |            2             |   1    |
+|        icon         |       否显示箭头图标       | boolean  |          false           |  ture  |
+|   hide-icon-on-sm   | 是否隐藏小设备上的箭头图标 | boolean  |          false           |  ture  |
+|      pre-href       |        简单路径前缀        |  string  |        '/article'        |   -    |
+|   href-generator    |     自定义路径生成逻辑     | Function | (page: number) => string |   -    |
 
 
 
 ### Event
-
 |  名称  |     说明     |       具体类型        |
 | :----: | :----------: | :-------------------: |
 | change | 页面跳转回调 | (page:number) => void |
-### Slots
-
-> none
-
-### Expose
-
-> none

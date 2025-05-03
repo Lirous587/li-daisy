@@ -5,7 +5,7 @@ export interface DrawerProps {
   direction?: 'ltr' | 'rtl'
   size?: string
   closeOnClickModal?: boolean
-  showCloseIcon?: boolean
+  closeIcon?: boolean
 }
 
 export interface DrawerRef {

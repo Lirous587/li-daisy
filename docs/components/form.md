@@ -64,9 +64,6 @@
 | trigger | 错误信息显示时机 |  enum  | ['change','blur','input'] |    '60px'    |
 |  align  |     对齐方向     |  enum  | ['horizontal','vertical'] | 'horizontal' |
 
-### Event
-
-
 ### Slots
 
 #### Form
@@ -79,10 +76,7 @@
 | :-----: | :------: |
 | default | 默认插槽 |
 
-### Expose
-
 #### Form
-
 |    方法名     |     说明     |   类型   |                               具体类型/示范                                |
 | :-----------: | :----------: | :------: | :------------------------------------------------------------------------: |
 |   validate    | 验证整个表单 | Function |                        () => Promise&lt;boolean&gt;                        |

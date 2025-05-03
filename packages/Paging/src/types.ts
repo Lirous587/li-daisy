@@ -2,8 +2,8 @@ export interface PagingProps {
   pages: number
   hideOnSinglePage?: boolean
   offset?: number
-  showIcon?: boolean
-  smHideIcon?: boolean
+  icon?: boolean
+  hideIconOnSm?: boolean
   preHref?: string
   hrefGenerator?: (page: number) => string
 }

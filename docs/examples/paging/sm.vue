@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex">
-    <Paging class="m-auto" :pages="10" :sm-hide-icon="true"></Paging>
+    <Paging class="m-auto" :pages="10" hide-icon-on-sm></Paging>
   </div>
 </template>
 

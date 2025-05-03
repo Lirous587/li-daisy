@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal ref="modalRef" :show-close-icon="true">
+    <Modal ref="modalRef" close-icon>
       <h3 class="font-bold text-lg">Hello!</h3>
       <p class="py-4">This is the modal content.</p>
     </Modal>

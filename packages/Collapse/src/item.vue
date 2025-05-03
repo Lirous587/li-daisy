@@ -31,10 +31,10 @@ if (!collapseContext) {
   throw new Error('CollapseItem必须在Collapse组件内使用')
 }
 
-const showBorder = computed(() => collapseContext.showBorder)
+const border = computed(() => collapseContext.border)
 
 const borderClass = computed(() => {
-  return showBorder.value ? 'border-y border-base-300' : ''
+  return border.value ? 'border-y border-base-300' : ''
 })
 
 const icon = computed(() => collapseContext.icon)

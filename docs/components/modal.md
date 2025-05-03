@@ -24,7 +24,7 @@
 >
 > 当direction为 `ttb` 或 `btt` 要请设置对应的 `height` `max-height`
 >>
-> 当direction为 `ltr` 或 `rtl` 则要设置对于的 `width` `max-width`
+> 当direction为 `ltr` 或 `rtl` 则要设置对应的 `width` `max-width`
 >>
 > 自行定义的时候要修改 `width`  `max-width` 或 `heigth` `max-heigth`
 
@@ -33,7 +33,7 @@
 
 
 ## 显示关闭图标
->通过设置 `show-close-icon` 来控制是否显示图标，默认值为 `false`
+>通过设置 `close-icon` 来控制是否显示图标，默认值为 `false`
 
 :::demo modal/icon
 :::
@@ -56,18 +56,12 @@
 ## API
 
 ### Attributes
+|        属性值        |         说明         |  类型   |      具体类型/示范      |         默认值          |
+| :------------------: | :------------------: | :-----: | :---------------------: | :---------------------: |
+|         size         |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-11/12 max-w-[512px]' |
+|      closeIcon       |   是否显示关闭图标   | boolean |          false          |          false          |
+| close-on-click-modal | 点击蒙层是否关闭抽屉 | boolean |          true           |          true           |
 
-
-|      属性值       |         说明         |  类型   |      具体类型/示范      |         默认值          |
-| :---------------: | :------------------: | :-----: | :---------------------: | :---------------------: |
-|       size        |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-11/12 max-w-[512px]' |
-|   showCloseIcon   |   是否现在关闭图标   | boolean |          false          |          false          |
-| closeOnClickModal | 点击蒙层是否关闭抽屉 | boolean |          true           |          true           |
-
-
-### Event
-
-> none
 
 ### Slots
 | 插槽名  |      说明      |

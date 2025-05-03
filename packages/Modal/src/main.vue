@@ -23,7 +23,7 @@ import type { ModalProps, ModalRef } from './types'
 import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<ModalProps>(), {
-  showCloseIcon: false,
+  closeIcon: false,
   closeOnClickModal: true,
 })
 
@@ -33,7 +33,7 @@ const showCloseIcon = computed(() => {
   if (!props.closeOnClickModal) {
     return true
   } else {
-    return props.showCloseIcon
+    return props.closeIcon
   }
 })
 

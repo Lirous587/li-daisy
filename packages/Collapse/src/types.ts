@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 
 export interface CollapseProps {
-  showBorder?: boolean
+  border?: boolean
   icon?: 'plus' | 'arrow'
   default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
   active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
@@ -18,7 +18,7 @@ export interface CollapseContext {
   toggleItem: (id: number) => void
   isItemActive: (id: number) => boolean
   activeItem: Ref<number>
-  showBorder: boolean
+  border: boolean
   icon?: 'plus' | 'arrow'
   default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
   active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'

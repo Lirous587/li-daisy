@@ -10,7 +10,7 @@ import { collapseInjectionKey } from './types'
 import type { CollapseContext, CollapseProps } from './types'
 
 const props = withDefaults(defineProps<CollapseProps>(), {
-  showBorder: false,
+  border: false,
   icon: 'plus',
 })
 
@@ -48,7 +48,7 @@ provide<CollapseContext>(collapseInjectionKey, {
   toggleItem,
   isItemActive,
   activeItem,
-  showBorder: props.showBorder,
+  border: props.border,
   icon: props.icon,
   default: props.default,
   active: props.active,

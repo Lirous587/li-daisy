@@ -7,7 +7,7 @@
 
 ## 显示边框
 
-使用 `show-border` 来控制是否显示边框
+使用 `border` 来控制是否显示边框
 
 :::demo collapse/border
 :::
@@ -37,7 +37,7 @@
 
 ## 设置默认打开子项
 
-`default-open` 设置默认打开项，如有多个多个后者覆盖前者
+`default-open` 设置默认打开项，如有多个后者覆盖前者
 
 :::demo collapse/defaultOpen
 :::
@@ -49,40 +49,29 @@
 ### Attributes
 
 #### Collapse
-
-|   属性值   |        说明        |  类型   |                 具体类型/示范                  | 默认值  |
-| :--------: | :----------------: | :-----: | :--------------------------------------------: | :-----: |
-|   title    | Collapse显示的文字 | string  |                    Li-Daisy                    |    -    |
-| showBorder |    是否展示边框    | boolean |                     false                      |  false  |
-|    icon    |     显式的图标     |  enum   |                ['plus','arrow']                | 'arrow' |
-|  default   |     未激活样式     |  enum   | ['primary','secondary','info','accent','info'] |    -    |
-|   active   |      激活样式      |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+| 属性值  |        说明        |  类型   |                 具体类型/示范                  | 默认值  |
+| :-----: | :----------------: | :-----: | :--------------------------------------------: | :-----: |
+|  title  | Collapse显示的文字 | string  |                    Li-Daisy                    |    -    |
+| border  |    是否展示边框    | boolean |                     false                      |  false  |
+|  icon   |     显式的图标     |  enum   |                ['plus','arrow']                | 'arrow' |
+| default |     未激活样式     |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+| active  |      激活样式      |  enum   | ['primary','secondary','info','accent','info'] |    -    |
 
 
 #### CollapseItem
-|   属性值    |      说明      |  类型   | 具体类型/示范 | 默认值 |
-| :---------: | :------------: | :-----: | :-----------: | :----: |
-| defaultOpen | 是否为打开子项 | boolean |     true      |   -    |
+|    属性值    |      说明      |  类型   | 具体类型/示范 | 默认值 |
+| :----------: | :------------: | :-----: | :-----------: | :----: |
+| default-open | 是否为打开子项 | boolean |     true      |   -    |
 
-
-### Event
-
-> none
 
 ### Slots
 
 #### Collapse
-
 | 插槽名  |         说明         |
 | :-----: | :------------------: |
 | default | 填充CollapseItem列表 |
 
 #### CollapseItem
-
 | 插槽名  |   说明   |
 | :-----: | :------: |
 | default | 显示文字 |
-
-### Expose
-
-> none

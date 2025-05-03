@@ -56,8 +56,8 @@ const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
   hideOnSinglePage: false,
   offset: 1,
-  showIcon: true,
-  smHideIcon: true,
+  icon: true,
+  hideIconOnSm: true,
 })
 
 const generateSeoHref = (page: number): string => {
@@ -184,15 +184,15 @@ onUnmounted(() => {
 
 // 计算是否应该渲染图标
 const shouldRenderIcons = computed(() => {
-  // 如果 props.showIcon 为 false，则始终不渲染
-  if (!props.showIcon) {
+  // 如果 props.icon 为 false，则始终不渲染
+  if (!props.icon) {
     return false
   }
-  // 如果 props.smHideIcon 为 false，则始终渲染 (只要 showIcon 为 true)
-  if (!props.smHideIcon) {
+  // 如果 props.hideIconOnSm 为 false，则始终渲染 (只要 icon 为 true)
+  if (!props.hideIconOnSm) {
     return true
   }
-  // 如果 smHideIcon 为 true，则仅在非小屏幕时渲染
+  // 如果 hideIconOnSm 为 true，则仅在非小屏幕时渲染
   return !isSmallScreen.value
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Collapse class="w-full" :show-border="true">
+  <Collapse class="w-full" border>
     <CollapseItem title="Li-Daisy" :default-open="true"> 小而美的组件库 </CollapseItem>
     <CollapseItem title="Li-Daisy" :default-open="true"> 小而美的组件库 </CollapseItem>
   </Collapse>
