@@ -2,6 +2,8 @@
   <div
     class="overflow-auto bg-base-100 border-base-content/10"
     :class="[props.border ? 'rounded-box border' : 'border-y']"
+    ref="scrollContainer"
+    @scroll="handleScroll"
   >
     <table
       class="table table-pin-rows table-pin-cols"
@@ -10,7 +12,12 @@
       <thead>
         <tr>
           <!-- 全部选择 -->
-          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky z-10 left-0" ref="selectRef">
+          <th v-if="props.select" class="w-0 sticky z-10 left-0" ref="selectRef">
+            <span
+              v-if="leftPinCols.length === 0"
+              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              :class="scrollState.left ? 'pin-left-shadow' : ''"
+            ></span>
             <input
               type="checkbox"
               class="checkbox checkbox-sm"
@@ -26,6 +33,10 @@
             :style="getColumnStyle(columnIndex, column.pinCol)"
             :ref="(el) => setTheadThRef(el, column.pinCol)"
           >
+            <span
+              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              :class="scrollState.left ? 'pin-left-shadow' : ''"
+            ></span>
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
@@ -58,6 +69,10 @@
             :style="getColumnStyle(columnIndex, column.pinCol)"
             :ref="(el) => setTheadThRef(el, column.pinCol)"
           >
+            <span
+              class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+              :class="scrollState.right ? ' pin-right-shadow' : ''"
+            ></span>
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
@@ -75,6 +90,11 @@
         <tr v-for="(item, index) in props.data" :key="index">
           <!-- 选择单元格 -->
           <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky left-0 z-10">
+            <span
+              v-if="leftPinCols.length === 0"
+              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              :class="scrollState.left ? 'pin-left-shadow' : ''"
+            ></span>
             <input
               type="checkbox"
               class="checkbox checkbox-sm"
@@ -89,6 +109,10 @@
             :key="column.prop"
             :style="getColumnStyle(columnIndex, column.pinCol)"
           >
+            <span
+              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              :class="scrollState.left ? 'pin-left-shadow' : ''"
+            ></span>
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
               <div :class="getAlgin(column.align)">
                 <template v-if="column.defaultSlot">
@@ -119,6 +143,10 @@
             :key="column.prop"
             :style="getColumnStyle(columnIndex, column.pinCol)"
           >
+            <span
+              class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+              :class="scrollState.right ? 'pin-right-shadow' : ''"
+            ></span>
             <div class="flex items-center" :style="{ width: column.width + '!important' }">
               <div :class="getAlgin(column.align)">
                 <template v-if="column.defaultSlot">
@@ -385,14 +413,33 @@ const getColumnStyle = (index: number, direction: 'left' | 'right' | undefined) 
   }
 }
 
-// --- Refs and State ---
-const scrollContainer = ref<HTMLDivElement | null>(null) // Ref for the scrollable div
+const scrollContainer = ref<HTMLDivElement | null>(null)
+const scrollState = ref({ left: false, right: false })
+
+// --- Scroll Handling Function ---
+const handleScroll = () => {
+  // 获取滚动容器的 DOM 元素
+  const el = scrollContainer.value
+  // 如果元素不存在，则退出
+  if (!el) return
+
+  // 定义一个小的阈值，防止在边缘时状态闪烁
+  const threshold = 1 // 1 像素
+
+  // 更新左侧状态：如果向左滚动的距离大于阈值，则为 true
+  scrollState.value.left = el.scrollLeft > threshold
+
+  // 更新右侧状态：如果距离滚动到最右端的剩余距离大于阈值，则为 true
+  // 剩余距离 = (总内容宽度 - 可视宽度) - 已向左滚动距离
+  scrollState.value.right = el.scrollWidth - el.clientWidth - el.scrollLeft > threshold
+}
 
 onMounted(async () => {
   // 初始计算宽度
   await nextTick(updateWidthArrays)
   // 添加 resize 监听器
   window.addEventListener('resize', updateWidthArrays)
+  handleScroll()
 })
 
 onBeforeUnmount(() => {
@@ -409,7 +456,26 @@ watch(
     // 在下一个 tick 中更新宽度数组
     await nextTick(updateWidthArrays)
     // 列变化可能影响滚动状态，重新检查
+    handleScroll()
   },
   { deep: true }, // 使用 deep watch 以防列对象内部属性变化（虽然这里可能不需要）
 )
 </script>
+
+<style scoped>
+.pin-left-shadow {
+  /* 使用固定的半透明黑色 */
+  box-shadow: inset 10px 0 10px -10px oklch(0% 0 0 / 0.15);
+}
+.pin-right-shadow {
+  /* 使用固定的半透明黑色 */
+  box-shadow: inset -10px 0 10px -10px oklch(0% 0 0 / 0.15);
+}
+
+.dark .pin-left-shadow {
+  box-shadow: inset 10px 0 10px -10px oklch(100% 0 0 / 0.15);
+}
+.dark .pin-right-shadow {
+  box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
+}
+</style>

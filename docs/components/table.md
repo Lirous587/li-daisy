@@ -36,7 +36,8 @@
 > 通过设置 `pin-col` 来设置固定列位置，可选值有 `left` `right`
 >>
 > 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
-
+>> 
+> 设置 `select` 之后，选择列默认为固定列
 :::demo table/PinColumn
 :::
 
