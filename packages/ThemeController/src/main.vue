@@ -44,7 +44,7 @@ const ifDark = defineModel<boolean>('ifDark')
 
 const props = withDefaults(defineProps<ThemeControllerProps>(), {
   themes: () => [
-    'default',
+    'light',
     'dark',
     'cupcake',
     'bumblebee',

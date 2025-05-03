@@ -4,12 +4,15 @@
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"
-      class="rounded-md card elevated-lg hover:bg-base-200 duration-500 !transition-all !no-underline"
+      class="card rounded-md elevated-lg hover:bg-base-200 duration-500 !transition-all !no-underline"
     >
-      <figure class="px-8 pt-8">
-        <div class="h-24 w-full overflow-hidden rounded-xl">
-          <img :src="item.img" :alt="item.title" class="object-cover w-full" />
-        </div>
+      <figure class="px-4 pt-4">
+        <img
+          class="border-base-content/5 bg-base-300 rounded-lg border dark:opacity-60"
+          loading="lazy"
+          :src="item.img"
+          :alt="item.title"
+        />
       </figure>
 
       <div class="card-body">
