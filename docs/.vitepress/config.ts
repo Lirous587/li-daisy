@@ -8,7 +8,7 @@ import { demoBlockPlugin } from './plugins/demo'
 export default defineConfig({
   title: 'Li-Daisy',
   description: 'Li-Daisy组件库文档',
-  head: [['link', { rel: 'icon', href: 'https://lirous.com/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   lang: 'zh',
 
   themeConfig: {
