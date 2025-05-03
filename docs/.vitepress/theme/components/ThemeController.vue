@@ -1,23 +1,34 @@
 <template>
-  <ThemeController @change="handleThemeChange" :theme="theme" />
+  <ThemeController ref="themeRef" @change="handleThemeChange" :theme="theme" />
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ThemeController } from 'li-daisy'
+import { ThemeController, type ThemeControllerRef } from 'li-daisy'
 import { useMyThemeStore } from '../store/theme'
 import { onBeforeMount } from 'vue'
+import { ref } from 'vue'
+import { onMounted } from 'vue'
+
+const themeRef = ref<ThemeControllerRef>()
 
 const themeStore = useMyThemeStore()
 
 const theme = computed(() => themeStore.theme)
 
-const handleThemeChange = (theme: string) => {
+const handleThemeChange = (theme: string, ifDark: boolean) => {
   themeStore.setTheme(theme)
-  // document.documentElement.setAttribute('data-theme', theme)
+  themeStore.setDark(ifDark)
 }
 
 onBeforeMount(() => {
   themeStore.initTheme()
+})
+
+onMounted(() => {
+  if (themeRef.value) {
+    const ifDark = themeRef.value.setTheme(theme.value)
+    themeStore.setDark(ifDark)
+  }
 })
 </script>

@@ -33,10 +33,10 @@
 </template>
 
 <script setup lang="ts">
-import { useSlots, watch } from 'vue'
+import { useSlots } from 'vue'
 import IconBookshelf from '../../icon/Bookshelf.vue'
 import { CheckIcon } from '@heroicons/vue/24/outline'
-import type { ThemeControllerProps } from './types'
+import type { ThemeControllerProps, ThemeControllerRef } from './types'
 import { computed } from 'vue'
 
 const nowTheme = defineModel<string>('theme')
@@ -118,23 +118,22 @@ const slots = useSlots()
 const list = computed(() => props.themes)
 
 const emit = defineEmits<{
-  change: [theme: string]
+  change: [theme: string, ifDark: boolean]
 }>()
 
-const setTheme = (theme: string) => {
+const setTheme = (theme: string): boolean => {
+  const newIfDark = props.darkThemes.includes(theme)
+  if (ifDark.value !== undefined) {
+    ifDark.value = newIfDark
+  }
   nowTheme.value = theme
-  emit('change', theme)
+  emit('change', theme, newIfDark)
+  return newIfDark
 }
 
-watch(nowTheme, (newTheme) => {
-  if (typeof newTheme === 'string') {
-    if (props.darkThemes.includes(newTheme)) {
-      ifDark.value = true
-    } else {
-      ifDark.value = false
-    }
-  } else {
-    ifDark.value = false
-  }
-})
+const exposeObject: ThemeControllerRef = {
+  setTheme,
+}
+
+defineExpose(exposeObject)
 </script>

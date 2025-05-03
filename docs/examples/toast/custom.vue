@@ -6,7 +6,7 @@
           <div class="card w-60 h-50">
             <figure class="p-2">
               <img
-                src="https://lirous.com/favicon.ico"
+                src="/favicon.ico"
                 class="object-cover h-24 w-full rounded-xl"
                 @load="handleLoad"
               />
