@@ -7,7 +7,9 @@
       <TableColumn label="操作">
         <template #default="{ row, index }">
           <div class="flex gap-x-3">
-            <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
+            <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row as Language)">
+              toast
+            </div>
             <div class="btn btn-xs btn-success btn-outline" @click="handleDeleteRow(index)">
               删除
             </div>

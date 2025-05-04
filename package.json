@@ -1,6 +1,6 @@
 {
   "name": "li-daisy",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -20,8 +20,6 @@
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "dev": "vite",
-    "preview": "vite preview",
     "format": "prettier --write packages/ examples/",
     "type-check": "vue-tsc --noEmit",
     "build": "vite build",

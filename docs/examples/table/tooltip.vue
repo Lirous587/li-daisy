@@ -1,25 +1,16 @@
 <template>
-  <div class="p-4 space-y-6">
+  <div class="p-4">
     <Table :data="data" select>
-      <TableColumn type="expand">
-        <template #expand="{ row, index }">
-          <div class="p-0">
-            <p>{{ row }}</p>
-            <p>Details about {{ index }}...</p>
-          </div>
-        </template>
-      </TableColumn>
-      <TableColumn prop="id" label="ID" />
-      <TableColumn prop="name" label="编程语言" />
+      <TableColumn prop="id" label="ID" pin-col="left" :width="40" />
+      <TableColumn prop="name" label="编程语言" :width="100" />
       <TableColumn prop="score" label="得分" />
-      <TableColumn prop="description" label="描述" :width="300" />
+      <TableColumn prop="description" label="描述" :width="200" tooltip />
     </Table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Table, TableColumn } from 'li-daisy'
-
 import { ref } from 'vue'
 
 interface Language {

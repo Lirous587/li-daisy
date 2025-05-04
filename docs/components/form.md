@@ -49,17 +49,17 @@
 ### Attributes
 
 #### Form
-|   属性值    |       说明        |  类型  |       具体类型/示范       |    默认值    |
-| :---------: | :---------------: | :----: | :-----------------------: | :----------: |
-|   schema    | 定义的yup验证规则 | object |       GenericObject       |      -       |
-| label-width |     label宽度     | string |          '80px'           |    '60px'    |
-|    align    |     对齐方向      |  enum  | ['horizontal','vertical'] | 'horizontal' |
+|   属性值    |    说明     |  类型  |       具体类型/示范       |    默认值    |
+| :---------: | :---------: | :----: | :-----------------------: | :----------: |
+|   schema    | yup验证规则 | object |       GenericObject       |      -       |
+| label-width |  label宽度  | string |          '80px'           |    '60px'    |
+|    align    |  对齐方向   |  enum  | ['horizontal','vertical'] | 'horizontal' |
 
 
 #### FormItem
 | 属性值  |       说明       |  类型  |       具体类型/示范       |    默认值    |
 | :-----: | :--------------: | :----: | :-----------------------: | :----------: |
-|  name   | 对应schema的key  | string |        'password'         |      -       |
+|  name   |   schema的key    | string |        'password'         |      -       |
 |  label  |     label名      | string |          '密码'           |      -       |
 | trigger | 错误信息显示时机 |  enum  | ['change','blur','input'] |    '60px'    |
 |  align  |     对齐方向     |  enum  | ['horizontal','vertical'] | 'horizontal' |

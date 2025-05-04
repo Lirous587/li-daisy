@@ -4,7 +4,7 @@
       <TableColumn prop="id" label="ID" pin-col="left" />
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
-      <TableColumn prop="description" label="描述" width="300px" />
+      <TableColumn prop="description" label="描述" :width="300" />
       <TableColumn label="操作" pin-col="right">
         <template #default="{ row, index }">
           <div class="flex gap-x-3">

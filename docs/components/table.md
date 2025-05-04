@@ -5,7 +5,7 @@
 >> 
 > `zebra` 来设置是否显示斑马条纹，`border` 来设置是否显示边框
 >>
-> 可以使用 `width` 属性来定义列宽
+> 可以使用 `width` 属性来定义列宽的，类型为 `number`，单位为 `px`
 >>
 > `align` 和 `header-align` 来定义对齐方式
 :::demo table/basic
@@ -41,10 +41,10 @@
 :::demo table/PinColumn
 :::
 
-
-
 ## 展开行
-
+> `TableColumn` 组件设置 `type` 为 `expand` 即可设置展开行
+>>
+> 该插槽暴露 `row` `index` 两个属性
 :::demo table/expand
 :::
 
@@ -57,7 +57,10 @@
 :::demo table/select
 :::
 
-
+## 溢出提示
+> 当表格内容过长时，可设置 `tooltip` 来配置溢出提示
+:::demo table/tooltip
+:::
 
 ## API
 
@@ -74,12 +77,12 @@
 | selectable | 设置可选列的回调函数 |            Function            |   (item: any) => boolean   | false  |
 
 #### TableColumn
-| 属性值 |        说明        |  类型  |  具体类型/示范   | 默认值 |
-| :----: | :----------------: | :----: | :--------------: | :----: |
-|  prop  | 对应列内容的字段名 | string |                  |   -    |
-| label  |      表格大小      | string |       'id'       |   -    |
-| width  |  对应的单元格宽度  | string |     '200px'      |   -    |
-| pinCol |      固定位置      |  enum  | ['left','right'] | false  |
+| 属性值 |      说明      |  类型  |  具体类型/示范   | 默认值 |
+| :----: | :------------: | :----: | :--------------: | :----: |
+|  prop  | 列内容的字段名 | string |                  |   -    |
+| label  |    表格大小    | string |       'id'       |   -    |
+| width  | 单元格宽度(px) | number |       200        |   -    |
+| pinCol |    固定位置    |  enum  | ['left','right'] | false  |
 
 
 ### Event
@@ -94,8 +97,8 @@
 | default | 默认插槽 |
 
 #### TableColumn
-| 插槽名  |   说明   |
-| :-----: | :------: |
-| default | 默认插槽 |
-
-
+| 插槽名  |      说明      |             暴露属性              |
+| :-----: | :------------: | :-------------------------------: |
+| default | 单元格内容插槽 | `{ row: object, index: number }`  |
+| header  |  表头内容插槽  | `{ label: string, prop: string }` |
+| expand  |   展开行插槽   | `{ row: object, index: number }`  |

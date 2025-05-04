@@ -5,14 +5,41 @@
     ref="scrollContainer"
     @scroll="handleScroll"
   >
+    <!-- line-clamp-3 text-ellipsis break-all -->
     <table
-      class="table table-pin-rows table-pin-cols"
+      class="table table-pin-rows table-pin-cols table-fixed break-words"
       :class="[props.zebra ? '!table-zebra' : '', tableSizeClass]"
     >
+      <colgroup>
+        <!-- expand -->
+        <col v-if="hasExpand" width="50" />
+        <!-- select -->
+        <col v-if="props.select" width="50" />
+        <!-- left pin  -->
+        <col v-for="column in finalLeftPinCols" :key="column.prop" :width="column.finalWidth" />
+        <!-- regular -->
+        <col v-for="column in finalRegularCols" :key="column.prop" :width="column.finalWidth" />
+        <!-- right pin -->
+        <col v-for="column in finalRightPinCols" :key="column.prop" :width="column.finalWidth" />
+      </colgroup>
+
       <thead>
         <tr>
-          <!-- 全部选择 -->
-          <th v-if="props.select" class="w-0 sticky z-10 left-0" ref="selectRef">
+          <!-- expand -->
+          <th v-if="hasExpand" class="sticky left-0 z-10">
+            <span
+              v-if="!props.select && leftPinCols.length === 0"
+              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              :class="scrollState.left ? 'pin-left-shadow' : ''"
+            ></span>
+          </th>
+
+          <!-- select -->
+          <th
+            v-if="props.select"
+            class="sticky z-10"
+            :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
+          >
             <span
               v-if="leftPinCols.length === 0"
               class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
@@ -30,14 +57,13 @@
             v-for="(column, columnIndex) in leftPinCols"
             :key="column.prop"
             class="sticky z-10"
-            :style="getColumnStyle(columnIndex, column.pinCol)"
-            :ref="(el) => setTheadThRef(el, column.pinCol)"
+            :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
               class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
             ></span>
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+            <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
                   <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
@@ -50,7 +76,7 @@
           </th>
 
           <td v-for="column in regularCols" :key="column.prop" class="z-0">
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+            <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
                   <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
@@ -66,14 +92,13 @@
             v-for="(column, columnIndex) in rightPinCols"
             :key="column.prop"
             class="sticky z-10"
-            :style="getColumnStyle(columnIndex, column.pinCol)"
-            :ref="(el) => setTheadThRef(el, column.pinCol)"
+            :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
               class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
               :class="scrollState.right ? ' pin-right-shadow' : ''"
             ></span>
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
+            <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
                   <component :is="column.headerSlot" :label="column.label" :prop="column.prop" />
@@ -87,97 +112,132 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in props.data" :key="index">
-          <!-- 选择单元格 -->
-          <th v-if="props.select" class="!pl-4 !p-1 w-0 sticky left-0 z-10">
-            <span
-              v-if="leftPinCols.length === 0"
-              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
-              :class="scrollState.left ? 'pin-left-shadow' : ''"
-            ></span>
-            <input
-              type="checkbox"
-              class="checkbox checkbox-sm"
-              :checked="selectedRowsSet.has(item)"
-              @change="handleSelect($event, item)"
-              :disabled="props.selectable ? !props.selectable?.(item) : false"
-            />
-          </th>
+        <template v-for="(item, index) in props.data" :key="index">
+          <tr>
+            <!-- expand -->
+            <th v-if="hasExpand" class="sticky left-0 z-10">
+              <span
+                v-if="!props.select && leftPinCols.length === 0"
+                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                :class="scrollState.left ? 'pin-left-shadow' : ''"
+              ></span>
+              <label class="swap swap-rotate">
+                <input type="checkbox" @change="toggleExpand(item)" />
+                <ChevronDownIcon class="swap-on w-5 h-5" />
+                <ChevronRightIcon class="swap-off w-5 h-5" />
+              </label>
+            </th>
 
-          <th
-            v-for="(column, columnIndex) in leftPinCols"
-            :key="column.prop"
-            :style="getColumnStyle(columnIndex, column.pinCol)"
-          >
-            <span
-              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
-              :class="scrollState.left ? 'pin-left-shadow' : ''"
-            ></span>
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
-              <div :class="getAlgin(column.align)">
+            <!-- 选择单元格 -->
+            <th
+              v-if="props.select"
+              class="sticky z-10"
+              :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
+            >
+              <span
+                v-if="leftPinCols.length === 0"
+                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                :class="scrollState.left ? 'pin-left-shadow' : ''"
+              ></span>
+              <input
+                type="checkbox"
+                class="checkbox checkbox-sm"
+                :checked="selectedRowsSet.has(item)"
+                @change="handleSelect($event, item)"
+                :disabled="props.selectable ? !props.selectable?.(item) : false"
+              />
+            </th>
+
+            <!-- left -->
+            <th
+              v-for="(column, columnIndex) in leftPinCols"
+              :key="column.prop"
+              :style="getPinColumnStyle(columnIndex, column.pinCol)"
+              class="sticky z-10"
+            >
+              <span
+                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                :class="scrollState.left ? 'pin-left-shadow' : ''"
+              ></span>
+              <div class="flex items-center">
+                <div :class="getAlgin(column.align)">
+                  <template v-if="column.defaultSlot">
+                    <component :is="column.defaultSlot" :row="item" :index="index" />
+                  </template>
+                  <template v-else>
+                    {{ column.prop ? item[column.prop] : '' }}
+                  </template>
+                </div>
+              </div>
+            </th>
+
+            <td v-for="column in regularCols" :key="column.prop" class="z-0">
+              <Tooltip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                 <template v-if="column.defaultSlot">
                   <component :is="column.defaultSlot" :row="item" :index="index" />
                 </template>
                 <template v-else>
                   {{ column.prop ? item[column.prop] : '' }}
                 </template>
+              </Tooltip>
+              <div v-else class="flex items-center">
+                <div :class="getAlgin(column.align)">
+                  <template v-if="column.defaultSlot">
+                    <component :is="column.defaultSlot" :row="item" :index="index" />
+                  </template>
+                  <template v-else>
+                    {{ column.prop ? item[column.prop] : '' }}
+                  </template>
+                </div>
               </div>
-            </div>
-          </th>
+            </td>
 
-          <td v-for="column in regularCols" :key="column.prop" class="z-0">
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
-              <div :class="getAlgin(column.headerAlign)">
-                <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="index" />
-                </template>
-                <template v-else>
-                  {{ column.prop ? item[column.prop] : '' }}
-                </template>
+            <th
+              v-for="(column, columnIndex) in rightPinCols"
+              :key="column.prop"
+              :style="getPinColumnStyle(columnIndex, column.pinCol)"
+              class="sticky z-10"
+            >
+              <span
+                class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+                :class="scrollState.right ? 'pin-right-shadow' : ''"
+              ></span>
+              <div class="flex items-center">
+                <div :class="getAlgin(column.align)">
+                  <template v-if="column.defaultSlot">
+                    <component :is="column.defaultSlot" :row="item" :index="index" />
+                  </template>
+                  <template v-else>
+                    {{ column.prop ? item[column.prop] : '' }}
+                  </template>
+                </div>
               </div>
-            </div>
-          </td>
+            </th>
+          </tr>
 
-          <th
-            v-for="(column, columnIndex) in rightPinCols"
-            :key="column.prop"
-            :style="getColumnStyle(columnIndex, column.pinCol)"
-          >
-            <span
-              class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
-              :class="scrollState.right ? 'pin-right-shadow' : ''"
-            ></span>
-            <div class="flex items-center" :style="{ width: column.width + '!important' }">
-              <div :class="getAlgin(column.align)">
-                <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="index" />
-                </template>
-                <template v-else>
-                  {{ column.prop ? item[column.prop] : '' }}
-                </template>
-              </div>
-            </div>
-          </th>
-        </tr>
+          <!-- expand rows -->
+          <tr v-if="expandedRowsSet.has(item)">
+            <td :colspan="totalColumnsCount">
+              <component :is="expandSlot" :row="item" :index="index" />
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  nextTick,
-  onBeforeUpdate,
-  onMounted,
-  ref,
-  type VNode,
-  type ComponentPublicInstance,
-  watch,
-  onBeforeUnmount,
-} from 'vue'
-import type { TableProps, TableColumnProps, TableColumnPropsWithSlot } from './types'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, type VNode, watch } from 'vue'
+import type {
+  TableProps,
+  TableColumnProps,
+  TableColumnPropsWithSlot,
+  TableSlotFunction,
+} from './types'
 import TableColumn from './column.vue'
+import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+import Tooltip from '../../Tooltip'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
@@ -195,54 +255,77 @@ const slots = defineSlots<{
 }>()
 
 const processedColumns = computed(() => {
-  const defaultSlot = slots.default?.() ?? []
+  const defaultSlot = slots.default ? slots.default() : []
 
   const leftPinCols: TableColumnPropsWithSlot[] = []
   const regularCols: TableColumnPropsWithSlot[] = []
   const rightPinCols: TableColumnPropsWithSlot[] = []
 
+  // 用于存储找到的 expand 列的插槽函数
+  let expandSlot: TableSlotFunction | undefined = undefined
+
   const extractColumns = (nodes: VNode[]) => {
     nodes.forEach((node) => {
       if (node.type === TableColumn && node.props) {
-        // 检查 node.children 是否为对象且包含 default 插槽函数
-        const defaultSlotFn =
-          typeof node.children === 'object' && // 确保 children 是对象
-          node.children !== null && // 确保不是 null
-          !Array.isArray(node.children) && // 确保不是数组 (VNodeArrayChildren)
-          typeof node.children.default === 'function' // 检查 default 是否是函数
-            ? node.children.default
-            : undefined
-
-        const headerSlotFn =
+        // 步骤 1: 检查 node.children 是否是有效的插槽对象
+        const isValidSlotsObject =
           typeof node.children === 'object' &&
           node.children !== null &&
-          !Array.isArray(node.children) &&
-          typeof node.children.header === 'function'
-            ? node.children.header
-            : undefined
+          !Array.isArray(node.children)
 
-        const props = node.props as TableColumnProps
+        let defaultSlotFn: TableSlotFunction | undefined = undefined
+        let headerSlotFn: TableSlotFunction | undefined = undefined
 
-        const headerAlignValue = props.headerAlign || node.props['header-align']
-        const pinColValue = props.pinCol || node.props['pin-col']
+        const nodeProps = node.props as TableColumnProps
+
+        // 步骤 2: 如果是有效对象，则获取插槽函数
+        if (isValidSlotsObject) {
+          const childrenSlots = node.children as Record<string, unknown> // 类型断言
+
+          // 获取 default 插槽
+          if (typeof childrenSlots.default === 'function') {
+            defaultSlotFn = childrenSlots.default as TableSlotFunction
+          }
+
+          // 获取 header 插槽
+          if (typeof childrenSlots.header === 'function') {
+            headerSlotFn = childrenSlots.header as TableSlotFunction
+          }
+
+          // 获取 expand 插槽
+          if (typeof childrenSlots.expand === 'function' && nodeProps.type === 'expand') {
+            expandSlot = childrenSlots.expand as TableSlotFunction
+          }
+        }
+
+        const headerAlignValue = nodeProps.headerAlign || node.props['header-align']
+        const pinColValue = nodeProps.pinCol || node.props['pin-col']
+
+        const rawTooltipProp = node.props['tooltip']
+        // 如果原始值是 true 或者 空字符串 '', 则 tooltipValue 为 true，否则为 false
+        const tooltipValue = rawTooltipProp === true || rawTooltipProp === ''
 
         const theCol = {
-          prop: props.prop,
-          label: props.label,
-          width: props.width,
+          prop: nodeProps.prop,
+          label: nodeProps.label,
+          width: nodeProps.width,
           headerAlign: headerAlignValue,
-          align: props.align,
+          align: nodeProps.align,
+          type: nodeProps.type,
           defaultSlot: defaultSlotFn,
           headerSlot: headerSlotFn,
           pinCol: pinColValue,
+          tooltip: tooltipValue,
         } as TableColumnPropsWithSlot
 
-        if (pinColValue === 'left') {
-          leftPinCols.push(theCol)
-        } else if (pinColValue === 'right') {
-          rightPinCols.push(theCol)
-        } else {
-          regularCols.push(theCol)
+        if (theCol.type !== 'expand') {
+          if (theCol.pinCol === 'left') {
+            leftPinCols.push(theCol)
+          } else if (theCol.pinCol === 'right') {
+            rightPinCols.push(theCol)
+          } else {
+            regularCols.push(theCol)
+          }
         }
       }
     })
@@ -252,12 +335,39 @@ const processedColumns = computed(() => {
     leftPinCols,
     regularCols,
     rightPinCols,
+    expandSlot,
   }
 })
 
 const leftPinCols = computed(() => processedColumns.value.leftPinCols)
 const regularCols = computed(() => processedColumns.value.regularCols)
 const rightPinCols = computed(() => processedColumns.value.rightPinCols)
+const expandSlot = computed(() => processedColumns.value.expandSlot)
+
+// --- expand ---
+type RowType = Record<string, unknown>
+const expandedRowsSet = ref(new Set<RowType>())
+
+const toggleExpand = (row: RowType) => {
+  if (expandedRowsSet.value.has(row)) {
+    expandedRowsSet.value.delete(row)
+  } else {
+    expandedRowsSet.value.add(row)
+  }
+}
+
+const totalColumnsCount = computed(() => {
+  let count = 1
+  count += leftPinCols.value.length
+  count += regularCols.value.length
+  count += rightPinCols.value.length
+  if (props.select) {
+    count += 1
+  }
+  return count
+})
+
+const hasExpand = computed(() => !!expandSlot.value)
 
 const tableSizeClass = computed(() => {
   switch (props.size) {
@@ -323,7 +433,7 @@ const handleSelect = (event: Event, rowData: Record<string, unknown>) => {
   emit('select-change', selectedRows.value)
 }
 
-// --- 样式 ---
+// ---  样式计算 ---
 const getAlgin = (algin?: 'left' | 'center' | 'right'): string => {
   switch (algin) {
     case 'left':
@@ -337,90 +447,15 @@ const getAlgin = (algin?: 'left' | 'center' | 'right'): string => {
   }
 }
 
-// --- Refs for TH Elements ---
-const leftThRefs = ref<HTMLElement[]>([])
-const rightThRefs = ref<HTMLElement[]>([])
-// --- Refs for Calculated Widths ---
-const leftPinWidths = ref<number[]>([])
-const rightPinWidths = ref<number[]>([])
-
-const selectRef = ref<HTMLElement>()
-const selectColWidth = ref(0)
-
-// 修改 el 的类型以匹配 ref 函数提供的类型
-const setTheadThRef = (
-  el: Element | ComponentPublicInstance | null,
-  direction: 'left' | 'right' | undefined,
-) => {
-  if (el instanceof HTMLElement) {
-    if (direction === 'left') {
-      leftThRefs.value.push(el)
-    }
-    if (direction === 'right') {
-      rightThRefs.value.push(el)
-    }
-  }
-}
-
-onBeforeUpdate(() => {
-  leftThRefs.value = []
-  rightThRefs.value = []
-})
-
-// --- Update Width Arrays ---
-const updateWidthArrays = () => {
-  leftPinWidths.value = leftThRefs.value.map((thElement) => {
-    if (thElement && typeof thElement.getBoundingClientRect === 'function') {
-      return thElement.getBoundingClientRect().width
-    }
-    return 0
-  })
-
-  rightPinWidths.value = rightThRefs.value.map((thElement) => {
-    if (thElement && typeof thElement.getBoundingClientRect === 'function') {
-      return thElement.getBoundingClientRect().width
-    }
-    return 0
-  })
-
-  if (selectRef.value && typeof selectRef.value.getBoundingClientRect === 'function') {
-    selectColWidth.value = selectRef.value.getBoundingClientRect().width
-  }
-}
-
-const getColumnStyle = (index: number, direction: 'left' | 'right' | undefined) => {
-  if (direction === 'left') {
-    const baseOffset = props.select ? selectColWidth.value : 0
-    // 使用 slice 获取索引为 0 到 index-1 的宽度，然后用 reduce 求和
-    const precedingWidthSum = leftPinWidths.value
-      .slice(0, index) // 获取当前列之前的所有宽度
-      .reduce((sum, width) => sum + (width || 0), 0) // 累加求和，处理可能的 undefined
-
-    const offset = baseOffset + precedingWidthSum
-
-    return {
-      left: offset + 'px !important',
-    }
-  }
-  if (direction === 'right') {
-    const offset = rightPinWidths.value
-      .slice(index + 1) // 获取当前列之后的所有宽度
-      .reduce((sum, width) => sum + (width || 0), 0)
-
-    return {
-      right: offset + 'px !important',
-    }
-  }
-}
-
+// pin cols computed
 const scrollContainer = ref<HTMLDivElement | null>(null)
+const containerWidth = ref(0) // 存储容器宽度
 const scrollState = ref({ left: false, right: false })
 
 // --- Scroll Handling Function ---
 const handleScroll = () => {
   // 获取滚动容器的 DOM 元素
   const el = scrollContainer.value
-  // 如果元素不存在，则退出
   if (!el) return
 
   // 定义一个小的阈值，防止在边缘时状态闪烁
@@ -434,31 +469,160 @@ const handleScroll = () => {
   scrollState.value.right = el.scrollWidth - el.clientWidth - el.scrollLeft > threshold
 }
 
-onMounted(async () => {
-  // 初始计算宽度
-  await nextTick(updateWidthArrays)
-  // 添加 resize 监听器
-  window.addEventListener('resize', updateWidthArrays)
+// --- 计算最终列宽 ---
+const finalProcessedColumns = computed(() => {
+  const totalAvailableWidth = containerWidth.value
+
+  // 如果容器宽度无效 暂时返回原始列或带默认宽度的列
+  if (totalAvailableWidth <= 0) {
+    const defaultWidth = 100
+
+    const finalLeftPinCols = leftPinCols.value.map((col) => ({
+      ...col,
+      finalWidth: col.width || defaultWidth,
+    }))
+    const finalRegularCols = regularCols.value.map((col) => ({
+      ...col,
+      finalWidth: col.width || defaultWidth,
+    }))
+    const finalRightPinCols = rightPinCols.value.map((col) => ({
+      ...col,
+      finalWidth: col.width || defaultWidth,
+    }))
+
+    return {
+      finalLeftPinCols,
+      finalRegularCols,
+      finalRightPinCols,
+    }
+  }
+
+  let fixedWidthSum = 0
+  let autoWidthCount = 0
+  const allCols = [...leftPinCols.value, ...regularCols.value, ...rightPinCols.value]
+
+  // 加上 expand 和 select 列的宽度
+  if (hasExpand.value) fixedWidthSum += 50
+  if (props.select) fixedWidthSum += 50
+
+  // 遍历所有列，累加固定宽度，统计自动宽度列数
+  allCols.forEach((col) => {
+    if (col.width) {
+      fixedWidthSum += col.width
+    } else {
+      // 自动宽度列
+      autoWidthCount++
+    }
+  })
+
+  const remainingWidth = totalAvailableWidth - fixedWidthSum
+  // 计算平均宽度，设置最小宽度 (例如 50px)
+  const averageWidth = autoWidthCount > 0 ? Math.max(50, remainingWidth / autoWidthCount) : 0
+
+  // 辅助函数，计算最终宽度
+  const calculateFinalWidth = (col: TableColumnPropsWithSlot): number => {
+    if (col.width) {
+      return col.width
+    } else {
+      return Math.floor(averageWidth)
+    }
+  }
+
+  const finalLeftPinCols = leftPinCols.value.map((col) => ({
+    ...col,
+    finalWidth: calculateFinalWidth(col),
+  }))
+
+  const finalRegularCols = regularCols.value.map((col) => ({
+    ...col,
+    finalWidth: calculateFinalWidth(col),
+  }))
+  const finalRightPinCols = rightPinCols.value.map((col) => ({
+    ...col,
+    finalWidth: calculateFinalWidth(col),
+  }))
+
+  // 返回带有 finalWidth 的新列数组
+  return {
+    finalLeftPinCols,
+    finalRegularCols,
+    finalRightPinCols,
+  }
+})
+
+// --- 在模板和 getPinColumnStyle 中使用的最终列数据 ---
+const finalLeftPinCols = computed(() => finalProcessedColumns.value.finalLeftPinCols)
+const finalRegularCols = computed(() => finalProcessedColumns.value.finalRegularCols)
+const finalRightPinCols = computed(() => finalProcessedColumns.value.finalRightPinCols)
+
+//  getPinColumnStyle
+const getPinColumnStyle = (index: number, direction: 'left' | 'right' | undefined) => {
+  if (direction === 'left') {
+    // 基础偏移：Select 列和 Expand 列的宽度
+    const baseOffset = (props.select ? 50 : 0) + (hasExpand.value ? 50 : 0)
+    let precedingWidthSum = 0
+    for (let i = 0; i < index; i++) {
+      // 使用 finalLeftPinCols 和 finalWidth
+      precedingWidthSum += finalLeftPinCols.value[i]?.finalWidth
+    }
+    const offset = baseOffset + precedingWidthSum
+    return { left: offset + 'px !important' }
+  }
+  if (direction === 'right') {
+    let succeedingWidthSum = 0
+    for (let i = index + 1; i < finalRightPinCols.value.length; i++) {
+      // 使用 finalRightPinCols 和 finalWidth
+      succeedingWidthSum += finalRightPinCols.value[i]?.finalWidth
+    }
+    const offset = succeedingWidthSum
+    return { right: offset + 'px !important' }
+  }
+}
+
+// --- 更新容器宽度函数 ---
+const updateContainerWidth = () => {
+  if (scrollContainer.value) {
+    containerWidth.value = scrollContainer.value.clientWidth
+  }
+}
+
+let resizeObserver: ResizeObserver | null = null
+
+onMounted(() => {
+  updateContainerWidth()
   handleScroll()
+
+  // 设置 ResizeObserver
+  if (scrollContainer.value && typeof ResizeObserver !== 'undefined') {
+    resizeObserver = new ResizeObserver(() => {
+      updateContainerWidth() // 容器尺寸变化时更新宽度
+      handleScroll() // 尺寸变化可能影响滚动条，重新检查
+    })
+    resizeObserver.observe(scrollContainer.value)
+  } else {
+    window.addEventListener('resize', updateContainerWidth)
+    window.addEventListener('resize', handleScroll)
+  }
 })
 
 onBeforeUnmount(() => {
-  // 移除 resize 监听器
-  window.removeEventListener('resize', updateWidthArrays)
+  // 清理 ResizeObserver 或 fallback listener
+  if (resizeObserver && scrollContainer.value) {
+    resizeObserver.unobserve(scrollContainer.value)
+    resizeObserver.disconnect()
+  }
+  window.removeEventListener('resize', updateContainerWidth)
+  window.removeEventListener('resize', handleScroll)
 })
 
-// 监听列定义的变化
 watch(
-  // 监听决定列结构的计算属性
-  [leftPinCols, rightPinCols, () => props.select], // 也监听 select 状态，因为它影响 baseOffset
-  async () => {
-    // 当列或 select 状态变化后，DOM 会更新，refs 会被重新收集
-    // 在下一个 tick 中更新宽度数组
-    await nextTick(updateWidthArrays)
-    // 列变化可能影响滚动状态，重新检查
-    handleScroll()
+  [() => props.data, () => props.select, slots.default, leftPinCols, regularCols, rightPinCols],
+  () => {
+    // 当列定义或数据变化时，最终宽度计算会自动更新 (因为 finalProcessedColumns 依赖它们)
+    // 我们只需要确保在 DOM 更新后重新检查滚动状态
+    nextTick(handleScroll)
   },
-  { deep: true }, // 使用 deep watch 以防列对象内部属性变化（虽然这里可能不需要）
+  { deep: true, immediate: true },
 )
 </script>
 
