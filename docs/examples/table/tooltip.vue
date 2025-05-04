@@ -3,18 +3,6 @@
     <Table :data="data" select>
       <TableColumn prop="id" label="ID" pin-col="left" :width="40" />
       <TableColumn prop="name" label="编程语言" :width="100" />
-     
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="name" label="编程语言" />
-
       <TableColumn prop="score" label="得分" />
       <TableColumn prop="description" label="描述" :width="200" tooltip />
     </Table>
