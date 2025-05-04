@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 space-y-6">
+  <div class="p-4">
     <Table :data="data" select>
       <TableColumn type="expand">
         <template #expand="{ row, index }">

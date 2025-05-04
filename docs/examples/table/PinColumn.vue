@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 space-y-6">
+  <div class="p-4">
     <Table :data="data" select>
       <TableColumn prop="id" label="ID" pin-col="left" />
       <TableColumn prop="name" label="编程语言" />

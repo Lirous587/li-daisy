@@ -237,7 +237,7 @@ import type {
 } from './types'
 import TableColumn from './column.vue'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
-import Tooltip from '../../Tooltip'
+import Tooltip from './tooltip.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
@@ -520,8 +520,8 @@ const finalProcessedColumns = computed(() => {
   })
 
   const remainingWidth = totalAvailableWidth - fixedWidthSum
-  // 计算平均宽度，设置最小宽度 (例如 50px)
-  const averageWidth = autoWidthCount > 0 ? Math.max(50, remainingWidth / autoWidthCount) : 0
+  // 计算平均宽度，设置最小宽度为100px
+  const averageWidth = autoWidthCount > 0 ? Math.max(100, remainingWidth / autoWidthCount) : 0
 
   // 辅助函数，计算最终宽度
   const calculateFinalWidth = (col: TableColumnPropsWithSlot): number => {

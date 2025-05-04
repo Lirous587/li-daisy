@@ -22,6 +22,6 @@
 10. `Skeleton` ✅
 11. `ThemeController` ✅
 12. `Toast` ✅
-13. `Table`
+13. `Table` ✅
 14. `Select`
 15. `Menu`

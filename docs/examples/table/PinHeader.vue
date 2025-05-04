@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 space-y-6">
+  <div class="p-4">
     <Table class="h-[260px]" :data="data">
       <TableColumn prop="id" label="ID" :width="50" />
       <TableColumn prop="name" label="编程语言" />
