@@ -100,7 +100,7 @@
               class="checkbox checkbox-sm"
               :checked="selectedRowsSet.has(item)"
               @change="handleSelect($event, item)"
-              :disabled="props.selectable ? props.selectable?.(item) : false"
+              :disabled="props.selectable ? !props.selectable?.(item) : false"
             />
           </th>
 
@@ -462,7 +462,7 @@ watch(
 )
 </script>
 
-<style scoped>
+<style>
 .pin-left-shadow {
   /* 使用固定的半透明黑色 */
   box-shadow: inset 10px 0 10px -10px oklch(0% 0 0 / 0.15);

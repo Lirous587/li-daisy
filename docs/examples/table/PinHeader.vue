@@ -1,9 +1,9 @@
 <template>
   <div class="p-4 space-y-6">
     <Table class="h-[260px]" :data="data">
-      <TableColumn prop="id" label="ID" width="50px" header-align="center" align="center" />
-      <TableColumn prop="name" label="编程语言" header-align="center" align="center" />
-      <TableColumn prop="score" label="得分" header-align="center" align="center" />
+      <TableColumn prop="id" label="ID" width="50px" />
+      <TableColumn prop="name" label="编程语言" />
+      <TableColumn prop="score" label="得分" />
     </Table>
   </div>
 </template>

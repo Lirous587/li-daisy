@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast } from '../../../packages'
-// import { Table, TableColumn, toast } from 'li-daisy'
+import { Table, TableColumn, toast } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {

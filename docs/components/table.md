@@ -45,6 +45,10 @@
 
 ## 展开行
 
+:::demo table/expand
+:::
+
+
 ## 选择列
 > `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
 >>
