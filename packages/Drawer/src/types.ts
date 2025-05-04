@@ -19,7 +19,8 @@ export interface DrawerConfirmProps {
   size?: string
   confirmText?: string
   cancelText?: string
-  form: Reactive<Record<string, unknown>>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  form: Reactive<Record<string, any>>
 }
 
 export interface DrawerConfirmRef {

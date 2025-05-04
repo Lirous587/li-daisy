@@ -280,7 +280,8 @@ const processedColumns = computed(() => {
 
         // 步骤 2: 如果是有效对象，则获取插槽函数
         if (isValidSlotsObject) {
-          const childrenSlots = node.children as Record<string, unknown> // 类型断言
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const childrenSlots = node.children as Record<string, any> // 类型断言
 
           // 获取 default 插槽
           if (typeof childrenSlots.default === 'function') {
@@ -345,7 +346,8 @@ const rightPinCols = computed(() => processedColumns.value.rightPinCols)
 const expandSlot = computed(() => processedColumns.value.expandSlot)
 
 // --- expand ---
-type RowType = Record<string, unknown>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type RowType = Record<string, any>
 const expandedRowsSet = ref(new Set<RowType>())
 
 const toggleExpand = (row: RowType) => {
@@ -388,7 +390,8 @@ const tableSizeClass = computed(() => {
 
 // ---  select logic  ---
 const isSelectAll = ref(false)
-const selectedRowsSet = ref(new Set<Record<string, unknown>>())
+
+const selectedRowsSet = ref(new Set<Record<string, any>>())
 
 const selectableData = computed(() => {
   if (!props.selectable) {
@@ -414,7 +417,8 @@ const handleSelectAllChange = (event: Event) => {
   emit('select-change', selectedRows.value)
 }
 
-const handleSelect = (event: Event, rowData: Record<string, unknown>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const handleSelect = (event: Event, rowData: Record<string, any>) => {
   const target = event.target as HTMLInputElement
   const isChecked = target.checked
   if (isChecked) {

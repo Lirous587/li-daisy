@@ -12,7 +12,8 @@ export interface ToastRef {
 }
 
 export interface ToastOptions extends Partial<ToastProps> {
-  [key: string]: unknown
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
 }
 
 export interface MinimalToastApp {

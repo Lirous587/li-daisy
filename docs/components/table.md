@@ -67,27 +67,28 @@
 ### Attributes
 
 #### Table
-|   属性值   |         说明         |              类型              |       具体类型/示范        | 默认值 |
-| :--------: | :------------------: | :----------------------------: | :------------------------: | :----: |
-|    data    |       表格数据       | Array<Record<string, unknown>> |                            |   -    |
-|    size    |       表格大小       |              enum              | ['xs','sm','md','lg','xl'] | 'info' |
-|   zebra    |    是否带有斑马纹    |            boolean             |             -              | false  |
-|   border   |     是否显示边框     |            boolean             |             -              | false  |
-|   select   |       是否可选       |             select             |             -              | false  |
-| selectable | 设置可选列的回调函数 |            Function            |   (item: any) => boolean   | false  |
+|   属性值   |         说明         |             类型             |           具体类型           |  默认值  |
+| :--------: | :------------------: | :--------------------------: | :--------------------------: | :------: |
+|    data    |       表格数据       | `Array<Record<string, any>>` |              -               |    -     |
+|    size    |       表格大小       |            `enum`            | `['xs','sm','md','lg','xl']` | `'info'` |
+|   zebra    |    是否带有斑马纹    |          `boolean`           |              -               | `false`  |
+|   border   |     是否显示边框     |          `boolean`           |              -               | `false`  |
+|   select   |       是否可选       |           `select`           |              -               | `false`  |
+| selectable | 设置可选列的回调函数 |          `Function`          |   `(item: any) => boolean`   | `false`  |
 
 #### TableColumn
-| 属性值 |      说明      |  类型  |  具体类型/示范   | 默认值 |
-| :----: | :------------: | :----: | :--------------: | :----: |
-|  prop  | 列内容的字段名 | string |                  |   -    |
-| label  |    表格大小    | string |       'id'       |   -    |
-| width  | 单元格宽度(px) | number |       200        |   -    |
-| pinCol |    固定位置    |  enum  | ['left','right'] | false  |
+| 属性值  |      说明      |   类型   |      具体类型      | 默认值 |
+| :-----: | :------------: | :------: | :----------------: | :----: |
+|  prop   | 列内容的字段名 | `string` |         -          |   -    |
+|  label  |    表格标签    | `string` |         -          |   -    |
+|  width  | 单元格宽度(px) | `number` |         -          |   -    |
+| pin-col |    固定位置    |  `enum`  | `['left','right']` |   -    |
 
 
 ### Event
-
-> none
+|     名称      |         说明         |       具体类型       |
+| :-----------: | :------------------: | :------------------: |
+| select-change | 全选或选择某列时触发 | `(item:any) => void` |
 
 ### Slots
 

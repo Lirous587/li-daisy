@@ -35,12 +35,12 @@
 ## API
 
 ### Attributes
-|  属性值  |       说明       |  类型   |                          具体类型/示范                           |  默认值   |
-| :------: | :--------------: | :-----: | :--------------------------------------------------------------: | :-------: |
-|   type   |     消息类型     |  enum   |          ['info','success','warning','error','custom']           |  'info'   |
-| position |     消息位置     |  enum   | ['top-start','top-center','top-end','bottom-start','bottom-end'] | 'top-end' |
-| duration | 消息显示时间/ms  |  enum   |                               3000                               |   2000    |
-|  close   | 是否显示关闭图标 | boolean |                               true                               |   false   |
+|  属性值  |       说明       |   类型    |                              具体类型                              |   默认值    |
+| :------: | :--------------: | :-------: | :----------------------------------------------------------------: | :---------: |
+|   type   |     消息类型     |  `enum`   |          `['info','success','warning','error','custom']`           |  `'info'`   |
+| position |     消息位置     |  `enum`   | `['top-start','top-center','top-end','bottom-start','bottom-end']` | `'top-end'` |
+| duration | 消息显示时间/ms  |  `enum`   |                                 -                                  |   `2000`    |
+|  close   | 是否显示关闭图标 | `boolean` |                                 -                                  |   `false`   |
 
 ### Slots
 | 插槽名  |   说明   |

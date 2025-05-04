@@ -56,19 +56,19 @@
 ### Attributes
 
 #### Props
-|       属性值        |            说明            |   类型   |      具体类型/示范       | 默认值 |
-| :-----------------: | :------------------------: | :------: | :----------------------: | :----: |
-|        pages        |          分页总数          |  number  |            10            |   -    |
-| hide-on-single-page |       单页时是否隐藏       | boolean  |           true           | false  |
-|       offset        |           偏移量           |  number  |            2             |   1    |
-|        icon         |       否显示箭头图标       | boolean  |          false           |  ture  |
-|   hide-icon-on-sm   | 是否隐藏小设备上的箭头图标 | boolean  |          false           |  ture  |
-|      pre-href       |        简单路径前缀        |  string  |        '/article'        |   -    |
-|   href-generator    |     自定义路径生成逻辑     | Function | (page: number) => string |   -    |
+|       属性值        |            说明            |    类型    |          具体类型          | 默认值  |
+| :-----------------: | :------------------------: | :--------: | :------------------------: | :-----: |
+|        pages        |          分页总数          |  `number`  |             -              |    -    |
+| hide-on-single-page |       单页时是否隐藏       | `boolean`  |             -              | `false` |
+|       offset        |           偏移量           |  `number`  |             -              |   `1`   |
+|        icon         |       否显示箭头图标       | `boolean`  |             -              | `ture`  |
+|   hide-icon-on-sm   | 是否隐藏小设备上的箭头图标 | `boolean`  |             -              | `ture`  |
+|      pre-href       |        简单路径前缀        |  `string`  |             -              |    -    |
+|   href-generator    |     自定义路径生成逻辑     | `Function` | `(page: number) => string` |    -    |
 
 
 
 ### Event
-|  名称  |     说明     |       具体类型        |
-| :----: | :----------: | :-------------------: |
-| change | 页面跳转回调 | (page:number) => void |
+|  名称  |     说明     |        具体类型         |
+| :----: | :----------: | :---------------------: |
+| change | 页面跳转回调 | `(page:number) => void` |

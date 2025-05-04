@@ -40,18 +40,10 @@
 ## API
 
 ### Attributes
-
-|   属性值    |     说明     |  类型   |         具体类型/示范          | 默认值 |
-| :---------: | :----------: | :-----: | :----------------------------: | :----: |
-|    size     |     尺寸     |  enum   |   ['xs','sm','md','lg','xl']   |  'md'  |
-| placeholder |    占位符    | string  |           请输入文本           |   -    |
-|  disabled   |   是否禁用   | boolean |              true              | false  |
-|  maxlength  | 最大文本长度 | number  |               30               |   -    |
-|    color    |     颜色     | number  | ['ghost',...'daisyui通用颜色'] |   -    |
-
-### Event
-> none
-
-### Slots
-> none
-
+|   属性值    |     说明     |   类型    |             具体类型             | 默认值  |
+| :---------: | :----------: | :-------: | :------------------------------: | :-----: |
+|    size     |     尺寸     |  `enum`   |   `['xs','sm','md','lg','xl']`   | `'md'`  |
+| placeholder |    占位符    | `string`  |                -                 |    -    |
+|  disabled   |   是否禁用   | `boolean` |                -                 | `false` |
+|  maxlength  | 最大文本长度 | `number`  |                -                 |    -    |
+|    color    |     颜色     | `number`  | `['ghost',...'daisyui通用颜色']` |    -    |

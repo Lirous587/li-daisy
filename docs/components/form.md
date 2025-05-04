@@ -49,24 +49,24 @@
 ### Attributes
 
 #### Form
-|   属性值    |    说明     |  类型  |       具体类型/示范       |    默认值    |
-| :---------: | :---------: | :----: | :-----------------------: | :----------: |
-|   schema    | yup验证规则 | object |       GenericObject       |      -       |
-| label-width |  label宽度  | string |          '80px'           |    '60px'    |
-|    align    |  对齐方向   |  enum  | ['horizontal','vertical'] | 'horizontal' |
+|   属性值    |    说明     |   类型   |          具体类型           |     默认值     |
+| :---------: | :---------: | :------: | :-------------------------: | :------------: |
+|   schema    | yup验证规则 | `object` |       `GenericObject`       |       -        |
+| label-width |  label宽度  | `string` |              -              |    `'60px'`    |
+|    align    |  对齐方向   |  `enum`  | `['horizontal','vertical']` | `'horizontal'` |
 
 
 #### FormItem
-| 属性值  |       说明       |  类型  |       具体类型/示范       |    默认值    |
-| :-----: | :--------------: | :----: | :-----------------------: | :----------: |
-|  name   |   schema的key    | string |        'password'         |      -       |
-|  label  |     label名      | string |          '密码'           |      -       |
-| trigger | 错误信息显示时机 |  enum  | ['change','blur','input'] |    '60px'    |
-|  align  |     对齐方向     |  enum  | ['horizontal','vertical'] | 'horizontal' |
+| 属性值  |       说明       |   类型   |          具体类型           |     默认值     |
+| :-----: | :--------------: | :------: | :-------------------------: | :------------: |
+|  name   |   schema的key    | `string` |              -              |       -        |
+|  label  |     label名      | `string` |              -              |       -        |
+| trigger | 错误信息显示时机 |  `enum`  | `['change','blur','input']` |    `'blur'`    |
+|  align  |     对齐方向     |  `enum`  | `['horizontal','vertical']` | `'horizontal'` |
 
 ### Slots
 
-#### Form
+#### Expose
 | 插槽名  |   说明   |
 | :-----: | :------: |
 | default | 默认插槽 |
@@ -77,7 +77,7 @@
 | default | 默认插槽 |
 
 #### Form
-|    方法名     |     说明     |   类型   |                               具体类型/示范                                |
-| :-----------: | :----------: | :------: | :------------------------------------------------------------------------: |
-|   validate    | 验证整个表单 | Function |                        () => Promise&lt;boolean&gt;                        |
-| validateField | 验证某个字段 | Function | (fieldName: string) => Promise&lt;{ valid: boolean; errors: string[] }&gt; |
+|    方法名     |     说明     |    类型    |                              具体类型                              |
+| :-----------: | :----------: | :--------: | :----------------------------------------------------------------: |
+|   validate    | 验证整个表单 | `Function` |                      `() => Promise<boolean>`                      |
+| validateField | 验证某个字段 | `Function` | `(fieldName: string) => Promise<valid: boolean; errors: string[]>` |

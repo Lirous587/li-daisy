@@ -50,13 +50,13 @@
 ### Attributes
 
 #### Drawer
-|        属性值        |         说明         |  类型   |      具体类型/示范      |          默认值          |
-| :------------------: | :------------------: | :-----: | :---------------------: | :----------------------: |
-|        title         |       抽屉标题       | string  |        Li-Daisy         |            -             |
-|         size         |       抽屉大小       | string  | 'w-screen max-w-[80vw]' | 'w-[40vw] min-w-[250px]' |
-|      direction       |       打开方向       |  enum   |      ['ltr','rtl']      |          'ltr'           |
-|      close-icon      |   是否显示关闭图标   | boolean |          false          |          false           |
-| close-on-click-modal | 点击蒙层是否关闭抽屉 | boolean |          true           |           true           |
+|        属性值        |         说明         |   类型    |    具体类型     |           默认值           |
+| :------------------: | :------------------: | :-------: | :-------------: | :------------------------: |
+|        title         |       抽屉标题       | `string`  |        -        |             -              |
+|         size         |       抽屉大小       | `string`  |        -        | `'w-[40vw] min-w-[250px]'` |
+|      direction       |       打开方向       |  `enum`   | `['ltr','rtl']` |          `'ltr'`           |
+|      close-icon      |   是否显示关闭图标   | `boolean` |        -        |          `false`           |
+| close-on-click-modal | 点击蒙层是否关闭抽屉 | `boolean` |        -        |           `true`           |
 
 ### Slots
 
@@ -66,7 +66,7 @@
 | default | 填充抽屉内容 |
 
 ### Expose
-| 方法名 |     说明     |   类型   | 具体类型/示范 |
-| :----: | :----------: | :------: | :-----------: |
-|  open  | 控制抽屉打开 | Function |  () => void   |
-| close  | 控制抽屉关闭 | Function |  () => void   |
+| 方法名 |     说明     |   类型   |   具体类型   |
+| :----: | :----------: | :------: | :----------: |
+|  open  | 控制抽屉打开 | Function | `() => void` |
+| close  | 控制抽屉关闭 | Function | `() => void` |

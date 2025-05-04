@@ -49,19 +49,19 @@
 ### Attributes
 
 #### Collapse
-| 属性值  |        说明        |  类型   |                 具体类型/示范                  | 默认值  |
-| :-----: | :----------------: | :-----: | :--------------------------------------------: | :-----: |
-|  title  | Collapse显示的文字 | string  |                    Li-Daisy                    |    -    |
-| border  |    是否展示边框    | boolean |                     false                      |  false  |
-|  icon   |     显式的图标     |  enum   |                ['plus','arrow']                | 'arrow' |
-| default |     未激活样式     |  enum   | ['primary','secondary','info','accent','info'] |    -    |
-| active  |      激活样式      |  enum   | ['primary','secondary','info','accent','info'] |    -    |
+| 属性值  |        说明        |   类型    |                     具体类型                     |  默认值   |
+| :-----: | :----------------: | :-------: | :----------------------------------------------: | :-------: |
+|  title  | Collapse显示的文字 | `string`  |                        -                         |     -     |
+| border  |    是否展示边框    | `boolean` |                        -                         |  `false`  |
+|  icon   |     显式的图标     |  `enum`   |                `['plus','arrow']`                | `'arrow'` |
+| default |     未激活样式     |  `enum`   | `['primary','secondary','info','accent','info']` |     -     |
+| active  |      激活样式      |  `enum`   | `['primary','secondary','info','accent','info']` |     -     |
 
 
 #### CollapseItem
-|    属性值    |      说明      |  类型   | 具体类型/示范 | 默认值 |
-| :----------: | :------------: | :-----: | :-----------: | :----: |
-| default-open | 是否为打开子项 | boolean |     true      |   -    |
+|    属性值    |      说明      |   类型    | 具体类型 | 默认值 |
+| :----------: | :------------: | :-------: | :------: | :----: |
+| default-open | 是否为打开子项 | `boolean` |    -     |   -    |
 
 
 ### Slots
