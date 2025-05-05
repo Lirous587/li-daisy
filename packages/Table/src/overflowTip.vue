@@ -44,7 +44,6 @@ const wrapperClasses = computed(() => {
   if (isOverflowing.value) {
     const classes = ['tooltip'] // 基础类
     classes.push('tooltip-top')
-
     return classes
   }
   // 如果不显示 tooltip，则不添加 tooltip 相关类

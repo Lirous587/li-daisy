@@ -172,14 +172,14 @@
             </th>
 
             <td v-for="column in regularCols" :key="column.prop" class="z-0">
-              <Tooltip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
+              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                 <template v-if="column.defaultSlot">
                   <component :is="column.defaultSlot" :row="item" :index="index" />
                 </template>
                 <template v-else>
                   {{ column.prop ? item[column.prop] : '' }}
                 </template>
-              </Tooltip>
+              </OverflowTip>
               <div v-else class="flex items-center">
                 <div :class="getAlgin(column.align)">
                   <template v-if="column.defaultSlot">
@@ -237,7 +237,7 @@ import type {
 } from './types'
 import TableColumn from './column.vue'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
-import Tooltip from './tooltip.vue'
+import OverflowTip from './overflowTip.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
