@@ -31,7 +31,6 @@ export default defineConfig({
         items: [
           { text: 'Collapse 折叠面板', link: '/components/collapse' },
           { text: 'Drawer 抽屉', link: '/components/drawer' },
-          { text: 'Menu 侧边栏菜单 (计划中)', link: '#' },
         ],
       },
       {
@@ -41,7 +40,6 @@ export default defineConfig({
           { text: 'Textarea 多行文本输入框', link: '/components/textarea' },
           { text: 'NumberInput 数字输入框', link: '/components/numberInput' },
           { text: 'Form 表单', link: '/components/form' },
-          { text: 'Tree Select 树状多选 (计划中)', link: '#' },
         ],
       },
       {

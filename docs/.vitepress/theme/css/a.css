@@ -1,0 +1,5 @@
+.vp-doc .li-demo a {
+    /* all: revert; */
+    text-decoration-line: revert;
+    color: revert;
+}

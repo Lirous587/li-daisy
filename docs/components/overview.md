@@ -22,13 +22,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     url: '/components/drawer',
     title: 'Drawer 抽屉',
     details: '用于显示/隐藏页面侧边栏'
-  },
-  {
-    img: 'https://img.daisyui.com/images/components/menu.webp',
-    url: '#', // 暂无链接
-    title: 'Menu 侧边栏菜单 (计划中)',
-    details: '用于应用主导航或侧边栏结构'
-  },
+  }
 ]" />
 
 ### 数据输入 (Data Entry)
@@ -59,13 +53,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     url: '/components/form',
     title: 'Form 表单',
     details: '用于数据校验和提交'
-  },
-  {
-    img: 'https://img.daisyui.com/images/components/select.webp',
-    url: '#', // 暂无链接
-    title: 'Tree Select 树状多选 (计划中)',
-    details: '用于从层级结构数据中选择一项或多项'
-  },
+  }
 ]" />
 
 ### 数据展示 (Data Display)
