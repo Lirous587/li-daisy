@@ -630,13 +630,11 @@ watch(
 )
 </script>
 
-<style>
+<style scoped>
 .pin-left-shadow {
-  /* 使用固定的半透明黑色 */
   box-shadow: inset 10px 0 10px -10px oklch(0% 0 0 / 0.15);
 }
 .pin-right-shadow {
-  /* 使用固定的半透明黑色 */
   box-shadow: inset -10px 0 10px -10px oklch(0% 0 0 / 0.15);
 }
 

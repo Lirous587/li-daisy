@@ -9,8 +9,8 @@ import Demo from './components/Demo.vue'
 
 import Layout from './Layout.vue'
 
-// 导入样式
-import '../../../packages/assets/css/tailwind.css'
+// 导入组件库样式
+import 'li-daisy/dist/style.css'
 
 import '../theme/css/vitepress.css'
 import '../theme/css/table.css'
