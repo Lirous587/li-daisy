@@ -11,7 +11,7 @@
       </div>
       <!-- input -->
       <label
-        class="input validator join-item"
+        class="input validator join-item flex-1"
         :class="[inputSizeClass, inputColorClass, props.disabled ? 'pointer-events-none' : '']"
       >
         <input

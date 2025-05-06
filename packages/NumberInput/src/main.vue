@@ -12,7 +12,7 @@
         ref="inputRef"
         type="number"
         v-model="value"
-        class="px-2.5 input join-item"
+        class="px-2.5 input join-item flex-1"
         :class="[inputSizeClass, inputColorClass]"
         :placeholder="props.placeholder"
         :min="props.min"
