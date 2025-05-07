@@ -94,16 +94,10 @@ watch(status, (newStatus) => {
   }
 })
 
-// watch(
-//   () => route.fullPath,
-//   () => {
-//     close()
-//   },
-// )
-
 const exposeObject: DrawerRef = {
   open,
   close,
+  status,
 }
 
 defineExpose(exposeObject)

@@ -1,4 +1,4 @@
-import type { Reactive } from 'vue'
+import type { Reactive, Ref } from 'vue'
 
 export interface DrawerProps {
   title?: string
@@ -11,6 +11,7 @@ export interface DrawerProps {
 export interface DrawerRef {
   open: () => void
   close: () => void
+  status: Ref<boolean>
 }
 
 export interface DrawerConfirmProps {
