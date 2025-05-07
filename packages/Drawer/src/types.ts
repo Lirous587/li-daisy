@@ -1,7 +1,7 @@
 import type { Reactive } from 'vue'
 
 export interface DrawerProps {
-  title: string
+  title?: string
   direction?: 'ltr' | 'rtl'
   size?: string
   closeOnClickModal?: boolean
@@ -14,7 +14,7 @@ export interface DrawerRef {
 }
 
 export interface DrawerConfirmProps {
-  title: string
+  title?: string
   direction?: 'ltr' | 'rtl'
   size?: string
   confirmText?: string

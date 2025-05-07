@@ -50,7 +50,6 @@ import type { DrawerRef, DrawerConfirmProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { getUniqueID } from '../../utils/random'
 import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
 
 const props = withDefaults(defineProps<DrawerConfirmProps>(), {
   direction: 'ltr',
@@ -58,8 +57,6 @@ const props = withDefaults(defineProps<DrawerConfirmProps>(), {
   confirmText: '确定',
   cancelText: '取消',
 })
-
-const route = useRoute()
 
 const status = ref(false)
 const drawerToggleRef = ref<HTMLInputElement | null>(null)
@@ -99,10 +96,6 @@ watch(status, (newStatus) => {
   } else {
     emit('close')
   }
-})
-
-watch(route, () => {
-  close()
 })
 
 const exposeObject: DrawerRef = {

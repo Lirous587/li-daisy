@@ -44,7 +44,6 @@ import type { DrawerRef, DrawerProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { getUniqueID } from '../../utils/random'
 import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
@@ -52,8 +51,6 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   closeOnClickModal: true,
   closeIcon: false,
 })
-
-const route = useRoute()
 
 const status = ref(false)
 const drawerToggleRef = ref<HTMLInputElement | null>(null)
@@ -97,9 +94,12 @@ watch(status, (newStatus) => {
   }
 })
 
-watch(route, () => {
-  close()
-})
+// watch(
+//   () => route.fullPath,
+//   () => {
+//     close()
+//   },
+// )
 
 const exposeObject: DrawerRef = {
   open,
