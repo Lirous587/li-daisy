@@ -3,9 +3,10 @@ import { ref } from 'vue'
 
 export const useMyThemeStore = defineStore('myThemeStore', () => {
   const theme = ref('synthwave')
+  const themeKey = 'theme'
 
   const initTheme = () => {
-    const nowTheme = localStorage.theme || 'synthwave'
+    const nowTheme = localStorage.getItem(themeKey) || 'synthwave'
     theme.value = nowTheme
     setTheme(nowTheme)
   }
@@ -13,7 +14,7 @@ export const useMyThemeStore = defineStore('myThemeStore', () => {
   const setTheme = (nowTheme: string) => {
     // 设置 data-theme
     document.documentElement.setAttribute('data-theme', nowTheme)
-    localStorage.theme = nowTheme
+    localStorage.setItem(themeKey, nowTheme)
     theme.value = nowTheme
   }
 
