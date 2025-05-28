@@ -6,7 +6,7 @@
     </div>
 
     <ul tabindex="0" class="menu dropdown-content bg-base-200 rounded-box z-1 p-2 shadow-sm">
-      <div class="h-80 w-40 overflow-auto no-scrollbar space-y-1">
+      <div class="max-h-80 w-40 overflow-auto no-scrollbar space-y-1">
         <li
           v-for="(theme, index) in list"
           @click="setTheme(theme)"

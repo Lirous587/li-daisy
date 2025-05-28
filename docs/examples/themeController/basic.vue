@@ -7,6 +7,7 @@
         v-model:theme="theme"
         v-model:ifDark="ifDark"
         @change="handleThemeChange"
+        :themes="['dark', 'light']"
         align="center"
       />
     </div>
