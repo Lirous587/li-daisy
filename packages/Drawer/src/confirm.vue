@@ -48,8 +48,7 @@
 <script setup lang="ts">
 import type { DrawerRef, DrawerConfirmProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { getUniqueID } from '../../utils/random'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch,useId } from 'vue'
 
 const props = withDefaults(defineProps<DrawerConfirmProps>(), {
   direction: 'ltr',
@@ -61,7 +60,7 @@ const props = withDefaults(defineProps<DrawerConfirmProps>(), {
 const status = ref(false)
 const drawerToggleRef = ref<HTMLInputElement | null>(null)
 
-const uniqueID = getUniqueID()
+const uniqueID = useId()
 
 const drawerDirection = computed(() => {
   switch (props.direction) {
