@@ -2,7 +2,8 @@
 
 ## 基础用法
 > 通过title设置抽屉的标题
-
+>>
+> 支持两种打开方式 使用 **default插槽** 或 **drawerRef** 
 :::demo drawer/basic
 :::
 

@@ -29,7 +29,7 @@
           <XMarkIcon class="w-6 h-6 cursor-pointer" @click="close" />
         </div>
         <div class="mt-3 flex-1">
-          <slot />
+          <slot name="content" />
         </div>
 
         <div class="ml-auto mr-4 space-x-4">

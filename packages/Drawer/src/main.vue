@@ -30,7 +30,7 @@
           <XMarkIcon class="w-6 h-6 cursor-pointer" v-if="showCloseIcon" @click="close" />
         </div>
         <div class="mt-3 flex-1">
-          <slot />
+          <slot name="content" />
         </div>
       </div>
     </div>
