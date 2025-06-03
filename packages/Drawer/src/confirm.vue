@@ -10,7 +10,7 @@
     <div class="drawer-content">
       <!-- Page content here  -->
       <label :for="uniqueID">
-        <!-- <slot /> -->
+        <slot />
       </label>
     </div>
 
@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import type { DrawerRef, DrawerConfirmProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { computed, ref, watch,useId } from 'vue'
+import { computed, ref, watch, useId } from 'vue'
 
 const props = withDefaults(defineProps<DrawerConfirmProps>(), {
   direction: 'ltr',

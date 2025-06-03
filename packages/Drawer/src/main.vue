@@ -10,9 +10,7 @@
     <div class="drawer-content">
       <!-- Page content here  -->
       <label :for="uniqueID">
-        <!-- 这里不再对外暴露 避免发生一些掌控之外的操作
-          统一改为调用expose方法 通过组件实例去手动调用-->
-        <!-- <slot /> -->
+        <slot />
       </label>
     </div>
 
