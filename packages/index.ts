@@ -45,6 +45,9 @@ export type { ToastProps, ToastRef } from './Toast'
 import { Table, TableColumn } from './Table'
 export type { TableProps, TableColumnProps } from './Table'
 
+import { Popover } from './Popover'
+export type { PopoverProps } from './Popover'
+
 // 导出单个组件（用于按需引入）
 export {
   Avatar,
@@ -65,6 +68,7 @@ export {
   Toast,
   Table,
   TableColumn,
+  Popover,
 }
 
 // 创建组件列表
@@ -87,6 +91,7 @@ const components = [
   Toast,
   Table,
   TableColumn,
+  Popover,
 ]
 
 // 默认导出（标准 Vue 插件格式）

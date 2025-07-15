@@ -56,6 +56,7 @@ export default defineConfig({
           { text: 'Modal 对话框', link: '/components/modal' },
           { text: 'Toast 消息提示', link: '/components/toast' },
           { text: 'Skeleton 骨架屏', link: '/components/skeleton' },
+          { text: 'Popover 弹出框', link: '/components/popover' },
         ],
       },
       {

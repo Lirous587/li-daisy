@@ -111,3 +111,7 @@ button.menu {
     /* 反向中性色 (常用于背景) */
     --vp-c-neutral-inverse: var(--color-neutral);
 }
+
+.vp-doc [class*='language-'] pre {
+    z-index: 0;
+}
