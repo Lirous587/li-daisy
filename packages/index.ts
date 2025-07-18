@@ -46,7 +46,7 @@ import { Table, TableColumn } from './Table'
 export type { TableProps, TableColumnProps } from './Table'
 
 import { Popover } from './Popover'
-export type { PopoverProps } from './Popover'
+export type { PopoverPlacement, PopoverProps, PopoverRef } from './Popover'
 
 // 导出单个组件（用于按需引入）
 export {

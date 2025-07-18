@@ -7,9 +7,16 @@
 :::
 
 ## 设置trigger
+> 可选值有 `hover` 和 `click`，默认为 `hover`
 :::demo popover/trigger
 :::
 
+
+## 设置位置
+> 可选值有 `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`，默认为 `bottom`
+
+:::demo popover/placement
+:::
 
 
 

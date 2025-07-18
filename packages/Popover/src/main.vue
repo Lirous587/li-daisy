@@ -7,8 +7,8 @@
     <Teleport to="body">
       <div
         ref="popoverRef"
-        class="absolute transition-all duration-200 opacity-0"
-        :class="[visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95']"
+        class="absolute transition-all duration-300"
+        :class="visible ? 'opacity-100' : 'opacity-0 scale-90'"
         :style="popoverStyle"
         @mouseenter="handleMouseEnter(false)"
         @mouseleave="handleMouseLeave"
@@ -21,12 +21,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, type CSSProperties } from 'vue'
+import { ref, computed, onMounted, onUnmounted, type CSSProperties, nextTick } from 'vue'
 import type { PopoverProps, Placement, PopoverRef } from './types'
+import { debounce, throttle } from '../../utils/performance'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
   placement: 'bottom',
-  trigger: 'click',
+  trigger: 'hover',
   closeOnClickOutside: true,
   closeOnEscape: true,
 })
@@ -41,7 +42,7 @@ const triggerRef = ref<HTMLElement>()
 const popoverRef = ref<HTMLElement>()
 const visible = ref(false)
 
-const offset = 8
+const offset = 12
 const margin = 8
 
 // 计算所有可能的位置
@@ -146,63 +147,70 @@ const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   // 如果所有预设位置都不合适，进行智能调整
   const preferredPos = calculatePosition(props.placement, triggerRect, popoverRect)
 
-  // 调整到视口内
-  let adjustedX = preferredPos.x
-  let adjustedY = preferredPos.y
+  // 限制在视口内即可
+  const adjustedX = Math.max(
+    margin,
+    Math.min(preferredPos.x, window.innerWidth - popoverRect.width - margin),
+  )
 
-  // 智能水平调整 - 优先保持在触发器附近
-  if (adjustedX < margin) {
-    adjustedX = Math.max(margin, triggerRect.left - popoverRect.width / 2)
-  } else if (adjustedX + popoverRect.width > window.innerWidth - margin) {
-    adjustedX = Math.min(
-      window.innerWidth - popoverRect.width - margin,
-      triggerRect.right - popoverRect.width / 2,
-    )
-  }
-
-  // 智能垂直调整 - 优先保持在触发器附近
-  if (adjustedY < margin) {
-    adjustedY = Math.max(margin, triggerRect.bottom + offset)
-  } else if (adjustedY + popoverRect.height > window.innerHeight - margin) {
-    adjustedY = Math.min(
-      window.innerHeight - popoverRect.height - margin,
-      triggerRect.top - popoverRect.height - offset,
-    )
-  }
-
+  const adjustedY = Math.max(
+    margin,
+    Math.min(preferredPos.y, window.innerHeight - popoverRect.height - margin),
+  )
   return {
     x: adjustedX,
     y: adjustedY,
   }
 }
 
+// 获取真实尺寸（处理scale缩放）
+const getRealRect = (element: HTMLElement): DOMRect => {
+  const rect = element.getBoundingClientRect()
+
+  return {
+    ...rect,
+    width: rect.width / 0.9,
+    height: rect.height / 0.9,
+  } as DOMRect
+}
+
 // 计算悬浮框样式
 const popoverStyle = computed((): CSSProperties => {
+  forceUpdate.value
+
   if (!triggerRef.value || !popoverRef.value) {
     return {
       pointerEvents: 'none',
+      visibility: 'hidden',
     }
   }
 
-  forceUpdate.value // 这行代码让 computed 依赖这个变量
-
   const triggerRect = triggerRef.value.getBoundingClientRect()
-  const popoverRect = popoverRef.value.getBoundingClientRect()
 
-  // 获取最佳位置
+  if (!visible.value) {
+    return {
+      pointerEvents: 'none',
+      visibility: 'hidden',
+    }
+  }
+  const popoverRect = getRealRect(popoverRef.value)
+
   const position = getBestPosition(triggerRect, popoverRect)
 
   return {
     left: `${position.x + window.scrollX}px`,
     top: `${position.y + window.scrollY}px`,
     'z-index': props.zIndex || 0,
-    pointerEvents: 'auto',
+    visibility: 'visible',
   }
 })
 
 // 显示悬浮框
-const show = () => {
+const show = async () => {
   visible.value = true
+
+  updatePosition()
+
   emit('show')
   emit('toggle', true)
 }
@@ -285,6 +293,8 @@ const updatePosition = () => {
   }
 }
 
+const debouncedUpdatePosition = debounce(updatePosition, 100)
+
 // 事件监听
 onMounted(() => {
   if (triggerRef.value) {
@@ -295,8 +305,7 @@ onMounted(() => {
 
   document.addEventListener('click', handleClickOutside)
   document.addEventListener('keydown', handleEscapeKey)
-  window.addEventListener('resize', updatePosition)
-  // window.addEventListener('scroll', updatePosition)
+  window.addEventListener('resize', debouncedUpdatePosition)
 })
 
 onUnmounted(() => {
@@ -308,8 +317,7 @@ onUnmounted(() => {
 
   document.removeEventListener('click', handleClickOutside)
   document.removeEventListener('keydown', handleEscapeKey)
-  window.removeEventListener('resize', updatePosition)
-  // window.removeEventListener('scroll', updatePosition)
+  window.removeEventListener('resize', debouncedUpdatePosition)
 
   if (hoverTimer) {
     clearTimeout(hoverTimer)
