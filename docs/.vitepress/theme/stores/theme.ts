@@ -2,11 +2,11 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useMyThemeStore = defineStore('myThemeStore', () => {
-  const theme = ref('synthwave')
+  const theme = ref('light')
   const themeKey = 'theme'
 
   const initTheme = () => {
-    const nowTheme = localStorage.getItem(themeKey) || 'synthwave'
+    const nowTheme = localStorage.getItem(themeKey) || 'light'
     theme.value = nowTheme
     setTheme(nowTheme)
   }

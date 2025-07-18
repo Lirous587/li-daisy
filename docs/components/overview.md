@@ -104,6 +104,12 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     title: 'Skeleton 骨架屏',
     details: '在数据加载时提供占位效果'
   },
+  {
+    img: 'https://img.daisyui.com/images/components/tooltip.webp',  
+    url: '/components/skeleton',
+    title: 'Popover 弹出框',
+    details: '用于在页面上显示额外信息或操作'
+  },
 ]" />
 
 ### 主题 (Theme)
