@@ -7,7 +7,7 @@
     <Teleport to="body">
       <div
         ref="popoverRef"
-        class="absolute transition-all duration-300"
+        class="absolute transition-[scale] duration-300"
         :class="visible ? 'opacity-100' : 'opacity-0 scale-90'"
         :style="popoverStyle"
         @mouseenter="handleMouseEnter(false)"
@@ -182,6 +182,8 @@ const popoverStyle = computed((): CSSProperties => {
     return {
       pointerEvents: 'none',
       visibility: 'hidden',
+      left: '-9999px',
+      top: '-9999px',
     }
   }
 
@@ -191,6 +193,8 @@ const popoverStyle = computed((): CSSProperties => {
     return {
       pointerEvents: 'none',
       visibility: 'hidden',
+      left: '-9999px',
+      top: '-9999px',
     }
   }
   const popoverRect = getRealRect(popoverRef.value)
@@ -209,6 +213,7 @@ const popoverStyle = computed((): CSSProperties => {
 const show = async () => {
   visible.value = true
 
+  await nextTick()
   updatePosition()
 
   emit('show')
