@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-auto bg-base-100 border-base-content/10"
+    class="overflow-x-auto bg-base-100 border-base-content/10"
     :class="[props.border ? 'rounded-box border' : 'border-y']"
     ref="scrollContainer"
     @scroll="handleScroll"
@@ -75,7 +75,8 @@
             </div>
           </th>
 
-          <td v-for="column in regularCols" :key="column.prop" class="z-0">
+          <!-- :class="index !== regularCols.length - 1 ? 'border !border-r !border-base-300' : ''" -->
+          <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
             <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
@@ -171,7 +172,8 @@
               </div>
             </th>
 
-            <td v-for="column in regularCols" :key="column.prop" class="z-0">
+            <!-- :class="index !== regularCols.length ? 'border !border-r !border-base-300' : ''" -->
+            <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
               <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                 <template v-if="column.defaultSlot">
                   <component :is="column.defaultSlot" :row="item" :index="index" />
@@ -192,6 +194,7 @@
               </div>
             </td>
 
+            <!-- right -->
             <th
               v-for="(column, columnIndex) in rightPinCols"
               :key="column.prop"
@@ -238,6 +241,7 @@ import type {
 import TableColumn from './column.vue'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 import OverflowTip from './overflowTip.vue'
+import { array } from 'yup'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
@@ -528,7 +532,9 @@ const finalProcessedColumns = computed(() => {
     if (col.width) {
       return col.width
     } else {
-      return Math.floor(averageWidth)
+      // 为边框和间距预留更精确的空间
+      const borderOffset = 2 // 每列预留2px用于边框和间距
+      return Math.floor(averageWidth) - borderOffset
     }
   }
 
@@ -644,4 +650,7 @@ watch(
 .dark .pin-right-shadow {
   box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
 }
+/* td {
+  border: 1px black solid !important;
+} */
 </style>

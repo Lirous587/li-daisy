@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="">
     <Table :data="data" zebra border size="xs">
       <TableColumn prop="id" label="ID" :width="50" />
       <TableColumn prop="name" label="编程语言" />
@@ -9,7 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn } from 'li-daisy'
+// import { Table, TableColumn } from 'li-daisy'
+import { Table, TableColumn } from '../../../packages/index'
 
 import { ref } from 'vue'
 
