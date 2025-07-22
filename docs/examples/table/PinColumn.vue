@@ -5,7 +5,7 @@
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
       <TableColumn prop="description" label="描述" :width="300" />
-      <TableColumn label="操作" pin-col="right">
+      <TableColumn label="操作" pin-col="right" :width="120">
         <template #default="{ row, index }">
           <div class="flex gap-x-3">
             <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
@@ -20,7 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast } from 'li-daisy'
+// import { Table, TableColumn, toast } from 'li-daisy'
+import { Table, TableColumn, toast } from '../../../packages/index'
 import { ref } from 'vue'
 
 interface Language {

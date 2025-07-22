@@ -1,7 +1,7 @@
 <template>
+  <!-- :class="[props.border ? 'border-[0.3px]' : 'border-y']" -->
   <div
-    class="overflow-x-auto bg-base-100 border-base-content/10"
-    :class="[props.border ? 'rounded-box border' : 'border-y']"
+    class="overflow-x-auto border-base-300 border-x"
     ref="scrollContainer"
     @scroll="handleScroll"
   >
@@ -241,7 +241,6 @@ import type {
 import TableColumn from './column.vue'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 import OverflowTip from './overflowTip.vue'
-import { array } from 'yup'
 
 const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
@@ -525,7 +524,7 @@ const finalProcessedColumns = computed(() => {
 
   const remainingWidth = totalAvailableWidth - fixedWidthSum
   // 计算平均宽度，设置最小宽度为100px
-  const averageWidth = autoWidthCount > 0 ? Math.max(100, remainingWidth / autoWidthCount) : 0
+  const averageWidth = autoWidthCount > 0 ? Math.max(120, remainingWidth / autoWidthCount) : 0
 
   // 辅助函数，计算最终宽度
   const calculateFinalWidth = (col: TableColumnPropsWithSlot): number => {
@@ -534,7 +533,7 @@ const finalProcessedColumns = computed(() => {
     } else {
       // 为边框和间距预留更精确的空间
       const borderOffset = 2 // 每列预留2px用于边框和间距
-      return Math.floor(averageWidth) - borderOffset
+      return Math.floor(averageWidth)
     }
   }
 
@@ -650,7 +649,14 @@ watch(
 .dark .pin-right-shadow {
   box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
 }
-/* td {
-  border: 1px black solid !important;
-} */
+
+td {
+  border: 1px var(--color-base-300) solid !important;
+}
+
+th {
+  border-top: 1px var(--color-base-300) solid !important;
+  border-bottom: 1px var(--color-base-300) solid !important;
+  /* border: 1px var(--color-base-300) solid !important; */
+}
 </style>
