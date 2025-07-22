@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <Table :data="data" select>
+    <Table :data="data" select border>
       <TableColumn prop="id" label="ID" pin-col="left" />
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Table, TableColumn, toast } from 'li-daisy'
-import { Table, TableColumn, toast } from '../../../packages/index'
+import { Table, TableColumn, toast } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {

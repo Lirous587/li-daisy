@@ -10,8 +10,6 @@
 
 <script setup lang="ts">
 import { Table, TableColumn } from 'li-daisy'
-// import { Table, TableColumn } from '../../../packages/index'
-
 import { ref } from 'vue'
 
 interface Language {

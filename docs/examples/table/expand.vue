@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <Table :data="data" select>
+    <Table :data="data" select border zebra>
       <TableColumn type="expand">
         <template #expand="{ row, index }">
           <div class="p-0">

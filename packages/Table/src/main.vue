@@ -1,14 +1,18 @@
 <template>
-  <!-- :class="[props.border ? 'border-[0.3px]' : 'border-y']" -->
   <div
-    class="overflow-x-auto border-base-300 border-x"
+    class="overflow-x-auto border-base-300"
+    :class="[props.border ? 'border' : '']"
     ref="scrollContainer"
     @scroll="handleScroll"
   >
     <!-- line-clamp-3 text-ellipsis break-all -->
     <table
       class="table table-pin-rows table-pin-cols table-fixed break-words"
-      :class="[props.zebra ? '!table-zebra' : '', tableSizeClass]"
+      :class="[
+        props.zebra ? '!table-zebra' : '',
+        tableSizeClass,
+        props.border ? 'table-with-border' : '',
+      ]"
     >
       <colgroup>
         <!-- expand -->
@@ -26,18 +30,19 @@
       <thead>
         <tr>
           <!-- expand -->
-          <th v-if="hasExpand" class="sticky left-0 z-10">
+          <th v-if="hasExpand" class="sticky left-0 z-1">
             <span
               v-if="!props.select && leftPinCols.length === 0"
               class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
-            ></span>
+              >1</span
+            >
           </th>
 
           <!-- select -->
           <th
             v-if="props.select"
-            class="sticky z-10"
+            class="sticky z-1"
             :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
           >
             <span
@@ -56,7 +61,7 @@
           <th
             v-for="(column, columnIndex) in leftPinCols"
             :key="column.prop"
-            class="sticky z-10"
+            class="sticky z-1"
             :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
@@ -75,7 +80,6 @@
             </div>
           </th>
 
-          <!-- :class="index !== regularCols.length - 1 ? 'border !border-r !border-base-300' : ''" -->
           <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
             <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
@@ -92,7 +96,7 @@
           <th
             v-for="(column, columnIndex) in rightPinCols"
             :key="column.prop"
-            class="sticky z-10"
+            class="sticky z-1"
             :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
@@ -116,7 +120,7 @@
         <template v-for="(item, index) in props.data" :key="index">
           <tr>
             <!-- expand -->
-            <th v-if="hasExpand" class="sticky left-0 z-10">
+            <th v-if="hasExpand" class="sticky left-0 z-1">
               <span
                 v-if="!props.select && leftPinCols.length === 0"
                 class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
@@ -132,7 +136,7 @@
             <!-- 选择单元格 -->
             <th
               v-if="props.select"
-              class="sticky z-10"
+              class="sticky z-1"
               :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
             >
               <span
@@ -154,7 +158,7 @@
               v-for="(column, columnIndex) in leftPinCols"
               :key="column.prop"
               :style="getPinColumnStyle(columnIndex, column.pinCol)"
-              class="sticky z-10"
+              class="sticky z-1"
             >
               <span
                 class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
@@ -172,7 +176,6 @@
               </div>
             </th>
 
-            <!-- :class="index !== regularCols.length ? 'border !border-r !border-base-300' : ''" -->
             <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
               <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                 <template v-if="column.defaultSlot">
@@ -199,7 +202,7 @@
               v-for="(column, columnIndex) in rightPinCols"
               :key="column.prop"
               :style="getPinColumnStyle(columnIndex, column.pinCol)"
-              class="sticky z-10"
+              class="sticky z-1"
             >
               <span
                 class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
@@ -650,13 +653,55 @@ watch(
   box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
 }
 
-td {
-  border: 1px var(--color-base-300) solid !important;
+/* 只有当 table 有 table-with-border 类时才显示边框 */
+/* 使用伪元素创建边框，避免被 sticky 影响 */
+.table-with-border td,
+.table-with-border th {
+  position: relative;
 }
 
-th {
-  border-top: 1px var(--color-base-300) solid !important;
-  border-bottom: 1px var(--color-base-300) solid !important;
-  /* border: 1px var(--color-base-300) solid !important; */
+/* 右边框 */
+.table-with-border td::after,
+.table-with-border th::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-base-300);
+  pointer-events: none;
+  z-index: 1;
 }
+
+/* 最后一列不需要右边框 */
+.table-with-border td:last-child::after,
+.table-with-border th:last-child::after {
+  display: none;
+}
+
+/* 固定列的边框需要更高的 z-index */
+.table-with-border .sticky::after {
+  z-index: 2;
+}
+
+/* 下边框 但是不用画 daisyui已处理 */
+/* .table-with-border td::before,
+.table-with-border th::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background-color: var(--color-base-300);
+  pointer-events: none;
+  z-index: 1;
+} */
+
+/* 最后一行不需要下边框 */
+/* .table-with-border tbody tr:last-child td::before,
+.table-with-border tbody tr:last-child th::before {
+  display: none;
+} */
 </style>
