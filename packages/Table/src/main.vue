@@ -600,6 +600,8 @@ const updateContainerWidth = () => {
 
 let resizeObserver: ResizeObserver | null = null
 
+let cleanupFunctions: (() => void)[] = []
+
 onMounted(() => {
   updateContainerWidth()
   handleScroll()
@@ -611,20 +613,29 @@ onMounted(() => {
       handleScroll() // 尺寸变化可能影响滚动条，重新检查
     })
     resizeObserver.observe(scrollContainer.value)
+
+    // 添加清理函数
+    cleanupFunctions.push(() => {
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+        resizeObserver = null
+      }
+    })
   } else {
     window.addEventListener('resize', updateContainerWidth)
     window.addEventListener('resize', handleScroll)
+
+    // 添加清理函数
+    cleanupFunctions.push(() => {
+      window.removeEventListener('resize', updateContainerWidth)
+      window.removeEventListener('resize', handleScroll)
+    })
   }
 })
 
 onBeforeUnmount(() => {
-  // 清理 ResizeObserver 或 fallback listener
-  if (resizeObserver && scrollContainer.value) {
-    resizeObserver.unobserve(scrollContainer.value)
-    resizeObserver.disconnect()
-  }
-  window.removeEventListener('resize', updateContainerWidth)
-  window.removeEventListener('resize', handleScroll)
+  cleanupFunctions.forEach((cleanup) => cleanup())
+  cleanupFunctions = []
 })
 
 watch(
