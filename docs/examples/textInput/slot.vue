@@ -1,5 +1,5 @@
 <template>
-  <TextInput placeholder="使用前后插槽" :maxlength="20">
+  <TextInput v-model="text" placeholder="使用前后插槽" :maxlength="20">
     <template #prefix>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -37,4 +37,6 @@
 
 <script setup lang="ts">
 import { TextInput } from 'li-daisy'
+import { ref } from 'vue'
+const text = ref<string>('')
 </script>

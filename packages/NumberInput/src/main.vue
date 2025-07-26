@@ -11,7 +11,7 @@
       <input
         ref="inputRef"
         type="number"
-        v-model="value"
+        v-model="model"
         class="px-2.5 input join-item flex-1"
         :class="[inputSizeClass, inputColorClass]"
         :placeholder="props.placeholder"
@@ -35,29 +35,32 @@ import type { NumberInputProps } from './types'
 import { computed, onMounted, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<NumberInputProps>(), {
+  min: 0,
   placeholder: '',
   disabled: false,
   size: 'md',
 })
 
-const value = defineModel<number>()
-
-onMounted(() => {
-  value.value = props.min
+const model = defineModel<number>({
+  required: true,
 })
 
-watch(value, (newValue) => {
+onMounted(() => {
+  model.value = props.min
+})
+
+watch(model, (newValue) => {
   if (props.min) {
     if (newValue) {
       if (newValue <= props.min) {
-        value.value = props.min
+        model.value = props.min
       }
     }
   }
   if (props.max) {
     if (newValue) {
       if (newValue >= props.max) {
-        value.value = props.max
+        model.value = props.max
       }
     }
   }
@@ -149,22 +152,22 @@ const btnColorClass = computed(() => {
 })
 
 const decrease = () => {
-  let currentValue = value.value || 0
+  let currentValue = model.value || 0
   // 确保不小于最小值
   if (props.min && currentValue <= props.min) {
     return
   }
   currentValue -= 1
-  value.value = currentValue
+  model.value = currentValue
 }
 
 const increase = () => {
-  let currentValue = value.value || 0
+  let currentValue = model.value || 0
   // 确保不大于最大值
   if (props.max && currentValue >= props.max) {
     return
   }
   currentValue += 1
-  value.value = currentValue
+  model.value = currentValue
 }
 </script>

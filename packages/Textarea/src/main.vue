@@ -5,7 +5,7 @@
   >
     <textarea
       ref="textareaEl"
-      v-model="value"
+      v-model="model"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :maxlength="props.maxlength"
@@ -37,8 +37,8 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   size: 'md',
 })
 
-const value = defineModel<string | undefined>({
-  default: '',
+const model = defineModel<string>({
+  required: true,
 })
 
 const sizeClass = computed(() => {
@@ -84,10 +84,10 @@ const colorClass = computed(() => {
 })
 
 const currentLength = computed<number>(() => {
-  if (value.value === undefined || value.value === null) {
+  if (model.value === undefined || model.value === null) {
     return 0
   }
-  return String(value.value).length
+  return String(model.value).length
 })
 
 // 实际文本域
@@ -121,7 +121,7 @@ const calculateRows = async () => {
 
   // 2. 设置内容并测量
   // 使用空格确保至少有一行的高度，防止空内容时 scrollHeight 为 0
-  const textContent = String(value.value) || ' '
+  const textContent = String(model.value) || ' '
   measureEl.value.textContent = textContent
 
   // 3. 计算高度和行高
@@ -147,7 +147,7 @@ const calculateRows = async () => {
   measureEl.value.textContent = ' '
 }
 
-watch(value, calculateRows)
+watch(model, calculateRows)
 
 watch(() => props.size, calculateRows)
 

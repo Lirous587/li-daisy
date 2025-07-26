@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { NumberInput } from 'li-daisy'
 import { ref } from 'vue'
+import { NumberInput } from 'li-daisy'
 const priority = ref(0)
 </script>

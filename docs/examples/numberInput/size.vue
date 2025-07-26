@@ -1,19 +1,15 @@
 <template>
   <div class="flex flex-col gap-y-4">
-    <NumberInput size="xs" />
-    <NumberInput size="sm" />
-    <NumberInput size="md" />
-    <NumberInput size="lg" />
-    <NumberInput size="xl" />
+    <NumberInput v-model="numberValue" size="xs" />
+    <NumberInput v-model="numberValue" size="sm" />
+    <NumberInput v-model="numberValue" size="md" />
+    <NumberInput v-model="numberValue"size="lg" />
+    <NumberInput v-model="numberValue" size="xl" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { NumberInput } from 'li-daisy'
 import { ref } from 'vue'
+const numberValue = ref<number>(0)
 </script>
-
-<!-- <template>
-  <NumberInput v-model="priority" class="w-full" placeholder="请输入优先级" :min="20" :max="30" />
-</template>
- -->

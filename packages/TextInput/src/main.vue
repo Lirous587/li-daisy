@@ -16,7 +16,7 @@
       >
         <input
           ref="inputRef"
-          v-model="value"
+          v-model="model"
           :type="passwordFieldType"
           :placeholder="placeholder"
           :maxlength="maxlength"
@@ -74,9 +74,8 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   disabled: false,
   size: 'md',
 })
-
-const value = defineModel<string>({
-  default: '',
+const model = defineModel<string>({
+  required: true,
 })
 
 const inputRef = ref<HTMLInputElement>()
@@ -214,11 +213,11 @@ const btnColorClass = computed(() => {
 const currentLength = computed<number>(() => {
   // 由于shouldShowCounter确保了只有文本类型的输入才会调用此计算属性
   // 所以可以直接处理为字符串类型
-  if (value.value === undefined || value.value === null) {
+  if (model.value === undefined || model.value === null) {
     return 0
   }
 
-  return String(value.value).length
+  return String(model.value).length
 })
 
 // 判断是否应该显示计数器：有maxlength且是基于文本的输入框
