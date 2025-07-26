@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex justify-center">
-    <Popover placement="bottom" trigger="hover" :z-index="100">
+    <Popover position="bottom" trigger="hover" :z-index="100">
       <template #trigger>
         <button class="btn btn-primary">trigger</button>
       </template>

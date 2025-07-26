@@ -7,7 +7,7 @@
     <Teleport to="body">
       <div
         ref="popoverRef"
-        class="absolute transition-[scale] duration-300"
+        class="absolute transition-[scale] duration-300 vp-raw"
         :class="visible ? 'opacity-100' : 'opacity-0 scale-90'"
         :style="popoverStyle"
         @mouseenter="handleMouseEnter(false)"
@@ -22,11 +22,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, type CSSProperties, nextTick } from 'vue'
-import type { PopoverProps, Placement, PopoverRef } from './types'
-import { debounce, throttle } from '../../utils/performance'
+import type { PopoverProps, Positon, PopoverRef } from './types'
+import { debounce } from '../../utils/performance'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
-  placement: 'bottom',
+  positon: 'bottom',
   trigger: 'hover',
   closeOnClickOutside: true,
   closeOnEscape: true,
@@ -46,8 +46,8 @@ const offset = 12
 const margin = 8
 
 // 计算所有可能的位置
-const calculatePosition = (placement: Placement, triggerRect: DOMRect, popoverRect: DOMRect) => {
-  const positions: Record<Placement, { x: number; y: number }> = {
+const calculatePosition = (position: Positon, triggerRect: DOMRect, popoverRect: DOMRect) => {
+  const positions: Record<Positon, { x: number; y: number }> = {
     // Top positions
     top: {
       x: triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2,
@@ -105,7 +105,7 @@ const calculatePosition = (placement: Placement, triggerRect: DOMRect, popoverRe
     },
   }
 
-  return positions[placement]
+  return positions[position]
 }
 
 // 检查位置是否在视口内
@@ -122,30 +122,30 @@ const isInViewport = (x: number, y: number, width: number, height: number) => {
 // 获取最佳位置
 const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   // 简单回退配置
-  const getSimpleFallbacks = (placement: Placement): Placement[] => {
-    const base = placement.split('-')[0] as 'top' | 'bottom' | 'left' | 'right'
+  const getSimpleFallbacks = (positon: Positon): Positon[] => {
+    const base = positon.split('-')[0] as 'top' | 'bottom' | 'left' | 'right'
     const opposite = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' }
 
     return [
-      placement, // 首选位置
-      opposite[base] as Placement, // 对面位置
+      positon, // 首选位置
+      opposite[base] as Positon, // 对面位置
       'bottom', // 默认回退
     ]
   }
 
   // 位置优先级，如果首选位置不可用，按此顺序尝试
-  const placements = getSimpleFallbacks(props.placement)
+  const positions = getSimpleFallbacks(props.positon)
 
   // 尝试找到完全在视口内的位置
-  for (const placement of placements) {
-    const pos = calculatePosition(placement, triggerRect, popoverRect)
+  for (const positon of positions) {
+    const pos = calculatePosition(positon, triggerRect, popoverRect)
     if (pos && isInViewport(pos.x, pos.y, popoverRect.width, popoverRect.height)) {
       return { ...pos }
     }
   }
 
   // 如果所有预设位置都不合适，进行智能调整
-  const preferredPos = calculatePosition(props.placement, triggerRect, popoverRect)
+  const preferredPos = calculatePosition(props.positon, triggerRect, popoverRect)
 
   // 限制在视口内即可
   const adjustedX = Math.max(

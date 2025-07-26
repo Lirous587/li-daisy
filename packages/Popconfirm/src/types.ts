@@ -1,5 +1,3 @@
-import type { ComputedRef } from 'vue'
-
 export type Positon =
   | 'top'
   | 'top-start'
@@ -14,19 +12,13 @@ export type Positon =
   | 'right-start'
   | 'right-end'
 
-type Trigger = 'hover' | 'click'
-
-export interface PopoverProps {
-  positon?: Positon
-  trigger?: Trigger
+export interface PopconfirmProps {
+  position?: Positon
   closeOnClickOutside?: boolean
   closeOnEscape?: boolean
   zIndex?: number
-}
-
-export interface PopoverRef {
-  show: () => void
-  hide: () => void
-  toggle: () => void
-  visible: ComputedRef<boolean>
+  title?: string
+  confirmText?: string
+  cancleText?: string
+  width?: number
 }

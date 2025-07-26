@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex justify-between">
-    <Popover placement="top" trigger="hover" :z-index="100">
+    <Popover trigger="hover" :z-index="100">
       <template #trigger>
         <button class="btn btn-primary">hover</button>
       </template>
@@ -11,7 +11,7 @@
         </div>
       </template>
     </Popover>
-    <Popover placement="top" trigger="click" :z-index="100">
+    <Popover trigger="click" :z-index="100">
       <template #trigger>
         <button class="btn btn-primary">click</button>
       </template>
@@ -29,6 +29,5 @@
 </template>
 
 <script setup lang="ts">
-// import { Popover } from 'li-daisy'
-import { Popover } from '../../../packages/index'
+import { Popover } from 'li-daisy'
 </script>

@@ -15,7 +15,7 @@
 ## 设置位置
 > 可选值有 `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end`，默认为 `bottom`
 
-:::demo popover/placement
+:::demo popover/position
 :::
 
 
@@ -24,10 +24,11 @@
 
 ### Attributes
 
+
 #### Props
 |         属性值         |        说明        |   类型    |                                                               具体类型                                                                |  默认值  |
 | :--------------------: | :----------------: | :-------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :------: |
-|       placement        |      对齐位置      |  `enum`   | `['top','top-start','top-end','bottom','bottom-start','bottom-end','left','left-start','left-end','right','right-start','right-end']` | `bottom` |
+|        position        |      对齐位置      |  `enum`   | `['top','top-start','top-end','bottom','bottom-start','bottom-end','left','left-start','left-end','right','right-start','right-end']` | `bottom` |
 |        trigger         |      触发时机      |  `enum`   |                                                          `['hover','click']`                                                          | `click`  |
 |         offset         |    偏移距离(px)    | `number`  |                                                                   -                                                                   |   `8`    |
 | close-on-click-outside | 点击外部关闭弹出框 | `boolean` |                                                                   -                                                                   |  `true`  |

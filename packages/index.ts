@@ -46,7 +46,10 @@ import { Table, TableColumn } from './Table'
 export type { TableProps, TableColumnProps } from './Table'
 
 import { Popover } from './Popover'
-export type { PopoverPlacement, PopoverProps, PopoverRef } from './Popover'
+export type { PopoverProps, PopoverRef, PopoverPositon } from './Popover'
+
+import { Popconfirm } from './Popconfirm'
+export type { PopconfirmProps, PopconfirmPositon } from './Popconfirm'
 
 // 导出单个组件（用于按需引入）
 export {
@@ -69,6 +72,7 @@ export {
   Table,
   TableColumn,
   Popover,
+  Popconfirm,
 }
 
 // 创建组件列表
@@ -92,6 +96,7 @@ const components = [
   Table,
   TableColumn,
   Popover,
+  Popconfirm,
 ]
 
 // 默认导出（标准 Vue 插件格式）
