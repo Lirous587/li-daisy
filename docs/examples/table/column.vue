@@ -5,11 +5,9 @@
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
       <TableColumn label="操作">
-        <template #default="{ row, index }">
+        <template #default="{ row, index }: TableColumnDefaultScope<Language>">
           <div class="flex gap-x-3">
-            <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row as Language)">
-              toast
-            </div>
+            <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
             <div class="btn btn-xs btn-success btn-outline" @click="handleDeleteRow(index)">
               删除
             </div>
@@ -21,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast } from 'li-daisy'
+import { Table, TableColumn, toast, type TableColumnDefaultScope } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {

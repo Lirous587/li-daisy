@@ -16,8 +16,8 @@ const props = withDefaults(defineProps<TableColumnProps>(), {
 defineSlots<{
   header(props: TableColumnHeaderScope): void
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  default(props: TableColumnDefaultScope<Record<string, any>>): void
+  default(props: TableColumnDefaultScope<{ id: number; [key: string]: any }>): void
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  expand(props: TableColumnExpandScope<Record<string, any>>): void
+  expand(props: TableColumnExpandScope<{ id: number; [key: string]: any }>): void
 }>()
 </script>

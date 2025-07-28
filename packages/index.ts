@@ -43,7 +43,12 @@ export { toast }
 export type { ToastProps, ToastRef } from './Toast'
 
 import { Table, TableColumn } from './Table'
-export type { TableProps, TableColumnProps } from './Table'
+export type {
+  TableProps,
+  TableColumnProps,
+  TableColumnDefaultScope,
+  TableColumnExpandScope,
+} from './Table'
 
 import { Popover } from './Popover'
 export type { PopoverProps, PopoverRef, PopoverPositon } from './Popover'

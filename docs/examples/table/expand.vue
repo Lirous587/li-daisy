@@ -2,10 +2,12 @@
   <div class="p-4">
     <Table :data="data" select border zebra>
       <TableColumn type="expand">
-        <template #expand="{ row, index }">
+        <template #expand="{ row, index }: TableColumnExpandScope<Language>">
           <div class="p-0">
-            <p>{{ row }}</p>
-            <p>Details about {{ index }}...</p>
+            <p>
+              {{ row.id }} : {{ row.name }} 是 {{ row.description }} 语言,它的得分是
+              {{ row.score }}
+            </p>
           </div>
         </template>
       </TableColumn>
@@ -18,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn } from 'li-daisy'
+import { Table, TableColumn, type TableColumnExpandScope } from 'li-daisy'
 
 import { ref } from 'vue'
 

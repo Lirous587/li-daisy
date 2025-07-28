@@ -2,7 +2,7 @@ import type { VNode } from 'vue'
 
 export interface TableProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: Array<Record<string, any>>
+  data: Array<Record<string, any> & { id: number }>
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   zebra?: boolean
   border?: boolean
@@ -31,19 +31,23 @@ export interface TableColumnPropsWithSlot extends TableColumnProps {
   headerSlot: (scope: TableColumnHeaderScope) => VNode
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnDefaultScope<T = Record<string, any>> {
-  row: T
-  index: number
-}
-
 export interface TableColumnHeaderScope {
   label?: string
   prop?: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnExpandScope<T = Record<string, any>> {
+export interface TableColumnDefaultScope<
+  T extends { id: number; [key: string]: any } = { id: number },
+> {
+  row: T
+  index: number
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface TableColumnExpandScope<
+  T extends { id: number; [key: string]: any } = { id: number },
+> {
   row: T
   index: number
 }
