@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   size: 'md',
 })
 
-const model = defineModel<number>({
+const model = defineModel<number | undefined>({
   required: true,
 })
 

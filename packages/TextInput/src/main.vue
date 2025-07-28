@@ -74,7 +74,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   disabled: false,
   size: 'md',
 })
-const model = defineModel<string>({
+const model = defineModel<string | undefined>({
   required: true,
 })
 

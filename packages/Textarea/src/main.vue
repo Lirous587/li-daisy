@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   size: 'md',
 })
 
-const model = defineModel<string>({
+const model = defineModel<string | undefined>({
   required: true,
 })
 
