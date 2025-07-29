@@ -8,9 +8,11 @@
         <template #default="{ row, index }: TableColumnDefaultScope<Language>">
           <div class="flex gap-x-3">
             <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
-            <div class="btn btn-xs btn-success btn-outline" @click="handleDeleteRow(index)">
-              删除
-            </div>
+            <Popconfirm @confirm="handleDeleteRow(index)">
+              <template #trigger>
+                <div class="btn btn-xs btn-success btn-outline">删除</div>
+              </template>
+            </Popconfirm>
           </div>
         </template>
       </TableColumn>
@@ -19,7 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast, type TableColumnDefaultScope } from 'li-daisy'
+import { Table, TableColumn, toast, type TableColumnDefaultScope, Popconfirm } from 'li-daisy'
+
 import { ref } from 'vue'
 
 interface Language {

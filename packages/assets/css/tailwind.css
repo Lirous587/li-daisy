@@ -10,6 +10,9 @@
   interpolate-size: allow-keywords;
 }
 
+.btn {
+  white-space: nowrap;
+}
 
 @plugin "daisyui" {
   themes: all;
