@@ -2,7 +2,7 @@ import type { VNode } from 'vue'
 
 export interface TableProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: Array<Record<string, any> & { id: number }>
+  data: Array<Record<string, any>>
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   zebra?: boolean
   border?: boolean
@@ -37,17 +37,13 @@ export interface TableColumnHeaderScope {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnDefaultScope<
-  T extends { id: number; [key: string]: any } = { id: number },
-> {
+export interface TableColumnDefaultScope<T extends Record<string, any> = Record<string, any>> {
   row: T
   index: number
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnExpandScope<
-  T extends { id: number; [key: string]: any } = { id: number },
-> {
+export interface TableColumnExpandScope<T extends Record<string, any> = Record<string, any>> {
   row: T
   index: number
 }
