@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput, toast } from 'li-daisy'
 import type { FormRef } from 'li-daisy'
 import { ref } from 'vue'
 
@@ -48,10 +48,13 @@ const schema = yup.object({
 })
 
 const handleRegister = async () => {
-  formRef.value?.validate().then((status) => {
-    if (status) {
+  formRef.value
+    ?.validate()
+    .then(() => {
       window.alert('注册成功')
-    }
-  })
+    })
+    .catch(() => {
+      toast.warning('表单填写有误')
+    })
 }
 </script>

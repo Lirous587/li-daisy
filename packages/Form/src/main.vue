@@ -67,17 +67,24 @@ provide('errors', readonly(errors))
 const isExecuteErrorAnimation = ref(false)
 
 // 包装 validate 函数
-const validate = async (): Promise<boolean> => {
+const validate = async (): Promise<void> => {
   isExecuteErrorAnimation.value = true
   const result = await veeValidate()
-
-  return result.valid
+  if (result.valid) {
+    return
+  } else {
+    throw new Error('validate failed')
+  }
 }
 
 // 包装 validateField 函数
-const validateField = async (fieldName: string): Promise<{ valid: boolean; errors: string[] }> => {
+const validateField = async (fieldName: string): Promise<void> => {
   const result = await veeValidateField(fieldName)
-  return result
+  if (result.valid) {
+    return
+  } else {
+    throw result.errors[0]
+  }
 }
 
 provide('isExecuteErrorAnimation', readonly(isExecuteErrorAnimation))

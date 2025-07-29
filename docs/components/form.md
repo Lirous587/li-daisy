@@ -40,9 +40,21 @@
 :::
 
 ## 例子
-### 注册
+
+### 验证表单（注册示例）
+> 通过 `FormRef` 的 `validate` 方法校验整个表单，返回一个 Promise。校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调。
+>
+> 校验失败后，表单 **会** 自动展示对应的错误提示效果。
 :::demo form/register
 :::
+
+### 验证单个字段
+> 通过 `FormRef` 的 `validateField` 方法校验指定字段，返回一个 Promise。校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调，并可获取错误信息。
+>
+> 该方法只校验单个字段，失败时 **不会** 自动展示表单错误提示。
+:::demo form/validateField
+:::
+
 
 ## API
 
@@ -77,7 +89,7 @@
 | default | 默认插槽 |
 
 #### Form
-|    方法名     |     说明     |    类型    |                              具体类型                              |
-| :-----------: | :----------: | :--------: | :----------------------------------------------------------------: |
-|   validate    | 验证整个表单 | `Function` |                      `() => Promise<boolean>`                      |
-| validateField | 验证某个字段 | `Function` | `(fieldName: string) => Promise<valid: boolean; errors: string[]>` |
+|    方法名     |     说明     |    类型    |                具体类型                |
+| :-----------: | :----------: | :--------: | :------------------------------------: |
+|   validate    | 验证整个表单 | `Function` |         `() => Promise<void>`          |
+| validateField | 验证某个字段 | `Function` | `(fieldName: string) => Promise<void>` |
