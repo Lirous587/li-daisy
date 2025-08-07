@@ -35,7 +35,7 @@
               v-if="!props.select && leftPinCols.length === 0"
               class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
-              >1</span
+              ></span
             >
           </th>
 
