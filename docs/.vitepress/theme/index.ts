@@ -17,6 +17,8 @@ import '../theme/css/vitepress.css'
 import '../theme/css/table.css'
 import '../theme/css/a.css'
 
+import { loadingDirective } from '../../../packages/'
+
 export default {
   ...DefaultTheme,
   Layout: Layout,
@@ -25,5 +27,6 @@ export default {
     app.use(pinia)
     app.component('ComponentGrid', ComponentGrid)
     app.component('Demo', Demo)
+    app.directive('loading', loadingDirective)
   },
 }

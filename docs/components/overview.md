@@ -110,6 +110,12 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     title: 'Popover 弹出框',
     details: '用于在页面上显示额外信息或操作'
   },
+  {
+    img: 'https://img.daisyui.com/images/components/tooltip.webp',  
+    url: '/components/popover',
+    title: 'Popconfirm 气泡确定框',
+    details: '用于危险操作的再次确定'
+  },
 ]" />
 
 ### 主题 (Theme)
@@ -125,6 +131,20 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
   },
 ]" />
 
+
+
+### 工具类 (Tools)
+
+一些辅助指令。
+
+<ComponentGrid :componentList="[
+  {
+    img: 'https://img.daisyui.com/images/components/theme-controller.webp',  
+    url: '/components/loading',
+    title: 'loading 指令',
+    details: '用于防抖，占位'
+  },
+]" />
 
 <!-- ## 快速导航
 

@@ -64,6 +64,11 @@ export default defineConfig({
         text: '主题 (Theme)',
         items: [{ text: 'ThemeController 主题控制器', link: '/components/themeController' }],
       },
+
+      {
+        text: '内置指令',
+        items: [{ text: 'v-loading 加载', link: '/components/loading' }],
+      },
     ],
 
     // 启用最后更新时间

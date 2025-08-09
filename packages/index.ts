@@ -106,6 +106,7 @@ const components = [
 
 // 默认导出（标准 Vue 插件格式）
 import type { InstallOptions } from './types'
+
 export default {
   install: (app: App, { prefix = 'Li' }: InstallOptions = {}): App => {
     // 获取用户配置的前缀，默认为'Li'
@@ -122,3 +123,8 @@ export default {
     return app
   },
 }
+
+// 内置指令
+import { loadingDirective } from './Loading'
+
+export { loadingDirective }
