@@ -1,9 +1,6 @@
 <template>
   <div>
-    <Table :data="data" zebra border size="xs">
-      <TableColumn type="expand">
-        <template #expand> 展开 </template>
-      </TableColumn>
+    <Table :data="data" zebra border :hover-highlight="true">
       <TableColumn prop="id" label="ID" :width="50" />
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" header-align="right" align="right" />

@@ -7,6 +7,8 @@ export interface TableProps {
   zebra?: boolean
   border?: boolean
   select?: boolean
+  hoverHighlight?: boolean
+  placeholderHeight?: number
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   selectable?: (item: any) => boolean
 }

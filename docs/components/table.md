@@ -62,19 +62,28 @@
 :::demo table/tooltip
 :::
 
+
+## 占位高度(高度回溯)
+> 由于表格数据时常更新，导致表格高度频繁变化，可能造成页面布局抖动。通过设置 `placeholder-height` 属性，给定表格一个起始的占位高度可以一定程度上来规避数据更新导致的较大布局抖动。除此之外后续数据变化表格会智能记录上一次的高度，以保持稳定的占位空间，提供更好的用户体验
+
+:::demo table/height
+:::
+
 ## API
 
 ### Attributes
 
 #### Table
-|   属性值   |         说明         |             类型             |           具体类型           |  默认值  |
-| :--------: | :------------------: | :--------------------------: | :--------------------------: | :------: |
-|    data    |       表格数据       | `Array<Record<string, any>>` |              -               |    -     |
-|    size    |       表格大小       |            `enum`            | `['xs','sm','md','lg','xl']` | `'info'` |
-|   zebra    |    是否带有斑马纹    |          `boolean`           |              -               | `false`  |
-|   border   |     是否显示边框     |          `boolean`           |              -               | `false`  |
-|   select   |       是否可选       |           `select`           |              -               | `false`  |
-| selectable | 设置可选列的回调函数 |          `Function`          |   `(item: any) => boolean`   | `false`  |
+|       属性值       |          说明          |             类型             |           具体类型           |  默认值  |
+| :----------------: | :--------------------: | :--------------------------: | :--------------------------: | :------: |
+|        data        |        表格数据        | `Array<Record<string, any>>` |              -               |    -     |
+|        size        |        表格大小        |            `enum`            | `['xs','sm','md','lg','xl']` | `'info'` |
+|       zebra        |     是否带有斑马纹     |          `boolean`           |              -               | `false`  |
+|       border       |      是否显示边框      |          `boolean`           |              -               | `false`  |
+|       select       |        是否可选        |           `select`           |              -               | `false`  |
+|     selectable     |  设置可选列的回调函数  |          `Function`          |   `(item: any) => boolean`   | `false`  |
+|  hover-highlight   |   悬浮某列时高亮该列   |          `boolean`           |              -               | `false`  |
+| placeholder-height | 表格的默认占位高度(px) |           `number`           |              -               |  `300`   |
 
 #### TableColumn
 | 属性值  |      说明      |   类型   |      具体类型      | 默认值 |

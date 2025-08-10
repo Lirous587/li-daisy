@@ -1,18 +1,15 @@
 <template>
   <div
-    class="overflow-x-auto border-base-300"
+    class="overflow-x-auto border-base-200 rounded-md li-table"
+    tabindex="-1"
     :class="[props.border ? 'border' : '']"
     ref="scrollContainer"
     @scroll="handleScroll"
+    :style="{ minHeight: currentMinHeight + 'px' }"
   >
-    <!-- line-clamp-3 text-ellipsis break-all -->
     <table
-      class="table table-pin-rows table-pin-cols table-fixed break-words"
-      :class="[
-        props.zebra ? '!table-zebra' : '',
-        tableSizeClass,
-        props.border ? 'table-with-border' : '',
-      ]"
+      class="table !rounded-none !m-0 table-pin-rows table-pin-cols table-fixed break-words"
+      :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
         <!-- expand -->
@@ -35,8 +32,7 @@
               v-if="!props.select && leftPinCols.length === 0"
               class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
-              ></span
-            >
+            ></span>
           </th>
 
           <!-- select -->
@@ -118,7 +114,7 @@
       </thead>
       <tbody>
         <template v-for="(item, index) in props.data" :key="index">
-          <tr>
+          <tr :class="[handleZebraStyle(index), handleHoverHightlight()]">
             <!-- expand -->
             <th v-if="hasExpand" class="sticky left-0 z-1">
               <span
@@ -249,6 +245,8 @@ const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
   zebra: false,
   border: false,
+  hoverHighlight: false,
+  placeholderHeight: 300,
 })
 
 const emit = defineEmits<{
@@ -350,6 +348,15 @@ const leftPinCols = computed(() => processedColumns.value.leftPinCols)
 const regularCols = computed(() => processedColumns.value.regularCols)
 const rightPinCols = computed(() => processedColumns.value.rightPinCols)
 const expandSlot = computed(() => processedColumns.value.expandSlot)
+
+// zebra
+const handleZebraStyle = (index: number) => {
+  return props.zebra && index % 2 === 1 ? '!bg-base-200' : ''
+}
+
+const handleHoverHightlight = () => {
+  return props.hoverHighlight ? 'hover:!bg-base-200 hover:[&>th]:!bg-base-200 ' : ''
+}
 
 // --- expand ---
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -602,9 +609,51 @@ let resizeObserver: ResizeObserver | null = null
 
 let cleanupFunctions: (() => void)[] = []
 
+// 监听props 计算列宽
+watch(
+  [() => props.data, () => props.select, slots.default, leftPinCols, regularCols, rightPinCols],
+  () => {
+    // 当列定义或数据变化时，最终宽度计算会自动更新 (因为 finalProcessedColumns 依赖它们)
+    // 我们只需要确保在 DOM 更新后重新检查滚动状态
+    nextTick(handleScroll)
+  },
+  { deep: true, immediate: true },
+)
+
+// 容器最小高度逻辑
+// 维护一个 lastValidHeight 用于props.data变化前的高度
+// currentMinHeight 用于得出实际要占位高度
+const lastValidHeight = ref(0) // 记录上一次的有效高度
+const currentMinHeight = computed(() => {
+  // 有数据时才采取最小高度
+  if (!props.data || props.data.length === 0) {
+    return lastValidHeight.value || props.placeholderHeight
+  }
+  return 0
+})
+
+// 记录表格高度
+const recordTableHeight = () => {
+  nextTick(() => {
+    // 有data时才有意义
+    if (scrollContainer.value && props.data && props.data.length > 0) {
+      lastValidHeight.value = scrollContainer.value.scrollHeight
+    }
+  })
+}
+
+// 监听data 处理minHeight
+watch(
+  () => props.data.length,
+  () => {
+    recordTableHeight()
+  },
+)
+
 onMounted(() => {
   updateContainerWidth()
   handleScroll()
+  recordTableHeight()
 
   // 设置 ResizeObserver
   if (scrollContainer.value && typeof ResizeObserver !== 'undefined') {
@@ -637,16 +686,6 @@ onBeforeUnmount(() => {
   cleanupFunctions.forEach((cleanup) => cleanup())
   cleanupFunctions = []
 })
-
-watch(
-  [() => props.data, () => props.select, slots.default, leftPinCols, regularCols, rightPinCols],
-  () => {
-    // 当列定义或数据变化时，最终宽度计算会自动更新 (因为 finalProcessedColumns 依赖它们)
-    // 我们只需要确保在 DOM 更新后重新检查滚动状态
-    nextTick(handleScroll)
-  },
-  { deep: true, immediate: true },
-)
 </script>
 
 <style scoped>
@@ -664,12 +703,17 @@ watch(
   box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
 }
 
-/* 只有当 table 有 table-with-border 类时才显示边框 */
-/* 使用伪元素创建边框，避免被 sticky 影响 */
-.table-with-border td,
-.table-with-border th {
+/* 定位处理 避免覆盖table类的pin-cols */
+.table-with-border td:not(.sticky),
+.table-with-border th:not(.sticky) {
   position: relative;
 }
+
+.table-with-border .sticky {
+  position: sticky !important;
+}
+
+/* 只有当 table 有 table-with-border 类时才显示边框 */
 
 /* 右边框 */
 .table-with-border td::after,
@@ -679,8 +723,8 @@ watch(
   right: 0;
   top: 0;
   bottom: 0;
-  width: 1px;
-  background-color: var(--color-base-300);
+  width: var(--border);
+  background-color: color-mix(in oklch, var(--color-base-content) 5%, #0000);
   pointer-events: none;
   z-index: 1;
 }
@@ -695,24 +739,4 @@ watch(
 .table-with-border .sticky::after {
   z-index: 2;
 }
-
-/* 下边框 但是不用画 daisyui已处理 */
-/* .table-with-border td::before,
-.table-with-border th::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 0.5px;
-  background-color: var(--color-base-300);
-  pointer-events: none;
-  z-index: 1;
-} */
-
-/* 最后一行不需要下边框 */
-/* .table-with-border tbody tr:last-child td::before,
-.table-with-border tbody tr:last-child th::before {
-  display: none;
-} */
 </style>
