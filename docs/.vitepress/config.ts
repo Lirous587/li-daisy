@@ -97,7 +97,12 @@ export default defineConfig({
   vite: {
     css: {
       postcss: {
-        plugins: [tailwindcssPlugin(), postcssIsolateStyles({})],
+        plugins: [
+          tailwindcssPlugin(),
+          postcssIsolateStyles({
+            includeFiles: [/vp-doc\.css/, /base\.css/],
+          }),
+        ],
       },
     },
   },

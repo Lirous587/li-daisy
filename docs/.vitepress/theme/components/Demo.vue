@@ -2,7 +2,7 @@
   <div class="li-demo card rounded-lg border border-base-300">
     <div class="card-body">
       <!-- 组件预览区域 -->
-      <div class="relative overflow-auto py-4">
+      <div class="relative overflow-auto py-4 vp-raw">
         <ClientOnly>
           <component class="vp-raw" :is="demoComponent" v-if="demoComponent" />
         </ClientOnly>
