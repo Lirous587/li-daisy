@@ -1,6 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 
-import type { App } from 'vue'
+import { type App } from 'vue'
 import { createPinia } from 'pinia'
 
 import ComponentGrid from './components/OverviewGrid.vue'

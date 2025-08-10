@@ -59,6 +59,7 @@ function resolveOptions(binding: DirectiveBinding<BindVal>): {
 const loadingDirective: Directive<LoadingEl, BindVal> = {
   mounted(el, binding) {
     const cs = window.getComputedStyle(el)
+    // 保证定位
     el.__prevPosition = cs.position === 'static' ? '' : undefined
     if (cs.position === 'static') el.style.position = 'relative'
 
@@ -74,57 +75,88 @@ const loadingDirective: Directive<LoadingEl, BindVal> = {
     overlay.style.display = 'flex'
     overlay.style.alignItems = 'center'
     overlay.style.justifyContent = 'center'
-    overlay.style.pointerEvents = 'none'
     overlay.style.borderRadius = cs.borderRadius
     overlay.style.overflow = 'hidden'
+    overlay.style.transition = 'opacity 200ms ease'
 
-    // 背景层
+    // 半透明背景层
     const backdrop = document.createElement('div')
     backdrop.style.position = 'absolute'
     backdrop.style.inset = '0'
     backdrop.style.background = 'var(--color-base-200)'
-    backdrop.style.opacity = '0.8'
-    backdrop.style.pointerEvents = 'none'
+    backdrop.style.opacity = '0.6'
     backdrop.style.borderRadius = cs.borderRadius
     overlay.appendChild(backdrop)
 
-    // 内容层
+    // loading 内容挂载点
     const content = document.createElement('div')
+    content.style.position = 'relative'
     overlay.appendChild(content)
 
+    // 保存 overlay
+    el.__loadingOverlay = overlay
+    el.appendChild(overlay)
+
+    // 第一次渲染
     const opts = resolveOptions(binding)
+    el.__loadingType = opts.type
+    el.__loadingColor = opts.color
+    el.__loadingSize = opts.size
+
     const app = createApp(Loading, {
-      visible: opts.visible,
+      visible: true,
       type: opts.type,
       color: opts.color,
       size: opts.size,
     })
     app.mount(content)
-
-    if (opts.visible) {
-      el.style.pointerEvents = 'none'
-    }
-    el.appendChild(overlay)
-
     el.__loadingApp = app
-    el.__loadingOverlay = overlay
-    el.__loadingType = opts.type
-    el.__loadingColor = opts.color
+
+    // 初始化透明度
+    overlay.style.opacity = opts.visible ? '1' : '0'
+    overlay.style.pointerEvents = opts.visible ? 'auto' : 'none'
+    // 对于鼠标等事件 捕获阶段一网打尽，防止冒泡到宿主 el
+    ;[
+      'click',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'pointerdown',
+      'pointerup',
+      'touchstart',
+      'touchend',
+    ].forEach((evt) => {
+      overlay.addEventListener(
+        evt,
+        (e) => {
+          e.stopPropagation()
+          e.preventDefault()
+        },
+        { capture: true },
+      )
+    })
   },
 
   updated(el, binding) {
-    const overlay = el.__loadingOverlay
+    const overlay = el.__loadingOverlay as HTMLElement
     const opts = resolveOptions(binding)
-    el.style.pointerEvents = opts.visible ? 'none' : 'auto'
 
-    if (overlay) overlay.style.display = opts.visible ? 'flex' : 'none'
+    // 1. 控制透明度 & 事件拦截
+    overlay.style.opacity = opts.visible ? '1' : '0'
+    overlay.style.pointerEvents = opts.visible ? 'auto' : 'none'
 
-    if (opts.type !== el.__loadingType || opts.color !== el.__loadingColor) {
-      const content = overlay?.lastElementChild as HTMLElement | undefined
+    if (
+      opts.type !== el.__loadingType ||
+      opts.color !== el.__loadingColor ||
+      opts.size !== el.__loadingSize
+    ) {
+      // 卸载旧 app
       el.__loadingApp?.unmount()
+      // 新建
+      const content = overlay?.querySelector('div:last-child') as HTMLElement
       if (content) {
         const app = createApp(Loading, {
-          visible: opts.visible,
+          visible: true,
           type: opts.type,
           color: opts.color,
           size: opts.size,
@@ -139,8 +171,13 @@ const loadingDirective: Directive<LoadingEl, BindVal> = {
 
   unmounted(el) {
     el.__loadingApp?.unmount()
-    if (el.__loadingOverlay?.parentNode === el) el.removeChild(el.__loadingOverlay)
-    if (el.__prevPosition !== null) el.style.position = el.__prevPosition ?? ''
+
+    if (el.__loadingOverlay && el.contains(el.__loadingOverlay)) {
+      el.removeChild(el.__loadingOverlay)
+    }
+    if (el.__prevPosition !== null) {
+      el.style.position = el.__prevPosition!
+    }
 
     delete el.__loadingApp
     delete el.__loadingOverlay

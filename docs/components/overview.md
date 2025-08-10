@@ -139,7 +139,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/theme-controller.webp',  
+    img: 'https://img.daisyui.com/images/components/loading.webp',  
     url: '/components/loading',
     title: 'loading 指令',
     details: '用于防抖，占位'
