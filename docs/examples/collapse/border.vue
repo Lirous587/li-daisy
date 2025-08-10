@@ -6,5 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { Collapse, CollapseItem } from 'li-daisy'
+// import { Collapse, CollapseItem } from 'li-daisy'
+import { Collapse, CollapseItem } from '../../../packages'
 </script>

@@ -1,10 +1,10 @@
 <template>
-  <div class="collapse join-item" :class="iconClass">
+  <div class="collapse join-item border-base-300" :class="[iconClass, hasBorder ? 'border' : '']">
     <input type="checkbox" :checked="isOpen" class="peer" @change="toggle" />
     <div class="collapse-title font-semibold" :class="collapseStyle">
       {{ props.title }}
     </div>
-    <div class="collapse-content !border-none" :class="collapseStyle">
+    <div class="collapse-content" :class="collapseStyle">
       <div class="p-[1rem]">
         <slot />
       </div>
@@ -31,10 +31,12 @@ if (!collapseContext) {
   throw new Error('CollapseItem必须在Collapse组件内使用')
 }
 
-const border = computed(() => collapseContext.border)
-
-const borderClass = computed(() => {
-  return border.value ? 'border-y border-base-300' : ''
+const hasBorder = computed(() => {
+  if (collapseStyle.value) {
+    return false
+  } else {
+    return collapseContext.border
+  }
 })
 
 const icon = computed(() => collapseContext.icon)
@@ -98,11 +100,7 @@ const activeClass = computed(() => {
 })
 
 const collapseStyle = computed(() => {
-  if (borderClass.value !== '') {
-    return borderClass.value
-  } else {
-    return [defaultClass.value, activeClass.value]
-  }
+  return [defaultClass.value, activeClass.value]
 })
 
 // 注册自己并设置默认打开状态
