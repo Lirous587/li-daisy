@@ -22,6 +22,12 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     url: '/components/drawer',
     title: 'Drawer 抽屉',
     details: '用于显示/隐藏页面侧边栏'
+  },
+  {
+    img: 'https://lirous.com/avatar.jpg',  
+    url: '/components/queue',
+    title: 'Queue 队列',
+    details: '用于实现队列式进出的布局容器'
   }
 ]" />
 

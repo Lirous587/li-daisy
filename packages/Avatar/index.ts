@@ -7,4 +7,5 @@ Avatar.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
 }
 
 export { Avatar }
+
 export default Avatar

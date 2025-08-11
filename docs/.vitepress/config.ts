@@ -31,6 +31,7 @@ export default defineConfig({
         items: [
           { text: 'Collapse 折叠面板', link: '/components/collapse' },
           { text: 'Drawer 抽屉', link: '/components/drawer' },
+          { text: 'Queue 队列', link: '/components/queue' },
         ],
       },
       {
