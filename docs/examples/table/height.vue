@@ -21,8 +21,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Table, TableColumn } from 'li-daisy'
-import { Table, TableColumn } from '../../../packages'
+import { Table, TableColumn } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {
@@ -122,6 +121,7 @@ const loading = ref(false)
 
 const getNewDataset = () => {
   loading.value = true
+  data.value = []
 
   // 随机生成 1-15 条数据
   const count = Math.floor(Math.random() * 15) + 1

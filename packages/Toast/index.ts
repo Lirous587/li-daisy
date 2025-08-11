@@ -3,7 +3,7 @@ import type { InstallOptions } from '../types'
 import Toast from './src/main.vue'
 import { createToastApi } from './src/toast'
 
-import type { ToastRef, ToastProps } from './src/types'
+import type { ToastRef } from './src/types'
 
 Toast.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
   app.component(`${prefix}Toast`, Toast)
@@ -11,7 +11,7 @@ Toast.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
 
 export { Toast }
 
-export type { ToastRef, ToastProps }
+export type { ToastRef }
 
 export default Toast
 

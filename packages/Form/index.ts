@@ -3,7 +3,7 @@ import type { InstallOptions } from '../types'
 import Form from './src/main.vue'
 import FormItem from './src/item.vue'
 
-import type { FormProps, FormRef, FormItemProps } from './src/types'
+import type { FormRef } from './src/types'
 
 Form.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
   app.component(`${prefix}Form`, Form)
@@ -17,6 +17,6 @@ import { useYup } from './src/yup'
 
 export { Form, FormItem, useYup }
 
-export type { FormProps, FormRef, FormItemProps }
+export type { FormRef }
 
 export default Form
