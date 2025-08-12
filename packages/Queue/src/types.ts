@@ -8,7 +8,7 @@ export interface QueueLayoutProps {
 
 export interface QueueItem {
   id: string
-  content: Component | VNode // 可以是组件、字符串或VNode
+  content: Component | VNode
   position: QueuePosition
   duration?: number
   onClose?: () => void

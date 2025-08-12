@@ -30,8 +30,6 @@ const showToast = (position: QueuePosition) => {
   })
 }
 
-queue.setStaggerDelay(2000)
-
 const clearAll = () => {
   queue.clear()
 }
