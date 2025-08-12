@@ -26,9 +26,11 @@ const showToast = (position: QueuePosition) => {
   counter++
   queue.add(component, {
     position,
-    duration: 4000,
+    duration: 2000,
   })
 }
+
+queue.setStaggerDelay(2000)
 
 const clearAll = () => {
   queue.clear()

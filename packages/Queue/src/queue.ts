@@ -1,9 +1,14 @@
 import { createApp, markRaw, reactive, type Component, type VNode } from 'vue'
-import Queue from './main.vue'
+import QueueLayout from './layout.vue'
+
 import type { QueueItem, QueuePosition } from './types'
 
 class QueueManager {
-  private containers = new Map<QueuePosition, any>()
+  private app: any = null
+
+  private container: HTMLElement | null = null
+  private globalZIndex = 1000 // 全局 z-index 计数器
+
   private queues = reactive<Record<QueuePosition, QueueItem[]>>({
     'top-start': [],
     'top-center': [],
@@ -33,23 +38,24 @@ class QueueManager {
   }
 
   add(item: Omit<QueueItem, 'id'>) {
-    const timestamp = Date.now()
-
     const id = `queue-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
 
-    // 使用 markRaw 标记组件，避免被响应式化
+    // 每次添加都递增全局 z-index
+    this.globalZIndex += 1
+
     const queueItem: QueueItem = {
       ...item,
       id,
+      // 使用 markRaw 标记组件，避免被响应式化
       content: markRaw(item.content),
-      ZIndex: timestamp,
+      ZIndex: this.globalZIndex,
     }
 
     // 入队
     this.queues[item.position].push(queueItem)
 
-    // 确保容器存在
-    this.ensureContainer(item.position)
+    // 确保容器存在（只需要一次）
+    this.ensureContainer()
 
     // 计算错开的持续时间
     const staggeredDuration = this.calculateStaggeredDuration(item.position, item.duration)
@@ -57,38 +63,40 @@ class QueueManager {
     // 自动删除
     if (staggeredDuration > 0) {
       setTimeout(() => {
-        this.remove(id, item.position)
+        this.remove(id)
       }, staggeredDuration)
     }
 
     return id
   }
 
-  remove(id: string, position: QueuePosition) {
-    const nowQueue = this.queues[position]
+  remove(id: string) {
+    // 遍历所有位置找到对应的消息
+    for (const position of Object.keys(this.queues) as QueuePosition[]) {
+      const queue = this.queues[position]
+      const index = queue.findIndex((item) => item.id === id)
 
-    const index = nowQueue.findIndex((item) => item.id === id)
-    if (index > -1) {
-      const item = nowQueue[index]
-      nowQueue.splice(index, 1)
-      item.onClose?.()
+      if (index > -1) {
+        const item = queue[index]
+        queue.splice(index, 1)
+        item.onClose?.()
+        return // 找到并删除后直接返回
+      }
     }
   }
 
   // 确保容器存在
-  private ensureContainer(position: QueuePosition) {
-    if (!this.containers.has(position)) {
-      const container = document.createElement('div')
-      document.body.appendChild(container)
+  private ensureContainer() {
+    if (!this.app) {
+      this.container = document.createElement('div')
+      document.body.appendChild(this.container)
 
-      const app = createApp(Queue, {
-        position,
-        items: this.queues[position],
-        onRemove: (id: string) => this.remove(id, position),
+      this.app = createApp(QueueLayout, {
+        queueMap: this.queues,
+        onRemove: (id: string) => this.remove(id), // 简化调用
       })
 
-      app.mount(container)
-      this.containers.set(position, { app, container })
+      this.app.mount(this.container)
     }
   }
 
@@ -103,9 +111,21 @@ class QueueManager {
   // 设置错开延迟
   setStaggerDelay(delay: number) {
     if (this.isSetConfig) {
-      throw new Error('已经设置过')
+      throw new Error('queue组件delay配置只能设置一次')
     }
     this.config.staggerDelay = delay
+    this.isSetConfig = true
+  }
+
+  destroy() {
+    if (this.app) {
+      this.app.unmount()
+      if (this.container && this.container.parentNode) {
+        this.container.parentNode.removeChild(this.container)
+      }
+      this.app = null
+      this.container = null
+    }
   }
 }
 
@@ -121,16 +141,19 @@ export const queue = {
     })
   },
 
-  remove: (id: string, position: QueuePosition) => {
-    queueManager.remove(id, position)
+  remove: (id: string) => {
+    queueManager.remove(id)
   },
 
   clear: () => {
     queueManager.clear()
   },
 
-  // 只提供错开延迟配置
   setStaggerDelay: (delay: number) => {
     queueManager.setStaggerDelay(delay)
+  },
+
+  destroy: () => {
+    queueManager.destroy()
   },
 }

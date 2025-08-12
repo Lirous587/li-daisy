@@ -2,10 +2,8 @@ import type { Component, VNode } from 'vue'
 
 export type QueuePosition = 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-end'
 
-export interface QueueProps {
-  position?: QueuePosition
-  autoClose?: boolean
-  items: QueueItem[]
+export interface QueueLayoutProps {
+  queueMap: Record<QueuePosition, QueueItem[]>
 }
 
 export interface QueueItem {
