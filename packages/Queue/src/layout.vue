@@ -2,32 +2,20 @@
   <Teleport to="body">
     <div class="fixed inset-0 pointer-events-none z-[9999]">
       <!-- 左上角 -->
-      <QueuePositionContainer
-        v-if="leftTopItems.length > 0"
-        position="top-start"
-        :items="leftTopItems"
-        @remove="handleRemove"
-      />
+      <QueuePositionContainer position="top-start" :items="leftTopItems" @remove="handleRemove" />
 
       <!-- 顶部中央 -->
       <QueuePositionContainer
-        v-if="topCenterItems.length > 0"
         position="top-center"
         :items="topCenterItems"
         @remove="handleRemove"
       />
 
       <!-- 右上角 -->
-      <QueuePositionContainer
-        v-if="rightTopItems.length > 0"
-        position="top-end"
-        :items="rightTopItems"
-        @remove="handleRemove"
-      />
+      <QueuePositionContainer position="top-end" :items="rightTopItems" @remove="handleRemove" />
 
       <!-- 左下角 -->
       <QueuePositionContainer
-        v-if="leftBottomItems.length > 0"
         position="bottom-start"
         :items="leftBottomItems"
         @remove="handleRemove"
@@ -35,7 +23,6 @@
 
       <!-- 右下角 -->
       <QueuePositionContainer
-        v-if="rightBottomItems.length > 0"
         position="bottom-end"
         :items="rightBottomItems"
         @remove="handleRemove"

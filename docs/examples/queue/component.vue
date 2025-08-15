@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { queue, type QueuePosition } from 'li-daisy'
+// import { queue, type QueuePosition } from 'li-daisy'
+import { queue, type QueuePosition } from '../../../packages'
 
 import component from './toast.vue'
 import type { ToastProps } from './toast.vue'
