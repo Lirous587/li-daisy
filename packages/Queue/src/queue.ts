@@ -1,7 +1,7 @@
-import { createApp, markRaw, reactive, type Component, type VNode } from 'vue'
+import { createApp, h, markRaw, reactive, type Component, type VNode } from 'vue'
 import QueueLayout from './layout.vue'
 
-import type { QueueItem, QueuePosition } from './types'
+import type { QueueItem, QueueItemOptions, QueuePosition } from './types'
 
 class QueueManager {
   private app: any = null
@@ -25,9 +25,7 @@ class QueueManager {
   }
 
   // 计算错开的持续时间
-  private calculateStaggeredDuration(position: QueuePosition, originalDuration?: number): number {
-    if (!originalDuration) return 0
-
+  private calculateStaggeredDuration(position: QueuePosition, originalDuration: number): number {
     const queue = this.queues[position]
     const queueIndex = queue.length - 1 // 当前项在队列中的索引
 
@@ -37,7 +35,7 @@ class QueueManager {
     return finalDuration
   }
 
-  add(item: Omit<QueueItem, 'id'>) {
+  add(item: Omit<QueueItemOptions & { content: Component & VNode }, 'id'>): string {
     const id = `queue-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
 
     // 每次添加都递增全局 z-index
@@ -57,11 +55,16 @@ class QueueManager {
     // 确保容器存在（只需要一次）
     this.ensureContainer()
 
-    // 计算错开的持续时间
-    const staggeredDuration = this.calculateStaggeredDuration(item.position, item.duration)
+    if (!item.duration) {
+      item.duration = 2000
+    }
 
-    // 自动删除
-    if (staggeredDuration > 0) {
+    // 给 autoClose 设置默认值
+    const autoClose = item.autoClose ?? true // 默认为 true
+
+    // 是否自动删除
+    if (autoClose) {
+      const staggeredDuration = this.calculateStaggeredDuration(item.position, item.duration)
       setTimeout(() => {
         this.remove(id)
       }, staggeredDuration)
@@ -93,19 +96,11 @@ class QueueManager {
 
       this.app = createApp(QueueLayout, {
         queueMap: this.queues,
-        onRemove: (id: string) => this.remove(id), // 简化调用
+        onRemove: (id: string) => this.remove(id),
       })
 
       this.app.mount(this.container)
     }
-  }
-
-  // 清空所有队列
-  clear() {
-    let queuesKey = Object.keys(this.queues) as QueuePosition[]
-    queuesKey.forEach((position, index) => {
-      this.queues[position].length = 0
-    })
   }
 
   // 设置错开延迟
@@ -133,20 +128,27 @@ export const queueManager = new QueueManager()
 
 // 便捷API
 export const queue = {
-  add: (content: Component | VNode, options: Partial<QueueItem> = {}) => {
+  addVnode: (content: VNode, options: QueueItemOptions) => {
     return queueManager.add({
       content,
-      position: 'top-end',
+      ...options,
+    })
+  },
+
+  addComponent: <T extends Record<string, any>>(
+    component: Component,
+    props: T,
+    options: QueueItemOptions,
+  ) => {
+    const vnode = h(component, props)
+    return queueManager.add({
+      content: vnode,
       ...options,
     })
   },
 
   remove: (id: string) => {
     queueManager.remove(id)
-  },
-
-  clear: () => {
-    queueManager.clear()
   },
 
   setStaggerDelay: (delay: number) => {

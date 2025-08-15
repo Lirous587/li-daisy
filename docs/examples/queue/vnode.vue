@@ -13,21 +13,19 @@
 
 <script setup lang="ts">
 import { queue, type QueuePosition } from 'li-daisy'
+import { h } from 'vue'
 
 import component from './toast.vue'
-import type { ToastProps } from './toast.vue'
 
 const showToast = (position: QueuePosition) => {
-  queue.addComponent(
-    component,
-    {
-      title: '操作成功',
-      message: `消息显示在 ${position} 位置`,
-    } as ToastProps,
-    {
-      position: position,
-      onClose: () => console.log('close callback'),
-    },
-  )
+  const hVnode = h(component, {
+    title: '操作成功',
+    message: `消息显示在 ${position} 位置`,
+  } as any)
+
+  queue.addVnode(hVnode, {
+    position: position,
+    onClose: () => console.log('close callback'),
+  })
 }
 </script>

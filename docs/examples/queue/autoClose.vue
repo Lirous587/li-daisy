@@ -26,6 +26,7 @@ const showToast = (position: QueuePosition) => {
     } as ToastProps,
     {
       position: position,
+      autoClose: false,
       onClose: () => console.log('close callback'),
     },
   )

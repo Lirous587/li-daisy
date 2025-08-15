@@ -1,8 +1,8 @@
-import type { QueueItemRef, QueuePosition } from './src/types'
+import type { QueueItemRef, QueuePosition, QueueItemOptions } from './src/types'
 
 import { queue } from './src/queue'
 
-export type { QueueItemRef, QueuePosition }
+export type { QueueItemRef, QueuePosition, QueueItemOptions }
 
 export { queue }
 

@@ -15,6 +15,13 @@ export interface QueueItem {
   ZIndex?: number
 }
 
+export interface QueueItemOptions {
+  position: QueuePosition
+  duration?: number
+  onClose?: () => void
+  autoClose?: boolean
+}
+
 export interface QueueItemRef {
   close: () => void
 }

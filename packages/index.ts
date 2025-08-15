@@ -44,7 +44,7 @@ import { Popconfirm } from './Popconfirm'
 export type { PopconfirmPositon } from './Popconfirm'
 
 export { queue } from './Queue'
-export type { QueueItemRef, QueuePosition } from './Queue'
+export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
 
 // 导出组件
 export {
