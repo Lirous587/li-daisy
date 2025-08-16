@@ -1,26 +1,15 @@
 # Toast消息提示
 
-## 基础用法 
-:::demo toast/basic
-:::
+## 类型 
+> 通过 `type` 来设置消息类型，可选值有 `info` `success` `warning` `error`
 
-## 组件用法 
-:::demo toast/component
-:::
-
-> 以下演示均为**函数式**用法
-
-## 类型
-> 通过 `type` 来设置消息类型，可选值有 `info` `success` `warning` `error` `custom`
->> 
-> custom 不再有默认图标，支持高度自定义
 :::demo toast/type
 :::
 
-### custom类型
-:::demo toast/custom
-:::
 
+<!-- ### custom类型
+:::demo toast/custom
+::: -->
 
 
 ## 位置
@@ -30,21 +19,28 @@
 :::
 
 ## 关闭图标
-> 通过 `close` 来设置是否显示图标，默认值为 `true`
+> 通过 `closeIcon` 来设置是否显示图标，默认值为 `false`
+
+:::demo toast/close
+:::
+
+## Vnode
+> `message` 参数也可为 `Vnode`
+
+:::demo toast/vnode
+:::
 
 ## API
 
-### Attributes
-|  属性值  |       说明       |   类型    |                              具体类型                              |   默认值    |
-| :------: | :--------------: | :-------: | :----------------------------------------------------------------: | :---------: |
-|   type   |     消息类型     |  `enum`   |          `['info','success','warning','error','custom']`           |  `'info'`   |
-| position |     消息位置     |  `enum`   | `['top-start','top-center','top-end','bottom-start','bottom-end']` | `'top-end'` |
-| duration | 消息显示时间/ms  |  `enum`   |                                 -                                  |   `2000`    |
-|  close   | 是否显示关闭图标 | `boolean` |                                 -                                  |   `false`   |
+### 配置项
 
-### Slots
-| 插槽名  |   说明   |
-| :-----: | :------: |
-| default | 默认插槽 |
-
+| 参数      | 类型             | 默认值      | 说明                                                                |
+| --------- | ---------------- | ----------- | ------------------------------------------------------------------- |
+| message   | `[string,Vnode]` | -           | 消息内容                                                            |
+| title     | `string`         | -           | 消息标题                                                            |
+| type      | `ToastType`      | `'info'`    | 消息类型，可选值：`info` `success` `warning` `error` `custom`       |
+| position  | `ToastPosition`  | `'top-end'` | 消息位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
+| duration  | `number`         | `2000`      | 自动消失时间（毫秒），低于1000无效                                  |
+| autoClose | `boolean`        | `true`      | 是否自动关闭                                                        |
+| closeIcon | `boolean`        | `false`     | 是否显示图标                                                        |
 

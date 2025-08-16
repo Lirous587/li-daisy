@@ -1,25 +1,38 @@
 <template>
-  <div class="w-full flex justify-around gap-x-3">
-    <button class="btn" @click="toastInfo">info</button>
-    <button class="btn" @click="toastSuccess">success</button>
-    <button class="btn" @click="toastWarning">warning</button>
-    <button class="btn" @click="toastError">error</button>
+  <div class="space-x-3">
+    <button class="btn" @click="toastFunc('info')">info</button>
+    <button class="btn" @click="toastFunc('success')">success</button>
+    <button class="btn" @click="toastFunc('warn')">warn</button>
+    <button class="btn" @click="toastFunc('error')">error</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { toast } from 'li-daisy'
+import { toast, type ToastType } from 'li-daisy'
 
-const toastInfo = () => {
-  toast.info('fuck you,damn')
-}
-const toastSuccess = () => {
-  toast.success('fuck you,damn')
-}
-const toastWarning = () => {
-  toast.warning('fuck you,damn')
-}
-const toastError = () => {
-  toast.error('fuck you,damn')
+const toastFunc = (type: ToastType) => {
+  const options = {
+    title: '这是消息标题',
+    message: `这是一条 ${type} 消息`,
+  }
+
+  switch (type) {
+    case 'info':
+      return toast.info({
+        ...options,
+      })
+    case 'success':
+      return toast.success({
+        ...options,
+      })
+    case 'warn':
+      return toast.warn({
+        ...options,
+      })
+    case 'error':
+      return toast.error({
+        ...options,
+      })
+  }
 }
 </script>

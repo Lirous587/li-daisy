@@ -1,29 +1,24 @@
 <template>
-  <div class="w-full flex justify-around gap-x-3">
-    <button class="btn" @click="toastTopStart">top start</button>
-    <button class="btn" @click="toastTopCenter">top center</button>
-    <button class="btn" @click="toastTopEnd">top end</button>
-    <button class="btn" @click="toastBottomStart">bottom start</button>
-    <button class="btn" @click="toastBottomEnd">bottom end</button>
+  <div class="space-x-3">
+    <button class="btn" @click="toastFunc('top-start')">top-start</button>
+    <button class="btn" @click="toastFunc('top-end')">top-end</button>
+    <button class="btn" @click="toastFunc('bottom-start')">bottom-start</button>
+    <button class="btn" @click="toastFunc('bottom-end')">bottom-end</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { toast } from 'li-daisy'
+import { toast, type ToastPosition, type ToastType } from 'li-daisy'
 
-const toastTopStart = () => {
-  toast.info('top start', { position: 'top-start' })
-}
-const toastTopCenter = () => {
-  toast.info('top center', { position: 'top-center' })
-}
-const toastTopEnd = () => {
-  toast.info('top end', { position: 'top-end' })
-}
-const toastBottomStart = () => {
-  toast.info('bottom start', { position: 'bottom-start' })
-}
-const toastBottomEnd = () => {
-  toast.info('bottom end', { position: 'bottom-end' })
+const toastFunc = (position: ToastPosition) => {
+  const options = {
+    title: '这是消息标题',
+    message: `该消息位于 ${position}`,
+    position: position,
+  }
+
+  toast.info({
+    ...options,
+  })
 }
 </script>

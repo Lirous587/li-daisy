@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="fixed inset-0 pointer-events-none z-[9999]">
+    <div class="fixed inset-0 pointer-events-none z-[9999] vp-raw">
       <!-- 左上角 -->
       <QueuePositionContainer position="top-start" :items="leftTopItems" @remove="handleRemove" />
 

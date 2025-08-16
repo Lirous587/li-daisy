@@ -54,12 +54,12 @@ const props = defineProps<QueueItemRef & ToastProps>()
 
 **Options：**
 
-| 参数      | 类型            | 默认值      | 说明                           |
-| --------- | --------------- | ----------- | ------------------------------ |
-| position  | `QueuePosition` | `'top-end'` | 消息显示位置                   |
-| duration  | `number`        | -           | 自动消失时间（毫秒 **非0值**） |
-| onClose   | `() => void`    | -           | 消息关闭时的回调函数           |
-| autoClose | `boolean`       | `true`      | 是否自动关闭消息               |
+| 参数      | 类型            | 默认值      | 说明                            |
+| --------- | --------------- | ----------- | ------------------------------- |
+| position  | `QueuePosition` | `'top-end'` | 消息显示位置                    |
+| duration  | `number`        | -           | 自动消失时间（毫秒）低于1000无效 |
+| onClose   | `() => void`    | -           | 消息关闭时的回调函数            |
+| autoClose | `boolean`       | `true`      | 是否自动关闭消息                |
 
 
 **返回值：** `string` - 消息的唯一 ID

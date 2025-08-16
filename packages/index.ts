@@ -30,9 +30,9 @@ export { useYup } from './Form'
 
 import { NumberInput } from './NumberInput'
 
-import { toast, Toast } from './Toast'
+import { toast } from './Toast'
+export type { ToastPosition, ToastType } from './Toast'
 export { toast }
-export type { ToastRef } from './Toast'
 
 import { Table, TableColumn } from './Table'
 export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'
@@ -63,7 +63,6 @@ export {
   Form,
   FormItem,
   NumberInput,
-  Toast,
   Table,
   TableColumn,
   Popover,
@@ -87,7 +86,6 @@ const components = [
   Form,
   FormItem,
   NumberInput,
-  Toast,
   Table,
   TableColumn,
   Popover,

@@ -55,7 +55,7 @@ class QueueManager {
     // 确保容器存在（只需要一次）
     this.ensureContainer()
 
-    if (!item.duration) {
+    if (!item.duration || item.duration < 1000) {
       item.duration = 2000
     }
 
