@@ -21,11 +21,8 @@ const handleThemeChange = (theme: string, ifDark: boolean) => {
   themeStore.setDark(ifDark)
 }
 
-onBeforeMount(() => {
-  themeStore.initTheme()
-})
-
 onMounted(() => {
+  themeStore.initTheme()
   if (themeRef.value) {
     const ifDark = themeRef.value.setTheme(theme.value)
     themeStore.setDark(ifDark)

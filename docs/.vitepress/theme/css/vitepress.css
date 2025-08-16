@@ -110,8 +110,44 @@ button.menu {
     --vp-c-neutral: var(--color-neutral-content);
     /* 反向中性色 (常用于背景) */
     --vp-c-neutral-inverse: var(--color-neutral);
+
+
+    --vp-button-brand-text: var(--color-secondary);
+    --vp-button-brand-bg: var(--color-secondary-content);
+    --vp-button-brand-hover-text: var(--color-primary);
+    --vp-button-brand-hover-bg: var(--color-primary-content);
+    --vp-button-brand-active-text: var(--color-primary);
+    --vp-button-brand-active-bg: var(--color-primary-content);
 }
 
 .vp-doc [class*='language-'] pre {
     z-index: 0;
 }
+
+/* 
+    --vp-button-brand-border: transparent;
+    --vp-button-brand-text: var(--vp-c-white);
+    --vp-button-brand-bg: var(--vp-c-brand-3);
+    --vp-button-brand-hover-border: transparent;
+
+    --vp-button-brand-active-border: transparent;
+
+    --vp-button-alt-border: transparent;
+    --vp-button-alt-text: var(--vp-c-text-1);
+    --vp-button-alt-bg: var(--vp-c-default-3);
+    --vp-button-alt-hover-border: transparent;
+    --vp-button-alt-hover-text: var(--vp-c-text-1);
+    --vp-button-alt-hover-bg: var(--vp-c-default-2);
+    --vp-button-alt-active-border: transparent;
+    --vp-button-alt-active-text: var(--vp-c-text-1);
+    --vp-button-alt-active-bg: var(--vp-c-default-1);
+    --vp-button-sponsor-border: var(--vp-c-text-2);
+    --vp-button-sponsor-text: var(--vp-c-text-2);
+    --vp-button-sponsor-bg: transparent;
+    --vp-button-sponsor-hover-border: var(--vp-c-sponsor);
+    --vp-button-sponsor-hover-text: var(--vp-c-sponsor);
+    --vp-button-sponsor-hover-bg: transparent;
+    --vp-button-sponsor-active-border: var(--vp-c-sponsor);
+    --vp-button-sponsor-active-text: var(--vp-c-sponsor);
+    --vp-button-sponsor-active-bg: transparent;
+*/

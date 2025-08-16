@@ -1,10 +1,10 @@
 <template>
-  <div :class="isTransitioning ? 'transition-all duration-[400] opacity-20' : ''">
+  <!-- :class="isTransitioning ? 'transition-all duration-[400] opacity-20' : ''" -->
+  <div>
     <DefaultTheme.Layout>
       <!-- 在桌面导航栏末尾添加 -->
       <template #nav-bar-content-after>
-        <div class="h-[24px] w-[1px] ml-[16px] mr-[8px] bg-[var(--vp-c-divider)]"></div>
-        <div class="flex w-[36px]">
+        <div class="flex w-[36px] ml-4">
           <ThemeController class="m-auto vp-raw" />
         </div>
       </template>
@@ -44,55 +44,55 @@ onMounted(async () => {
 
 provide('shiki', shikiHighlighter)
 
-const enableTransitions = () =>
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+// const enableTransitions = () =>
+//   'startViewTransition' in document &&
+//   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
-provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
-  if (isTransitioning.value) return
-  isTransitioning.value = true
+// provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+//   if (isTransitioning.value) return
+//   isTransitioning.value = true
 
-  if (!enableTransitions()) {
-    isDark.value = !isDark.value
-    isTransitioning.value = false
-    return
-  }
+//   if (!enableTransitions()) {
+//     isDark.value = !isDark.value
+//     isTransitioning.value = false
+//     return
+//   }
 
-  const clipPath = [
-    `circle(0px at ${x}px ${y}px)`,
-    `circle(${Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y),
-    )}px at ${x}px ${y}px)`,
-  ]
+//   const clipPath = [
+//     `circle(0px at ${x}px ${y}px)`,
+//     `circle(${Math.hypot(
+//       Math.max(x, innerWidth - x),
+//       Math.max(y, innerHeight - y),
+//     )}px at ${x}px ${y}px)`,
+//   ]
 
-  await document.startViewTransition(async () => {
-    isDark.value = !isDark.value
-    await nextTick()
-  }).ready
+//   await document.startViewTransition(async () => {
+//     isDark.value = !isDark.value
+//     await nextTick()
+//   }).ready
 
-  document.documentElement.animate(
-    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-    {
-      duration: 400,
-      easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    },
-  )
+//   document.documentElement.animate(
+//     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
+//     {
+//       duration: 400,
+//       easing: 'ease-in',
+//       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+//     },
+//   )
 
-  if (isDark.value) {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light')
-  }
+//   if (isDark.value) {
+//     document.documentElement.setAttribute('data-theme', 'dark')
+//   } else {
+//     document.documentElement.setAttribute('data-theme', 'light')
+//   }
 
-  setTimeout(() => {
-    isTransitioning.value = false
-  }, 400)
-})
+//   setTimeout(() => {
+//     isTransitioning.value = false
+//   }, 400)
+// })
 </script>
 
-<style>
+<!-- <style>
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -108,4 +108,4 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 .dark::view-transition-old(root) {
   z-index: 9999;
 }
-</style>
+</style> -->
