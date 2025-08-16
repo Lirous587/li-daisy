@@ -23,4 +23,9 @@
 11. `ThemeController` ✅
 12. `Toast` ✅
 13. `Table` ✅
-14. `Tree` 待开发
+14. `Popover` ✅
+15. `Popover` ✅
+16. `loading` ✅
+17. `Queue` ✅
+18. `Tree` 待开发
+
