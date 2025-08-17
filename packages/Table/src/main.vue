@@ -245,7 +245,7 @@ const props = withDefaults(defineProps<TableProps>(), {
   size: 'md',
   zebra: false,
   border: false,
-  hoverHighlight: false,
+  hoverHighlight: true,
   placeholderHeight: 300,
 })
 
@@ -351,11 +351,11 @@ const expandSlot = computed(() => processedColumns.value.expandSlot)
 
 // zebra
 const handleZebraStyle = (index: number) => {
-  return props.zebra && index % 2 === 1 ? '!bg-base-200' : ''
+  return props.zebra && index % 2 === 1 ? 'bg-base-200 [&>th]:bg-base-200' : ''
 }
 
 const handleHoverHightlight = () => {
-  return props.hoverHighlight ? 'hover:!bg-base-200 hover:[&>th]:!bg-base-200 ' : ''
+  return props.hoverHighlight ? 'hover:bg-base-200 hover:[&>th]:bg-base-200' : ''
 }
 
 // --- expand ---

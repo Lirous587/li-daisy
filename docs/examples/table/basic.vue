@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Table :data="data" zebra border :hover-highlight="true">
+    <Table :data="data" zebra border :hover-highlight="false">
       <TableColumn prop="id" label="ID" :width="50" />
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" header-align="right" align="right" />
