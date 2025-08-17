@@ -52,8 +52,8 @@ const handleDeleteRow = (index: number) => {
 
 const handleToatRow = (item: Language) => {
   toast.info({
-    title: '当前数据为',
-    message: `${item}`,
+    title: '当前数据',
+    message: `${item.name}:${item.score}`,
   })
 }
 </script>

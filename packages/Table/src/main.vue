@@ -76,7 +76,7 @@
             </div>
           </th>
 
-          <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
+          <td v-for="column in regularCols" :key="column.prop" class="z-0">
             <div class="flex items-center">
               <div :class="getAlgin(column.headerAlign)">
                 <template v-if="column.headerSlot">
@@ -113,8 +113,8 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="(item, index) in props.data" :key="index">
-          <tr :class="[handleZebraStyle(index), handleHoverHightlight()]">
+        <template v-for="(item, rowIndex) in props.data" :key="props.data">
+          <tr :class="[handleZebraStyle(rowIndex), handleHoverHightlight()]">
             <!-- expand -->
             <th v-if="hasExpand" class="sticky left-0 z-1">
               <span
@@ -151,31 +151,18 @@
 
             <!-- left -->
             <th
-              v-for="(column, columnIndex) in leftPinCols"
+              v-for="(column, leftIndex) in leftPinCols"
               :key="column.prop"
-              :style="getPinColumnStyle(columnIndex, column.pinCol)"
+              :style="getPinColumnStyle(leftIndex, column.pinCol)"
               class="sticky z-1"
             >
               <span
                 class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
                 :class="scrollState.left ? 'pin-left-shadow' : ''"
               ></span>
-              <div class="flex items-center">
-                <div :class="getAlgin(column.align)">
-                  <template v-if="column.defaultSlot">
-                    <component :is="column.defaultSlot" :row="item" :index="index" />
-                  </template>
-                  <template v-else>
-                    {{ column.prop ? item[column.prop] : '' }}
-                  </template>
-                </div>
-              </div>
-            </th>
-
-            <td v-for="(column, index) in regularCols" :key="column.prop" class="z-0">
               <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                 <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="index" />
+                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                 </template>
                 <template v-else>
                   {{ column.prop ? item[column.prop] : '' }}
@@ -184,7 +171,28 @@
               <div v-else class="flex items-center">
                 <div :class="getAlgin(column.align)">
                   <template v-if="column.defaultSlot">
-                    <component :is="column.defaultSlot" :row="item" :index="index" />
+                    <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                  </template>
+                  <template v-else>
+                    {{ column.prop ? item[column.prop] : '' }}
+                  </template>
+                </div>
+              </div>
+            </th>
+
+            <td v-for="column in regularCols" :key="column.prop" class="z-0">
+              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
+                <template v-if="column.defaultSlot">
+                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                </template>
+                <template v-else>
+                  {{ column.prop ? item[column.prop] : '' }}
+                </template>
+              </OverflowTip>
+              <div v-else class="flex items-center">
+                <div :class="getAlgin(column.align)">
+                  <template v-if="column.defaultSlot">
+                    <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                   </template>
                   <template v-else>
                     {{ column.prop ? item[column.prop] : '' }}
@@ -195,19 +203,27 @@
 
             <!-- right -->
             <th
-              v-for="(column, columnIndex) in rightPinCols"
+              v-for="(column, rightIndex) in rightPinCols"
               :key="column.prop"
-              :style="getPinColumnStyle(columnIndex, column.pinCol)"
+              :style="getPinColumnStyle(rightIndex, column.pinCol)"
               class="sticky z-1"
             >
               <span
                 class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
                 :class="scrollState.right ? 'pin-right-shadow' : ''"
               ></span>
-              <div class="flex items-center">
+              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
+                <template v-if="column.defaultSlot">
+                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                </template>
+                <template v-else>
+                  {{ column.prop ? item[column.prop] : '' }}
+                </template>
+              </OverflowTip>
+              <div v-else class="flex items-center">
                 <div :class="getAlgin(column.align)">
                   <template v-if="column.defaultSlot">
-                    <component :is="column.defaultSlot" :row="item" :index="index" />
+                    <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                   </template>
                   <template v-else>
                     {{ column.prop ? item[column.prop] : '' }}
@@ -220,7 +236,7 @@
           <!-- expand rows -->
           <tr v-if="expandedRowsSet.has(item)">
             <td :colspan="totalColumnsCount">
-              <component :is="expandSlot" :row="item" :index="index" />
+              <component :is="expandSlot" :row="item" :index="rowIndex" />
             </td>
           </tr>
         </template>
@@ -250,7 +266,6 @@ const props = withDefaults(defineProps<TableProps>(), {
 })
 
 const emit = defineEmits<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (e: 'select-change', items: any[]): void
 }>()
 

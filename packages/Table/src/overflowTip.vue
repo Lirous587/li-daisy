@@ -8,9 +8,9 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUpdated, nextTick, watch } from 'vue'
+import Popover from '../../Popover'
 
 interface TooltipProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: any
 }
 
