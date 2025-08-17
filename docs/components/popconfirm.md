@@ -15,17 +15,22 @@
 :::
 
 
+## 位置
+:::tip 位置可选值同 `Popover` 组件
+`Popconfirm` 组件的位置和 `popover` 组件的位置一致，不再赘述
+:::
+
 ## API
 
 ### Attributes
 
 #### Props
-|         属性值         |        说明        |   类型    |  具体类型   |  默认值  |
-| :--------------------: | :----------------: | :-------: | :---------: | :------: |
-|        position        |      对齐位置      |  `enum`   | `同Popover` | `bottom` |
-| close-on-click-outside | 点击外部关闭弹出框 | `boolean` |      -      |  `true`  |
-|    close-on-escape     |   esc关闭弹出框    | `boolean` |      -      |  `true`  |
-|        z-index         |     z-index值      | `number`  |      -      |   `0`    |
+|         属性值         |        说明        |   类型    |       具体类型       |  默认值  |
+| :--------------------: | :----------------: | :-------: | :------------------: | :------: |
+|        position        |      对齐位置      |  `enum`   | `PopconfirmPosition` | `bottom` |
+| close-on-click-outside | 点击外部关闭弹出框 | `boolean` |          -           |  `true`  |
+|    close-on-escape     |   esc关闭弹出框    | `boolean` |          -           |  `true`  |
+|        z-index         |     z-index值      | `number`  |          -           |   `0`    |
 
 
 ### Event
