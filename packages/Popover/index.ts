@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import type { InstallOptions } from '../types'
 import Popover from './src/main.vue'
 
-import type { PopoverRef, Positon } from './src/types'
+import type { PopoverRef, PopoverPositon } from './src/types'
 
 Popover.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
   app.component(`${prefix}Popover`, Popover)
@@ -10,6 +10,6 @@ Popover.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
 
 export { Popover }
 
-export type { PopoverRef, Positon as PopoverPositon }
+export type { PopoverRef, PopoverPositon }
 
 export default Popover

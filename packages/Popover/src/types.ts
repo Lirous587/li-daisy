@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue'
 
-export type Positon =
+export type PopoverPositon =
   | 'top'
   | 'top-start'
   | 'top-end'
@@ -17,7 +17,7 @@ export type Positon =
 type Trigger = 'hover' | 'click'
 
 export interface PopoverProps {
-  positon?: Positon
+  position?: PopoverPositon
   trigger?: Trigger
   closeOnClickOutside?: boolean
   closeOnEscape?: boolean

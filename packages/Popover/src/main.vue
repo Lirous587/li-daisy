@@ -26,7 +26,7 @@ import type { PopoverProps, Positon, PopoverRef } from './types'
 import { debounce } from '../../utils/performance'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
-  positon: 'bottom',
+  position: 'bottom',
   trigger: 'hover',
   closeOnClickOutside: true,
   closeOnEscape: true,
@@ -134,7 +134,7 @@ const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   }
 
   // 位置优先级，如果首选位置不可用，按此顺序尝试
-  const positions = getSimpleFallbacks(props.positon)
+  const positions = getSimpleFallbacks(props.position)
 
   // 尝试找到完全在视口内的位置
   for (const positon of positions) {
@@ -145,7 +145,7 @@ const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   }
 
   // 如果所有预设位置都不合适，进行智能调整
-  const preferredPos = calculatePosition(props.positon, triggerRect, popoverRect)
+  const preferredPos = calculatePosition(props.position, triggerRect, popoverRect)
 
   // 限制在视口内即可
   const adjustedX = Math.max(

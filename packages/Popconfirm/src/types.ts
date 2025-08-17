@@ -1,19 +1,9 @@
-export type Positon =
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end'
+import type { PopoverPositon } from '../../Popover'
+
+export type PopconfirmPositon = PopoverPositon
 
 export interface PopconfirmProps {
-  position?: Positon
+  position?: PopconfirmPositon
   closeOnClickOutside?: boolean
   closeOnEscape?: boolean
   zIndex?: number
