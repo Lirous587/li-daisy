@@ -6,7 +6,6 @@
 import { computed } from 'vue'
 import { ThemeController, type ThemeControllerRef } from 'li-daisy'
 import { useMyThemeStore } from '../stores/theme'
-import { onBeforeMount } from 'vue'
 import { ref } from 'vue'
 import { onMounted } from 'vue'
 

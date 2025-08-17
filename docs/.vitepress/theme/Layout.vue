@@ -1,15 +1,11 @@
 <template>
-  <!-- :class="isTransitioning ? 'transition-all duration-[400] opacity-20' : ''" -->
-  <div>
-    <DefaultTheme.Layout>
-      <!-- 在桌面导航栏末尾添加 -->
-      <template #nav-bar-content-after>
-        <div class="flex w-[36px] ml-4">
-          <ThemeController class="m-auto vp-raw" />
-        </div>
-      </template>
-    </DefaultTheme.Layout>
-  </div>
+  <DefaultTheme.Layout>
+    <template #nav-bar-content-after>
+      <div class="flex w-[36px] ml-4">
+        <ThemeController class="m-auto vp-raw" />
+      </div>
+    </template>
+  </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +19,6 @@ import type { Highlighter } from 'shiki'
 
 import ThemeController from './components/ThemeController.vue'
 
-const isTransitioning = ref(false)
 const { isDark } = useData()
 
 // 创建 shallowRef 存储实例
@@ -44,55 +39,47 @@ onMounted(async () => {
 
 provide('shiki', shikiHighlighter)
 
-// const enableTransitions = () =>
-//   'startViewTransition' in document &&
-//   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+const enableTransitions = () =>
+  'startViewTransition' in document &&
+  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
-// provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
-//   if (isTransitioning.value) return
-//   isTransitioning.value = true
+provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+  if (!enableTransitions()) {
+    isDark.value = !isDark.value
+    return
+  }
 
-//   if (!enableTransitions()) {
-//     isDark.value = !isDark.value
-//     isTransitioning.value = false
-//     return
-//   }
+  const clipPath = [
+    `circle(0px at ${x}px ${y}px)`,
+    `circle(${Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
+  ]
 
-//   const clipPath = [
-//     `circle(0px at ${x}px ${y}px)`,
-//     `circle(${Math.hypot(
-//       Math.max(x, innerWidth - x),
-//       Math.max(y, innerHeight - y),
-//     )}px at ${x}px ${y}px)`,
-//   ]
+  await document.startViewTransition(async () => {
+    isDark.value = !isDark.value
+    await nextTick()
+  }).ready
 
-//   await document.startViewTransition(async () => {
-//     isDark.value = !isDark.value
-//     await nextTick()
-//   }).ready
+  document.documentElement.animate(
+    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
+    {
+      duration: 400,
+      easing: 'ease-in',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
+  )
 
-//   document.documentElement.animate(
-//     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-//     {
-//       duration: 400,
-//       easing: 'ease-in',
-//       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-//     },
-//   )
-
-//   if (isDark.value) {
-//     document.documentElement.setAttribute('data-theme', 'dark')
-//   } else {
-//     document.documentElement.setAttribute('data-theme', 'light')
-//   }
-
-//   setTimeout(() => {
-//     isTransitioning.value = false
-//   }, 400)
-// })
+  if (isDark.value) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light')
+  }
+})
 </script>
 
-<!-- <style>
+<style>
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -106,6 +93,6 @@ provide('shiki', shikiHighlighter)
 
 ::view-transition-new(root),
 .dark::view-transition-old(root) {
-  z-index: 9999;
+  z-index: 99999;
 }
-</style> -->
+</style>
