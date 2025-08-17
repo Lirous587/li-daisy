@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center gap-y-3">
     <p class="font-bold">theme:{{ theme }}</p>
     <p class="font-bold">ifDark:{{ ifDark }}</p>
     <div class="h-100 w-full flex justify-around">

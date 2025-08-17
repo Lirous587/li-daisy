@@ -48,17 +48,17 @@ const transitionPrefix = computed(() => {
 const basePositionClass = computed(() => {
   switch (props.position) {
     case 'top-start':
-      return 'top-4 left-5'
+      return 'top-2 left-3 md:top-4 md:left-5'
     case 'top-center':
-      return 'top-4 left-1/2 -translate-x-1/2'
+      return 'top-2 md:top-4 left-1/2 -translate-x-1/2'
     case 'top-end':
-      return 'top-4 right-5'
+      return 'top-2 right-3 md:top-4 md:right-5'
     case 'bottom-start':
-      return 'bottom-4 left-5'
+      return 'bottom-2 left-3 md:bottom-4 md:left-5'
     case 'bottom-end':
-      return 'bottom-4 right-5'
+      return 'bottom-2 right-3 md:bottom-4 md:right-5'
     default:
-      return 'top-4 left-5'
+      return 'top-2 left-3 md:top-4 md:left-5'
   }
 })
 

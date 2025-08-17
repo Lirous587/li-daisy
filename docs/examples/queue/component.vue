@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 space-y-4 mx-auto max-w-md">
+  <div class="p-4 space-y-4 mx-auto min-w-md">
     <div class="grid grid-rows-2 grid-cols-3 gap-5">
       <button class="btn btn-primary" @click="showToast('top-start')">Top Start</button>
       <button class="btn btn-secondary" @click="showToast('top-center')">Top Center</button>
@@ -12,8 +12,7 @@
 </template>
 
 <script setup lang="ts">
-// import { queue, type QueuePosition } from 'li-daisy'
-import { queue, type QueuePosition } from '../../../packages'
+import { queue, type QueuePosition } from 'li-daisy'
 
 import component from './toast.vue'
 import type { ToastProps } from './toast.vue'

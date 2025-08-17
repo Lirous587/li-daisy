@@ -139,7 +139,6 @@ const getNewDataset = () => {
   setTimeout(() => {
     loading.value = false
     data.value = newData
-    console.log(`随机抽取了 ${count} 条数据`)
   }, 1000)
 }
 getNewDataset()

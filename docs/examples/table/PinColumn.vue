@@ -1,26 +1,16 @@
 <template>
   <div class="p-4">
-    <Table :data="data" select border>
-      <TableColumn prop="id" label="ID" pin-col="left" />
+    <Table :data="data" border>
+      <TableColumn prop="id" label="ID" align="center" pin-col="left" />
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
       <TableColumn prop="description" label="描述" :width="300" />
-      <TableColumn label="操作" pin-col="right" :width="120">
-        <template #default="{ row, index }">
-          <div class="flex gap-x-3">
-            <div class="btn btn-xs btn-success btn-outline" @click="handleToastRow(row)">toast</div>
-            <div class="btn btn-xs btn-success btn-outline" @click="handleDeleteRow(index)">
-              删除
-            </div>
-          </div>
-        </template>
-      </TableColumn>
     </Table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast } from 'li-daisy'
+import { Table, TableColumn } from 'li-daisy'
 import { ref } from 'vue'
 
 interface Language {
@@ -56,16 +46,4 @@ const data = ref<Language[]>([
     description: '广泛用于 Web 开发的脚本语言',
   },
 ])
-
-const handleDeleteRow = (index: number) => {
-  if (data.value.length === 1) {
-    toast.warning('至少保留一条数据')
-    return
-  }
-  data.value.splice(index, 1)
-}
-
-const handleToastRow = (item: Language) => {
-  toast.info(`${item.name}`)
-}
 </script>

@@ -21,10 +21,16 @@
 import { Popconfirm, toast } from 'li-daisy'
 
 const handleConfirm = () => {
-  toast.success('你点了对')
+  toast.success({
+    title: '操作成功',
+    message: '成功删除',
+  })
 }
 
 const handleCancle = () => {
-  toast.info('刚刚手滑了')
+  toast.info({
+    title: '取消操作',
+    message: '刚刚手滑了',
+  })
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="space-x-3">
+  <div class="flex gap-x-3 flex-nowrap">
     <button class="btn" @click="toastFunc('top-start')">top-start</button>
     <button class="btn" @click="toastFunc('top-end')">top-end</button>
     <button class="btn" @click="toastFunc('bottom-start')">bottom-start</button>

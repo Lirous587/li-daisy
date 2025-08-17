@@ -40,13 +40,20 @@ const data = ref<Language[]>([
 
 const handleDeleteRow = (index: number) => {
   if (data.value.length === 1) {
-    toast.warning('至少保留一条数据')
+    toast.warn({
+      title: '当前禁止删除',
+      message: '至少保留一条数据',
+    })
     return
   }
   data.value.splice(index, 1)
+  console.log(index)
 }
 
 const handleToatRow = (item: Language) => {
-  toast.info(`${item.name}`)
+  toast.info({
+    title: '当前数据为',
+    message: `${item}`,
+  })
 }
 </script>
