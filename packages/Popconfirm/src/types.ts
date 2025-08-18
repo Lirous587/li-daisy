@@ -11,4 +11,7 @@ export interface PopconfirmProps {
   confirmText?: string
   cancleText?: string
   width?: number
+  duration?: number
+  offset?: number
+  btnSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }

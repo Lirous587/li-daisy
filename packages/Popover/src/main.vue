@@ -7,9 +7,9 @@
     <Teleport to="body">
       <div
         ref="popoverRef"
-        class="absolute transition-[scale] duration-300 vp-raw"
+        class="absolute transition-[scale] vp-raw"
         :class="visible ? 'opacity-100' : 'opacity-0 scale-90'"
-        :style="popoverStyle"
+        :style="[popoverStyle, { transitionDuration: props.duration + 'ms' }]"
         @mouseenter="handleMouseEnter(false)"
         @mouseleave="handleMouseLeave"
       >
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, type CSSProperties, nextTick } from 'vue'
-import type { PopoverProps, Positon, PopoverRef } from './types'
+import type { PopoverProps, PopoverPositon, PopoverRef } from './types'
 import { debounce } from '../../utils/performance'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
@@ -30,6 +30,8 @@ const props = withDefaults(defineProps<PopoverProps>(), {
   trigger: 'hover',
   closeOnClickOutside: true,
   closeOnEscape: true,
+  duration: 250,
+  offset: 6,
 })
 
 const emit = defineEmits<{
@@ -42,65 +44,68 @@ const triggerRef = ref<HTMLElement>()
 const popoverRef = ref<HTMLElement>()
 const visible = ref(false)
 
-const offset = 12
 const margin = 8
 
 // 计算所有可能的位置
-const calculatePosition = (position: Positon, triggerRect: DOMRect, popoverRect: DOMRect) => {
-  const positions: Record<Positon, { x: number; y: number }> = {
+const calculatePosition = (
+  position: PopoverPositon,
+  triggerRect: DOMRect,
+  popoverRect: DOMRect,
+) => {
+  const positions: Record<PopoverPositon, { x: number; y: number }> = {
     // Top positions
     top: {
       x: triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2,
-      y: triggerRect.top - popoverRect.height - offset,
+      y: triggerRect.top - popoverRect.height - props.offset,
     },
     'top-start': {
       x: triggerRect.left,
-      y: triggerRect.top - popoverRect.height - offset,
+      y: triggerRect.top - popoverRect.height - props.offset,
     },
     'top-end': {
       x: triggerRect.right - popoverRect.width,
-      y: triggerRect.top - popoverRect.height - offset,
+      y: triggerRect.top - popoverRect.height - props.offset,
     },
 
     // Bottom positions
     bottom: {
       x: triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2,
-      y: triggerRect.bottom + offset,
+      y: triggerRect.bottom + props.offset,
     },
     'bottom-start': {
       x: triggerRect.left,
-      y: triggerRect.bottom + offset,
+      y: triggerRect.bottom + props.offset,
     },
     'bottom-end': {
       x: triggerRect.right - popoverRect.width,
-      y: triggerRect.bottom + offset,
+      y: triggerRect.bottom + props.offset,
     },
 
     // Left positions
     left: {
-      x: triggerRect.left - popoverRect.width - offset,
+      x: triggerRect.left - popoverRect.width - props.offset,
       y: triggerRect.top + triggerRect.height / 2 - popoverRect.height / 2,
     },
     'left-start': {
-      x: triggerRect.left - popoverRect.width - offset,
+      x: triggerRect.left - popoverRect.width - props.offset,
       y: triggerRect.top,
     },
     'left-end': {
-      x: triggerRect.left - popoverRect.width - offset,
+      x: triggerRect.left - popoverRect.width - props.offset,
       y: triggerRect.bottom - popoverRect.height,
     },
 
     // Right positions
     right: {
-      x: triggerRect.right + offset,
+      x: triggerRect.right + props.offset,
       y: triggerRect.top + triggerRect.height / 2 - popoverRect.height / 2,
     },
     'right-start': {
-      x: triggerRect.right + offset,
+      x: triggerRect.right + props.offset,
       y: triggerRect.top,
     },
     'right-end': {
-      x: triggerRect.right + offset,
+      x: triggerRect.right + props.offset,
       y: triggerRect.bottom - popoverRect.height,
     },
   }
@@ -122,13 +127,13 @@ const isInViewport = (x: number, y: number, width: number, height: number) => {
 // 获取最佳位置
 const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   // 简单回退配置
-  const getSimpleFallbacks = (positon: Positon): Positon[] => {
-    const base = positon.split('-')[0] as 'top' | 'bottom' | 'left' | 'right'
+  const getSimpleFallbacks = (PopoverPositon: PopoverPositon): PopoverPositon[] => {
+    const base = PopoverPositon.split('-')[0] as 'top' | 'bottom' | 'left' | 'right'
     const opposite = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' }
 
     return [
-      positon, // 首选位置
-      opposite[base] as Positon, // 对面位置
+      PopoverPositon, // 首选位置
+      opposite[base] as PopoverPositon, // 对面位置
       'bottom', // 默认回退
     ]
   }
@@ -137,8 +142,8 @@ const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   const positions = getSimpleFallbacks(props.position)
 
   // 尝试找到完全在视口内的位置
-  for (const positon of positions) {
-    const pos = calculatePosition(positon, triggerRect, popoverRect)
+  for (const PopoverPositon of positions) {
+    const pos = calculatePosition(PopoverPositon, triggerRect, popoverRect)
     if (pos && isInViewport(pos.x, pos.y, popoverRect.width, popoverRect.height)) {
       return { ...pos }
     }

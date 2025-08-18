@@ -40,15 +40,15 @@
 
 
 #### Props
-|         属性值         |        说明        |   类型    |                                                               具体类型                                                                |  默认值  |
-| :--------------------: | :----------------: | :-------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :------: |
-|        position        |      对齐位置      |  `enum`   | `['top','top-start','top-end','bottom','bottom-start','bottom-end','left','left-start','left-end','right','right-start','right-end']` | `bottom` |
-|        trigger         |      触发时机      |  `enum`   |                                                          `['hover','click']`                                                          | `click`  |
-|         offset         |    偏移距离(px)    | `number`  |                                                                   -                                                                   |   `8`    |
-| close-on-click-outside | 点击外部关闭弹出框 | `boolean` |                                                                   -                                                                   |  `true`  |
-|    close-on-escape     |   esc关闭弹出框    | `boolean` |                                                                   -                                                                   |  `true`  |
-|        z-index         |     z-index值      | `number`  |                                                                   -                                                                   |   `0`    |
-
+|         属性值         |         说明         |   类型    |                                                               具体类型                                                                |  默认值  |
+| :--------------------: | :------------------: | :-------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :------: |
+|        position        |       对齐位置       |  `enum`   | `['top','top-start','top-end','bottom','bottom-start','bottom-end','left','left-start','left-end','right','right-start','right-end']` | `bottom` |
+|        trigger         |       触发时机       |  `enum`   |                                                          `['hover','click']`                                                          | `click`  |
+|         offset         |     偏移距离(px)     | `number`  |                                                                   -                                                                   |   `6`    |
+|        duration        | 弹出过渡动画持续时间 | `number`  |                                                                   -                                                                   |  `250`   |
+| close-on-click-outside |  点击外部关闭弹出框  | `boolean` |                                                                   -                                                                   |  `true`  |
+|    close-on-escape     |    esc关闭弹出框     | `boolean` |                                                                   -                                                                   |  `true`  |
+|        z-index         |      z-index值       | `number`  |                                                                   -                                                                   |   `0`    |
 
 
 ### Event

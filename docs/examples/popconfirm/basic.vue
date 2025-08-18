@@ -9,14 +9,15 @@
       @cancle="handleCancle"
     >
       <template #trigger>
-        <button class="btn btn-warning">删除</button>
+        <button class="btn btn-sm btn-outline btn-warning">删除</button>
       </template>
     </Popconfirm>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Popconfirm, toast } from 'li-daisy'
+// import { Popconfirm, toast } from 'li-daisy'
+import { Popconfirm, toast } from '../../../packages'
 
 const handleConfirm = () => {
   toast.success({

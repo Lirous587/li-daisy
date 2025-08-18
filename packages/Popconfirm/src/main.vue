@@ -6,23 +6,35 @@
     :close-on-click-outside="props.closeOnClickOutside"
     :close-on-escape="props.closeOnEscape"
     trigger="click"
+    :duration="props.duration"
+    :offset="props.offset"
   >
     <template #trigger>
       <slot name="trigger"></slot>
     </template>
     <template #content>
       <div
-        class="flex flex-col gap-y-3 p-4 bg-base-100 rounded-md border border-base-300 shadow-lg"
+        class="flex flex-col gap-y-1 p-2 bg-base-100 rounded-md border border-base-300 shadow-lg"
         :style="{ width: popWidth + 'px' }"
       >
         <slot name="title"></slot>
         <slot name="action" :onConfirm="emitConfirm" :onCancle="emitCancle"></slot>
         <div v-if="!hasTitleSlot" class="font-semibold">{{ props.title }}</div>
         <div v-if="!hasActionSlot" class="flex items-center ml-auto gap-x-3 font-extrabold text-xs">
-          <button class="btn btn-sm btn-info btn-outline" @click="emitConfirm" type="button">
+          <button
+            class="btn btn-info btn-outline"
+            :class="btnSizeClass"
+            @click="emitConfirm"
+            type="button"
+          >
             {{ props.confirmText }}
           </button>
-          <button class="btn btn-sm btn-warning btn-dash" @click="emitCancle" type="button">
+          <button
+            class="btn btn-warning btn-dash"
+            :class="btnSizeClass"
+            @click="emitCancle"
+            type="button"
+          >
             {{ props.cancleText }}
           </button>
         </div>
@@ -45,12 +57,30 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
   confirmText: '确定',
   cancleText: '取消',
   width: 150,
+  duration: 250,
+  offset: 6,
+  btnSize: 'sm',
 })
 
 const popoverRef = ref<PopoverRef>()
 
 const popWidth = computed(() => {
   return props.width > 150 ? props.width : 150
+})
+
+const btnSizeClass = computed(() => {
+  switch (props.btnSize) {
+    case 'xs':
+      return 'btn-xs'
+    case 'sm':
+      return 'btn-sm'
+    case 'md':
+      return 'btn-md'
+    case 'lg':
+      return 'btn-lg'
+    case 'xl':
+      return 'btn-xl'
+  }
 })
 
 const slots: Slots = useSlots()

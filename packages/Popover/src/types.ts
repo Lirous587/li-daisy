@@ -22,6 +22,8 @@ export interface PopoverProps {
   closeOnClickOutside?: boolean
   closeOnEscape?: boolean
   zIndex?: number
+  duration?: number
+  offset?: number
 }
 
 export interface PopoverRef {
