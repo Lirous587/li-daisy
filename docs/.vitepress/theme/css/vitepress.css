@@ -10,6 +10,10 @@ button.menu {
     flex-direction: row !important;
 }
 
+.VPSidebar {
+    z-index: 0 !important;
+}
+
 .VPNavScreenMenu {
     width: 100%;
 }

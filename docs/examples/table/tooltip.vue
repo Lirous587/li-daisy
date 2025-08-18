@@ -2,7 +2,7 @@
   <div class="p-4">
     <Table :data="data">
       <TableColumn prop="id" label="ID" :width="100" />
-      <TableColumn prop="name" label="编程语言" :width="100" />
+      <TableColumn prop="name" :tooltip="true" label="编程语言" :width="100" />
       <TableColumn prop="score" label="得分" />
       <TableColumn prop="description" label="描述" :width="200" tooltip />
     </Table>
@@ -10,8 +10,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Table, TableColumn } from 'li-daisy'
-import { Table, TableColumn } from '../../../packages'
+import { Table, TableColumn } from 'li-daisy'
 
 import { ref } from 'vue'
 
@@ -25,7 +24,7 @@ interface Language {
 const data = ref<Language[]>([
   {
     id: 1,
-    name: 'Goland',
+    name: 'Goland 开发的静态强类型编译型语言开发的静态强类型编译型语言',
     score: 100,
     description: 'Google 开发的静态强类型编译型语言',
   },
