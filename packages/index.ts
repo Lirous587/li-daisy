@@ -17,8 +17,7 @@ import { Paging } from './Paging'
 
 import { Skeleton, SkeletonItem } from './Skeleton'
 
-import { ThemeController } from './ThemeController'
-export type { ThemeControllerRef } from './ThemeController'
+import { ThemeSwitch } from './ThemeSwitch'
 
 import { TextInput } from './TextInput'
 
@@ -57,7 +56,7 @@ export {
   Paging,
   Skeleton,
   SkeletonItem,
-  ThemeController,
+  ThemeSwitch,
   TextInput,
   Textarea,
   Form,
@@ -80,7 +79,7 @@ const components = [
   Paging,
   Skeleton,
   SkeletonItem,
-  ThemeController,
+  ThemeSwitch,
   TextInput,
   Textarea,
   Form,

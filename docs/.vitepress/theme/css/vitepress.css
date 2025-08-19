@@ -10,7 +10,8 @@ button.menu {
     flex-direction: row !important;
 }
 
-.VPSidebar {
+.VPSidebar,
+.VPLocalNav {
     z-index: 0 !important;
 }
 
@@ -18,7 +19,15 @@ button.menu {
     width: 100%;
 }
 
+.VPNavBar {
+    .content-body {
+        transition: none;
+    }
 
+    .divider>.divider-line {
+        transition: none !important;
+    }
+}
 
 :root {
     /* --- 背景色 --- */

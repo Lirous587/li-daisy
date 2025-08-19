@@ -131,8 +131,8 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 <ComponentGrid :componentList="[
   {
     img: 'https://img.daisyui.com/images/components/theme-controller.webp',  
-    url: '/components/themeController',
-    title: 'ThemeController 主题控制器',
+    url: '/components/ThemeSwitch',
+    title: 'ThemeSwitch 主题切换器',
     details: '用于切换应用的主题样式'
   },
 ]" />

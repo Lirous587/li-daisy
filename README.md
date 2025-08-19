@@ -20,7 +20,7 @@
 8. `Textarea` ✅
 9. `Paging` ✅
 10. `Skeleton` ✅
-11. `ThemeController` ✅
+11. `ThemeSwitch` ✅
 12. `Toast` ✅
 13. `Table` ✅
 14. `Popover` ✅

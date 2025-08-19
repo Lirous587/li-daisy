@@ -1,33 +1,49 @@
 <template>
-  <DefaultTheme.Layout>
-    <template #nav-bar-content-after> </template>
-  </DefaultTheme.Layout>
+  <button
+    class="relative btn btn-sm hover:!border-primary rounded-xl h-6 w-12 overflow-hidden"
+    @click="switchTheme"
+    ref="containerRef"
+  >
+    <transition name="sun">
+      <span
+        v-if="nowTheme === props.lightTheme"
+        class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+      >
+        <SunIcon />
+      </span>
+    </transition>
+    <transition name="moon">
+      <span
+        v-if="nowTheme === props.darkTheme"
+        class="absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+      >
+        <MoonIcon />
+      </span>
+    </transition>
+  </button>
 </template>
 
 <script setup lang="ts">
-import DefaultTheme from 'vitepress/theme'
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
+import type { ThemeSwitchProps } from './types'
+import { computed, nextTick, onMounted, ref } from 'vue'
 
-// 导入需要的 Vue 函数和 Shiki 类型
-import { computed, nextTick, onMounted, provide, ref, shallowRef } from 'vue'
-
-import type { Highlighter } from 'shiki'
-
-// 创建 shallowRef 存储实例
-const shikiHighlighter = shallowRef<Highlighter | null>(null)
-
-provide('shiki', shikiHighlighter)
+const props = withDefaults(defineProps<ThemeSwitchProps>(), {
+  lightTheme: 'light',
+  darkTheme: 'dark',
+})
 
 const setTheme = (theme: string) => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return
+  }
+
   localStorage.setItem('li-daisy-theme', theme)
 }
 
 const getTheme = () => {
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return 'li-dark'
-  }
-
   const storedTheme = localStorage.getItem('li-daisy-theme')
-  const validThemes = ['li-light', 'li-dark']
+  const validThemes = [props.lightTheme, props.darkTheme]
   // 如果存储的主题是有效的，返回它
   if (storedTheme && validThemes.includes(storedTheme)) {
     return storedTheme
@@ -35,26 +51,28 @@ const getTheme = () => {
 
   // 回退机制：尝试系统偏好
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'li-dark'
+    return props.darkTheme
   }
 
   // 最终回退到默认浅色主题
-  return 'li-light'
+  return props.lightTheme
 }
 
 const nowTheme = ref(getTheme())
 
-const isDark = computed(() => nowTheme.value === 'li-dark')
+const isDark = computed(() => nowTheme.value === props.darkTheme)
+
+const containerRef = ref<HTMLButtonElement>()
 
 const switchTheme = async (event: MouseEvent) => {
   const { clientX: x, clientY: y } = event
 
-  if (nowTheme.value === 'li-dark') {
-    nowTheme.value = 'li-light'
-  } else if (nowTheme.value === 'li-light') {
-    nowTheme.value = 'li-dark'
+  if (nowTheme.value === props.darkTheme) {
+    nowTheme.value = props.lightTheme
+  } else if (nowTheme.value === props.lightTheme) {
+    nowTheme.value = props.darkTheme
   } else {
-    nowTheme.value = 'li-light'
+    nowTheme.value = props.lightTheme
   }
 
   // 保存到 localStorage
@@ -71,6 +89,8 @@ const enableTransitions = () =>
 
 // 应用主题到 DOM
 const applyTheme = () => {
+  if (typeof document === 'undefined') return
+
   document.documentElement.setAttribute('data-theme', nowTheme.value)
 
   if (isDark.value) {
@@ -109,23 +129,45 @@ const switchAnimation = async (x: number, y: number) => {
   )
 }
 
-provide('toggle-appearance', switchTheme)
-
-applyTheme()
-
-onMounted(async () => {
-  try {
-    const { createHighlighter } = await import('shiki')
-    shikiHighlighter.value = await createHighlighter({
-      themes: ['plastic'], // 只加载 plastic 主题
-      langs: ['vue'], // 只加载 vue 语言
-    })
-    console.log('Shiki highlighter initialized in Layout.')
-  } catch (error) {
-    console.error('Failed to initialize Shiki highlighter:', error)
-  }
+// 初始化时应用主题
+onMounted(() => {
+  applyTheme()
 })
 </script>
+
+<style scoped>
+.sun-enter-active,
+.sun-leave-active,
+.moon-enter-active,
+.moon-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+
+.sun-enter-from {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+.sun-enter-to {
+  opacity: 1;
+}
+
+.sun-leave-to {
+  transform: translateX(24px);
+  opacity: 0;
+}
+
+.moon-enter-from {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.moon-enter-to {
+  opacity: 1;
+}
+.moon-leave-to {
+  transform: translateX(-24px);
+  opacity: 0;
+}
+</style>
 
 <style>
 ::view-transition-old(root),
