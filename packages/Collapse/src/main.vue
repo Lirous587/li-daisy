@@ -1,5 +1,5 @@
 <template>
-  <div class="join join-vertical my-1">
+  <div class="join join-vertical my-1 [&>:first-child]:border-t-0 [&>:last-child]:border-b-0">
     <slot />
   </div>
 </template>

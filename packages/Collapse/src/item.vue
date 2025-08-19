@@ -1,14 +1,21 @@
 <template>
-  <div class="collapse join-item border-base-300" :class="[iconClass, hasBorder ? 'border' : '']">
+  <div
+    class="collapse join-item border-base-300 relative"
+    :class="[iconClass, hasBorder ? 'border-y' : '']"
+  >
     <input type="checkbox" :checked="isOpen" class="peer" @change="toggle" />
-    <div class="collapse-title font-semibold" :class="collapseStyle">
+    <div class="collapse-title font-semibold">
       {{ props.title }}
     </div>
-    <div class="collapse-content" :class="collapseStyle">
+    <div class="collapse-content">
       <div class="p-[1rem]">
         <slot />
       </div>
     </div>
+    <div
+      class="absolute inset-0 z-[-1] transition-colors duration-200"
+      :class="collapseStyle"
+    ></div>
   </div>
 </template>
 
@@ -32,7 +39,7 @@ if (!collapseContext) {
 }
 
 const hasBorder = computed(() => {
-  if (collapseStyle.value) {
+  if (collapseContext.active || collapseContext.default) {
     return false
   } else {
     return collapseContext.border
