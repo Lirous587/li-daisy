@@ -8,15 +8,14 @@
     </Collapse>
     <Collapse class="w-full" icon="arrow" default="secondary" active="primary">
       <CollapseItem title="Li-Daisy"> 同时设置default和active </CollapseItem>
-      <CollapseItem title="Li-Daisy"> 同时设置default和active同时设置default和active </CollapseItem>
     </Collapse>
     <Collapse class="w-full" border default="info" active="primary">
+      <CollapseItem title="设置了default或active"> border不再显示 </CollapseItem>
       <CollapseItem title="设置了default或active"> border不再显示 </CollapseItem>
     </Collapse>
   </div>
 </template>
 
 <script setup lang="ts">
-// import { Collapse, CollapseItem } from 'li-daisy'
-import { Collapse, CollapseItem } from '../../../packages'
+import { Collapse, CollapseItem } from 'li-daisy'
 </script>

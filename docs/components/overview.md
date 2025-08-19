@@ -12,19 +12,20 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/collapse.webp',
+    // img: 'https://img.daisyui.com/images/components/collapse.webp',
+    img:'/collapse.png',
     url: '/components/collapse',
     title: 'Collapse 折叠面板',
     details: '用于展示和隐藏信息'
   },
   {
-    img: 'https://img.daisyui.com/images/components/drawer.webp',  
+    img:'/drawer.png',
     url: '/components/drawer',
     title: 'Drawer 抽屉',
     details: '用于显示/隐藏页面侧边栏'
   },
   {
-    img: 'https://lirous.com/avatar.jpg',  
+    img: '/queue.png',  
     url: '/components/queue',
     title: 'Queue 队列',
     details: '用于实现队列式进出的布局容器'
@@ -99,7 +100,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     details: '用于需要用户响应的操作或信息展示'
   },
   {
-    img: 'https://img.daisyui.com/images/components/toast.webp',  
+    img: '/toast.png',  
     url: '/components/toast',
     title: 'Toast 消息提示',
     details: '用于显示轻量级的操作反馈信息'

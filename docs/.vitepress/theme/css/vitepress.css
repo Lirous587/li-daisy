@@ -49,6 +49,10 @@ button.menu {
     }
 }
 
+.vp-doc [class*='language-'] pre {
+    z-index: 0;
+}
+
 :root {
     /* --- 背景色 --- */
     /* 主要背景 */
@@ -237,8 +241,4 @@ button.menu {
 
     /* --- 页脚 --- */
     --vp-c-footer-bg: var(--color-base-200);
-}
-
-.vp-doc [class*='language-'] pre {
-    z-index: 0;
 }
