@@ -7,7 +7,7 @@
 >>
 > 需要使用时仅仅需要分别传递定义好的明暗模式的 `name` 即可
 
-:::demo ThemeSwitch/basic
+:::demo themeSwitch/basic
 :::
 
 ## API
