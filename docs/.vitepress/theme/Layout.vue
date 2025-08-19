@@ -42,7 +42,13 @@ const getTheme = () => {
   return 'li-light'
 }
 
-const nowTheme = ref(getTheme())
+// 从 DOM 读取当前主题状态
+const getCurrentThemeFromDOM = () => {
+  if (typeof document === 'undefined') return 'li-dark'
+  return document.documentElement.getAttribute('data-theme') || getTheme()
+}
+
+const nowTheme = ref(getCurrentThemeFromDOM())
 
 const isDark = computed(() => nowTheme.value === 'li-dark')
 
@@ -111,9 +117,14 @@ const switchAnimation = async (x: number, y: number) => {
 
 provide('toggle-appearance', switchTheme)
 
-applyTheme()
-
 onMounted(async () => {
+  const domTheme = document.documentElement.getAttribute('data-theme')
+  if (domTheme && domTheme !== nowTheme.value) {
+    nowTheme.value = domTheme as 'li-light' | 'li-dark'
+  } else {
+    // 如果 DOM 没有主题属性，则应用当前主题
+    applyTheme()
+  }
   try {
     const { createHighlighter } = await import('shiki')
     shikiHighlighter.value = await createHighlighter({
