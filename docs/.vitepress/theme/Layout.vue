@@ -1,7 +1,5 @@
 <template>
-  <DefaultTheme.Layout>
-    <template #nav-bar-content-after> </template>
-  </DefaultTheme.Layout>
+  <DefaultTheme.Layout> </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">

@@ -15,6 +15,7 @@ const buildToast = (options: ToastOptions, type: ToastType) => {
   if (!options.position) {
     options.position = 'top-end'
   }
+  options.showCloseIcon = options.showCloseIcon ?? true
 
   queueManager.add(
     Toast,
@@ -22,11 +23,12 @@ const buildToast = (options: ToastOptions, type: ToastType) => {
       type: type,
       title: options.title,
       message: options.message,
-      closeIcon: options.closeIcon,
+      showCloseIcon: options.showCloseIcon,
     },
     {
       ...options,
       position: options.position ?? 'top-end',
+      autoClose: options.showCloseIcon ? options.autoClose : true,
     },
   )
 }

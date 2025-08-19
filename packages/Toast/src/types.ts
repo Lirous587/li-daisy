@@ -9,7 +9,7 @@ export interface ToastProps {
   message: string | VNode
   title: string
   type?: ToastType
-  closeIcon?: boolean
+  showCloseIcon?: boolean
 }
 
 export interface ToastOptions extends ToastProps {

@@ -6,12 +6,6 @@
 :::demo toast/type
 :::
 
-
-<!-- ### custom类型
-:::demo toast/custom
-::: -->
-
-
 ## 位置
 > 通过 `position` 来设置消息位置，可选值有 `top-start` `top-center` `top-end` `bottom-start` `bottom-end`
 
@@ -19,9 +13,10 @@
 :::
 
 ## 关闭图标
-> 通过 `closeIcon` 来设置是否显示图标，默认值为 `false`
+> 通过 `showCloseIcon` 来设置是否显示关闭图标，默认值为 `false`
+> 当 `showCloseIcon` 设置为true时, autoClose必定为 `true`，即使给定值为 `false` 也不会生效
 
-:::demo toast/close
+:::demo toast/CloseIcon
 :::
 
 ## Vnode
@@ -34,13 +29,12 @@
 
 ### 配置项
 
-| 参数      | 类型             | 默认值      | 说明                                                                |
-| --------- | ---------------- | ----------- | ------------------------------------------------------------------- |
-| message   | `[string,Vnode]` | -           | 消息内容                                                            |
-| title     | `string`         | -           | 消息标题                                                            |
-| type      | `ToastType`      | `'info'`    | 消息类型，可选值：`info` `success` `warning` `error` `custom`       |
-| position  | `ToastPosition`  | `'top-end'` | 消息位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
-| duration  | `number`         | `2000`      | 自动消失时间（毫秒），低于1000无效                                  |
-| autoClose | `boolean`        | `true`      | 是否自动关闭                                                        |
-| closeIcon | `boolean`        | `false`     | 是否显示图标                                                        |
-
+| 参数          | 类型             | 默认值      | 说明                                                                |
+| ------------- | ---------------- | ----------- | ------------------------------------------------------------------- |
+| message       | `[string,Vnode]` | -           | 消息内容                                                            |
+| title         | `string`         | -           | 消息标题                                                            |
+| type          | `ToastType`      | `'info'`    | 消息类型，可选值：`info` `success` `warning` `error` `custom`       |
+| position      | `ToastPosition`  | `'top-end'` | 消息位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
+| duration      | `number`         | `2000`      | 自动消失时间（毫秒），低于1000无效                                  |
+| autoClose     | `boolean`        | `true`      | 是否自动关闭                                                        |
+| showCloseIcon | `boolean`        | `false`     | 是否显示右上角关闭图标                                              |

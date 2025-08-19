@@ -8,7 +8,7 @@
         <h3 class="text-lg font-bold">{{ props.title }}</h3>
       </div>
       <XMarkIcon
-        v-if="!props.closeIcon"
+        v-if="props.showCloseIcon"
         @click="emit('close')"
         class="shrink-0 w-5 h-5 text-accent hover:cursor-pointer"
       />
@@ -40,7 +40,7 @@ import type { ToastProps } from './types'
 
 const props = withDefaults(defineProps<ToastProps>(), {
   type: 'info',
-  closeIcon: false,
+  showCloseIcon: true,
 })
 
 // 添加emit以通知插件Toast已关闭
