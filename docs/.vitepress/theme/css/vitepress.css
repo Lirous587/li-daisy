@@ -1,3 +1,7 @@
+:root {
+    scrollbar-gutter: stable;
+}
+
 .last-updated {
     margin-left: auto;
 }
@@ -12,7 +16,7 @@ button.menu {
 
 .VPSidebar,
 .VPLocalNav {
-    z-index: 0 !important;
+    /* z-index: 10 !important; */
 }
 
 .VPNavScreenMenu {
@@ -26,6 +30,22 @@ button.menu {
 
     .divider>.divider-line {
         transition: none !important;
+    }
+}
+
+.VPSwitch {
+    background-color: var(--color-base-300) !important;
+
+    .icon {
+        background-color: var(--color-base-200);
+    }
+
+    .vpi-moon {
+        color: var(--color-base-100);
+    }
+
+    .vpi-sun {
+        color: var(--color-base-content);
     }
 }
 
