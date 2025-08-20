@@ -12,7 +12,6 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    // img: 'https://img.daisyui.com/images/components/collapse.webp',
     img:'/collapse.png',
     url: '/components/collapse',
     title: 'Collapse 折叠面板',
@@ -38,25 +37,25 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-   img: 'https://img.daisyui.com/images/components/input.webp',
+    img: '/input.png',
     url: '/components/textInput',
     title: 'TextInput 文本输入框',
     details: '用于输入单行文本数据'
   },
   {
-    img: 'https://img.daisyui.com/images/components/textarea.webp',  
+    img: '/textarea.png',
     url: '/components/textarea',
     title: 'Textarea 多行文本输入框',
     details: '用于输入较长文本数据'
   },
   {
-    img: 'https://img.daisyui.com/images/components/input.webp',
+    img: '/numberInput.png',
     url: '/components/numberInput',
     title: 'NumberInput 数字输入框',
     details: '用于输入数字'
   },
   {
-    img: 'https://img.daisyui.com/images/components/validator.webp',
+    img: '/form.png',
     url: '/components/form',
     title: 'Form 表单',
     details: '用于数据校验和提交'
@@ -69,19 +68,19 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/avatar.webp',  
+    img: '/avatar.png',  
     url: '/components/avatar',
     title: 'Avatar 头像',
     details: '用于展示用户或对象的缩略图'
   },
   {
-    img: 'https://img.daisyui.com/images/components/table.webp',  
+    img: '/table.png',  
     url: '/components/table',
     title: 'Table 表格',
     details: '用于展示行列数据'
   },
   {
-    img: 'https://img.daisyui.com/images/components/pagination.webp',  
+    img: '/paging.png',  
     url: '/components/paging',
     title: 'Paging 分页',
     details: '用于对大量数据进行分页展示'
@@ -132,7 +131,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 <ComponentGrid :componentList="[
   {
     img: 'https://img.daisyui.com/images/components/theme-controller.webp',  
-    url: '/components/ThemeSwitch',
+    url: '/components/themeSwitch',
     title: 'ThemeSwitch 主题切换器',
     details: '用于切换应用的主题样式'
   },

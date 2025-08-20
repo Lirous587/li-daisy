@@ -86,7 +86,7 @@ export default defineConfig({
       },
       {
         text: '主题 (Theme)',
-        items: [{ text: 'ThemeSwitch 主题切换器', link: '/components/ThemeSwitch' }],
+        items: [{ text: 'ThemeSwitch 主题切换器', link: '/components/themeSwitch' }],
       },
 
       {

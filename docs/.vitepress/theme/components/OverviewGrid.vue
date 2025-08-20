@@ -8,7 +8,7 @@
     >
       <figure class="px-4 pt-4">
         <img
-          class="border-base-content/5 bg-base-300 rounded-lg border dark:opacity-60"
+          class="border-base-content/5 bg-base-300 rounded-lg border dark:opacity-75"
           loading="lazy"
           :src="item.img"
           :alt="item.title"
