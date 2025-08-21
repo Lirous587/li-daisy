@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-x-auto border-base-200 rounded-md li-table"
+    class="overflow-x-auto border-base-300 rounded-md li-table"
     tabindex="-1"
     :class="[props.border ? 'border' : '']"
     ref="scrollContainer"
@@ -8,7 +8,7 @@
     :style="{ minHeight: currentMinHeight + 'px' }"
   >
     <table
-      class="table !rounded-none !m-0 table-pin-rows table-pin-cols table-fixed break-words"
+      class="table table-pin-rows table-pin-cols table-fixed break-words"
       :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
@@ -113,7 +113,7 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="(item, rowIndex) in props.data" :key="props.data">
+        <template v-for="(item, rowIndex) in props.data" :key="generateRowKey(item, rowIndex)">
           <tr :class="[handleZebraStyle(rowIndex), handleHoverHightlight()]">
             <!-- expand -->
             <th v-if="hasExpand" class="sticky left-0 z-1">
@@ -273,6 +273,17 @@ const slots = defineSlots<{
   default(): VNode[]
 }>()
 
+const generateRowKey = (item: any, index: number): string => {
+  // 如果有有效的id，直接使用
+  if (item.id !== undefined && item.id !== null && item.id !== '') {
+    return `row-${item.id}`
+  }
+
+  // 没有id时，使用索引和内容hash生成稳定的key
+  const contentHash = JSON.stringify(item).substring(0, 20)
+  return `row-${index}-${contentHash}`
+}
+
 const processedColumns = computed(() => {
   const defaultSlot = slots.default ? slots.default() : []
 
@@ -366,7 +377,9 @@ const expandSlot = computed(() => processedColumns.value.expandSlot)
 
 // zebra
 const handleZebraStyle = (index: number) => {
-  return props.zebra && index % 2 === 1 ? 'bg-base-200 [&>th]:bg-base-200' : ''
+  return props.zebra && index % 2 === 0
+    ? 'bg-base-200 [&>th]:bg-base-200'
+    : 'bg-base-100 [&>th]:bg-base-100'
 }
 
 const handleHoverHightlight = () => {
