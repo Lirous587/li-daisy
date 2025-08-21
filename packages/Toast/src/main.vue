@@ -10,7 +10,7 @@
       <XMarkIcon
         v-if="props.showCloseIcon"
         @click="emit('close')"
-        class="shrink-0 w-5 h-5 text-accent hover:cursor-pointer"
+        class="shrink-0 w-5 h-5 text-base-content hover:cursor-pointer"
       />
     </div>
 
