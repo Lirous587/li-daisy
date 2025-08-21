@@ -52,3 +52,189 @@ button.menu {
 .vp-doc [class*='language-'] pre {
     z-index: 0;
 }
+
+:root {
+    /* --- 背景色 --- */
+    /* 主要背景 */
+    --vp-c-bg: var(--color-base-100);
+    /* 次要背景  */
+    --vp-c-bg-alt: var(--color-base-200);
+    /* 悬浮/强调背景 */
+    --vp-c-bg-elv: var(--color-base-300);
+    /* 柔和背景  */
+    --vp-c-bg-soft: var(--color-base-200);
+
+    /* --- 边框和分割线 --- */
+    /* 边框 */
+    --vp-c-border: var(--color-base-300);
+    /* 分割线 */
+    --vp-c-divider: var(--color-base-300);
+    /* 页眉/页脚分割线 */
+    --vp-c-gutter: var(--color-base-300);
+
+    /* --- 文本颜色 --- */
+    /* 主要文本 */
+    --vp-c-text-1: var(--color-base-content);
+    /* 次要文本 */
+    --vp-c-text-2: color-mix(in srgb, var(--color-base-content) 80%, transparent);
+    /* 提示/禁用文本 */
+    --vp-c-text-3: color-mix(in srgb, var(--color-base-content) 60%, transparent);
+
+    /* --- 导航栏 --- */
+    --vp-c-nav-bg: var(--color-base-100);
+    --vp-c-nav-bg-elv: var(--color-base-200);
+    --vp-c-nav-border: var(--color-base-300);
+
+    /* --- 侧边栏 --- */
+    --vp-c-sidebar-bg: var(--color-base-100);
+    --vp-c-sidebar-bg-elv: var(--color-base-200);
+
+    /* --- 代码块 --- */
+    --vp-c-code-bg: var(--color-base-200);
+    --vp-c-code-text: var(--color-accent);
+    --vp-c-code-tab-bg: var(--color-base-300);
+    --vp-c-code-tab-text: var(--color-base-content);
+    --vp-c-code-tab-text-active: var(--color-primary);
+    --vp-c-code-tab-divider: var(--color-base-300);
+
+    /* --- 内联代码 --- */
+    --vp-c-text-code: var(--color-accent);
+
+    /* --- 引用块 --- */
+    --vp-c-blockquote-bg: var(--color-base-200);
+    --vp-c-blockquote-border: var(--color-base-300);
+    --vp-c-blockquote-text: var(--color-base-content);
+
+
+    /* --- 阴影 --- */
+    --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
+    --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+    --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
+    --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
+
+    /* --- 功能性颜色 (品牌色) --- */
+    --vp-c-brand: var(--color-primary);
+    --vp-c-brand-1: var(--color-primary);
+    --vp-c-brand-2: color-mix(in srgb, var(--color-primary) 90%, white);
+    --vp-c-brand-3: color-mix(in srgb, var(--color-primary) 80%, white);
+    --vp-c-brand-soft: color-mix(in srgb, var(--color-primary) 20%, var(--color-base-100));
+    --vp-c-brand-lighter: color-mix(in srgb, var(--color-primary) 50%, white);
+    --vp-c-brand-lightest: color-mix(in srgb, var(--color-primary) 25%, white);
+    --vp-c-brand-dark: color-mix(in srgb, var(--color-primary) 80%, black);
+    --vp-c-brand-darker: color-mix(in srgb, var(--color-primary) 60%, black);
+    --vp-c-brand-dimm: color-mix(in srgb, var(--color-primary) 50%, var(--color-base-200));
+
+    /* --- 功能性颜色 (提示 Tip / Info) --- */
+    --vp-c-tip-1: var(--color-info);
+    --vp-c-tip-2: color-mix(in srgb, var(--color-info) 90%, white);
+    --vp-c-tip-3: color-mix(in srgb, var(--color-info) 80%, white);
+    --vp-c-tip-soft: color-mix(in srgb, var(--color-info) 20%, var(--color-base-100));
+
+    /* --- 功能性颜色 (成功 Success) --- */
+    --vp-c-success-1: var(--color-success);
+    --vp-c-success-2: color-mix(in srgb, var(--color-success) 90%, white);
+    --vp-c-success-3: color-mix(in srgb, var(--color-success) 80%, white);
+    --vp-c-success-soft: color-mix(in srgb, var(--color-success) 20%, var(--color-base-100));
+
+    /* --- 功能性颜色 (警告 Warning) --- */
+    --vp-c-warning-1: var(--color-warning);
+    --vp-c-warning-2: color-mix(in srgb, var(--color-warning) 90%, white);
+    --vp-c-warning-3: color-mix(in srgb, var(--color-warning) 80%, white);
+    --vp-c-warning-soft: color-mix(in srgb, var(--color-warning) 20%, var(--color-base-100));
+
+    /* --- 功能性颜色 (危险 Danger / Error) --- */
+    --vp-c-danger-1: var(--color-error);
+    --vp-c-danger-2: color-mix(in srgb, var(--color-error) 90%, white);
+    --vp-c-danger-3: color-mix(in srgb, var(--color-error) 80%, white);
+    --vp-c-danger-soft: color-mix(in srgb, var(--color-error) 20%, var(--color-base-100));
+
+    /* --- 其他颜色 --- */
+    --vp-c-neutral: var(--color-neutral);
+    --vp-c-neutral-inverse: var(--color-neutral-content);
+
+    /* --- 按钮样式 --- */
+    /* 品牌按钮 */
+    --vp-button-brand-border: var(--color-primary);
+    --vp-button-brand-text: var(--color-primary-content);
+    --vp-button-brand-bg: var(--color-primary);
+    --vp-button-brand-hover-border: color-mix(in srgb, var(--color-primary) 80%, black);
+    --vp-button-brand-hover-text: var(--color-primary-content);
+    --vp-button-brand-hover-bg: color-mix(in srgb, var(--color-primary) 90%, black);
+    --vp-button-brand-active-border: color-mix(in srgb, var(--color-primary) 70%, black);
+    --vp-button-brand-active-text: var(--color-primary-content);
+    --vp-button-brand-active-bg: color-mix(in srgb, var(--color-primary) 80%, black);
+
+    /* 默认按钮 */
+    --vp-button-alt-border: var(--color-base-300);
+    --vp-button-alt-text: var(--color-base-content);
+    --vp-button-alt-bg: var(--color-base-200);
+    --vp-button-alt-hover-border: var(--color-base-content);
+    --vp-button-alt-hover-text: var(--color-base-content);
+    --vp-button-alt-hover-bg: var(--color-base-300);
+    --vp-button-alt-active-border: var(--color-base-content);
+    --vp-button-alt-active-text: var(--color-base-content);
+    --vp-button-alt-active-bg: var(--color-base-300);
+
+    /* 赞助按钮 */
+    --vp-button-sponsor-border: var(--color-secondary);
+    --vp-button-sponsor-text: var(--color-secondary-content);
+    --vp-button-sponsor-bg: var(--color-secondary);
+
+    /* --- 输入框 --- */
+    --vp-c-input-border: var(--color-base-300);
+    --vp-c-input-bg: var(--color-base-100);
+
+    /* --- 自定义块 --- */
+    --vp-custom-block-info-border: var(--color-info);
+    --vp-custom-block-info-text: var(--color-base-content);
+    --vp-custom-block-info-bg: color-mix(in srgb, var(--color-info) 10%, var(--color-base-100));
+
+    --vp-custom-block-tip-border: var(--color-success);
+    --vp-custom-block-tip-text: var(--color-base-content);
+    --vp-custom-block-tip-bg: color-mix(in srgb, var(--color-success) 10%, var(--color-base-100));
+
+    --vp-custom-block-warning-border: var(--color-warning);
+    --vp-custom-block-warning-text: var(--color-base-content);
+    --vp-custom-block-warning-bg: color-mix(in srgb, var(--color-warning) 10%, var(--color-base-100));
+
+    --vp-custom-block-danger-border: var(--color-error);
+    --vp-custom-block-danger-text: var(--color-base-content);
+    --vp-custom-block-danger-bg: color-mix(in srgb, var(--color-error) 10%, var(--color-base-100));
+
+    --vp-custom-block-details-border: var(--color-base-300);
+    --vp-custom-block-details-text: var(--color-base-content);
+    --vp-custom-block-details-bg: var(--color-base-200);
+
+    /* --- 徽章 --- */
+    --vp-badge-info-border: var(--color-info);
+    --vp-badge-info-text: var(--color-info-content);
+    --vp-badge-info-bg: var(--color-info);
+
+    --vp-badge-tip-border: var(--color-success);
+    --vp-badge-tip-text: var(--color-success-content);
+    --vp-badge-tip-bg: var(--color-success);
+
+    --vp-badge-warning-border: var(--color-warning);
+    --vp-badge-warning-text: var(--color-warning-content);
+    --vp-badge-warning-bg: var(--color-warning);
+
+    --vp-badge-danger-border: var(--color-error);
+    --vp-badge-danger-text: var(--color-error-content);
+    --vp-badge-danger-bg: var(--color-error);
+
+    /* --- 搜索 --- */
+    --vp-c-search-bg: var(--color-base-100);
+    --vp-c-search-result-bg: var(--color-base-200);
+    --vp-c-search-result-border: var(--color-base-300);
+    --vp-c-search-result-title: var(--color-base-content);
+    --vp-c-search-result-snippet: var(--color-base-content);
+    --vp-c-search-highlight: var(--color-accent);
+
+    /* --- 返回顶部按钮 --- */
+    --vp-c-back-top-bg: var(--color-base-200);
+    --vp-c-back-top-hover-bg: var(--color-base-300);
+
+    /* --- 页脚 --- */
+    --vp-c-footer-bg: var(--color-base-200);
+}

@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <Table :data="data" zebra border :hover-highlight="false">
-      <TableColumn prop="id" label="ID" :width="50" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="score" label="得分" header-align="right" align="right" />
-    </Table>
-  </div>
+  <Table class="vp-raw" :data="data" zebra border :hover-highlight="true">
+    <TableColumn prop="id" label="ID" :width="50" />
+    <TableColumn prop="name" label="编程语言" />
+    <TableColumn prop="score" label="得分" header-align="right" align="right" />
+  </Table>
 </template>
 
 <script setup lang="ts">
