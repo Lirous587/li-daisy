@@ -9,7 +9,7 @@ import { loadingDirective } from 'li-daisy'
 const app = createApp(App)
 
 <!-- 自定义指令名称 这里假定为loading -->
-app.use('loading',loadingDirective)
+app.directive('loading',loadingDirective)
 ```
 
 
