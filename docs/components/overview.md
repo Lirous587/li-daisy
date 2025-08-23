@@ -93,7 +93,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/modal.webp',  
+    img: '/modal.png',  
     url: '/components/modal',
     title: 'Modal 对话框',
     details: '用于需要用户响应的操作或信息展示'
@@ -105,20 +105,20 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     details: '用于显示轻量级的操作反馈信息'
   },
   {
-    img: 'https://img.daisyui.com/images/components/skeleton.webp',  
+    img: '/skeleton.png',  
     url: '/components/skeleton',
     title: 'Skeleton 骨架屏',
     details: '在数据加载时提供占位效果'
   },
   {
-    img: 'https://img.daisyui.com/images/components/tooltip.webp',  
+    img: '/popover.png',  
     url: '/components/popover',
     title: 'Popover 弹出框',
     details: '用于在页面上显示额外信息或操作'
   },
   {
-    img: 'https://img.daisyui.com/images/components/tooltip.webp',  
-    url: '/components/popover',
+    img: '/popconfirm.png',  
+    url: '/components/popconfirm',
     title: 'Popconfirm 气泡确定框',
     details: '用于危险操作的再次确定'
   },
@@ -130,7 +130,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/theme-controller.webp',  
+    img: '/themeSwitch.png',  
     url: '/components/themeSwitch',
     title: 'ThemeSwitch 主题切换器',
     details: '用于切换应用的主题样式'
@@ -145,7 +145,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img: 'https://img.daisyui.com/images/components/loading.webp',  
+    img: '/loading.png',  
     url: '/components/loading',
     title: 'loading 指令',
     details: '用于防抖，占位'
