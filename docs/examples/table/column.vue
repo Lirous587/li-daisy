@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { Table, TableColumn, toast, type TableColumnDefaultScope, Popconfirm } from 'li-daisy'
+import { Table, TableColumn, Toast, type TableColumnDefaultScope, Popconfirm } from 'li-daisy'
 
 import { ref } from 'vue'
 
@@ -40,7 +40,7 @@ const data = ref<Language[]>([
 
 const handleDeleteRow = (index: number) => {
   if (data.value.length === 1) {
-    toast.warn({
+    Toast.warn({
       title: '当前禁止删除',
       message: '至少保留一条数据',
     })
@@ -51,7 +51,7 @@ const handleDeleteRow = (index: number) => {
 }
 
 const handleToatRow = (item: Language) => {
-  toast.info({
+  Toast.info({
     title: '当前数据',
     message: `${item.name}:${item.score}`,
   })

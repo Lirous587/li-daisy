@@ -1,5 +1,5 @@
 import { type Component } from 'vue'
-import Toast from './main.vue'
+import ToastComponent from './main.vue'
 import { queue, type QueueItemOptions } from '../../Queue/index'
 import type { ToastOptions, ToastProps, ToastType } from './types'
 
@@ -18,7 +18,7 @@ const buildToast = (options: ToastOptions, type: ToastType) => {
   options.showCloseIcon = options.showCloseIcon ?? true
 
   queueManager.add(
-    Toast,
+    ToastComponent,
     {
       type: type,
       title: options.title,
@@ -33,7 +33,7 @@ const buildToast = (options: ToastOptions, type: ToastType) => {
   )
 }
 
-export const toast = {
+export const Toast = {
   info(options: ToastOptions) {
     buildToast(options, 'info')
   },

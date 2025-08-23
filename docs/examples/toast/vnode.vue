@@ -6,10 +6,10 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { toast } from 'li-daisy'
+import { Toast } from 'li-daisy'
 
 const vnodeToast = () => {
-  toast.info({
+  Toast.info({
     title: '系统更新通知',
     message: h('div', { class: 'space-y-2' }, [
       h('div', { class: 'flex items-center space-x-2' }, [
@@ -21,7 +21,7 @@ const vnodeToast = () => {
         h('li', null, '修复已知 Bug'),
       ]),
     ]),
-    closeIcon: true,
+    showCloseIcon: false,
     duration: 5000,
   })
 }

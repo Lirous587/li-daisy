@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { toast } from 'li-daisy'
+import { Toast } from 'li-daisy'
 
 const toastFunc = () => {
-  toast.info({
+  Toast.info({
     title: '这是消息标题',
     message: `这条消息无关闭图标`,
     showCloseIcon: false,

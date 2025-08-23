@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { toast, type ToastType } from 'li-daisy'
+import { Toast, type ToastType } from 'li-daisy'
 
 const toastFunc = (type: ToastType) => {
   const options = {
@@ -18,19 +18,19 @@ const toastFunc = (type: ToastType) => {
 
   switch (type) {
     case 'info':
-      return toast.info({
+      return Toast.info({
         ...options,
       })
     case 'success':
-      return toast.success({
+      return Toast.success({
         ...options,
       })
     case 'warn':
-      return toast.warn({
+      return Toast.warn({
         ...options,
       })
     case 'error':
-      return toast.error({
+      return Toast.error({
         ...options,
       })
   }

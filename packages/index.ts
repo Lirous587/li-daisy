@@ -29,9 +29,9 @@ export { useYup } from './Form'
 
 import { NumberInput } from './NumberInput'
 
-import { toast } from './Toast'
+import { Toast } from './Toast'
 export type { ToastPosition, ToastType } from './Toast'
-export { toast }
+export { Toast }
 
 import { Table, TableColumn } from './Table'
 export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'

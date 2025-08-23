@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput, toast } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput, Toast } from 'li-daisy'
 import type { FormRef } from 'li-daisy'
 import { ref } from 'vue'
 
@@ -40,7 +40,10 @@ const handleValidateEmail = async () => {
       window.alert('验证成功')
     })
     .catch((err) => {
-      toast.warning(err)
+      Toast.warn({
+        title: '验证失败',
+        message: 'err',
+      })
     })
 }
 </script>

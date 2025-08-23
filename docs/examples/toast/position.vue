@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { toast, type ToastPosition, type ToastType } from 'li-daisy'
+import { Toast, type ToastPosition, type ToastType } from 'li-daisy'
 
 const toastFunc = (position: ToastPosition) => {
   const options = {
@@ -17,7 +17,7 @@ const toastFunc = (position: ToastPosition) => {
     position: position,
   }
 
-  toast.info({
+  Toast.info({
     ...options,
   })
 }
