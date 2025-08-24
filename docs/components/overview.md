@@ -105,7 +105,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     details: '用于显示操作反馈通知'
   },
   {
-    img: '/notification.png',  
+    img: '/message.png',  
     url: '/components/message',
     title: 'Message 消息条',
     details: '用于轻量级的消息提示'
