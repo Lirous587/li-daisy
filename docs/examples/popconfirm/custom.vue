@@ -18,17 +18,17 @@
 </template>
 
 <script setup lang="ts">
-import { Popconfirm, Toast } from 'li-daisy'
+import { Popconfirm, Notification } from 'li-daisy'
 
 const handleConfirm = () => {
-  Toast.success({
+  Notification.success({
     title: '操作成功',
     message: '成功删除',
   })
 }
 
 const handleCancle = () => {
-  Toast.info({
+  Notification.info({
     title: '取消操作',
     message: '刚刚手滑了',
   })

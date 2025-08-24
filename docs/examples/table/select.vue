@@ -5,9 +5,13 @@
       <TableColumn prop="name" label="编程语言" />
       <TableColumn prop="score" label="得分" />
     </Table>
-    <p>
-      {{ selectRows }}
-    </p>
+
+    <ul class="list">
+      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">当前选择列</li>
+      <li class="list-row" v-for="row in selectRows">
+        <span>{{ row.id }} - {{ row.name }} - {{ row.score }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 

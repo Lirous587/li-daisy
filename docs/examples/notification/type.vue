@@ -8,9 +8,9 @@
 </template>
 
 <script setup lang="ts">
-import { Toast, type ToastType } from 'li-daisy'
+import { Notification, type NotificationType } from 'li-daisy'
 
-const toastFunc = (type: ToastType) => {
+const toastFunc = (type: NotificationType) => {
   const options = {
     title: '这是消息标题',
     message: `这是一条 ${type} 消息`,
@@ -18,19 +18,19 @@ const toastFunc = (type: ToastType) => {
 
   switch (type) {
     case 'info':
-      return Toast.info({
+      return Notification.info({
         ...options,
       })
     case 'success':
-      return Toast.success({
+      return Notification.success({
         ...options,
       })
     case 'warn':
-      return Toast.warn({
+      return Notification.warn({
         ...options,
       })
     case 'error':
-      return Toast.error({
+      return Notification.error({
         ...options,
       })
   }

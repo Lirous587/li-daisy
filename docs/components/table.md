@@ -20,7 +20,7 @@
 
 ## 自定义列
 > 通过 `TableColumn` 下的 `default` 插槽来自定义表头，其内可以提取 `row` 和 `index` 两个属性
-
+> 使用 `TableColumnDefaultScope<type>` 可以实现ts提示
 :::demo table/column
 :::
 
@@ -53,6 +53,10 @@
 > `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
 >>
 > 当全选或选择列时会触发 `select-change` 回调
+:::tip 有序排序
+选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
+:::
+
 
 :::demo table/select
 :::

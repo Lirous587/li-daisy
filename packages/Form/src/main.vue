@@ -27,8 +27,6 @@ provide('align', props.align)
 
 const {
   errors,
-  meta,
-  defineField,
   setFieldValue,
   validate: veeValidate,
   validateField: veeValidateField,

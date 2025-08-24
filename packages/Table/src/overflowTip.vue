@@ -21,7 +21,7 @@ import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import Popover from '../../Popover'
 
 interface TooltipProps {
-  content: any
+  content: unknown
 }
 
 const props = defineProps<TooltipProps>()

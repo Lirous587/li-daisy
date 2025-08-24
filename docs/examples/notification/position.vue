@@ -8,16 +8,16 @@
 </template>
 
 <script setup lang="ts">
-import { Toast, type ToastPosition, type ToastType } from 'li-daisy'
+import { Notification, type NotificationPosition, type NotificationType } from 'li-daisy'
 
-const toastFunc = (position: ToastPosition) => {
+const toastFunc = (position: NotificationPosition) => {
   const options = {
     title: '这是消息标题',
     message: `该消息位于 ${position}`,
     position: position,
   }
 
-  Toast.info({
+  Notification.info({
     ...options,
   })
 }

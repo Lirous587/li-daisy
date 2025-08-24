@@ -1,10 +1,10 @@
-import { createApp, h, markRaw, reactive, type Component, type VNode } from 'vue'
+import { createApp, h, markRaw, reactive, type App, type Component, type VNode } from 'vue'
 import QueueLayout from './layout.vue'
 
 import type { QueueItem, QueueItemOptions, QueuePosition } from './types'
 
 class QueueManager {
-  private app: any = null
+  private app: App | null = null
 
   private container: HTMLElement | null = null
   private globalZIndex = 1000 // 全局 z-index 计数器
@@ -124,10 +124,10 @@ class QueueManager {
   }
 }
 
-export const queueManager = new QueueManager()
+const queueManager = new QueueManager()
 
 // 便捷API
-export const queue = {
+export const Queue = {
   addVnode: (content: VNode, options: QueueItemOptions) => {
     return queueManager.add({
       content,
@@ -135,6 +135,7 @@ export const queue = {
     })
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addComponent: <T extends Record<string, any>>(
     component: Component,
     props: T,

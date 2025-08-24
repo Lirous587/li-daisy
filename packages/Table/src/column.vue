@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-template-root -->
 <template></template>
 
 <script setup lang="ts">
@@ -8,6 +9,7 @@ import type {
   TableColumnExpandScope,
 } from './types'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = withDefaults(defineProps<TableColumnProps>(), {
   align: 'center',
   headerAlign: 'center',

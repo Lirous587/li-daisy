@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput, Toast } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput, Notification } from 'li-daisy'
 import type { FormRef } from 'li-daisy'
 import { ref } from 'vue'
 
@@ -54,9 +54,9 @@ const handleRegister = async () => {
       window.alert('注册成功')
     })
     .catch(() => {
-      Toast.warn({
-        title: "表单验证失败",
-        message:"表单填写有误"
+      Notification.warn({
+        title: '表单验证失败',
+        message: '表单填写有误',
       })
     })
 }

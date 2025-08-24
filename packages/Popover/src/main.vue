@@ -181,6 +181,7 @@ const getRealRect = (element: HTMLElement): DOMRect => {
 
 // 计算悬浮框样式
 const popoverStyle = computed((): CSSProperties => {
+  // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
   forceUpdate.value
 
   if (!triggerRef.value || !popoverRef.value) {
@@ -298,7 +299,7 @@ const forceUpdate = ref(0)
 
 // 重新计算位置
 const updatePosition = () => {
-  if (visible.value) {
+  if (visible.value && triggerRef.value && popoverRef.value) {
     forceUpdate.value++
   }
 }

@@ -2,39 +2,47 @@ import './assets/css/tailwind.css'
 
 import type { App } from 'vue'
 
-// 导入组件 导出需要的类型（只导出必要的类型）
-import { Avatar } from './Avatar'
-
+// 布局 (Layout)
 import { Collapse, CollapseItem } from './Collapse'
 
 import { Drawer, DrawerConfirm } from './Drawer'
 export type { DrawerRef, DrawerConfirmRef } from './Drawer'
 
-import { Modal } from './Modal'
-export type { ModalRef } from './Modal'
+export { Queue } from './Queue'
+export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
 
-import { Paging } from './Paging'
-
-import { Skeleton, SkeletonItem } from './Skeleton'
-
-import { ThemeSwitch } from './ThemeSwitch'
-
+// 数据输入 (Data Entry)
 import { TextInput } from './TextInput'
 
 import { Textarea } from './Textarea'
+
+import { NumberInput } from './NumberInput'
 
 import { Form, FormItem } from './Form'
 export type { FormRef } from './Form'
 export { useYup } from './Form'
 
-import { NumberInput } from './NumberInput'
-
-import { Toast } from './Toast'
-export type { ToastPosition, ToastType } from './Toast'
-export { Toast }
+// 数据展示 (Data Display)
+import { Avatar } from './Avatar'
 
 import { Table, TableColumn } from './Table'
 export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'
+
+import { Paging } from './Paging'
+
+// 反馈 (Feedback)
+import { Modal } from './Modal'
+export type { ModalRef } from './Modal'
+
+import { Notification } from './Notification'
+export type { NotificationPosition, NotificationType } from './Notification'
+export { Notification }
+
+// import { Message } from './Message'
+// export type { MessagePosition, MessageType } from './Message'
+// export { Message }
+
+import { Skeleton, SkeletonItem } from './Skeleton'
 
 import { Popover } from './Popover'
 export type { PopoverRef, PopoverPositon } from './Popover'
@@ -42,8 +50,12 @@ export type { PopoverRef, PopoverPositon } from './Popover'
 import { Popconfirm } from './Popconfirm'
 export type { PopconfirmPositon } from './Popconfirm'
 
-export { queue } from './Queue'
-export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
+// 主题 (Theme)
+import { ThemeSwitch } from './ThemeSwitch'
+
+// 工具类 (Tools)
+import { loadingDirective } from './Loading'
+export { loadingDirective }
 
 // 导出组件
 export {
@@ -107,7 +119,3 @@ export default {
     return app
   },
 }
-
-// 内置指令
-import { loadingDirective } from './Loading'
-export { loadingDirective }

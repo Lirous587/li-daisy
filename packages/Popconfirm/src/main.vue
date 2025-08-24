@@ -80,6 +80,8 @@ const btnSizeClass = computed(() => {
       return 'btn-lg'
     case 'xl':
       return 'btn-xl'
+    default:
+      return 'btn-md'
   }
 })
 

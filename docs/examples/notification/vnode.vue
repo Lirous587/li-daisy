@@ -1,15 +1,15 @@
 <template>
   <div class="space-x-3">
-    <button class="btn btn-primary btn-dash" @click="vnodeToast">vnode消息</button>
+    <button class="btn btn-primary btn-dash" @click="vnodeNotification">vnode消息</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { Toast } from 'li-daisy'
+import { Notification } from 'li-daisy'
 
-const vnodeToast = () => {
-  Toast.info({
+const vnodeNotification = () => {
+  Notification.info({
     title: '系统更新通知',
     message: h('div', { class: 'space-y-2' }, [
       h('div', { class: 'flex items-center space-x-2' }, [
@@ -21,7 +21,6 @@ const vnodeToast = () => {
         h('li', null, '修复已知 Bug'),
       ]),
     ]),
-    showCloseIcon: false,
     duration: 5000,
   })
 }

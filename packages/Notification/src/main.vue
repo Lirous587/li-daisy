@@ -36,14 +36,14 @@ import {
 
 import { computed, isVNode } from 'vue'
 
-import type { ToastProps } from './types'
+import type { NotificationProps } from './types'
 
-const props = withDefaults(defineProps<ToastProps>(), {
+const props = withDefaults(defineProps<NotificationProps>(), {
   type: 'info',
   showCloseIcon: true,
 })
 
-// 添加emit以通知插件Toast已关闭
+// 添加emit以通知插件Notification已关闭
 const emit = defineEmits(['close'])
 
 const iconColorClass = computed(() => {

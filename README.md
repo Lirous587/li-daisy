@@ -21,7 +21,7 @@
 9. `Paging` ✅
 10. `Skeleton` ✅
 11. `ThemeSwitch` ✅
-12. `Toast` ✅
+12. `Notification` ✅
 13. `Table` ✅
 14. `Popover` ✅
 15. `Popover` ✅

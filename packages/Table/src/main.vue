@@ -273,6 +273,7 @@ const slots = defineSlots<{
   default(): VNode[]
 }>()
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const generateRowKey = (item: any, index: number): string => {
   // 如果有有效的id，直接使用
   if (item.id !== undefined && item.id !== null && item.id !== '') {
@@ -570,7 +571,7 @@ const finalProcessedColumns = computed(() => {
       return col.width
     } else {
       // 为边框和间距预留更精确的空间
-      const borderOffset = 2 // 每列预留2px用于边框和间距
+      // const borderOffset = 2 // 每列预留2px用于边框和间距
       return Math.floor(averageWidth)
     }
   }

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Toast } from 'li-daisy'
+import { Notification } from 'li-daisy'
 
 const loading = ref(true)
 const toggle = () => (loading.value = !loading.value)
@@ -26,7 +26,7 @@ const setTrue = () => (loading.value = true)
 const setFalse = () => (loading.value = false)
 
 const handleFoo = () => {
-  Toast.warn({
+  Notification.warn({
     title: 'foo title',
     message: 'foo message',
   })
