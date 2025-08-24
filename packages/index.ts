@@ -5,8 +5,8 @@ import type { App } from 'vue'
 // 布局 (Layout)
 import { Collapse, CollapseItem } from './Collapse'
 
-import { Drawer, DrawerConfirm } from './Drawer'
-export type { DrawerRef, DrawerConfirmRef } from './Drawer'
+import { Drawer } from './Drawer'
+export type { DrawerRef } from './Drawer'
 
 export { Queue } from './Queue'
 export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
@@ -61,7 +61,6 @@ export {
   Collapse,
   CollapseItem,
   Drawer,
-  DrawerConfirm,
   Modal,
   Paging,
   Skeleton,
@@ -84,7 +83,6 @@ const components = [
   Collapse,
   CollapseItem,
   Drawer,
-  DrawerConfirm,
   Modal,
   Paging,
   Skeleton,

@@ -41,11 +41,6 @@
 :::
 
 
-## ConfirmDrawer
-:::demo drawer/confirm
-:::
-
-
 ## API
 
 ### Attributes
