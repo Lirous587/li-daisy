@@ -40,7 +40,7 @@ const handleValidateEmail = async () => {
       window.alert('验证成功')
     })
     .catch((err) => {
-      Notification.warn({
+      Notification.warning({
         title: '验证失败',
         message: 'err',
       })

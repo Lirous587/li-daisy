@@ -54,7 +54,7 @@ const handleRegister = async () => {
       window.alert('注册成功')
     })
     .catch(() => {
-      Notification.warn({
+      Notification.warning({
         title: '表单验证失败',
         message: '表单填写有误',
       })

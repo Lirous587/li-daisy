@@ -1,13 +1,13 @@
-# Notification消息提示
+# Notification 通知
 
 ## 类型 
-> 通过 `type` 来设置消息类型，可选值有 `info` `success` `warning` `error`
+> 通过 `type` 来设置通知类型，可选值有 `info` `success` `warning` `error`
 
 :::demo notification/type
 :::
 
 ## 位置
-> 通过 `position` 来设置消息位置，可选值有 `top-start` `top-center` `top-end` `bottom-start` `bottom-end`
+> 通过 `position` 来设置通知位置，可选值有 `top-start` `top-center` `top-end` `bottom-start` `bottom-end`
 
 :::demo notification/position
 :::
@@ -31,10 +31,10 @@
 
 | 参数          | 类型                   | 默认值      | 说明                                                                |
 | ------------- | ---------------------- | ----------- | ------------------------------------------------------------------- |
-| message       | `[string,Vnode]`       | -           | 消息内容                                                            |
-| title         | `string`               | -           | 消息标题                                                            |
-| type          | `NotificationType`     | `'info'`    | 消息类型，可选值：`info` `success` `warning` `error` `custom`       |
-| position      | `NotificationPosition` | `'top-end'` | 消息位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
+| message       | `[string,Vnode]`       | -           | 通知内容                                                            |
+| title         | `string`               | -           | 通知标题                                                            |
+| type          | `NotificationType`     | `'info'`    | 通知类型，可选值：`info` `success` `warning` `error`                |
+| position      | `NotificationPosition` | `'top-end'` | 通知位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
 | duration      | `number`               | `2000`      | 自动消失时间（毫秒），低于1000无效                                  |
 | autoClose     | `boolean`              | `true`      | 是否自动关闭                                                        |
 | showCloseIcon | `boolean`              | `false`     | 是否显示右上角关闭图标                                              |

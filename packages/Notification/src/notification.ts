@@ -34,6 +34,10 @@ const buildNotification = (options: NotificationOptions, type: NotificationType)
 }
 
 export const Notification = {
+  primary(options: NotificationOptions) {
+    buildNotification(options, 'primary')
+  },
+
   info(options: NotificationOptions) {
     buildNotification(options, 'info')
   },
@@ -42,8 +46,8 @@ export const Notification = {
     buildNotification(options, 'success')
   },
 
-  warn(options: NotificationOptions) {
-    buildNotification(options, 'warn')
+  warning(options: NotificationOptions) {
+    buildNotification(options, 'warning')
   },
 
   error(options: NotificationOptions) {

@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type { QueuePosition } from '../../index'
 
-export type NotificationType = 'info' | 'success' | 'warn' | 'error'
+export type NotificationType = 'primary' | 'info' | 'success' | 'warning' | 'error'
 
 export type NotificationPosition = Exclude<QueuePosition, 'top-center'>
 

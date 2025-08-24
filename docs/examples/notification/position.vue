@@ -12,8 +12,8 @@ import { Notification, type NotificationPosition, type NotificationType } from '
 
 const toastFunc = (position: NotificationPosition) => {
   const options = {
-    title: '这是消息标题',
-    message: `该消息位于 ${position}`,
+    title: '这是通知标题',
+    message: `该通知位于 ${position}`,
     position: position,
   }
 

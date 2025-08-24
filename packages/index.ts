@@ -34,13 +34,11 @@ import { Paging } from './Paging'
 import { Modal } from './Modal'
 export type { ModalRef } from './Modal'
 
-import { Notification } from './Notification'
+export { Notification } from './Notification'
 export type { NotificationPosition, NotificationType } from './Notification'
-export { Notification }
 
-// import { Message } from './Message'
-// export type { MessagePosition, MessageType } from './Message'
-// export { Message }
+export { Message } from './Message'
+export type { MessageType } from './Message'
 
 import { Skeleton, SkeletonItem } from './Skeleton'
 

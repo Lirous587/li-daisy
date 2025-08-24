@@ -46,7 +46,7 @@ const data = ref<Language[]>([
 
 const handleDeleteRow = (index: number) => {
   if (data.value.length === 1) {
-    Notification.warn({
+    Notification.warning({
       title: '当前禁止删除',
       message: '至少保留一条数据',
     })

@@ -26,7 +26,7 @@ const setTrue = () => (loading.value = true)
 const setFalse = () => (loading.value = false)
 
 const handleFoo = () => {
-  Notification.warn({
+  Notification.warning({
     title: 'foo title',
     message: 'foo message',
   })

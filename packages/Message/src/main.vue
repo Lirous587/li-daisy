@@ -1,20 +1,14 @@
 <template>
   <div
-    class="flex flex-col justify-between px-4 py-3 border border-base-300 shadow-lg rounded-lg bg-base-100 min-w-xs min-h-23"
+    class="relative flex items-center gap-x-2 border border-base-300 py-1.5 px-2 rounded-sm bg-base-100 overflow-hidden"
   >
-    <div class="flex w-full items-center gap-x-2">
-      <div class="flex w-full items-center gap-x-2 flex-1">
-        <component :is="iconComponent" class="w-6 h-6" :class="iconColorClass"></component>
-        <h3 class="text-lg font-bold">{{ props.title }}</h3>
-      </div>
-      <XMarkIcon
-        v-if="props.showCloseIcon"
-        @click="emit('close')"
-        class="shrink-0 w-5 h-5 text-base-content hover:cursor-pointer opacity-70"
-      />
+    <!-- icon -->
+    <div class="flex h-5 items-center">
+      <component :is="iconComponent" class="w-5 h-5" :class="textColorClass"></component>
     </div>
 
-    <div class="mt-2">
+    <!-- content -->
+    <div class="flex-1 text-sm" :class="textColorClass">
       <template v-if="typeof props.message === 'string'">
         {{ props.message }}
       </template>
@@ -22,6 +16,18 @@
         <component :is="props.message" />
       </template>
     </div>
+
+    <!-- close-icon -->
+    <div class="flex items-center h-4">
+      <XMarkIcon
+        v-if="props.showCloseIcon"
+        @click="emit('close')"
+        class="ml-auto shrink-0 w-4 h-4 text-base-content hover:cursor-pointer opacity-70"
+      />
+    </div>
+
+    <!-- 背景层 -->
+    <div class="absolute inset-0 opacity-10" :class="bgColorClass" v-if="!props.plain"></div>
   </div>
 </template>
 
@@ -33,21 +39,22 @@ import {
   CheckCircleIcon, //success
   ExclamationCircleIcon, //warning
   ExclamationTriangleIcon, // error
-} from '@heroicons/vue/24/solid'
+} from '@heroicons/vue/24/outline'
 
 import { computed, isVNode } from 'vue'
 
-import type { NotificationProps } from './types'
+import type { MessageProps } from './types'
 
-const props = withDefaults(defineProps<NotificationProps>(), {
+const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',
   showCloseIcon: true,
+  plain: false,
 })
 
 // 添加emit以通知插件Notification已关闭
 const emit = defineEmits(['close'])
 
-const iconColorClass = computed(() => {
+const textColorClass = computed(() => {
   switch (props.type) {
     case 'primary':
       return 'text-primary'
@@ -60,7 +67,24 @@ const iconColorClass = computed(() => {
     case 'error':
       return 'text-error'
     default:
-      return ''
+      return 'text-info'
+  }
+})
+
+const bgColorClass = computed(() => {
+  switch (props.type) {
+    case 'primary':
+      return 'bg-primary'
+    case 'info':
+      return 'bg-info'
+    case 'success':
+      return 'bg-success'
+    case 'warning':
+      return 'bg-warning'
+    case 'error':
+      return 'bg-error'
+    default:
+      return 'bg-info'
   }
 })
 
