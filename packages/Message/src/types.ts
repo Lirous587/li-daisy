@@ -5,7 +5,7 @@ export type MessageType = 'primary' | 'info' | 'success' | 'warning' | 'error'
 export interface MessageProps {
   message: string | VNode
   type?: MessageType
-  plain: boolean
+  plain?: boolean
   showCloseIcon?: boolean
 }
 
