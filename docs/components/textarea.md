@@ -11,9 +11,6 @@
 :::demo textarea/size
 :::
 
-## 占位符文本
-> 通过 `placeholder` 来设置默认占位符
-
 ## 禁用状态
 :::demo textarea/disable
 :::
@@ -46,4 +43,5 @@
 | placeholder |    占位符    | `string`  |                -                 |    -    |
 |  disabled   |   是否禁用   | `boolean` |                -                 | `false` |
 |  maxlength  | 最大文本长度 | `number`  |                -                 |    -    |
-|    color    |     颜色     | `number`  | `['ghost',...'daisyui通用颜色']` |    -    |
+|    color    |     颜色     |  `enum`   | `['ghost',...'daisyui通用颜色']` |    -    |
+

@@ -9,9 +9,6 @@
 :::demo numberInput/size
 :::
 
-## 占位符文本
-> 通过 `placeholder` 来设置默认占位符
-
 ## 禁用状态
 :::demo numberInput/disable
 :::
@@ -38,5 +35,6 @@
 |  disabled   | 是否禁用 | `boolean` |                -                 | `false` |
 |     min     |  最小值  | `number`  |                -                 |    -    |
 |     max     |  最大值  | `number`  |                -                 |    -    |
-|    color    |   颜色   | `number`  | `['ghost',...'daisyui通用颜色']` |    -    |
+|    color    |   颜色   |  `enum`   | `['ghost',...'daisyui通用颜色']` |    -    |
+
 

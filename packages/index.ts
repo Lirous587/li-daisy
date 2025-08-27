@@ -13,6 +13,7 @@ export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
 
 // 数据输入 (Data Entry)
 import { TextInput } from './TextInput'
+export type { TextInputSize, TextInputColor } from './TextInput'
 
 import { Textarea } from './Textarea'
 

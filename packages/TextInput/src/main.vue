@@ -1,64 +1,65 @@
 <template>
-  <div :class="props.disabled ? 'hover:cursor-not-allowed' : ''">
-    <div class="w-full join">
+  <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
+    <!-- input -->
+    <label
+      class="input flex-1 overflow-hidden relative"
+      :class="[inputSizeClass, inputColorClass, hasPrefix ? '!pl-0' : '', hasSuffix ? '!pr-0' : '']"
+    >
+      <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
+
       <!-- prefix -->
       <div
         v-if="hasPrefix"
-        class="btn btn-soft join-item rounded-l-full"
-        :class="[btnSizeClass, btnColorClass]"
+        class="h-full flex items-center justify-center border-r px-2"
+        :class="[slotBorderClass, slotBgClass, slotTextColorClass]"
       >
         <slot name="prefix" />
       </div>
-      <!-- input -->
-      <label
-        class="input validator join-item flex-1"
-        :class="[inputSizeClass, inputColorClass, props.disabled ? 'pointer-events-none' : '']"
+
+      <input
+        ref="inputRef"
+        v-model="model"
+        :type="passwordFieldType"
+        :placeholder="placeholder"
+        :maxlength="maxlength"
+        @blur="handleBlur"
+        @input="handleInput"
+        @focus="handleFocus"
+      />
+
+      <!-- eye -->
+      <div
+        v-if="props.type === 'password' && isEyeIconShow"
+        class="join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+        @mousedown.prevent="togglePasswordVisibility"
       >
-        <input
-          ref="inputRef"
-          v-model="model"
-          :type="passwordFieldType"
-          :placeholder="placeholder"
-          :maxlength="maxlength"
-          :disabled="props.disabled"
-          @blur="handleBlur"
-          @input="handleInput"
-          @focus="handleFocus"
-        />
+        <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
+        <EyeSlashIcon v-else class="w-4 h-4" />
+      </div>
 
-        <!-- eye -->
-        <div
-          v-if="props.type === 'password' && isEyeIconShow"
-          class="join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
-          @mousedown.prevent="togglePasswordVisibility"
-        >
-          <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
-          <EyeSlashIcon v-else class="w-4 h-4" />
-        </div>
+      <!-- search -->
+      <div
+        v-if="props.type === 'search' && isXIconShow"
+        class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+        @mousedown.prevent="clearSearch"
+      >
+        <XMarkIcon class="w-4 h-4" />
+      </div>
 
-        <!-- search -->
-        <div
-          v-if="props.type === 'search' && isXIconShow"
-          class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
-          @mousedown.prevent="clearSearch"
-        >
-          <XMarkIcon class="w-4 h-4" />
-        </div>
+      <!-- counter -->
+      <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
+        {{ currentLength }}/{{ props.maxlength }}
+      </div>
 
-        <!-- counter -->
-        <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
-          {{ currentLength }}/{{ props.maxlength }}
-        </div>
-      </label>
       <!-- suffix -->
       <div
         v-if="hasSuffix"
-        class="btn btn-soft join-item rounded-r-full"
-        :class="[btnSizeClass, btnColorClass]"
+        class="h-full flex items-center justify-center border-l px-2"
+        :class="[slotBorderClass, slotBgClass, slotTextColorClass]"
       >
         <slot name="suffix" />
       </div>
-    </div>
+    </label>
   </div>
 </template>
 
@@ -145,8 +146,8 @@ const inputSizeClass = computed(() => {
 
 const inputColorClass = computed(() => {
   switch (props.color) {
-    case 'ghost':
-      return 'input-ghost'
+    case 'base':
+      return ''
     case 'neutral':
       return 'input-neutral'
     case 'primary':
@@ -164,48 +165,83 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'input-error'
     default:
-      return ''
+      return 'input-info'
   }
 })
 
-const btnSizeClass = computed(() => {
-  switch (props.size) {
-    case 'xs':
-      return 'btn-xs'
-    case 'sm':
-      return 'btn-sm'
-    case 'md':
-      return 'btn-md'
-    case 'lg':
-      return 'btn-lg'
-    case 'xl':
-      return 'btn-xl'
+const slotBorderClass = computed(() => {
+  if (props.disabled) return 'border-none'
+  switch (props.color) {
+    case 'base':
+      return 'border-base-300'
+    case 'neutral':
+      return 'border-neutral'
+    case 'primary':
+      return 'border-primary'
+    case 'secondary':
+      return 'border-secondary'
+    case 'accent':
+      return 'border-accent'
+    case 'info':
+      return 'border-info'
+    case 'success':
+      return 'border-success'
+    case 'warning':
+      return 'border-warning'
+    case 'error':
+      return 'border-error'
     default:
-      return 'btn-md'
+      return 'border-info'
   }
 })
-const btnColorClass = computed(() => {
+
+const slotBgClass = computed(() => {
   switch (props.color) {
-    case 'ghost':
-      return 'btn-ghost'
+    case 'base':
+      return 'bg-base-200'
     case 'neutral':
-      return 'btn-neutral'
+      return 'bg-neutral/10'
     case 'primary':
-      return 'btn-primary'
+      return 'bg-primary/10'
     case 'secondary':
-      return 'btn-secondary'
+      return 'bg-secondary/10'
     case 'accent':
-      return 'btn-accent'
+      return 'bg-accent/10'
     case 'info':
-      return 'btn-info'
+      return 'bg-info/10'
     case 'success':
-      return 'btn-success'
+      return 'bg-success/10'
     case 'warning':
-      return 'btn-warning'
+      return 'bg-warning/10'
     case 'error':
-      return 'btn-error'
+      return 'bg-error/10'
     default:
-      return ''
+      return 'bg-info/10'
+  }
+})
+
+const slotTextColorClass = computed(() => {
+  switch (props.color) {
+    case 'base':
+      return 'text-base-content'
+    case 'neutral':
+      return 'text-neutral'
+    case 'primary':
+      return 'text-primary'
+    case 'secondary':
+      return 'text-secondary'
+    case 'accent':
+      return 'text-accent'
+    case 'info':
+      return 'text-info'
+    case 'success':
+      return 'text-success'
+    case 'warning':
+      return 'text-warning'
+    case 'error':
+      return 'text-error'
+    default:
+      return 'bg-info'
   }
 })
 

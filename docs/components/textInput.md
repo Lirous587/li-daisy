@@ -1,16 +1,10 @@
 # TextInput文本输入框
 
-## 基础用法 
-:::demo textInput/basic
-:::
-
 ## 尺寸
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
 :::demo textInput/size
 :::
 
-## 占位符文本
-> 通过 `placeholder` 来设置默认占位符
 
 ## 禁用状态
 :::demo textInput/disable
@@ -35,22 +29,21 @@
 ## color颜色
 > 通过 `color` 来设置颜色
 >>
-> 可选值  `ghost`, `daisyui通用颜色`
-
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 :::demo textInput/color
 :::
 
 ## API
 
 ### Attributes
-|   属性值    |     说明     |   类型    |             具体类型             |  默认值  |
-| :---------: | :----------: | :-------: | :------------------------------: | :------: |
-|    type     |     类型     |  `enum`   |        `'浏览器原生属性'`        | `'text'` |
-|    size     |     尺寸     |  `enum`   |   `['xs','sm','md','lg','xl']`   |  `'md'`  |
-| placeholder |    占位符    | `string`  |                -                 |    -     |
-|  disabled   |   是否禁用   | `boolean` |                -                 | `false`  |
-|  maxlength  | 最大文本长度 | `number`  |                -                 |    -     |
-|    color    |     颜色     | `number`  | `['ghost',...'daisyui通用颜色']` |    -     |
+|   属性值    |     说明     |   类型    |           具体类型           |  默认值  |
+| :---------: | :----------: | :-------: | :--------------------------: | :------: |
+|    type     |     类型     |  `enum`   |      `'浏览器原生属性'`      | `'text'` |
+|    size     |     尺寸     |  `enum`   | `['xs','sm','md','lg','xl']` |  `'md'`  |
+| placeholder |    占位符    | `string`  |              -               |    -     |
+|  disabled   |   是否禁用   | `boolean` |              -               | `false`  |
+|  maxlength  | 最大文本长度 | `number`  |              -               |    -     |
+|    color    |     颜色     |  `enum`   |       `TextInputColor`       |    -     |
 
 ### Slots
 | 插槽名 |   说明   |
