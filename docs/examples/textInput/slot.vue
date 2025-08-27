@@ -65,11 +65,9 @@
 </template>
 
 <script setup lang="ts">
-// import { TextInput, type TextInputColor } from 'li-daisy'
-import { TextInput, type TextInputColor } from '../../../packages'
+import { TextInput, type TextInputColor } from 'li-daisy'
 
 import { ref } from 'vue'
-const text = ref<string>('')
 
 const colors = ref<TextInputColor[]>([
   'base',
@@ -82,4 +80,6 @@ const colors = ref<TextInputColor[]>([
   'warning',
   'error',
 ])
+
+const text = ref<string>('')
 </script>

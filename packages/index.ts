@@ -19,6 +19,7 @@ import { Textarea } from './Textarea'
 export type { TextareaSize, TextareaColor } from './Textarea'
 
 import { NumberInput } from './NumberInput'
+export type { NumberInputSize, NumberInputColor } from './NumberInput'
 
 import { Form, FormItem } from './Form'
 export type { FormRef } from './Form'

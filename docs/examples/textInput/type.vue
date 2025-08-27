@@ -12,5 +12,4 @@
 <script setup lang="ts">
 import { TextInput } from 'li-daisy'
 import { ref } from 'vue'
-const text = ref<string>('')
 </script>

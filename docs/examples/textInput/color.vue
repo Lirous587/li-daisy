@@ -19,5 +19,6 @@ const colors = ref<TextInputColor[]>([
   'warning',
   'error',
 ])
+
 const text = ref('')
 </script>

@@ -145,6 +145,7 @@ const inputSizeClass = computed(() => {
 })
 
 const inputColorClass = computed(() => {
+  if (props.disabled) return ''
   switch (props.color) {
     case 'base':
       return ''

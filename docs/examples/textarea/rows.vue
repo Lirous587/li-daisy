@@ -11,5 +11,6 @@
 <script setup lang="ts">
 import { Textarea } from 'li-daisy'
 import { ref } from 'vue'
+
 const text = ref<string>('1\n2\n3\n4\n5\n6\n7')
 </script>

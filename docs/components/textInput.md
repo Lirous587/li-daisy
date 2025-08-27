@@ -36,14 +36,14 @@
 ## API
 
 ### Attributes
-|   属性值    |     说明     |   类型    |           具体类型           |  默认值  |
-| :---------: | :----------: | :-------: | :--------------------------: | :------: |
-|    type     |     类型     |  `enum`   |      `'浏览器原生属性'`      | `'text'` |
-|    size     |     尺寸     |  `enum`   | `['xs','sm','md','lg','xl']` |  `'md'`  |
-| placeholder |    占位符    | `string`  |              -               |    -     |
-|  disabled   |   是否禁用   | `boolean` |              -               | `false`  |
-|  maxlength  | 最大文本长度 | `number`  |              -               |    -     |
-|    color    |     颜色     |  `enum`   |       `TextInputColor`       |  `info`  |
+|   属性值    |     说明     |   类型    |      具体类型      |  默认值  |
+| :---------: | :----------: | :-------: | :----------------: | :------: |
+|    type     |     类型     |  `enum`   | `'浏览器原生属性'` | `'text'` |
+|    size     |     尺寸     |  `enum`   |  `TextInputSize`   |  `'md'`  |
+| placeholder |    占位符    | `string`  |         -          |    -     |
+|  disabled   |   是否禁用   | `boolean` |         -          | `false`  |
+|  maxlength  | 最大文本长度 | `number`  |         -          |    -     |
+|    color    |     颜色     |  `enum`   |  `TextInputColor`  |  `info`  |
 
 ### Slots
 | 插槽名 |   说明   |

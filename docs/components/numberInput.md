@@ -1,9 +1,5 @@
 # NumberInput数字输入框
 
-## 基础用法 
-:::demo numberInput/basic
-:::
-
 ## 尺寸
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
 :::demo numberInput/size
@@ -20,7 +16,7 @@
 ## color颜色
 > 通过 `color` 来设置颜色
 >>
-> 可选值  `ghost`, `daisyui通用颜色`
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 
 :::demo numberInput/color
 :::
@@ -28,13 +24,14 @@
 ## API
 
 ### Attributes
-|   属性值    |   说明   |   类型    |             具体类型             | 默认值  |
-| :---------: | :------: | :-------: | :------------------------------: | :-----: |
-|    size     |   尺寸   |  `enum`   |   `['xs','sm','md','lg','xl']`   | `'md'`  |
-| placeholder |  占位符  | `string`  |                -                 |    -    |
-|  disabled   | 是否禁用 | `boolean` |                -                 | `false` |
-|     min     |  最小值  | `number`  |                -                 |    -    |
-|     max     |  最大值  | `number`  |                -                 |    -    |
-|    color    |   颜色   |  `enum`   | `['ghost',...'daisyui通用颜色']` |    -    |
+|   属性值    |   说明   |   类型    |      具体类型      | 默认值  |
+| :---------: | :------: | :-------: | :----------------: | :-----: |
+|    size     |   尺寸   |  `enum`   | `NumberInputSize`  | `'md'`  |
+| placeholder |  占位符  | `string`  |         -          |    -    |
+|  disabled   | 是否禁用 | `boolean` |         -          | `false` |
+|     min     |  最小值  | `number`  |         -          |    -    |
+|     max     |  最大值  | `number`  |         -          |    -    |
+|    color    |   颜色   |  `enum`   | `NumberInputColor` | `info`  |
+
 
 

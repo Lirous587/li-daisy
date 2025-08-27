@@ -1,32 +1,50 @@
 <template>
-  <div :class="props.disabled ? 'hover:cursor-not-allowed' : ''">
-    <div class="w-full join" :class="[props.disabled ? 'pointer-events-none' : '']">
+  <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
+    <!-- input -->
+    <label
+      class="input flex-1 overflow-hidden relative !px-0"
+      :class="[inputSizeClass, inputColorClass]"
+    >
+      <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
+
+      <!-- reduce -->
       <div
-        class="btn btn-soft join-item rounded-l-full"
-        :class="[btnSizeClass, btnColorClass]"
+        class="h-full flex items-center justify-center hover:cursor-pointer border-r aspect-square"
+        :class="[
+          operationBorderClass,
+          operationBgClass,
+          operationTextColorClass,
+          operationSizeClass,
+        ]"
         @click="decrease"
       >
         -
       </div>
+
       <input
         ref="inputRef"
         type="number"
         v-model="model"
-        class="px-2.5 input join-item flex-1"
         :class="[inputSizeClass, inputColorClass]"
         :placeholder="props.placeholder"
         :min="props.min"
         :max="props.max"
-        :disabled="props.disabled"
       />
+
+      <!-- plus -->
       <div
-        class="btn btn-soft join-item rounded-r-full"
-        :class="[btnSizeClass, btnColorClass]"
+        class="h-full flex items-center justify-center hover:cursor-pointer border-l aspect-square"
+        :class="[
+          operationBorderClass,
+          operationBgClass,
+          operationTextColorClass,
+          operationSizeClass,
+        ]"
         @click="increase"
       >
         +
       </div>
-    </div>
+    </label>
   </div>
 </template>
 
@@ -86,9 +104,10 @@ const inputSizeClass = computed(() => {
 })
 
 const inputColorClass = computed(() => {
+  if (props.disabled) return ''
   switch (props.color) {
-    case 'ghost':
-      return 'input-ghost'
+    case 'base':
+      return ''
     case 'neutral':
       return 'input-neutral'
     case 'primary':
@@ -106,11 +125,87 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'input-error'
     default:
-      return ''
+      return 'input-info'
   }
 })
 
-const btnSizeClass = computed(() => {
+const operationBorderClass = computed(() => {
+  if (props.disabled) return 'border-none'
+  switch (props.color) {
+    case 'base':
+      return 'border-base-300'
+    case 'neutral':
+      return 'border-neutral'
+    case 'primary':
+      return 'border-primary'
+    case 'secondary':
+      return 'border-secondary'
+    case 'accent':
+      return 'border-accent'
+    case 'info':
+      return 'border-info'
+    case 'success':
+      return 'border-success'
+    case 'warning':
+      return 'border-warning'
+    case 'error':
+      return 'border-error'
+    default:
+      return 'border-info'
+  }
+})
+
+const operationBgClass = computed(() => {
+  switch (props.color) {
+    case 'base':
+      return 'bg-base-200'
+    case 'neutral':
+      return 'bg-neutral/10'
+    case 'primary':
+      return 'bg-primary/10'
+    case 'secondary':
+      return 'bg-secondary/10'
+    case 'accent':
+      return 'bg-accent/10'
+    case 'info':
+      return 'bg-info/10'
+    case 'success':
+      return 'bg-success/10'
+    case 'warning':
+      return 'bg-warning/10'
+    case 'error':
+      return 'bg-error/10'
+    default:
+      return 'bg-info/10'
+  }
+})
+
+const operationTextColorClass = computed(() => {
+  switch (props.color) {
+    case 'base':
+      return 'text-base-content'
+    case 'neutral':
+      return 'text-neutral'
+    case 'primary':
+      return 'text-primary'
+    case 'secondary':
+      return 'text-secondary'
+    case 'accent':
+      return 'text-accent'
+    case 'info':
+      return 'text-info'
+    case 'success':
+      return 'text-success'
+    case 'warning':
+      return 'text-warning'
+    case 'error':
+      return 'text-error'
+    default:
+      return 'bg-info'
+  }
+})
+
+const operationSizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
       return 'btn-xs'
@@ -124,30 +219,6 @@ const btnSizeClass = computed(() => {
       return 'btn-xl'
     default:
       return 'btn-md'
-  }
-})
-const btnColorClass = computed(() => {
-  switch (props.color) {
-    case 'ghost':
-      return 'btn-ghost'
-    case 'neutral':
-      return 'btn-neutral'
-    case 'primary':
-      return 'btn-primary'
-    case 'secondary':
-      return 'btn-secondary'
-    case 'accent':
-      return 'btn-accent'
-    case 'info':
-      return 'btn-info'
-    case 'success':
-      return 'btn-success'
-    case 'warning':
-      return 'btn-warning'
-    case 'error':
-      return 'btn-error'
-    default:
-      return ''
   }
 })
 
