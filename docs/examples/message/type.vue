@@ -24,7 +24,6 @@ import { Message, type MessageType } from 'li-daisy'
 
 const toastFunc = (type: MessageType, plain?: boolean) => {
   const options = {
-    message: `这是一条 ${type} 消息`,
     plain: false,
   }
   if (plain) {
@@ -33,23 +32,23 @@ const toastFunc = (type: MessageType, plain?: boolean) => {
 
   switch (type) {
     case 'primary':
-      return Message.primary({
+      return Message.primary(`这是一条 ${type} 消息`, {
         ...options,
       })
     case 'info':
-      return Message.info({
+      return Message.info(`这是一条 ${type} 消息`, {
         ...options,
       })
     case 'success':
-      return Message.success({
+      return Message.success(`这是一条 ${type} 消息`, {
         ...options,
       })
     case 'warning':
-      return Message.warning({
+      return Message.warning(`这是一条 ${type} 消息`, {
         ...options,
       })
     case 'error':
-      return Message.error({
+      return Message.error(`这是一条 ${type} 消息`, {
         ...options,
       })
   }

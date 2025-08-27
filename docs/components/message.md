@@ -8,8 +8,8 @@
 :::
 
 ## 关闭图标
-> 通过 `showCloseIcon` 来设置是否显示关闭图标，默认值为 `false`
-> 当 `showCloseIcon` 设置为true时, autoClose必定为 `true`，即使给定值为 `false` 也不会生效
+> 通过 `showCloseIcon` 来设置是否显示关闭图标，默认值为 `true`
+> 当 `showCloseIcon` 设置为false时, autoClose必定为 `true`，即使给定值为 `false` 也不会生效
 
 :::demo message/CloseIcon
 :::

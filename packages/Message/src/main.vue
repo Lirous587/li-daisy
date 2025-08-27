@@ -27,7 +27,7 @@
     </div>
 
     <!-- 背景层 -->
-    <div class="absolute inset-0 opacity-10" :class="bgColorClass" v-if="!props.plain"></div>
+    <div class="absolute inset-0" :class="bgColorClass" v-if="!props.plain"></div>
   </div>
 </template>
 
@@ -74,17 +74,17 @@ const textColorClass = computed(() => {
 const bgColorClass = computed(() => {
   switch (props.type) {
     case 'primary':
-      return 'bg-primary'
+      return 'bg-primary/10'
     case 'info':
-      return 'bg-info'
+      return 'bg-info/10'
     case 'success':
-      return 'bg-success'
+      return 'bg-success/10'
     case 'warning':
-      return 'bg-warning'
+      return 'bg-warning/10'
     case 'error':
-      return 'bg-error'
+      return 'bg-error/10'
     default:
-      return 'bg-info'
+      return 'bg-info/10'
   }
 })
 

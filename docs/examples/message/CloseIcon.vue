@@ -8,8 +8,7 @@
 import { Message } from 'li-daisy'
 
 const toastFunc = () => {
-  Message.info({
-    message: `这条消息无关闭图标`,
+  Message.info('这条消息无关闭图标', {
     showCloseIcon: false,
     // 此时即使设置了autoClose为false 该消息依旧会自动关闭
     autoClose: false,

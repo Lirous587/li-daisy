@@ -9,7 +9,7 @@ export interface MessageProps {
   showCloseIcon?: boolean
 }
 
-export interface MessageOptions extends MessageProps {
+export interface MessageOptions extends Omit<MessageProps, 'message'> {
   duration?: number
   autoClose?: boolean
 }

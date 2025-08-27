@@ -1,4 +1,4 @@
-import { type Component } from 'vue'
+import { type Component, type VNode } from 'vue'
 import MessageComponent from './main.vue'
 import { Queue, type QueueItemOptions } from '../../Queue/index'
 import type { MessageOptions, MessageProps, MessageType } from './types'
@@ -11,45 +11,48 @@ class MessageManager {
 
 export const messageManager = new MessageManager()
 
-const buildMessage = (options: MessageOptions, type: MessageType) => {
-  options.showCloseIcon = options.showCloseIcon ?? true
-  options.plain = options.plain ?? false
+const buildMessage = (message: string | VNode, type: MessageType, options?: MessageOptions) => {
+  if (options) {
+    options.showCloseIcon = options.showCloseIcon ?? true
+    options.plain = options.plain ?? false
+  }
 
   messageManager.add(
     MessageComponent,
     {
       type: type,
-      plain: options.plain,
-      message: options.message,
-      showCloseIcon: options.showCloseIcon,
+      plain: options && options.plain,
+      message: message,
+      showCloseIcon: options && options.showCloseIcon,
     },
     {
       ...options,
       position: 'top-center',
-      autoClose: options.showCloseIcon ? options.autoClose : true,
+      // 当 showCloseIcon 设置为false时, autoClose 必定为 true，即使给定值为 false 也不会生效
+      autoClose: options?.showCloseIcon === false ? true : options?.autoClose,
     },
   )
 }
 
 export const Message = {
-  primary(options: MessageOptions) {
-    buildMessage(options, 'primary')
+  primary(message: string | VNode, options?: MessageOptions) {
+    buildMessage(message, 'primary', options)
   },
 
-  info(options: MessageOptions) {
-    buildMessage(options, 'info')
+  info(message: string | VNode, options?: MessageOptions) {
+    buildMessage(message, 'info', options)
   },
 
-  success(options: MessageOptions) {
-    buildMessage(options, 'success')
+  success(message: string | VNode, options?: MessageOptions) {
+    buildMessage(message, 'success', options)
   },
 
-  warning(options: MessageOptions) {
-    buildMessage(options, 'warning')
+  warning(message: string | VNode, options?: MessageOptions) {
+    buildMessage(message, 'warning', options)
   },
 
-  error(options: MessageOptions) {
-    buildMessage(options, 'error')
+  error(message: string | VNode, options?: MessageOptions) {
+    buildMessage(message, 'error', options)
   },
 
   close(id: string) {
