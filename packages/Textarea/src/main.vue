@@ -11,7 +11,7 @@
       :maxlength="props.maxlength"
       :rows="dynamicRows"
       class="textarea min-h-0 w-full scrollbar-xs"
-      :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none' : '']"
+      :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none !border-base-300' : '']"
     ></textarea>
 
     <div v-if="maxlength" class="absolute right-2.5 bottom-2.5 text-sm text-base-content/70">
@@ -60,8 +60,8 @@ const sizeClass = computed(() => {
 
 const colorClass = computed(() => {
   switch (props.color) {
-    case 'ghost':
-      return 'textarea-ghost'
+    case 'base':
+      return ''
     case 'neutral':
       return 'textarea-neutral'
     case 'primary':
@@ -79,7 +79,7 @@ const colorClass = computed(() => {
     case 'error':
       return 'textarea-error'
     default:
-      return ''
+      return 'textarea-info'
   }
 })
 

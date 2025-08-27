@@ -7,6 +7,8 @@
 <script setup lang="ts">
 import { TextInput, type TextInputSize } from 'li-daisy'
 import { ref } from 'vue'
-const text = ref<string>('')
+
 const sizes = ref<TextInputSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])
+
+const text = ref<string>('')
 </script>

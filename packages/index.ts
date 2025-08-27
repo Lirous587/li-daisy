@@ -16,6 +16,7 @@ import { TextInput } from './TextInput'
 export type { TextInputSize, TextInputColor } from './TextInput'
 
 import { Textarea } from './Textarea'
+export type { TextareaSize, TextareaColor } from './Textarea'
 
 import { NumberInput } from './NumberInput'
 
