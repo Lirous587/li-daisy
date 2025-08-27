@@ -1,4 +1,4 @@
-# Textarea文本输入框
+# Textarea多行文本输入框
 
 ## 尺寸
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`

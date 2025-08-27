@@ -1,4 +1,4 @@
-# ThemeSwitch 主题切换器
+# ThemeSwitch主题切换器
 
 ## 基础用法
 > 通过传递 `lightTheme` 和 `darkTheme` 来分别设置明暗模式，组件库已定义 `li-light` 和 `li-dark` 两种模式
