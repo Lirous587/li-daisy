@@ -8,7 +8,7 @@
         <template #default="{ row, index }: TableColumnDefaultScope<Language>">
           <div class="flex gap-x-3">
             <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
-            <Popconfirm @confirm="handleDeleteRow(index)">
+            <Popconfirm @confirm="handleDeleteRow(index)" :z-index="10">
               <template #trigger>
                 <div class="btn btn-xs btn-success btn-outline">删除</div>
               </template>
@@ -45,15 +45,14 @@ const data = ref<Language[]>([
 ])
 
 const handleDeleteRow = (index: number) => {
-  if (data.value.length === 1) {
+  if (data.value.length === 0) {
     Notification.warning({
-      title: '当前禁止删除',
-      message: '至少保留一条数据',
+      title: '删除失败',
+      message: '当前已无数据',
     })
     return
   }
   data.value.splice(index, 1)
-  console.log(index)
 }
 
 const handleToatRow = (item: Language) => {

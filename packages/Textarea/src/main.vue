@@ -84,10 +84,7 @@ const colorClass = computed(() => {
 })
 
 const currentLength = computed<number>(() => {
-  if (model.value === undefined || model.value === null) {
-    return 0
-  }
-  return String(model.value).length
+  return String(model.value ?? '').length
 })
 
 // 实际文本域

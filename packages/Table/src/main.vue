@@ -113,132 +113,137 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="(item, rowIndex) in props.data" :key="generateRowKey(item, rowIndex)">
-          <tr :class="[handleZebraStyle(rowIndex), handleHoverHightlight()]">
-            <!-- expand -->
-            <th v-if="hasExpand" class="sticky left-0 z-1">
-              <span
-                v-if="!props.select && leftPinCols.length === 0"
-                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
-                :class="scrollState.left ? 'pin-left-shadow' : ''"
-              ></span>
-              <label class="swap swap-rotate">
-                <input type="checkbox" @change="toggleExpand(item)" />
-                <ChevronDownIcon class="swap-on w-5 h-5" />
-                <ChevronRightIcon class="swap-off w-5 h-5" />
-              </label>
-            </th>
+        <tr v-if="!props.data || (Array.isArray(props.data) && props.data.length === 0)">
+          <td :colspan="totalColumnsCount" class="text-center text-base-content/60">no result</td>
+        </tr>
+        <template v-else>
+          <template v-for="(item, rowIndex) in props.data" :key="generateRowKey(item, rowIndex)">
+            <tr :class="[handleZebraStyle(rowIndex), handleHoverHightlight()]">
+              <!-- expand -->
+              <th v-if="hasExpand" class="sticky left-0 z-1">
+                <span
+                  v-if="!props.select && leftPinCols.length === 0"
+                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  :class="scrollState.left ? 'pin-left-shadow' : ''"
+                ></span>
+                <label class="swap swap-rotate">
+                  <input type="checkbox" @change="toggleExpand(item)" />
+                  <ChevronDownIcon class="swap-on w-5 h-5" />
+                  <ChevronRightIcon class="swap-off w-5 h-5" />
+                </label>
+              </th>
 
-            <!-- 选择单元格 -->
-            <th
-              v-if="props.select"
-              class="sticky z-1"
-              :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
-            >
-              <span
-                v-if="leftPinCols.length === 0"
-                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
-                :class="scrollState.left ? 'pin-left-shadow' : ''"
-              ></span>
-              <input
-                type="checkbox"
-                class="checkbox checkbox-sm"
-                :checked="selectedRowsSet.has(item)"
-                @change="handleSelect($event, item)"
-                :disabled="props.selectable ? !props.selectable?.(item) : false"
-              />
-            </th>
+              <!-- 选择单元格 -->
+              <th
+                v-if="props.select"
+                class="sticky z-1"
+                :style="{ left: hasExpand ? 50 : 0 + 'px !important' }"
+              >
+                <span
+                  v-if="leftPinCols.length === 0"
+                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  :class="scrollState.left ? 'pin-left-shadow' : ''"
+                ></span>
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-sm"
+                  :checked="selectedRowsSet.has(item)"
+                  @change="handleSelect($event, item)"
+                  :disabled="props.selectable ? !props.selectable?.(item) : false"
+                />
+              </th>
 
-            <!-- left -->
-            <th
-              v-for="(column, leftIndex) in leftPinCols"
-              :key="column.prop"
-              :style="getPinColumnStyle(leftIndex, column.pinCol)"
-              class="sticky z-1"
-            >
-              <span
-                class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
-                :class="scrollState.left ? 'pin-left-shadow' : ''"
-              ></span>
-              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
-                <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
-                </template>
-                <template v-else>
-                  {{ column.prop ? item[column.prop] : '' }}
-                </template>
-              </OverflowTip>
-              <div v-else class="flex items-center">
-                <div :class="getAlgin(column.align)">
+              <!-- left -->
+              <th
+                v-for="(column, leftIndex) in leftPinCols"
+                :key="column.prop"
+                :style="getPinColumnStyle(leftIndex, column.pinCol)"
+                class="sticky z-1"
+              >
+                <span
+                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  :class="scrollState.left ? 'pin-left-shadow' : ''"
+                ></span>
+                <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                   <template v-if="column.defaultSlot">
                     <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                   </template>
                   <template v-else>
                     {{ column.prop ? item[column.prop] : '' }}
                   </template>
+                </OverflowTip>
+                <div v-else class="flex items-center">
+                  <div :class="getAlgin(column.align)">
+                    <template v-if="column.defaultSlot">
+                      <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                    </template>
+                    <template v-else>
+                      {{ column.prop ? item[column.prop] : '' }}
+                    </template>
+                  </div>
                 </div>
-              </div>
-            </th>
+              </th>
 
-            <td v-for="column in regularCols" :key="column.prop" class="z-0">
-              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
-                <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
-                </template>
-                <template v-else>
-                  {{ column.prop ? item[column.prop] : '' }}
-                </template>
-              </OverflowTip>
-              <div v-else class="flex items-center">
-                <div :class="getAlgin(column.align)">
+              <td v-for="column in regularCols" :key="column.prop" class="z-0">
+                <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                   <template v-if="column.defaultSlot">
                     <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                   </template>
                   <template v-else>
                     {{ column.prop ? item[column.prop] : '' }}
                   </template>
+                </OverflowTip>
+                <div v-else class="flex items-center">
+                  <div :class="getAlgin(column.align)">
+                    <template v-if="column.defaultSlot">
+                      <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                    </template>
+                    <template v-else>
+                      {{ column.prop ? item[column.prop] : '' }}
+                    </template>
+                  </div>
                 </div>
-              </div>
-            </td>
+              </td>
 
-            <!-- right -->
-            <th
-              v-for="(column, rightIndex) in rightPinCols"
-              :key="column.prop"
-              :style="getPinColumnStyle(rightIndex, column.pinCol)"
-              class="sticky z-1"
-            >
-              <span
-                class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
-                :class="scrollState.right ? 'pin-right-shadow' : ''"
-              ></span>
-              <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
-                <template v-if="column.defaultSlot">
-                  <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
-                </template>
-                <template v-else>
-                  {{ column.prop ? item[column.prop] : '' }}
-                </template>
-              </OverflowTip>
-              <div v-else class="flex items-center">
-                <div :class="getAlgin(column.align)">
+              <!-- right -->
+              <th
+                v-for="(column, rightIndex) in rightPinCols"
+                :key="column.prop"
+                :style="getPinColumnStyle(rightIndex, column.pinCol)"
+                class="sticky z-1"
+              >
+                <span
+                  class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+                  :class="scrollState.right ? 'pin-right-shadow' : ''"
+                ></span>
+                <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
                   <template v-if="column.defaultSlot">
                     <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
                   </template>
                   <template v-else>
                     {{ column.prop ? item[column.prop] : '' }}
                   </template>
+                </OverflowTip>
+                <div v-else class="flex items-center">
+                  <div :class="getAlgin(column.align)">
+                    <template v-if="column.defaultSlot">
+                      <component :is="column.defaultSlot" :row="item" :index="rowIndex" />
+                    </template>
+                    <template v-else>
+                      {{ column.prop ? item[column.prop] : '' }}
+                    </template>
+                  </div>
                 </div>
-              </div>
-            </th>
-          </tr>
+              </th>
+            </tr>
 
-          <!-- expand rows -->
-          <tr v-if="expandedRowsSet.has(item)">
-            <td :colspan="totalColumnsCount">
-              <component :is="expandSlot" :row="item" :index="rowIndex" />
-            </td>
-          </tr>
+            <!-- expand rows -->
+            <tr v-if="expandedRowsSet.has(item)">
+              <td :colspan="totalColumnsCount">
+                <component :is="expandSlot" :row="item" :index="rowIndex" />
+              </td>
+            </tr>
+          </template>
         </template>
       </tbody>
     </table>
@@ -655,7 +660,7 @@ watch(
 const lastValidHeight = ref(0) // 记录上一次的有效高度
 const currentMinHeight = computed(() => {
   // 有数据时才采取最小高度
-  if (!props.data || props.data.length === 0) {
+  if (Array.isArray(props.data) && props.data.length === 0) {
     return lastValidHeight.value || props.placeholderHeight
   }
   return 0
@@ -665,7 +670,7 @@ const currentMinHeight = computed(() => {
 const recordTableHeight = () => {
   nextTick(() => {
     // 有data时才有意义
-    if (scrollContainer.value && props.data && props.data.length > 0) {
+    if (scrollContainer.value && Array.isArray(props.data) && props.data.length > 0) {
       lastValidHeight.value = scrollContainer.value.scrollHeight
     }
   })
@@ -673,7 +678,7 @@ const recordTableHeight = () => {
 
 // 监听data 处理minHeight
 watch(
-  () => props.data.length,
+  () => (Array.isArray(props.data) ? props.data.length : 0),
   () => {
     recordTableHeight()
   },
