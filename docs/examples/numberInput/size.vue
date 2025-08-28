@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { NumberInput, type NumberInputSize } from 'li-daisy'
+
 import { ref } from 'vue'
 
 const sizes = ref<NumberInputSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])

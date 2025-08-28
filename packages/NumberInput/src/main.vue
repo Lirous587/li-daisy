@@ -2,20 +2,15 @@
   <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative !px-0"
-      :class="[inputSizeClass, inputColorClass]"
+      class="input flex-1 overflow-hidden relative !px-0 h-8"
+      :class="[sizeClass, inputColorClass]"
     >
       <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
 
       <!-- reduce -->
       <div
         class="h-full flex items-center justify-center hover:cursor-pointer border-r aspect-square select-none"
-        :class="[
-          operationBorderClass,
-          operationBgClass,
-          operationTextColorClass,
-          operationSizeClass,
-        ]"
+        :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
         @click="decrease"
       >
         -
@@ -25,7 +20,7 @@
         ref="inputRef"
         type="number"
         v-model="model"
-        :class="[inputSizeClass, inputColorClass]"
+        :class="[inputColorClass]"
         :placeholder="props.placeholder"
         :min="props.min"
         :max="props.max"
@@ -34,12 +29,7 @@
       <!-- plus -->
       <div
         class="h-full flex items-center justify-center hover:cursor-pointer border-l aspect-square select-none"
-        :class="[
-          operationBorderClass,
-          operationBgClass,
-          operationTextColorClass,
-          operationSizeClass,
-        ]"
+        :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
         @click="increase"
       >
         +
@@ -86,23 +76,6 @@ watch(model, (newValue) => {
 })
 
 const inputRef = ref<HTMLInputElement>()
-
-const inputSizeClass = computed(() => {
-  switch (props.size) {
-    case 'xs':
-      return 'input-xs'
-    case 'sm':
-      return 'input-sm'
-    case 'md':
-      return 'input-md'
-    case 'lg':
-      return 'input-lg'
-    case 'xl':
-      return 'input-xl'
-    default:
-      return 'input-md'
-  }
-})
 
 const inputColorClass = computed(() => {
   if (props.disabled) return ''
@@ -206,20 +179,18 @@ const operationTextColorClass = computed(() => {
   }
 })
 
-const operationSizeClass = computed(() => {
+const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'btn-xs'
+      return 'scale-80'
     case 'sm':
-      return 'btn-sm'
+      return 'scale-90'
     case 'md':
-      return 'btn-md'
+      return ''
     case 'lg':
-      return 'btn-lg'
+      return 'scale-110'
     case 'xl':
-      return 'btn-xl'
-    default:
-      return 'btn-md'
+      return 'scale-120'
   }
 })
 
