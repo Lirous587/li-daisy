@@ -13,8 +13,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// import { NumberInput, type NumberInputColor } from 'li-daisy'
-import { NumberInput, type NumberInputColor } from '../../../packages'
+import { NumberInput, type NumberInputColor } from 'li-daisy'
 
 const colors = ref<NumberInputColor[]>([
   'base',

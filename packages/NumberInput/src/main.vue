@@ -9,7 +9,7 @@
 
       <!-- reduce -->
       <div
-        class="h-full flex items-center justify-center hover:cursor-pointer border-r aspect-square"
+        class="h-full flex items-center justify-center hover:cursor-pointer border-r aspect-square select-none"
         :class="[
           operationBorderClass,
           operationBgClass,
@@ -33,7 +33,7 @@
 
       <!-- plus -->
       <div
-        class="h-full flex items-center justify-center hover:cursor-pointer border-l aspect-square"
+        class="h-full flex items-center justify-center hover:cursor-pointer border-l aspect-square select-none"
         :class="[
           operationBorderClass,
           operationBgClass,
@@ -107,7 +107,7 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return ''
+      return 'input-base'
     case 'neutral':
       return 'input-neutral'
     case 'primary':
@@ -242,3 +242,13 @@ const increase = () => {
   model.value = currentValue
 }
 </script>
+
+<style scoped>
+.input-base {
+  &,
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-base-300);
+  }
+}
+</style>

@@ -4,8 +4,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// import { NumberInput } from 'li-daisy'
-import { NumberInput, type NumberInputColor } from '../../../packages'
+import { NumberInput } from 'li-daisy'
 
 const numberValue = ref<number>(0)
 </script>
