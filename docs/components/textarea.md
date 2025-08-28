@@ -39,4 +39,4 @@
 | placeholder |    占位符    | `string`  |        -        |    -    |
 |  disabled   |   是否禁用   | `boolean` |        -        | `false` |
 |  maxlength  | 最大文本长度 | `number`  |        -        |    -    |
-|    color    |     颜色     |  `enum`   | `TextareaColor` | `info`  |
+|    color    |     颜色     |  `enum`   | `TextareaColor` | `base`  |

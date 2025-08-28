@@ -31,7 +31,7 @@
 |  disabled   | 是否禁用 | `boolean` |         -          | `false` |
 |     min     |  最小值  | `number`  |         -          |    -    |
 |     max     |  最大值  | `number`  |         -          |    -    |
-|    color    |   颜色   |  `enum`   | `NumberInputColor` | `info`  |
+|    color    |   颜色   |  `enum`   | `NumberInputColor` | `base`  |
 
 
 

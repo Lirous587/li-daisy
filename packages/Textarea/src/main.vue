@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   minRows: 5,
   maxRows: 10,
   size: 'md',
-  color: 'info',
+  color: 'base',
 })
 
 const model = defineModel<string | undefined>({
@@ -80,7 +80,7 @@ const colorClass = computed(() => {
     case 'error':
       return 'textarea-error'
     default:
-      return 'textarea-info'
+      return ''
   }
 })
 

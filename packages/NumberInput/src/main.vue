@@ -57,6 +57,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   placeholder: '',
   disabled: false,
   size: 'md',
+  color: 'base',
 })
 
 const model = defineModel<number | undefined>({
@@ -125,7 +126,7 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'input-error'
     default:
-      return 'input-info'
+      return 'input-base'
   }
 })
 
@@ -151,7 +152,7 @@ const operationBorderClass = computed(() => {
     case 'error':
       return 'border-error'
     default:
-      return 'border-info'
+      return 'border-base-300'
   }
 })
 
@@ -176,7 +177,7 @@ const operationBgClass = computed(() => {
     case 'error':
       return 'bg-error/10'
     default:
-      return 'bg-info/10'
+      return 'bg-base-200'
   }
 })
 
@@ -201,7 +202,7 @@ const operationTextColorClass = computed(() => {
     case 'error':
       return 'text-error'
     default:
-      return 'bg-info'
+      return 'text-base-content'
   }
 })
 
