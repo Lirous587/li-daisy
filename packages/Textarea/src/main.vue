@@ -35,6 +35,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   minRows: 5,
   maxRows: 10,
   size: 'md',
+  color: 'info',
 })
 
 const model = defineModel<string | undefined>({

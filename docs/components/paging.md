@@ -1,8 +1,16 @@
 # Paging分页
 
-## 基础用法
-> 通过 `pages` 设置总页码
-:::demo paging/basic
+
+## 尺寸
+> 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
+:::demo paging/size
+:::
+
+## 颜色
+> 通过 `color` 来设置颜色
+>>
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
+:::demo paging/color
 :::
 
 
@@ -59,6 +67,8 @@
 |       属性值        |            说明            |    类型    |          具体类型          | 默认值  |
 | :-----------------: | :------------------------: | :--------: | :------------------------: | :-----: |
 |        pages        |          分页总数          |  `number`  |             -              |    -    |
+|        size         |            尺寸            |   `enum`   |        `PagingSize`        | `'md'`  |
+|        color        |            颜色            |   `enum`   |       `PagingColor`        | `base`  |
 | hide-on-single-page |       单页时是否隐藏       | `boolean`  |             -              | `false` |
 |       offset        |           偏移量           |  `number`  |             -              |   `1`   |
 |        icon         |       否显示箭头图标       | `boolean`  |             -              | `ture`  |

@@ -1,5 +1,20 @@
+export type PagingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+export type PagingColor =
+  | 'base'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+
 export interface PagingProps {
   pages: number
+  size?: PagingSize
+  color?: PagingColor
   hideOnSinglePage?: boolean
   offset?: number
   icon?: boolean

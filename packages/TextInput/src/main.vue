@@ -74,6 +74,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   placeholder: '',
   disabled: false,
   size: 'md',
+  color: 'info',
 })
 const model = defineModel<string | undefined>({
   required: true,
