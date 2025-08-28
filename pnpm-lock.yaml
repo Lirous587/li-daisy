@@ -75,9 +75,6 @@ importers:
       jiti:
         specifier: ^2.4.2
         version: 2.4.2
-      li-daisy:
-        specifier: workspace:*
-        version: 'link:'
       markdown-it-container:
         specifier: ^4.0.0
         version: 4.0.0
