@@ -14,7 +14,7 @@
     >
       <!-- last -->
       <div
-        class="flex h-8 aspect-square"
+        class="flex h-full aspect-square"
         :class="[ifMin ? 'pointer-events-none' : '', bgColor]"
         @click="changePage(Math.max(1, currentPage - 1))"
         v-if="shouldRenderIcons"
@@ -27,7 +27,7 @@
         v-for="(item, index) in list"
         @click="changePage(item.page)"
         :key="index"
-        class="flex h-8 aspect-square"
+        class="flex h-full aspect-square"
         :class="[item.page == currentPage ? activeBgColor : '', bgColor]"
       >
         <span class="m-auto" :class="textColor"> {{ item.value }}</span>
@@ -35,7 +35,7 @@
 
       <!-- next -->
       <div
-        class="flex h-8 aspect-square"
+        class="flex h-full aspect-square"
         :class="[ifMax ? 'pointer-events-none' : '', bgColor]"
         @click="changePage(Math.min(pages, currentPage + 1))"
         v-if="shouldRenderIcons"
@@ -143,15 +143,15 @@ list.value = initList()
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'scale-80'
+      return 'h-6'
     case 'sm':
-      return 'scale-90'
+      return 'h-7'
     case 'md':
-      return ''
+      return 'h-8'
     case 'lg':
-      return 'scale-110'
+      return 'h-9'
     case 'xl':
-      return 'scale-120'
+      return 'h-10'
   }
 })
 

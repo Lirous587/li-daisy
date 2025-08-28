@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-// import { Paging } from 'li-daisy'
+import { Paging, type PagingColor } from 'li-daisy'
 import { ref } from 'vue'
-import { Paging, type PagingColor } from '../../../packages'
 
 const colors = ref<PagingColor[]>([
   'base',
