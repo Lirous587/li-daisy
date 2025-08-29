@@ -29,8 +29,8 @@ import type { ThemeSwitchProps } from './types'
 import { computed, nextTick, onMounted, ref } from 'vue'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
-  lightTheme: 'light',
-  darkTheme: 'dark',
+  lightTheme: 'li-light',
+  darkTheme: 'li-dark',
 })
 
 const setTheme = (theme: string) => {

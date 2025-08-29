@@ -9,8 +9,6 @@ import { h } from 'vue'
 import { Message } from 'li-daisy'
 
 const vnodeNotification = () => {
-  Message.info(h('span', { style: 'color: #16a34a;' }, '这是VNode消息内容'), {
-    duration: 5000,
-  })
+  Message.info(h('span', { style: 'color: #16a34a;' }, '这是VNode消息内容'))
 }
 </script>

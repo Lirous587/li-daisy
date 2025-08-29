@@ -1,4 +1,4 @@
 export interface ThemeSwitchProps {
-  lightTheme: string
-  darkTheme: string
+  lightTheme?: string
+  darkTheme?: string
 }
