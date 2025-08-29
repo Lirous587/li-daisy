@@ -33,10 +33,10 @@
 ## API
 
 ### Attributes
-|   属性值    |     说明     |   类型    |    具体类型     | 默认值  |
-| :---------: | :----------: | :-------: | :-------------: | :-----: |
-|    size     |     尺寸     |  `enum`   | `TextareaSize`  | `'md'`  |
-| placeholder |    占位符    | `string`  |        -        |    -    |
-|  disabled   |   是否禁用   | `boolean` |        -        | `false` |
-|  maxlength  | 最大文本长度 | `number`  |        -        |    -    |
-|    color    |     颜色     |  `enum`   | `TextareaColor` | `base`  |
+|   属性值    |     说明     |      类型       | 默认值  |
+| :---------: | :----------: | :-------------: | :-----: |
+|    size     |     尺寸     | `TextareaSize`  | `'md'`  |
+| placeholder |    占位符    |    `string`     |    -    |
+|  disabled   |   是否禁用   |    `boolean`    | `false` |
+|  maxlength  | 最大文本长度 |    `number`     |    -    |
+|    color    |     颜色     | `TextareaColor` | `base`  |

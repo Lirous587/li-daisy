@@ -19,7 +19,7 @@
 ## API
 
 ### Attributes
-|   属性值   |   说明   |   类型   | 具体类型 |   默认值   |
-| :--------: | :------: | :------: | :------: | :--------: |
-| lightTheme | 明亮主题 | `string` |    -     | `li-light` |
-| darkTheme  | 暗黑主题 | `string` |    -     | `li-dark`  |
+|   属性值   |   说明   |   类型   |   默认值   |
+| :--------: | :------: | :------: | :--------: |
+| lightTheme | 明亮主题 | `string` | `li-light` |
+| darkTheme  | 暗黑主题 | `string` | `li-dark`  |

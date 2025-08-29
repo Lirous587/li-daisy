@@ -24,11 +24,11 @@
 ## API
 
 ### Attributes
-|   属性值    |   说明   |   类型    |      具体类型      | 默认值  |
-| :---------: | :------: | :-------: | :----------------: | :-----: |
-|    size     |   尺寸   |  `enum`   | `NumberInputSize`  | `'md'`  |
-| placeholder |  占位符  | `string`  |         -          |    -    |
-|  disabled   | 是否禁用 | `boolean` |         -          | `false` |
-|     min     |  最小值  | `number`  |         -          |    -    |
-|     max     |  最大值  | `number`  |         -          |    -    |
-|    color    |   颜色   |  `enum`   | `NumberInputColor` | `base`  |
+|   属性值    |   说明   |        类型        | 默认值  |
+| :---------: | :------: | :----------------: | :-----: |
+|    size     |   尺寸   | `NumberInputSize`  | `'md'`  |
+| placeholder |  占位符  |      `string`      |    -    |
+|  disabled   | 是否禁用 |     `boolean`      | `false` |
+|     min     |  最小值  |      `number`      |    -    |
+|     max     |  最大值  |      `number`      |    -    |
+|    color    |   颜色   | `NumberInputColor` | `base`  |

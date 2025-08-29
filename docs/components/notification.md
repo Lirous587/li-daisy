@@ -29,12 +29,12 @@
 
 ### 配置项
 
-| 参数          | 类型                   | 默认值      | 说明                                                                |
-| ------------- | ---------------------- | ----------- | ------------------------------------------------------------------- |
-| message       | `[string,Vnode]`       | -           | 通知内容                                                            |
-| title         | `string`               | -           | 通知标题                                                            |
-| type          | `NotificationType`     | `'info'`    | 通知类型，可选值：`info` `success` `warning` `error`                |
-| position      | `NotificationPosition` | `'top-end'` | 通知位置，可选值：`top-start` `top-end` `bottom-start` `bottom-end` |
-| duration      | `number`               | `2000`      | 自动消失时间（毫秒），低于1000无效                                  |
-| autoClose     | `boolean`              | `true`      | 是否自动关闭                                                        |
-| showCloseIcon | `boolean`              | `false`     | 是否显示右上角关闭图标                                              |
+| 参数          | 类型                   | 默认值      | 说明                               |
+| ------------- | ---------------------- | ----------- | ---------------------------------- |
+| title         | `string`               | -           | 通知标题                           |
+| message       | `[string,Vnode]`       | -           | 通知内容                           |
+| type          | `NotificationType`     | `'info'`    | 通知类型                           |
+| position      | `NotificationPosition` | `'top-end'` | 通知位置                           |
+| duration      | `number`               | `2000`      | 自动消失时间（毫秒），低于1000无效 |
+| autoClose     | `boolean`              | `true`      | 是否自动关闭                       |
+| showCloseIcon | `boolean`              | `false`     | 是否显示右上角关闭图标             |

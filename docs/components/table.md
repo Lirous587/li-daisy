@@ -79,28 +79,28 @@
 ### Attributes
 
 #### Table
-|       属性值       |          说明          |             类型             |           具体类型           |  默认值  |
-| :----------------: | :--------------------: | :--------------------------: | :--------------------------: | :------: |
-|        data        |        表格数据        | `Array<Record<string, any>>` |              -               |    -     |
-|        size        |        表格大小        |            `enum`            | `['xs','sm','md','lg','xl']` | `'info'` |
-|       zebra        |     是否带有斑马纹     |          `boolean`           |              -               | `false`  |
-|       border       |      是否显示边框      |          `boolean`           |              -               | `false`  |
-|       select       |        是否可选        |           `select`           |              -               | `false`  |
-|     selectable     |  设置可选列的回调函数  |          `Function`          |   `(item: any) => boolean`   | `false`  |
-|  hover-highlight   |   悬浮某列时高亮该列   |          `boolean`           |              -               | `false`  |
-| placeholder-height | 表格的默认占位高度(px) |           `number`           |              -               |  `300`   |
+|       属性值       |          说明          |             类型             |  默认值  |
+| :----------------: | :--------------------: | :--------------------------: | :------: |
+|        data        |        表格数据        | `Array<Record<string, any>>` |    -     | - |
+|        size        |        表格大小        | `['xs','sm','md','lg','xl']` | `'info'` |
+|       zebra        |     是否带有斑马纹     |          `boolean`           | `false`  |
+|       border       |      是否显示边框      |          `boolean`           | `false`  |
+|       select       |        是否可选        |           `select`           | `false`  |
+|     selectable     |  设置可选列的回调函数  |    `(item: T) => boolean`    | `false`  |
+|  hover-highlight   |   悬浮某列时高亮该列   |          `boolean`           | `false`  |
+| placeholder-height | 表格的默认占位高度(px) |           `number`           |  `300`   |
 
 #### TableColumn
-| 属性值  |      说明      |   类型   |      具体类型      | 默认值 |
-| :-----: | :------------: | :------: | :----------------: | :----: |
-|  prop   | 列内容的字段名 | `string` |         -          |   -    |
-|  label  |    表格标签    | `string` |         -          |   -    |
-|  width  | 单元格宽度(px) | `number` |         -          |   -    |
-| pin-col |    固定位置    |  `enum`  | `['left','right']` |   -    |
+| 属性值  |      说明      |        类型        | 默认值 |
+| :-----: | :------------: | :----------------: | :----: |
+|  prop   | 列内容的字段名 |      `string`      |   -    |
+|  label  |    表格标签    |      `string`      |   -    |
+|  width  | 单元格宽度(px) |      `number`      |   -    |
+| pin-col |    固定位置    | `['left','right']` |   -    |
 
 
 ### Event
-|     名称      |         说明         |       具体类型       |
+|     名称      |         说明         |         类型         |
 | :-----------: | :------------------: | :------------------: |
 | select-change | 全选或选择某列时触发 | `(item:any) => void` |
 
@@ -114,6 +114,6 @@
 #### TableColumn
 | 插槽名  |      说明      |             暴露属性              |
 | :-----: | :------------: | :-------------------------------: |
-| default | 单元格内容插槽 | `{ row: object, index: number }`  |
+| default | 单元格内容插槽 |    `{ row: T, index: number }`    |
 | header  |  表头内容插槽  | `{ label: string, prop: string }` |
-| expand  |   展开行插槽   | `{ row: object, index: number }`  |
+| expand  |   展开行插槽   |    `{ row: T, index: number }`    |

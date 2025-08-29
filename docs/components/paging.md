@@ -64,29 +64,29 @@
 ### Attributes
 
 #### Props
-|       属性值        |            说明            |    类型    |          具体类型          | 默认值  |
-| :-----------------: | :------------------------: | :--------: | :------------------------: | :-----: |
-|        pages        |          分页总数          |  `number`  |             -              |    -    |
-|        size         |            尺寸            |   `enum`   |        `PagingSize`        | `'md'`  |
-|        color        |            颜色            |   `enum`   |       `PagingColor`        | `base`  |
-| hide-on-single-page |       单页时是否隐藏       | `boolean`  |             -              | `false` |
-|       offset        |           偏移量           |  `number`  |             -              |   `1`   |
-|        icon         |       否显示箭头图标       | `boolean`  |             -              | `ture`  |
-|   hide-icon-on-sm   | 是否隐藏小设备上的箭头图标 | `boolean`  |             -              | `ture`  |
-|      pre-href       |        简单路径前缀        |  `string`  |             -              |    -    |
-|   href-generator    |     自定义路径生成逻辑     | `Function` | `(page: number) => string` |    -    |
+|       属性值        |            说明            |            类型            | 默认值  |
+| :-----------------: | :------------------------: | :------------------------: | :-----: |
+|        pages        |          分页总数          |          `number`          |    -    |
+|        size         |            尺寸            |        `PagingSize`        | `'md'`  |
+|        color        |            颜色            |       `PagingColor`        | `base`  |
+| hide-on-single-page |       单页时是否隐藏       |         `boolean`          | `false` |
+|       offset        |           偏移量           |          `number`          |   `1`   |
+|        icon         |       否显示箭头图标       |         `boolean`          | `ture`  |
+|   hide-icon-on-sm   | 是否隐藏小设备上的箭头图标 |         `boolean`          | `ture`  |
+|      pre-href       |        简单路径前缀        |          `string`          |    -    |
+|   href-generator    |     自定义路径生成逻辑     | `(page: number) => string` |    -    |
 
 
 
 ### Event
-|  名称  |     说明     |        具体类型         |
+|  名称  |     说明     |          类型           |
 | :----: | :----------: | :---------------------: |
 | change | 页面跳转回调 | `(page:number) => void` |
 
 
 ### Expose
-|   方法名    |     说明     |    类型    |         具体类型         |
-| :---------: | :----------: | :--------: | :----------------------: |
-|   change    |   页面跳转   | `Function` | `(page: number) => void` |
-| currentPage | 验证某个字段 |  `number`  |            -             |
-|    pages    |    总页面    |  `number`  |            -             |
+|   方法名    |     说明     |           类型           |
+| :---------: | :----------: | :----------------------: |
+|   change    |   页面跳转   | `(page: number) => void` |
+| currentPage | 验证某个字段 |         `number`         |
+|    pages    |    总页面    |         `number`         |

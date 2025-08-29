@@ -56,20 +56,20 @@
 ### Attributes
 
 #### Form
-|   属性值    |    说明     |   类型   |          具体类型           |     默认值     |
-| :---------: | :---------: | :------: | :-------------------------: | :------------: |
-|   schema    | yup验证规则 | `object` |       `GenericObject`       |       -        |
-| label-width |  label宽度  | `string` |              -              |    `'60px'`    |
-|    align    |  对齐方向   |  `enum`  | `['horizontal','vertical']` | `'horizontal'` |
+|   属性值    |    说明     |            类型             |     默认值     |
+| :---------: | :---------: | :-------------------------: | :------------: |
+|   schema    | yup验证规则 |       `GenericObject`       |       -        |
+| label-width |  label宽度  |          `string`           |    `'60px'`    |
+|    align    |  对齐方向   | `['horizontal','vertical']` | `'horizontal'` |
 
 
 #### FormItem
-| 属性值  |       说明       |   类型   |          具体类型           |     默认值     |
-| :-----: | :--------------: | :------: | :-------------------------: | :------------: |
-|  name   |   schema的key    | `string` |              -              |       -        |
-|  label  |     label名      | `string` |              -              |       -        |
-| trigger | 错误信息显示时机 |  `enum`  | `['change','blur','input']` |    `'blur'`    |
-|  align  |     对齐方向     |  `enum`  | `['horizontal','vertical']` | `'horizontal'` |
+| 属性值  |       说明       |            类型             |     默认值     |
+| :-----: | :--------------: | :-------------------------: | :------------: |
+|  name   |   schema的key    |          `string`           |       -        |
+|  label  |     label名      |          `string`           |       -        |
+| trigger | 错误信息显示时机 | `['change','blur','input']` |    `'blur'`    |
+|  align  |     对齐方向     | `['horizontal','vertical']` | `'horizontal'` |
 
 ### Slots
 
@@ -86,7 +86,7 @@
 ### Expose
 
 #### Form
-|    方法名     |     说明     |    类型    |                具体类型                |
-| :-----------: | :----------: | :--------: | :------------------------------------: |
-|   validate    | 验证整个表单 | `Function` |         `() => Promise<void>`          |
-| validateField | 验证某个字段 | `Function` | `(fieldName: string) => Promise<void>` |
+|    方法名     |     说明     |                  类型                  |
+| :-----------: | :----------: | :------------------------------------: |
+|   validate    | 验证整个表单 |         `() => Promise<void>`          |
+| validateField | 验证某个字段 | `(fieldName: string) => Promise<void>` |
