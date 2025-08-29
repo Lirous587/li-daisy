@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <VeeForm>
-      <slot />
-    </VeeForm>
-  </div>
+  <VeeForm>
+    <slot />
+  </VeeForm>
 </template>
 
 <script setup lang="ts">
@@ -13,9 +11,7 @@ import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const model = defineModel<Record<string, any>>({
-  required: true,
-})
+const model = defineModel<Record<string, any>>()
 
 const props = withDefaults(defineProps<FormProps>(), {
   labelWidth: '60px',

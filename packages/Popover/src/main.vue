@@ -242,7 +242,7 @@ const toggle = () => {
   }
 }
 
-let hoverTimer: number | null = null
+let hoverTimer: ReturnType<typeof setTimeout> | null = null
 
 const handleMouseEnter = (shouldShow = false) => {
   if (props.trigger === 'hover') {

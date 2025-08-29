@@ -1,6 +1,12 @@
 <template>
   <div class="w-full flex flex-col gap-y-4">
-    <Paging v-for="color in colors" class="m-auto" :pages="10" :color="color"></Paging>
+    <Paging
+      v-model="currentPage"
+      v-for="color in colors"
+      class="m-auto"
+      :pages="10"
+      :color="color"
+    ></Paging>
   </div>
 </template>
 
@@ -19,4 +25,6 @@ const colors = ref<PagingColor[]>([
   'warning',
   'error',
 ])
+
+const currentPage = ref(0)
 </script>

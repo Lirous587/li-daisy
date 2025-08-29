@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   color: 'base',
 })
 
-const model = defineModel<number | undefined>({
+const model = defineModel<number>('modelValue', {
   required: true,
 })
 

@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   color: 'base',
 })
 
-const model = defineModel<string | undefined>({
+const model = defineModel<string>('modelValue', {
   required: true,
 })
 

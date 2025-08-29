@@ -1,6 +1,6 @@
 {
   "name": "li-daisy",
-  "version": "1.8.17",
+  "version": "1.8.24",
   "license": "MIT",
   "private": false,
   "type": "module",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "format": "prettier --write packages/ examples/",
-    "type-check": "vue-tsc --noEmit",
+    "type-check": "vue-tsc --build",
     "build": "vite build",
     "lint": "eslint \"packages/**/*.{ts,vue,js}\" ",
     "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" --fix",

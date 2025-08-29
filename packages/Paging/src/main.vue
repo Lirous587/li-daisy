@@ -80,8 +80,8 @@ const emit = defineEmits<{
   (e: 'change', page: number): void
 }>()
 
-const currentPage = defineModel<number>('currentPage', {
-  default: 1,
+const currentPage = defineModel<number>('modelValue', {
+  required: true,
 })
 
 const offsetValue = computed(() => props.offset)

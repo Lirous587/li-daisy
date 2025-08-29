@@ -76,7 +76,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   size: 'md',
   color: 'base',
 })
-const model = defineModel<string | undefined>({
+const model = defineModel<string>('modelValue', {
   required: true,
 })
 

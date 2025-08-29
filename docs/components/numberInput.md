@@ -32,6 +32,3 @@
 |     min     |  最小值  | `number`  |         -          |    -    |
 |     max     |  最大值  | `number`  |         -          |    -    |
 |    color    |   颜色   |  `enum`   | `NumberInputColor` | `base`  |
-
-
-

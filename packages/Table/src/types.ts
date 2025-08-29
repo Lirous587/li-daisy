@@ -39,13 +39,13 @@ export interface TableColumnHeaderScope {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnDefaultScope<T extends Record<string, any> = Record<string, any>> {
+export interface TableColumnDefaultScope<T extends any = any> {
   row: T
   index: number
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnExpandScope<T extends Record<string, any> = Record<string, any>> {
+export interface TableColumnExpandScope<T extends any = any> {
   row: T
   index: number
 }
