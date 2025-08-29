@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
-import type { PagingProps, PagingItem } from './types'
+import type { PagingProps, PagingItem, PagingRef } from './types'
 import { formatUrl } from '../../utils/format.ts'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
@@ -317,4 +317,12 @@ const shouldRenderIcons = computed(() => {
   // 如果 hideIconOnSm 为 true，则仅在非小屏幕时渲染
   return !isSmallScreen.value
 })
+
+const exposeObject: PagingRef = {
+  change: changePage,
+  pages: props.pages,
+  currentPage: safeCurrentPage.value,
+}
+
+defineExpose(exposeObject)
 </script>

@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export type PagingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type PagingColor =
@@ -26,4 +28,10 @@ export interface PagingProps {
 export interface PagingItem {
   value: number | string
   page: number
+}
+
+export interface PagingRef {
+  change: (page: number) => void
+  currentPage: number
+  pages: number
 }

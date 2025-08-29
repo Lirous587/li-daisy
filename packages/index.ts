@@ -32,7 +32,7 @@ import { Table, TableColumn } from './Table'
 export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'
 
 import { Paging } from './Paging'
-export type { PagingColor, PagingSize } from './Paging'
+export type { PagingColor, PagingSize, PagingRef } from './Paging'
 
 // 反馈 (Feedback)
 import { Modal } from './Modal'

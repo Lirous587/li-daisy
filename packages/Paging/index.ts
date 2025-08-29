@@ -8,6 +8,6 @@ Paging.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
 
 export { Paging }
 
-export type { PagingColor, PagingSize } from './src/types'
+export type { PagingColor, PagingSize, PagingRef } from './src/types'
 
 export default Paging
