@@ -1,10 +1,33 @@
 import type { InjectionKey, Ref } from 'vue'
 
+export type CollapseIcon = 'plus' | 'arrow'
+export type CollapseDefaultColor =
+  | 'base'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+export type CollapseActiveColor =
+  | 'base'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error'
+
 export interface CollapseProps {
   border?: boolean
-  icon?: 'plus' | 'arrow'
-  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
-  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+  itemsBorder?: boolean
+  icon?: CollapseIcon
+  defaultColor?: CollapseDefaultColor
+  activeColor?: CollapseActiveColor
 }
 
 export interface CollapseItemProps {
@@ -13,15 +36,14 @@ export interface CollapseItemProps {
 }
 
 export interface CollapseContext {
-  // 定义折叠面板上下文的接口
   registerItem: () => number
   toggleItem: (id: number) => void
   isItemActive: (id: number) => boolean
   activeItem: Ref<number>
-  border: boolean
-  icon?: 'plus' | 'arrow'
-  default?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
-  active?: 'primary' | 'secondary' | 'info' | 'accent' | 'neutral'
+  itemsBorder: Ref<boolean>
+  icon: Ref<CollapseIcon>
+  defaultColor: Ref<CollapseDefaultColor | undefined>
+  activeColor: Ref<CollapseActiveColor | undefined>
 }
 
 // 创建供注入使用的Key

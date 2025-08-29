@@ -4,6 +4,7 @@ import type { App } from 'vue'
 
 // 布局 (Layout)
 import { Collapse, CollapseItem } from './Collapse'
+export type { CollapseIcon, CollapseDefaultColor, CollapseActiveColor } from './Collapse'
 
 import { Drawer } from './Drawer'
 export type { DrawerRef } from './Drawer'
@@ -27,6 +28,7 @@ export { useYup } from './Form'
 
 // 数据展示 (Data Display)
 import { Avatar } from './Avatar'
+export type { AvatarSize } from './Avatar'
 
 import { Table, TableColumn } from './Table'
 export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'

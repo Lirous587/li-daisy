@@ -1,20 +1,20 @@
 <template>
   <div
-    class="collapse join-item border-base-300 relative"
-    :class="[iconClass, hasBorder ? 'border-y' : '']"
+    class="collapse !rounded-none relative"
+    :class="[iconClass, hasBorder ? 'border-t' : '', defaultBorder, activeBorder]"
   >
     <input type="checkbox" :checked="isOpen" class="peer" @change="toggle" />
-    <div class="collapse-title font-semibold">
+    <div class="collapse-title font-semibold" :class="[defaultText, activeText]">
       {{ props.title }}
     </div>
-    <div class="collapse-content">
-      <div class="p-[1rem]">
-        <slot />
-      </div>
+    <div class="collapse-content" :class="[defaultText, activeText]">
+      <slot />
     </div>
+
+    <!-- 遮罩 -->
     <div
       class="absolute inset-0 z-[-1] transition-colors duration-200"
-      :class="collapseStyle"
+      :class="[defaultBg, activeBg]"
     ></div>
   </div>
 </template>
@@ -39,14 +39,14 @@ if (!collapseContext) {
 }
 
 const hasBorder = computed(() => {
-  if (collapseContext.active || collapseContext.default) {
+  if (collapseContext.activeColor.value || collapseContext.defaultColor.value) {
     return false
   } else {
-    return collapseContext.border
+    return collapseContext.itemsBorder.value
   }
 })
 
-const icon = computed(() => collapseContext.icon)
+const icon = computed(() => collapseContext.icon?.value)
 
 const iconClass = computed(() => {
   switch (icon.value) {
@@ -57,57 +57,217 @@ const iconClass = computed(() => {
   }
 })
 
-const defaultComputed = computed(() => collapseContext.default)
-const defaultClass = computed(() => {
+const defaultComputed = computed(() => collapseContext.defaultColor?.value)
+const defaultBg = computed(() => {
   switch (defaultComputed.value) {
+    case 'base': {
+      return 'bg-base-200'
+    }
     case 'primary': {
-      return 'bg-primary text-primary-content'
+      return 'bg-primary/35'
     }
     case 'secondary': {
-      return 'bg-secondary text-secondary-content '
-    }
-    case 'info': {
-      return 'bg-info text-info-content '
+      return 'bg-secondary/35'
     }
     case 'neutral': {
-      return 'bg-neutral text-neutral-content '
+      return 'bg-neutral/35'
     }
     case 'accent': {
-      return 'bg-accent text-accent-content '
+      return 'bg-accent/35'
+    }
+    case 'info': {
+      return 'bg-info/35'
+    }
+    case 'success': {
+      return 'bg-success/35'
+    }
+    case 'warning': {
+      return 'bg-warning/35'
+    }
+    case 'error': {
+      return 'bg-error/35'
     }
     default: {
-      return 'bg-base-100 text-base-content'
+      return 'bg-base-200'
     }
   }
 })
 
-const activeComputed = computed(() => collapseContext.active)
+const defaultText = computed(() => {
+  switch (defaultComputed.value) {
+    case 'base': {
+      return 'text-base-content'
+    }
+    case 'primary': {
+      return 'text-primary'
+    }
+    case 'secondary': {
+      return 'text-secondary'
+    }
+    case 'neutral': {
+      return 'text-neutral'
+    }
+    case 'accent': {
+      return 'text-accent'
+    }
+    case 'info': {
+      return 'text-info'
+    }
+    case 'success': {
+      return 'text-success'
+    }
+    case 'warning': {
+      return 'text-warning'
+    }
+    case 'error': {
+      return 'text-error'
+    }
+    default: {
+      return 'text-base-content'
+    }
+  }
+})
 
-const activeClass = computed(() => {
+const defaultBorder = computed(() => {
+  switch (defaultComputed.value) {
+    case 'base': {
+      return 'border-base-300'
+    }
+    case 'primary': {
+      return 'border-primary'
+    }
+    case 'secondary': {
+      return 'border-secondary'
+    }
+    case 'neutral': {
+      return 'border-neutral'
+    }
+    case 'accent': {
+      return 'border-accent'
+    }
+    case 'info': {
+      return 'border-info'
+    }
+    case 'success': {
+      return 'border-success'
+    }
+    case 'warning': {
+      return 'border-warning'
+    }
+    case 'error': {
+      return 'border-error'
+    }
+    default: {
+      return 'border-base-300'
+    }
+  }
+})
+
+const activeComputed = computed(() => collapseContext.activeColor?.value)
+
+const activeBg = computed(() => {
   switch (activeComputed.value) {
+    case 'base': {
+      return 'peer-checked:bg-base-200'
+    }
     case 'primary': {
-      return 'peer-checked:bg-primary peer-checked:text-primary-content'
+      return 'peer-checked:bg-primary/35'
     }
     case 'secondary': {
-      return 'peer-checked:bg-secondary peer-checked:text-secondary-content '
-    }
-    case 'info': {
-      return 'peer-checked:bg-info peer-checked:text-info-content '
+      return 'peer-checked:bg-secondary/35'
     }
     case 'neutral': {
-      return 'peer-checked:bg-neutral peer-checked:text-neutral-content '
+      return 'peer-checked:bg-neutral/35'
     }
     case 'accent': {
-      return 'peer-checked:bg-accent peer-checked:text-accent-content '
+      return 'peer-checked:bg-accent/35'
+    }
+    case 'info': {
+      return 'peer-checked:bg-info/35'
+    }
+    case 'success': {
+      return 'peer-checked:bg-success/35'
+    }
+    case 'warning': {
+      return 'peer-checked:bg-warning/35'
+    }
+    case 'error': {
+      return 'peer-checked:bg-error/35'
     }
     default: {
-      return 'peer-checked:bg-base-100 peer-checked:text-base-content'
+      return 'peer-checked:bg-base-200'
     }
   }
 })
 
-const collapseStyle = computed(() => {
-  return [defaultClass.value, activeClass.value]
+const activeText = computed(() => {
+  switch (activeComputed.value) {
+    case 'base': {
+      return 'peer-checked:text-base-content'
+    }
+    case 'primary': {
+      return 'peer-checked:text-primary'
+    }
+    case 'secondary': {
+      return 'peer-checked:text-secondary'
+    }
+    case 'neutral': {
+      return 'peer-checked:text-neutral'
+    }
+    case 'accent': {
+      return 'peer-checked:text-accent'
+    }
+    case 'info': {
+      return 'peer-checked:text-info'
+    }
+    case 'success': {
+      return 'peer-checked:text-success'
+    }
+    case 'warning': {
+      return 'peer-checked:text-warning'
+    }
+    case 'error': {
+      return 'peer-checked:text-error'
+    }
+    default: {
+      return 'peer-checked:text-base-content'
+    }
+  }
+})
+
+const activeBorder = computed(() => {
+  switch (activeComputed.value) {
+    case 'base': {
+      return 'peer-checked:border-base-300'
+    }
+    case 'primary': {
+      return 'peer-checked:border-primary'
+    }
+    case 'secondary': {
+      return 'peer-checked:border-secondary'
+    }
+    case 'neutral': {
+      return 'peer-checked:border-neutral'
+    }
+    case 'accent': {
+      return 'peer-checked:border-accent'
+    }
+    case 'info': {
+      return 'peer-checked:border-info'
+    }
+    case 'success': {
+      return 'peer-checked:border-success'
+    }
+    case 'warning': {
+      return 'peer-checked:border-warning'
+    }
+    case 'error': {
+      return 'peer-checked:border-error'
+    }
+    default: {
+      return 'peer-checked:border-base-content'
+    }
+  }
 })
 
 // 注册自己并设置默认打开状态

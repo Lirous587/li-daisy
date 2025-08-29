@@ -1,17 +1,21 @@
 <template>
-  <div class="join join-vertical my-1 [&>:first-child]:border-t-0 [&>:last-child]:border-b-0">
+  <div
+    class="flex flex-col rounded-md overflow-hidden my-1 [&>:first-child]:border-t-0"
+    :class="border ? 'border border-base-300' : ''"
+  >
     <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, provide } from 'vue'
+import { ref, provide, toRefs } from 'vue'
 import { collapseInjectionKey } from './types'
 import type { CollapseContext, CollapseProps } from './types'
 
 const props = withDefaults(defineProps<CollapseProps>(), {
-  border: false,
   icon: 'plus',
+  border: true,
+  itemBorder: true,
 })
 
 const activeItem = ref<number>(0)
@@ -42,15 +46,15 @@ const isItemActive = (id: number) => {
   return activeItem.value === id
 }
 
-// 为子组件提供状态和方法，使用类型安全的注入键
-provide<CollapseContext>(collapseInjectionKey, {
+const context = {
   registerItem,
   toggleItem,
   isItemActive,
   activeItem,
-  border: props.border,
-  icon: props.icon,
-  default: props.default,
-  active: props.active,
-})
+  // 用 toRefs 保证 props.xxx 变化时 context.xxx 也会变
+  ...toRefs(props),
+}
+
+// 为子组件提供状态和方法，使用类型安全的注入键
+provide<CollapseContext>(collapseInjectionKey, context)
 </script>

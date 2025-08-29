@@ -4,7 +4,7 @@
       <!-- 组件预览区域 -->
       <div class="relative overflow-auto py-4 vp-raw">
         <ClientOnly>
-          <component class="vp-raw" :is="demoComponent" v-if="demoComponent" />
+          <component :is="demoComponent" v-if="demoComponent" />
         </ClientOnly>
       </div>
     </div>
