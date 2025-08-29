@@ -1,5 +1,7 @@
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export interface AvatarProps {
+  url: string
   text?: string
-  avatar: string
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: AvatarSize
 }

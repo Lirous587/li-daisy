@@ -1,13 +1,8 @@
 # Avatar头像
 
 
-## 基础用法
-:::demo avatar/basic
-:::
-
-## 调整尺寸
-
-> 可选尺寸有 `xs` `sm` `md` `lg` `xl`， `md` 为默认值
+## 尺寸
+> 可选尺寸有 `xs` `sm` `md` `lg` `xl`
 
 :::demo avatar/size
 :::
@@ -19,17 +14,12 @@
 :::demo avatar/failed
 :::
 
-## 加载之后的回调
-> 组件emit两个方法 `success` 和 `failed`
-
-:::demo avatar/load
-:::
-
 ## API
 
 ### Attributes
 | 属性值 |         说明         |   类型   |           具体类型           | 默认值 |
 | :----: | :------------------: | :------: | :--------------------------: | :----: |
+| avatar |       头像url        | `string` |              -               |   -    |
 |  size  |       头像大小       |  `enum`  | `['xs','sm','md','lg','xl']` |   -    |
 |  text  | 加载失败后的显式文字 | `string` |              -               |   -    |
 

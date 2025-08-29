@@ -1,16 +1,19 @@
 <template>
   <div class="m-1">
     <div v-if="ifFailed" class="avatar avatar-placeholder">
-      <div class="bg-base-300 text-neutral-content font-bold rounded-full" :class="sizeClass">
+      <div
+        class="ring-offset-base-100 ring ring-offset-2 ring-base-300 bg-base-300 text-neutral-content font-bold rounded-full aspect-square"
+        :class="sizeClass"
+      >
         <span class="text-base-content">{{ props.text }}</span>
       </div>
     </div>
     <div v-else class="avatar">
       <div
-        class="ring-base-300 ring-offset-base-100 rounded-full ring ring-offset-2"
+        class="ring-offset-base-100 ring ring-offset-2 ring-base-300 rounded-full aspect-square"
         :class="sizeClass"
       >
-        <img :src="props.avatar" @load="handleLoad" @error="handleError" />
+        <img :src="props.url" @load="handleLoad" @error="handleError" />
       </div>
     </div>
   </div>
@@ -25,22 +28,22 @@ const props = withDefaults(defineProps<AvatarProps>(), {
   size: 'md',
 })
 
-const ifFailed = ref(!props.avatar)
+const ifFailed = ref(!props.url)
 
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'w-4 h-4'
+      return 'h-6'
     case 'sm':
-      return 'w-8 h-8'
+      return 'h-8'
     case 'md':
-      return 'w-12 h-12'
+      return 'h-10'
     case 'lg':
-      return 'w-16 h-16'
+      return 'h-12'
     case 'xl':
-      return 'w-20 h-20'
+      return 'h-14'
     default:
-      return 'w-12 h-12'
+      return 'h-8'
   }
 })
 
@@ -57,7 +60,7 @@ const handleError = () => {
 }
 
 watch(
-  () => props.avatar,
+  () => props.url,
   (newVal) => {
     ifFailed.value = !newVal
   },
@@ -65,6 +68,6 @@ watch(
 
 onMounted(() => {
   // 如果没有头像，直接显示名称首字母
-  ifFailed.value = !props.avatar
+  ifFailed.value = !props.url
 })
 </script>
