@@ -2,9 +2,9 @@
   <div>
     <div class="sr-only" v-if="props.hrefGenerator || props.preHref">
       <!-- 明确的上一页链接 (如果不在第一页) -->
-      <a v-if="currentPage > 1" :href="generateSeoHref(currentPage - 1)">Previous Page</a>
+      <a v-if="safeCurrentPage > 1" :href="generateSeoHref(safeCurrentPage - 1)">Previous Page</a>
       <!-- 明确的下一页链接 (如果不在最后一页) -->
-      <a v-if="currentPage < pages" :href="generateSeoHref(currentPage + 1)">Next Page</a>
+      <a v-if="safeCurrentPage < pages" :href="generateSeoHref(safeCurrentPage + 1)">Next Page</a>
     </div>
 
     <div
@@ -16,7 +16,7 @@
       <div
         class="flex h-full aspect-square"
         :class="[ifMin ? 'pointer-events-none' : '', bgColor]"
-        @click="changePage(Math.max(1, currentPage - 1))"
+        @click="changePage(Math.max(1, safeCurrentPage - 1))"
         v-if="shouldRenderIcons"
       >
         <ArrowLeftIcon class="m-auto w-3 h-3" :class="textColor" />
@@ -37,7 +37,7 @@
       <div
         class="flex h-full aspect-square"
         :class="[ifMax ? 'pointer-events-none' : '', bgColor]"
-        @click="changePage(Math.min(pages, currentPage + 1))"
+        @click="changePage(Math.min(pages, safeCurrentPage + 1))"
         v-if="shouldRenderIcons"
       >
         <ArrowRightIcon class="m-auto h-3 w-3" :class="textColor" />
@@ -80,9 +80,11 @@ const emit = defineEmits<{
   (e: 'change', page: number): void
 }>()
 
-const currentPage = defineModel<number>('modelValue', {
+const currentPage = defineModel<number | undefined>('modelValue', {
   required: true,
 })
+
+const safeCurrentPage = computed(() => currentPage.value || 1)
 
 const offsetValue = computed(() => props.offset)
 const list = ref<PagingItem[]>([])
@@ -108,12 +110,12 @@ const initList = (): PagingItem[] => {
   const result: PagingItem[] = [{ value: 1, page: 1 }] // 始终显示第一页
 
   // 计算中间部分页码
-  const start = Math.max(2, currentPage.value - offsetValue.value)
-  const end = Math.min(props.pages - 1, currentPage.value + offsetValue.value)
+  const start = Math.max(2, safeCurrentPage.value - offsetValue.value)
+  const end = Math.min(props.pages - 1, safeCurrentPage.value + offsetValue.value)
 
   // 前省略号跳转
   if (start > 2) {
-    const jumpTarget = Math.max(1, currentPage.value - offsetValue.value - 1)
+    const jumpTarget = Math.max(1, safeCurrentPage.value - offsetValue.value - 1)
     result.push({ value: '...', page: jumpTarget })
   }
 
@@ -124,7 +126,7 @@ const initList = (): PagingItem[] => {
 
   // 后省略号跳转
   if (end < props.pages - 1) {
-    const jumpTarget = Math.min(props.pages, currentPage.value + offsetValue.value + 1)
+    const jumpTarget = Math.min(props.pages, safeCurrentPage.value + offsetValue.value + 1)
     result.push({ value: '...', page: jumpTarget })
   }
 
@@ -290,6 +292,9 @@ onMounted(() => {
     mediaQueryList = window.matchMedia(mediaQueryString)
     handleResize(mediaQueryList) // 立即检查一次初始状态
     mediaQueryList.addEventListener('change', handleResize)
+  }
+  if (!currentPage.value) {
+    currentPage.value = 1
   }
 })
 
