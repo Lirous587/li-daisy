@@ -1,19 +1,25 @@
 <template>
-  <div>
-    <Drawer ref="drawerRef" title="抽屉标题" direction="rtl">
-      <p class="font-bold">这是抽屉内容</p>
+  <div class="flex justify-between w-full">
+    <Drawer
+      v-for="direction in directions"
+      :title="'打开方向:' + direction"
+      :direction="direction"
+      class="my-3"
+    >
+      <template #trigger>
+        <div class="btn btn-primary">打开方向: {{ direction }}</div>
+      </template>
+      <template #content>
+        <p class="font-bold">打开方向: {{ direction }}</p>
+      </template>
     </Drawer>
-    <div class="btn btn-primary" @click="handleOpenDrawer">从右到左打开</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Drawer } from 'li-daisy'
-import type { DrawerRef } from 'li-daisy'
+import type { DrawerDirection } from 'li-daisy'
 import { ref } from 'vue'
 
-const drawerRef = ref<DrawerRef>()
-const handleOpenDrawer = () => {
-  drawerRef.value?.open()
-}
+const directions = ref<DrawerDirection[]>(['ltr', 'rtl'])
 </script>

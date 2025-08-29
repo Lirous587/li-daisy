@@ -1,10 +1,5 @@
 # Form表单
 
-## 基础用法 
-:::demo form/basic
-:::
-
-
 ## 按钮导致的表单提交
 > 当 `Form` 组件下存在 `button` 时，点击 `button` 会默认触发表单验证
 > >

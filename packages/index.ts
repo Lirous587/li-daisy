@@ -7,7 +7,7 @@ import { Collapse, CollapseItem } from './Collapse'
 export type { CollapseIcon, CollapseDefaultColor, CollapseActiveColor } from './Collapse'
 
 import { Drawer } from './Drawer'
-export type { DrawerRef } from './Drawer'
+export type { DrawerRef, DrawerDirection } from './Drawer'
 
 export { Queue } from './Queue'
 export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'

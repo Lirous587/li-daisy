@@ -1,5 +1,6 @@
 <template>
-  <div class="drawer" :class="drawerDirection">
+  <!-- <div class="drawer" :class="drawerDirection"> -->
+  <div class="relative" :class="drawerDirection">
     <input
       :id="uniqueID"
       ref="drawerToggleRef"
@@ -8,9 +9,8 @@
       class="drawer-toggle"
     />
     <div class="drawer-content">
-      <!-- Page content here  -->
       <label :for="uniqueID">
-        <slot />
+        <slot name="trigger" />
       </label>
     </div>
 
@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
   size: 'w-[40vw] min-w-[250px]',
   closeOnClickModal: true,
-  closeIcon: false,
+  showCloseIcon: true,
 })
 
 const status = ref(false)
@@ -70,7 +70,7 @@ const showCloseIcon = computed(() => {
   if (!props.closeOnClickModal) {
     return true
   } else {
-    return props.closeIcon
+    return props.showCloseIcon
   }
 })
 

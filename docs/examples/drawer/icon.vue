@@ -1,19 +1,26 @@
 <template>
-  <div>
-    <Drawer ref="drawerRef" title="抽屉标题" close-icon>
-      <p class="font-bold">这是抽屉内容</p>
+  <div class="flex justify-between w-full">
+    <Drawer title="抽屉标题" show-close-icon>
+      <template #trigger>
+        <div class="btn btn-primary">该抽屉有close图标</div>
+      </template>
+      <template #content>
+        <p class="font-bold">该抽屉有close图标</p>
+      </template>
     </Drawer>
-    <div class="btn btn-primary" @click="handleOpenDrawer">打开抽屉</div>
+
+    <Drawer title="抽屉标题" :show-close-icon="false">
+      <template #trigger>
+        <div class="btn btn-primary">该抽屉无close图标</div>
+      </template>
+      <template #content>
+        <p class="font-bold">该抽屉无close图标</p>
+      </template>
+    </Drawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Drawer } from 'li-daisy'
-import type { DrawerRef } from 'li-daisy'
 import { ref } from 'vue'
-
-const drawerRef = ref<DrawerRef>()
-const handleOpenDrawer = () => {
-  drawerRef.value?.open()
-}
 </script>

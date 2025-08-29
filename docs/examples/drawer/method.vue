@@ -1,14 +1,18 @@
 <template>
   <div class="space-y-4">
+    <div class="btn btn-primary" @click="handleOpenDrawer">使用 open 方法打开</div>
     <Drawer ref="drawerRef" title="抽屉标题">
-      <p class="font-bold">这是抽屉内容1</p>
+      <template #content>
+        <p class="font-bold">这是使用open方法打开的抽屉</p>
+      </template>
     </Drawer>
-    <div class="btn btn-primary" @click="handleOpenDrawer">打开抽屉1</div>
 
     <Drawer title="抽屉标题">
-      <div class="btn btn-primary">打开抽屉2</div>
+      <template #trigger>
+        <div class="btn btn-primary">点击trigger插槽打开抽屉</div>
+      </template>
       <template #content>
-        <p class="font-bold">这是抽屉内容2</p>
+        <p class="font-bold">这是点击trigger插槽打开的抽屉</p>
       </template>
     </Drawer>
   </div>
