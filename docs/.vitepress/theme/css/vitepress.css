@@ -19,6 +19,18 @@ button.menu {
     /* z-index: 10 !important; */
 }
 
+.vp-doc table:not(.li-table) {
+    table-layout: auto;
+    width: 100%;
+}
+
+.vp-doc table:not(.li-table) td {
+    min-width: 120px;
+    max-width: 320px;
+    word-break: keep-all;
+    white-space: pre-line;
+}
+
 .VPNavScreenMenu {
     width: 100%;
 }

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-x-auto border-base-300 rounded-md li-table"
+    class="overflow-x-auto border-base-300 rounded-md"
     tabindex="-1"
     :class="[props.border ? 'border' : '']"
     ref="scrollContainer"
@@ -8,7 +8,7 @@
     :style="{ minHeight: currentMinHeight + 'px' }"
   >
     <table
-      class="table table-pin-rows table-pin-cols table-fixed break-words"
+      class="li-table table table-pin-rows table-pin-cols table-fixed break-words"
       :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
