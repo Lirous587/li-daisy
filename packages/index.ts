@@ -31,7 +31,7 @@ import { Avatar } from './Avatar'
 export type { AvatarSize } from './Avatar'
 
 import { Table, TableColumn } from './Table'
-export type { TableColumnDefaultScope, TableColumnExpandScope } from './Table'
+export type { TableSize, TableColumnDefaultScope, TableColumnExpandScope } from './Table'
 
 import { Paging } from './Paging'
 export type { PagingColor, PagingSize, PagingRef } from './Paging'

@@ -1,9 +1,11 @@
 import type { VNode } from 'vue'
 
+export type TableSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export interface TableProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Array<Record<string, any>>
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  size?: TableSize
   zebra?: boolean
   border?: boolean
   select?: boolean
