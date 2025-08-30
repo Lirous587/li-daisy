@@ -6,7 +6,7 @@
       :size="size"
       :min="0"
       :max="10"
-      class="w-64"
+      class="w-64 mx-auto"
     />
   </div>
 </template>

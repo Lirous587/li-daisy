@@ -2,7 +2,7 @@
   <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative"
+      class="input flex-1 overflow-hidden relative w-full"
       :class="[inputSizeClass, inputColorClass, hasPrefix ? '!pl-0' : '', hasSuffix ? '!pr-0' : '']"
     >
       <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
@@ -73,7 +73,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   type: 'text',
   placeholder: '',
   disabled: false,
-  size: 'md',
+  size: 'sm',
   color: 'base',
 })
 const model = defineModel<string | undefined>('modelValue', {
@@ -141,7 +141,7 @@ const inputSizeClass = computed(() => {
     case 'xl':
       return 'input-xl'
     default:
-      return 'input-md'
+      return 'input-sm'
   }
 })
 

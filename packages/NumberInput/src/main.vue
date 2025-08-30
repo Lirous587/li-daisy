@@ -2,7 +2,7 @@
   <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative !px-0"
+      class="input flex-1 overflow-hidden relative !px-0 w-full"
       :class="[sizeClass, inputColorClass]"
     >
       <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   min: 0,
   placeholder: '',
   disabled: false,
-  size: 'md',
+  size: 'sm',
   color: 'base',
 })
 
@@ -182,15 +182,17 @@ const operationTextColorClass = computed(() => {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'h-6'
+      return 'input-xs'
     case 'sm':
-      return 'h-7'
+      return 'input-sm'
     case 'md':
-      return 'h-8'
+      return 'input-md'
     case 'lg':
-      return 'h-9'
+      return 'input-lg'
     case 'xl':
-      return 'h-10'
+      return 'input-xl'
+    default:
+      return 'input-xs'
   }
 })
 
