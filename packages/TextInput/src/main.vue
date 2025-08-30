@@ -74,7 +74,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   placeholder: '',
   disabled: false,
   size: 'sm',
-  color: 'base',
+  color: 'info',
 })
 const model = defineModel<string | undefined>('modelValue', {
   required: true,
@@ -140,8 +140,6 @@ const inputSizeClass = computed(() => {
       return 'input-lg'
     case 'xl':
       return 'input-xl'
-    default:
-      return 'input-sm'
   }
 })
 
@@ -166,8 +164,6 @@ const inputColorClass = computed(() => {
       return 'input-warning'
     case 'error':
       return 'input-error'
-    default:
-      return ''
   }
 })
 
@@ -192,8 +188,6 @@ const slotBorderClass = computed(() => {
       return 'border-warning'
     case 'error':
       return 'border-error'
-    default:
-      return 'border-base-300'
   }
 })
 
@@ -217,8 +211,6 @@ const slotBgClass = computed(() => {
       return 'bg-warning/10'
     case 'error':
       return 'bg-error/10'
-    default:
-      return 'bg-base-200'
   }
 })
 
@@ -242,8 +234,6 @@ const slotTextColorClass = computed(() => {
       return 'text-warning'
     case 'error':
       return 'text-error'
-    default:
-      return 'text-base-content'
   }
 })
 
