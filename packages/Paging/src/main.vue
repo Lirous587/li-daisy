@@ -8,7 +8,7 @@
     </div>
 
     <div
-      class="flex *:border-y [&>*:first-child]:border-l *:border-r [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md hover:cursor-pointer select-none mx-auto font-mono relative overflow-hidden"
+      class="flex *:border-y [&>*:first-child]:border-l *:border-r [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md hover:cursor-pointer select-none font-mono relative overflow-hidden"
       v-if="pageConfim()"
       :class="[displayClass, borderColor, sizeClass]"
     >
@@ -28,7 +28,7 @@
         @click="changePage(item.page)"
         :key="index"
         class="flex h-full aspect-square"
-        :class="[item.page == currentPage ? activeBgColor : '', bgColor]"
+        :class="[bgColor, item.page == currentPage ? activeBgColor : '']"
       >
         <span class="m-auto" :class="textColor"> {{ item.value }}</span>
       </div>
@@ -162,21 +162,21 @@ const bgColor = computed(() => {
     case 'base':
       return 'bg-base-200'
     case 'neutral':
-      return 'bg-neutral/25'
+      return 'bg-neutral/80'
     case 'primary':
-      return 'bg-primary/25'
+      return 'bg-primary/80'
     case 'secondary':
-      return 'bg-secondary/25'
+      return 'bg-secondary/80'
     case 'accent':
-      return 'bg-accent/25'
+      return 'bg-accent/80'
     case 'info':
-      return 'bg-info/25'
+      return 'bg-info/80'
     case 'success':
-      return 'bg-success/25'
+      return 'bg-success/80'
     case 'warning':
-      return 'bg-warning/25'
+      return 'bg-warning/80'
     case 'error':
-      return 'bg-error/25'
+      return 'bg-error/80'
     default:
       return 'bg-base-200'
   }
@@ -185,50 +185,50 @@ const bgColor = computed(() => {
 const activeBgColor = computed(() => {
   switch (props.color) {
     case 'base':
-      return 'bg-base-300'
+      return '!bg-base-300'
     case 'neutral':
-      return 'bg-neutral/35'
+      return '!bg-neutral'
     case 'primary':
-      return 'bg-primary/35'
+      return '!bg-primary'
     case 'secondary':
-      return 'bg-secondary/35'
+      return '!bg-secondary'
     case 'accent':
-      return 'bg-accent/35'
+      return '!bg-accent'
     case 'info':
-      return 'bg-info/35'
+      return '!bg-info'
     case 'success':
-      return 'bg-success/35'
+      return '!bg-success'
     case 'warning':
-      return 'bg-warning/35'
+      return '!bg-warning'
     case 'error':
-      return 'bg-error/35'
+      return '!bg-error'
     default:
-      return 'bg-base-300'
+      return '!bg-base-300'
   }
 })
 
 const borderColor = computed(() => {
   switch (props.color) {
     case 'base':
-      return '*:border-base-content/10'
+      return '*:border-base-content/15'
     case 'neutral':
-      return '*:border-neutral/10'
+      return '*:border-neutral-content/15'
     case 'primary':
-      return '*:border-primary/10'
+      return '*:border-primary-content/15'
     case 'secondary':
-      return '*:border-secondary/10'
+      return '*:border-secondary-content/15'
     case 'accent':
-      return '*:border-accent/10'
+      return '*:border-accent-content/15'
     case 'info':
-      return '*:border-info/10'
+      return '*:border-info-content/15'
     case 'success':
-      return '*:border-success/10'
+      return '*:border-success-content/15'
     case 'warning':
-      return '*:border-warning/10'
+      return '*:border-warning-content/15'
     case 'error':
-      return '*:border-error/10'
+      return '*:border-error-content/15'
     default:
-      return '*:border-base-content/10'
+      return '*:border-base-content/15'
   }
 })
 
@@ -237,21 +237,21 @@ const textColor = computed(() => {
     case 'base':
       return 'text-base-content'
     case 'neutral':
-      return 'text-neutral'
+      return 'text-neutral-content'
     case 'primary':
-      return 'text-primary'
+      return 'text-primary-content'
     case 'secondary':
-      return 'text-secondary'
+      return 'text-secondary-content'
     case 'accent':
-      return 'text-accent'
+      return 'text-accent-content'
     case 'info':
-      return 'text-info'
+      return 'text-info-content'
     case 'success':
-      return 'text-success'
+      return 'text-success-content'
     case 'warning':
-      return 'text-warning'
+      return 'text-warning-content'
     case 'error':
-      return 'text-error'
+      return 'text-error-content'
     default:
       return 'text-base-content'
   }

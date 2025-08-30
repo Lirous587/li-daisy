@@ -64,28 +64,28 @@ const defaultBg = computed(() => {
       return 'bg-base-200'
     }
     case 'primary': {
-      return 'bg-primary/35'
+      return 'bg-primary'
     }
     case 'secondary': {
-      return 'bg-secondary/35'
+      return 'bg-secondary'
     }
     case 'neutral': {
-      return 'bg-neutral/35'
+      return 'bg-neutral'
     }
     case 'accent': {
-      return 'bg-accent/35'
+      return 'bg-accent'
     }
     case 'info': {
-      return 'bg-info/35'
+      return 'bg-info'
     }
     case 'success': {
-      return 'bg-success/35'
+      return 'bg-success'
     }
     case 'warning': {
-      return 'bg-warning/35'
+      return 'bg-warning'
     }
     case 'error': {
-      return 'bg-error/35'
+      return 'bg-error'
     }
     default: {
       return 'bg-base-200'
@@ -99,28 +99,28 @@ const defaultText = computed(() => {
       return 'text-base-content'
     }
     case 'primary': {
-      return 'text-primary'
+      return 'text-primary-content'
     }
     case 'secondary': {
-      return 'text-secondary'
+      return 'text-secondary-content'
     }
     case 'neutral': {
-      return 'text-neutral'
+      return 'text-neutral-content'
     }
     case 'accent': {
-      return 'text-accent'
+      return 'text-accent-content'
     }
     case 'info': {
-      return 'text-info'
+      return 'text-info-content'
     }
     case 'success': {
-      return 'text-success'
+      return 'text-success-content'
     }
     case 'warning': {
-      return 'text-warning'
+      return 'text-warning-content'
     }
     case 'error': {
-      return 'text-error'
+      return 'text-error-content'
     }
     default: {
       return 'text-base-content'
@@ -168,34 +168,34 @@ const activeComputed = computed(() => collapseContext.activeColor?.value)
 const activeBg = computed(() => {
   switch (activeComputed.value) {
     case 'base': {
-      return 'peer-checked:bg-base-200'
+      return 'peer-checked:bg-base-300'
     }
     case 'primary': {
-      return 'peer-checked:bg-primary/35'
+      return 'peer-checked:bg-primary'
     }
     case 'secondary': {
-      return 'peer-checked:bg-secondary/35'
+      return 'peer-checked:bg-secondary'
     }
     case 'neutral': {
-      return 'peer-checked:bg-neutral/35'
+      return 'peer-checked:bg-neutral'
     }
     case 'accent': {
-      return 'peer-checked:bg-accent/35'
+      return 'peer-checked:bg-accent'
     }
     case 'info': {
-      return 'peer-checked:bg-info/35'
+      return 'peer-checked:bg-info'
     }
     case 'success': {
-      return 'peer-checked:bg-success/35'
+      return 'peer-checked:bg-success'
     }
     case 'warning': {
-      return 'peer-checked:bg-warning/35'
+      return 'peer-checked:bg-warning'
     }
     case 'error': {
-      return 'peer-checked:bg-error/35'
+      return 'peer-checked:bg-error'
     }
     default: {
-      return 'peer-checked:bg-base-200'
+      return 'peer-checked:bg-base-300'
     }
   }
 })
@@ -206,28 +206,28 @@ const activeText = computed(() => {
       return 'peer-checked:text-base-content'
     }
     case 'primary': {
-      return 'peer-checked:text-primary'
+      return 'peer-checked:text-primary-content'
     }
     case 'secondary': {
-      return 'peer-checked:text-secondary'
+      return 'peer-checked:text-secondary-content'
     }
     case 'neutral': {
-      return 'peer-checked:text-neutral'
+      return 'peer-checked:text-neutral-content'
     }
     case 'accent': {
-      return 'peer-checked:text-accent'
+      return 'peer-checked:text-accent-content'
     }
     case 'info': {
-      return 'peer-checked:text-info'
+      return 'peer-checked:text-info-content'
     }
     case 'success': {
-      return 'peer-checked:text-success'
+      return 'peer-checked:text-success-content'
     }
     case 'warning': {
-      return 'peer-checked:text-warning'
+      return 'peer-checked:text-warning-content'
     }
     case 'error': {
-      return 'peer-checked:text-error'
+      return 'peer-checked:text-error-content'
     }
     default: {
       return 'peer-checked:text-base-content'
@@ -265,7 +265,7 @@ const activeBorder = computed(() => {
       return 'peer-checked:border-error'
     }
     default: {
-      return 'peer-checked:border-base-content'
+      return 'peer-checked:border-base-300'
     }
   }
 })
