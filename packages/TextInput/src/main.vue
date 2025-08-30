@@ -202,21 +202,21 @@ const slotBgClass = computed(() => {
     case 'base':
       return 'bg-base-200'
     case 'neutral':
-      return 'bg-neutral'
+      return 'bg-neutral/10'
     case 'primary':
-      return 'bg-primary'
+      return 'bg-primary/10'
     case 'secondary':
-      return 'bg-secondary'
+      return 'bg-secondary/10'
     case 'accent':
-      return 'bg-accent'
+      return 'bg-accent/10'
     case 'info':
-      return 'bg-info'
+      return 'bg-info/10'
     case 'success':
-      return 'bg-success'
+      return 'bg-success/10'
     case 'warning':
-      return 'bg-warning'
+      return 'bg-warning/10'
     case 'error':
-      return 'bg-error'
+      return 'bg-error/10'
     default:
       return 'bg-base-200'
   }
@@ -227,23 +227,23 @@ const slotTextColorClass = computed(() => {
     case 'base':
       return 'text-base-content'
     case 'neutral':
-      return 'text-neutral-content'
+      return 'text-neutral'
     case 'primary':
-      return 'text-primary-content'
+      return 'text-primary'
     case 'secondary':
-      return 'text-secondary-content'
+      return 'text-secondary'
     case 'accent':
-      return 'text-accent-content'
+      return 'text-accent'
     case 'info':
-      return 'text-info-content'
+      return 'text-info'
     case 'success':
-      return 'text-success-content'
+      return 'text-success'
     case 'warning':
-      return 'text-warning-content'
+      return 'text-warning'
     case 'error':
-      return 'text-error-content'
+      return 'text-error'
     default:
-      return 'text-info-content'
+      return 'text-base-content'
   }
 })
 
