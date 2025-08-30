@@ -38,7 +38,7 @@ export type { PagingColor, PagingSize, PagingRef } from './Paging'
 
 // 反馈 (Feedback)
 import { Modal } from './Modal'
-export type { ModalRef } from './Modal'
+export type { ModalRef, ModalDirection } from './Modal'
 
 export { Notification } from './Notification'
 export type { NotificationPosition, NotificationType } from './Notification'

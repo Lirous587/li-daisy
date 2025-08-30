@@ -14,6 +14,7 @@ import '../../../packages/assets/css/tailwind.css'
 import 'li-daisy/dist/style.css'
 
 import '../theme/css/vitepress.css'
+import '../theme/css/custom.css'
 
 import { loadingDirective } from '../../../packages/'
 

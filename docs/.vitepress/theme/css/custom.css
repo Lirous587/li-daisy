@@ -1,0 +1,6 @@
+:root {
+  scrollbar-gutter: stable;
+}
+* {
+  scrollbar-width: thin;
+}
