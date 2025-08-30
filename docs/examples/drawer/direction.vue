@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between w-full">
+  <div class="flex justify-between w-full gap-x-5">
     <Drawer
       v-for="direction in directions"
       :title="'打开方向:' + direction"

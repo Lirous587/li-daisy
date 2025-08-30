@@ -4,33 +4,30 @@
 
 
 ## 打开方向 
->  direction可选值有 `ltr` `rtl` `ttb` `btt`，默认值为 无打开方向居中显示
+>  direction可选值有 `ltr` `rtl` `middle` `ttb` `btt`，默认值为 无打开方向居中显示
 
 :::demo modal/direction
 :::
 
 ## 设置大小/支持响应式
+:::warning 注意
+该本质是绑定到Modal上的动态css，所有使用的要尤其小心，避免造成副作用
+:::
 > 通过size设置宽度大小，支持 Tailwind CSS 的任意宽度值（包括响应式写法）
 >>
 > 不设置方向时，即居中显示时：modal默认设置了 `max-width` 为 `512px` 
->> 
-> 当direction为 `ttb` 或 `btt` 其 `width` 为 `100vw`
 >>
-> 当direction为 `ltr` 或 `rtl` 其 `height` 为 `100vh`
->>  
->
-> 当direction为 `ttb` 或 `btt` 要请设置对应的 `height` `max-height`
+> 当direction为 `ttb` 或 `btt` 要设置对应的 `height` `max-height`
 >>
-> 当direction为 `ltr` 或 `rtl` 则要设置对应的 `width` `max-width`
+> 当direction为 `ltr` 或 `rtl` 要设置对应的 `width` `max-width`
 >>
 > 自行定义的时候要修改 `width`  `max-width` 或 `heigth` `max-heigth`
 
 :::demo modal/size
 :::
 
-
 ## 显示关闭图标
->通过设置 `close-icon` 来控制是否显示图标，默认值为 `false`
+>通过设置 `show-close-icon` 来控制是否显示图标，默认值为 `true`
 
 :::demo modal/icon
 :::
@@ -56,7 +53,7 @@
 |        属性值        |         说明         |   类型    |          默认值           |
 | :------------------: | :------------------: | :-------: | :-----------------------: |
 |         size         |       抽屉大小       | `string`  | `'w-11/12 max-w-[512px]'` |
-|      close-icon      |   是否显示关闭图标   | `boolean` |          `false`          |
+|   show-close-icon    |   是否显示关闭图标   | `boolean` |          `true`           |
 | close-on-click-modal | 点击蒙层是否关闭抽屉 | `boolean` |          `true`           |
 
 

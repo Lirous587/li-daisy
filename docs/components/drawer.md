@@ -20,7 +20,7 @@
 > 默认值为 `w-[40vw] min-w-[250px]` 
 
 :::warning 注意
-该本质是绑定到drawer上的动态css，所有使用的要尤其小心，避免造成副作用
+该本质是绑定到Drawer上的动态css，所有使用的要尤其小心，避免造成副作用
 :::
 
 :::demo drawer/size

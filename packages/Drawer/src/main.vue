@@ -1,6 +1,5 @@
 <template>
-  <!-- <div class="drawer" :class="drawerDirection"> -->
-  <div class="relative" :class="drawerDirection">
+  <div class="drawer" :class="drawerDirection">
     <input
       :id="uniqueID"
       ref="drawerToggleRef"

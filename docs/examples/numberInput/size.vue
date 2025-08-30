@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-y-4 items-center">
+  <div class="flex flex-col gap-y-4">
     <NumberInput
       v-for="size in sizes"
       v-model="numberValue"

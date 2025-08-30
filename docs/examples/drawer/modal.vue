@@ -1,20 +1,20 @@
 <template>
-  <div class="flex justify-between w-full">
+  <div class="flex justify-between w-full gap-x-5">
     <Drawer title="抽屉标题" :close-on-click-modal="true">
       <template #trigger>
-        <div class="btn btn-primary">当前点击蒙层可关闭抽屉</div>
+        <div class="btn btn-primary">点击蒙层可关闭</div>
       </template>
       <template #content>
-        <p class="font-bold">当前点击蒙层可关闭抽屉</p>
+        <p class="font-bold">点击蒙层可关闭</p>
       </template>
     </Drawer>
 
     <Drawer title="抽屉标题" :close-on-click-modal="false">
       <template #trigger>
-        <div class="btn btn-primary">当前点击蒙层不可关闭抽屉</div>
+        <div class="btn btn-primary">点击蒙层不可关闭</div>
       </template>
       <template #content>
-        <p class="font-bold">当前点击蒙层不可关闭抽屉</p>
+        <p class="font-bold">点击蒙层不可关闭</p>
       </template>
     </Drawer>
   </div>
