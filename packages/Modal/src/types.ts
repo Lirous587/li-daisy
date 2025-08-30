@@ -1,7 +1,9 @@
+export type ModalDirection = 'ltr' | 'rtl' | 'middle' | 'ttb' | 'btt'
+
 export interface ModalProps {
   size?: string
-  direction?: 'ltr' | 'rtl' | 'ttb' | 'btt'
-  closeIcon?: boolean
+  direction?: ModalDirection
+  showCloseIcon?: boolean
   closeOnClickModal?: boolean
 }
 

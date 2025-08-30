@@ -1,11 +1,18 @@
 <template>
-  <div>
-    <Modal ref="modalRef" :close-on-click-modal="false">
-      <h3 class="font-bold text-lg">Hello!</h3>
-      <p class="py-4">This is the modal content.</p>
+  <div class="flex w-full justify-between gap-x-5">
+    <Modal ref="modalRef1" :close-on-click-modal="true">
+      <h3 class="font-bold text-lg">当前点击蒙层可关闭抽屉</h3>
+      <p class="py-4">当前点击蒙层可关闭modal</p>
     </Modal>
 
-    <button class="btn btn-primary" @click="handleOpenModal">打开modal</button>
+    <button class="btn btn-primary" @click="handleOpenModal1">点击蒙层可关闭</button>
+
+    <Modal ref="modalRef2" :close-on-click-modal="false">
+      <h3 class="font-bold text-lg">当前点击蒙层不可关闭抽屉</h3>
+      <p class="py-4">当前点击蒙层不可关闭抽屉</p>
+    </Modal>
+
+    <button class="btn btn-primary" @click="handleOpenModal2">点击蒙层不可关闭</button>
   </div>
 </template>
 
@@ -13,9 +20,15 @@
 import { ref } from 'vue'
 import { Modal, type ModalRef } from 'li-daisy'
 
-const modalRef = ref<ModalRef>()
+const modalRef1 = ref<ModalRef>()
 
-const handleOpenModal = () => {
-  modalRef.value?.open()
+const handleOpenModal1 = () => {
+  modalRef1.value?.open()
+}
+
+const modalRef2 = ref<ModalRef>()
+
+const handleOpenModal2 = () => {
+  modalRef2.value?.open()
 }
 </script>

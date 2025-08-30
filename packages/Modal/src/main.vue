@@ -23,7 +23,7 @@ import type { ModalProps, ModalRef } from './types'
 import { computed, ref } from 'vue'
 
 const props = withDefaults(defineProps<ModalProps>(), {
-  closeIcon: false,
+  showCloseIcon: true,
   closeOnClickModal: true,
 })
 
@@ -33,7 +33,7 @@ const showCloseIcon = computed(() => {
   if (!props.closeOnClickModal) {
     return true
   } else {
-    return props.closeIcon
+    return props.showCloseIcon
   }
 })
 
@@ -44,9 +44,11 @@ const directionClass = computed(() => {
     case 'rtl':
       return 'modal-end'
     case 'ttb':
-      return 'modal-top'
+      return 'modal-top !w-screen'
+    case 'middle':
+      return 'modal-middle'
     case 'btt':
-      return 'modal-bottom'
+      return 'modal-bottom !w-screen'
     default:
       return 'modal-middle'
   }
