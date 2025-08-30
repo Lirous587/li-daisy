@@ -82,7 +82,7 @@
 |       属性值       |          说明          |             类型             |  默认值  |
 | :----------------: | :--------------------: | :--------------------------: | :------: |
 |        data        |        表格数据        | `Array<Record<string, any>>` |    -     | - |
-|        size        |        表格大小        | `['xs','sm','md','lg','xl']` | `'info'` |
+|        size        |        表格大小        |         `TableSize`          | `'info'` |
 |       zebra        |     是否带有斑马纹     |          `boolean`           | `false`  |
 |       border       |      是否显示边框      |          `boolean`           | `false`  |
 |       select       |        是否可选        |           `select`           | `false`  |
