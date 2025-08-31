@@ -5,7 +5,7 @@
         <div class="btn btn-primary">该抽屉有close图标</div>
       </template>
       <template #content>
-        <p class="font-bold">该抽屉有close图标</p>
+        <p>该抽屉有close图标</p>
       </template>
     </Drawer>
 
@@ -14,7 +14,7 @@
         <div class="btn btn-primary">该抽屉无close图标</div>
       </template>
       <template #content>
-        <p class="font-bold">该抽屉无close图标</p>
+        <p>该抽屉无close图标</p>
       </template>
     </Drawer>
   </div>

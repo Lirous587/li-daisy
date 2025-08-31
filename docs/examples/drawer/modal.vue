@@ -5,7 +5,7 @@
         <div class="btn btn-primary">点击蒙层可关闭</div>
       </template>
       <template #content>
-        <p class="font-bold">点击蒙层可关闭</p>
+        <p>点击蒙层可关闭</p>
       </template>
     </Drawer>
 
@@ -14,7 +14,7 @@
         <div class="btn btn-primary">点击蒙层不可关闭</div>
       </template>
       <template #content>
-        <p class="font-bold">点击蒙层不可关闭</p>
+        <p>点击蒙层不可关闭</p>
       </template>
     </Drawer>
   </div>

@@ -10,7 +10,7 @@
         <div class="btn btn-primary">打开方向: {{ direction }}</div>
       </template>
       <template #content>
-        <p class="font-bold">打开方向: {{ direction }}</p>
+        <p>打开方向: {{ direction }}</p>
       </template>
     </Drawer>
   </div>

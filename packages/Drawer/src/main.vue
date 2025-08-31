@@ -7,6 +7,7 @@
       type="checkbox"
       class="drawer-toggle"
     />
+    <!-- trigger -->
     <div class="drawer-content">
       <label :for="uniqueID">
         <slot name="trigger" />
@@ -21,12 +22,18 @@
         class="drawer-overlay"
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
-      <div class="bg-base-200 text-base-content min-h-full p-4 flex flex-col" :class="props.size">
+
+      <!-- drawer内容 -->
+      <div class="bg-base-100 min-h-full p-4 flex flex-col" :class="props.size">
         <div class="w-full flex items-center justify-between flex-nowrap overflow-auto">
-          <div class="text-lg font-bold text-base-content">
+          <div class="li-drawer-title text-lg">
             {{ props.title }}
           </div>
-          <XMarkIcon class="w-6 h-6 cursor-pointer" v-if="showCloseIcon" @click="close" />
+          <XMarkIcon
+            class="li-drawer-icon w-6 h-6 cursor-pointer"
+            v-if="showCloseIcon"
+            @click="close"
+          />
         </div>
         <div class="mt-3 flex-1">
           <slot name="content" />
@@ -98,3 +105,13 @@ const exposeObject: DrawerRef = {
 
 defineExpose(exposeObject)
 </script>
+
+<style scoped>
+.li-drawer-title,
+.li-drawer-icon {
+  color: color-mix(in oklab, var(--color-base-100) 20%, var(--color-base-content) 80%);
+}
+.li-drawer-title {
+  font-weight: 700;
+}
+</style>

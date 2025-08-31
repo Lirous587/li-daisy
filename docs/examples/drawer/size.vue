@@ -8,7 +8,7 @@
       <div class="btn btn-primary">打开动态drawer</div>
     </template>
     <template #content>
-      <p class="font-bold">调整屏幕大小，观察drawer宽度</p>
+      <p>调整屏幕大小，观察drawer宽度</p>
     </template>
   </Drawer>
 </template>
