@@ -1,8 +1,8 @@
 <template>
   <div class="p-1 my-1">
     <div class="flex gap-1.5" :class="alignClass">
-      <div :style="widthStyle" class="text-sm font-bold mr-1">
-        <label v-if="label">{{ label }}</label>
+      <div :style="widthStyle">
+        <label v-if="label" class="li-form-item-label">{{ label }}</label>
       </div>
       <div
         :class="align === 'horizontal' ? 'flex-1' : 'w-full'"
@@ -138,3 +138,9 @@ const showError = computed(() => {
   return hasInteracted && !!error.value
 })
 </script>
+
+<style scoped>
+.li-form-item-label {
+  color: color-mix(in oklab, var(--color-base-100) 40%, var(--color-base-content) 60%);
+}
+</style>

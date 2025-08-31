@@ -5,9 +5,7 @@
 </template>
 
 <script setup lang="ts">
-// import { TextInput, type TextInputSize } from 'li-daisy'
-import { TextInput, type TextInputSize } from '../../../packages'
-
+import { TextInput, type TextInputSize } from 'li-daisy'
 import { ref } from 'vue'
 
 const sizes = ref<TextInputSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])

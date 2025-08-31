@@ -16,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+// import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput } from '../../../packages'
+
 import { ref } from 'vue'
 
 const form = ref({
