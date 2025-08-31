@@ -4,7 +4,7 @@
       <template #trigger>
         <div class="btn btn-primary">点击蒙层可关闭</div>
       </template>
-      <template #content>
+      <template #body>
         <p>点击蒙层可关闭</p>
       </template>
     </Drawer>
@@ -13,7 +13,7 @@
       <template #trigger>
         <div class="btn btn-primary">点击蒙层不可关闭</div>
       </template>
-      <template #content>
+      <template #body>
         <p>点击蒙层不可关闭</p>
       </template>
     </Drawer>

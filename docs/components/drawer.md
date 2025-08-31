@@ -45,6 +45,16 @@
 :::
 
 
+## 自定义header
+可使用 `header` 插槽自定义抽屉头部，并且该插槽携带一个 `close` 方法用于关闭抽屉
+> [!IMPORTANT]
+> 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
+>> 
+> 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
+
+:::demo drawer/header
+:::
+
 ## API
 
 ### Attributes
@@ -59,11 +69,12 @@
 | close-on-click-modal | 点击蒙层是否关闭抽屉 |    `boolean`    |           `true`           |
 
 ### Slots
+| 插槽名  |      说明      |
+| :-----: | :------------: |
+| trigger | 打开抽屉触发器 |
+| header  |    抽屉头部    |
+|  body   |    抽屉主体    |
 
-#### Drawer
-| 插槽名  |     说明     |
-| :-----: | :----------: |
-| default | 填充抽屉内容 |
 
 ### Expose
 | 方法名 |     说明     |      类型      |

@@ -9,7 +9,7 @@
       <template #trigger>
         <div class="btn btn-primary">打开方向: {{ direction }}</div>
       </template>
-      <template #content>
+      <template #body>
         <p>打开方向: {{ direction }}</p>
       </template>
     </Drawer>

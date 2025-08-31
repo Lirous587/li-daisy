@@ -4,7 +4,7 @@
       <template #trigger>
         <div class="btn btn-primary">该抽屉有close图标</div>
       </template>
-      <template #content>
+      <template #body>
         <p>该抽屉有close图标</p>
       </template>
     </Drawer>
@@ -13,7 +13,7 @@
       <template #trigger>
         <div class="btn btn-primary">该抽屉无close图标</div>
       </template>
-      <template #content>
+      <template #body>
         <p>该抽屉无close图标</p>
       </template>
     </Drawer>

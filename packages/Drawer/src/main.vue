@@ -24,8 +24,9 @@
       ></label>
 
       <!-- drawer内容 -->
-      <div class="bg-base-100 min-h-full p-4 flex flex-col" :class="props.size">
-        <div class="w-full flex items-center justify-between flex-nowrap overflow-auto">
+      <div class="bg-base-100 h-full p-4 flex flex-col" :class="props.size">
+        <!-- default-header -->
+        <div v-if="!hasHeaderSlot" class="w-full flex items-center justify-between flex-nowrap">
           <div class="li-drawer-title text-lg">
             {{ props.title }}
           </div>
@@ -35,8 +36,15 @@
             @click="close"
           />
         </div>
-        <div class="mt-3 flex-1">
-          <slot name="content" />
+
+        <!-- custom-header -->
+        <div v-else>
+          <slot name="header" :close="close"></slot>
+        </div>
+
+        <!-- body -->
+        <div class="mt-3 flex-1 overflow-auto !no-scrollbar">
+          <slot name="body" />
         </div>
       </div>
     </div>
@@ -46,7 +54,7 @@
 <script setup lang="ts">
 import type { DrawerRef, DrawerProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { computed, ref, watch, useId } from 'vue'
+import { computed, ref, watch, useId, useSlots } from 'vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
@@ -79,6 +87,8 @@ const showCloseIcon = computed(() => {
     return props.showCloseIcon
   }
 })
+
+const hasHeaderSlot = computed(() => !!useSlots().header)
 
 const emit = defineEmits(['open', 'close'])
 
