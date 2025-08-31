@@ -2,7 +2,7 @@
   <div class="p-1 my-1">
     <div class="flex gap-1.5" :class="alignClass">
       <div :style="widthStyle">
-        <label v-if="label" class="li-form-item-label">{{ label }}</label>
+        <label v-if="label" class="li-form-item-label text-xs">{{ label }}</label>
       </div>
       <div
         :class="align === 'horizontal' ? 'flex-1' : 'w-full'"
