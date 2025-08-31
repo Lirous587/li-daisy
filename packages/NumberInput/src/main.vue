@@ -46,8 +46,8 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   min: 0,
   placeholder: '',
   disabled: false,
-  size: 'sm',
-  color: 'info',
+  size: 'md',
+  color: 'base',
 })
 
 const model = defineModel<number | undefined>('modelValue', {
@@ -105,7 +105,7 @@ const operationBorderClass = computed(() => {
   if (props.disabled) return 'border-none'
   switch (props.color) {
     case 'base':
-      return 'border-base-300'
+      return 'border-base'
     case 'neutral':
       return 'border-neutral'
     case 'primary':
@@ -128,7 +128,7 @@ const operationBorderClass = computed(() => {
 const operationBgClass = computed(() => {
   switch (props.color) {
     case 'base':
-      return 'bg-base-200'
+      return 'bg-base-300'
     case 'neutral':
       return 'bg-neutral/10'
     case 'primary':
@@ -211,10 +211,22 @@ const increase = () => {
 
 <style scoped>
 .input-base {
-  &,
+  & {
+    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
+  }
   &:focus,
   &:focus-within {
-    --input-color: var(--color-base-300);
+    --input-color: var(--color-info);
   }
+}
+.input {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    outline-color 0.2s;
+}
+
+.border-base {
+  border-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
 }
 </style>

@@ -177,8 +177,6 @@ const bgColor = computed(() => {
       return 'bg-warning/80'
     case 'error':
       return 'bg-error/80'
-    default:
-      return 'bg-base-200'
   }
 })
 
@@ -202,8 +200,6 @@ const activeBgColor = computed(() => {
       return '!bg-warning'
     case 'error':
       return '!bg-error'
-    default:
-      return '!bg-base-300'
   }
 })
 
@@ -227,8 +223,6 @@ const borderColor = computed(() => {
       return '*:border-warning-content/15'
     case 'error':
       return '*:border-error-content/15'
-    default:
-      return '*:border-base-content/15'
   }
 })
 
@@ -252,8 +246,6 @@ const textColor = computed(() => {
       return 'text-warning-content'
     case 'error':
       return 'text-error-content'
-    default:
-      return 'text-base-content'
   }
 })
 

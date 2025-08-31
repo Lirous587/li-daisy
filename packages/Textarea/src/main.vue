@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   minRows: 5,
   maxRows: 10,
   size: 'md',
-  color: 'info',
+  color: 'base',
 })
 
 const model = defineModel<string | undefined>('modelValue', {
@@ -60,7 +60,7 @@ const sizeClass = computed(() => {
 const colorClass = computed(() => {
   switch (props.color) {
     case 'base':
-      return ''
+      return 'textarea-base'
     case 'neutral':
       return 'textarea-neutral'
     case 'primary':
@@ -147,3 +147,21 @@ watch(() => props.size, calculateRows)
 
 onMounted(calculateRows)
 </script>
+
+<style scoped>
+.textarea-base {
+  & {
+    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
+  }
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-info);
+  }
+}
+.input {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    outline-color 0.2s;
+}
+</style>

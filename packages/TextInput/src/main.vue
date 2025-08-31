@@ -73,8 +73,8 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   type: 'text',
   placeholder: '',
   disabled: false,
-  size: 'sm',
-  color: 'info',
+  size: 'md',
+  color: 'base',
 })
 const model = defineModel<string | undefined>('modelValue', {
   required: true,
@@ -147,7 +147,7 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return ''
+      return 'input-base'
     case 'neutral':
       return 'input-neutral'
     case 'primary':
@@ -247,3 +247,21 @@ const shouldShowCounter = computed<boolean>(() => {
   return props.maxlength !== undefined
 })
 </script>
+
+<style scoped>
+.input-base {
+  & {
+    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
+  }
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-info);
+  }
+}
+.input {
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    outline-color 0.2s;
+}
+</style>
