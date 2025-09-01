@@ -1,9 +1,14 @@
 <template>
   <div>
-    <Modal ref="modalRef" @open="handleOpen" @close="handleClose">
+    <Modal ref="modalRef" :close-on-click-modal="false">
+      <template #header="{ close }">
+        <div class="flex w-full justify-between">
+          <h2 class="font-bold">自定义header</h2>
+          <div class="btn btn-primary btn-circle btn-xs text-lg" @click="close">×</div>
+        </div>
+      </template>
       <template #body>
-        <h3 class="font-bold text-lg">emit例子</h3>
-        <p class="py-4">emit例子</p>
+        <p>这是body</p>
       </template>
     </Modal>
 
@@ -19,13 +24,5 @@ const modalRef = ref<ModalRef>()
 
 const handleOpenModal = () => {
   modalRef.value?.open()
-}
-
-const handleOpen = () => {
-  Message.success('modal被打开了')
-}
-
-const handleClose = () => {
-  Message.warning('modal被关闭了')
 }
 </script>

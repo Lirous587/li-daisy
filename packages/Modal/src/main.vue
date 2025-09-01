@@ -1,14 +1,19 @@
 <template>
   <dialog ref="dialogRef" class="modal" :class="directionClass">
     <div class="modal-box" :class="props.size">
-      <slot></slot>
-      <div class="modal-action">
-        <form v-if="showCloseIcon" method="dialog">
-          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-        </form>
+      <div v-if="hasHeaderSlot" class="top-2 left-2 right-2 h-fit">
+        <slot name="header" :close="close"></slot>
+      </div>
+      <div v-else>
+        <div v-if="showCloseIcon" class="absolute right-3 top-2" @click="close">✕</div>
+      </div>
+
+      <div class="mt-2">
+        <slot name="body"></slot>
       </div>
     </div>
 
+    <!-- 蒙层 -->
     <form
       v-if="props.closeOnClickModal"
       method="dialog"
@@ -20,7 +25,7 @@
 
 <script lang="ts" setup>
 import type { ModalProps, ModalRef } from './types'
-import { computed, ref } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 
 const props = withDefaults(defineProps<ModalProps>(), {
   showCloseIcon: true,
@@ -33,6 +38,10 @@ const emit = defineEmits<{
 }>()
 
 const dialogRef = ref<HTMLDialogElement>()
+
+const slots = useSlots()
+
+const hasHeaderSlot = computed(() => slots.header)
 
 const showCloseIcon = computed(() => {
   if (!props.closeOnClickModal) {

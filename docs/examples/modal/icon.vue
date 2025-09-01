@@ -1,15 +1,19 @@
 <template>
   <div class="flex w-full justify-between gap-x-5">
     <Modal ref="modalRef1" show-close-icon>
-      <h3 class="font-bold text-lg">该modal有关闭图标</h3>
-      <p class="py-4">该modal有关闭图标</p>
+      <template #body>
+        <h3 class="font-bold text-lg">该modal有关闭图标</h3>
+        <p class="py-4">该modal有关闭图标</p>
+      </template>
     </Modal>
 
     <button class="btn btn-primary" @click="handleOpenModal1">该modal有关闭图标</button>
 
     <Modal ref="modalRef2" :show-close-icon="false">
-      <h3 class="font-bold text-lg">该modal无关闭图标</h3>
-      <p class="py-4">该modal无关闭图标</p>
+      <template #body>
+        <h3 class="font-bold text-lg">该modal无关闭图标</h3>
+        <p class="py-4">该modal无关闭图标</p>
+      </template>
     </Modal>
 
     <button class="btn btn-primary" @click="handleOpenModal2">该modal无关闭图标</button>

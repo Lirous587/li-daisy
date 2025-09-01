@@ -46,7 +46,7 @@
 
 
 ## 自定义header
-可使用 `header` 插槽自定义抽屉头部，并且该插槽携带一个 `close` 方法用于关闭抽屉
+可使用 `header` 插槽自定义抽屉头部，并且该插槽暴露一个 `close` 方法用于关闭抽屉
 > [!IMPORTANT]
 > 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
 >> 

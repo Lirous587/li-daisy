@@ -2,7 +2,6 @@
 
 > Modal的用法大致和Drawer一致
 
-
 ## 打开方向 
 >  direction可选值有 `ltr` `rtl` `middle` `ttb` `btt`，默认值为 无打开方向居中显示
 
@@ -50,6 +49,16 @@
 :::
 
 
+## 自定义header
+可使用 `header` 插槽自定义抽屉头部，并且该插槽暴露一个 `close` 方法用于关闭抽屉
+> [!IMPORTANT]
+> 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
+>> 
+> 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
+
+:::demo modal/header
+:::
+
 ## API
 
 ### Attributes
@@ -61,10 +70,10 @@
 
 
 ### Slots
-| 插槽名  |      说明      |
-| :-----: | :------------: |
-| default | 填充对话框内容 |
-
+| 插槽名 |    说明    |
+| :----: | :--------: |
+| header | 对话框头部 |
+|  body  | 对话框内容 |
 
 
 ### Event

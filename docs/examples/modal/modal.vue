@@ -1,15 +1,19 @@
 <template>
   <div class="flex w-full justify-between gap-x-5">
     <Modal ref="modalRef1" :close-on-click-modal="true">
-      <h3 class="font-bold text-lg">当前点击蒙层可关闭抽屉</h3>
-      <p class="py-4">当前点击蒙层可关闭modal</p>
+      <template #body>
+        <h3 class="font-bold text-lg">当前点击蒙层可关闭抽屉</h3>
+        <p class="py-4">当前点击蒙层可关闭modal</p>
+      </template>
     </Modal>
 
     <button class="btn btn-primary" @click="handleOpenModal1">点击蒙层可关闭</button>
 
     <Modal ref="modalRef2" :close-on-click-modal="false">
-      <h3 class="font-bold text-lg">当前点击蒙层不可关闭抽屉</h3>
-      <p class="py-4">当前点击蒙层不可关闭抽屉</p>
+      <template #body>
+        <h3 class="font-bold text-lg">当前点击蒙层不可关闭抽屉</h3>
+        <p class="py-4">当前点击蒙层不可关闭抽屉</p>
+      </template>
     </Modal>
 
     <button class="btn btn-primary" @click="handleOpenModal2">点击蒙层不可关闭</button>
