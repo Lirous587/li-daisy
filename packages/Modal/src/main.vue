@@ -27,6 +27,11 @@ const props = withDefaults(defineProps<ModalProps>(), {
   closeOnClickModal: true,
 })
 
+const emit = defineEmits<{
+  (e: 'open'): void
+  (e: 'close'): void
+}>()
+
 const dialogRef = ref<HTMLDialogElement>()
 
 const showCloseIcon = computed(() => {
@@ -56,10 +61,12 @@ const directionClass = computed(() => {
 
 const open = () => {
   dialogRef.value?.showModal()
+  emit('open')
 }
 
 const close = () => {
   dialogRef.value?.close()
+  emit('close')
 }
 
 const exposeObject: ModalRef = {
