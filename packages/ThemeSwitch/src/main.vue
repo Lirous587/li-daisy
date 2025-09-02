@@ -43,15 +43,24 @@ const setTheme = (theme: string) => {
 const getTheme = () => {
   const validThemes = [props.lightTheme, props.darkTheme]
 
-  // 优先从 Cookie 获取
-  const cookieTheme = cookies.get('li-daisy-theme')
-  if (cookieTheme && validThemes.includes(cookieTheme)) {
-    return cookieTheme
+  try {
+    const cookieTheme = cookies.get('li-daisy-theme')
+    if (cookieTheme && validThemes.includes(cookieTheme)) {
+      return cookieTheme
+    }
+  } catch (error) {
+    // Cookie 读取失败时的静默处理
   }
 
-  // 回退机制：尝试系统偏好
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return props.darkTheme
+  // 回退机制：尝试系统偏好（只在客户端环境）
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    try {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return props.darkTheme
+      }
+    } catch (error) {
+      // matchMedia 失败时的静默处理
+    }
   }
 
   // 最终回退到默认浅色主题
