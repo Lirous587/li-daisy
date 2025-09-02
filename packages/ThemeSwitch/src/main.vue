@@ -77,10 +77,6 @@ const switchAnimation = async (x: number, y: number) => {
     return
   }
 
-  // 设置点击位置
-  document.documentElement.style.setProperty('--click-x', `${x}px`)
-  document.documentElement.style.setProperty('--click-y', `${y}px`)
-
   const clipPath = [
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(

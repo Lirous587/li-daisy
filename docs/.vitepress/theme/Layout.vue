@@ -98,11 +98,6 @@ onMounted(async () => {
   nowTheme.value = getTheme()
   applyTheme()
 
-  // 确保页面已经标记为就绪
-  if (!document.documentElement.hasAttribute('data-theme-ready')) {
-    document.documentElement.setAttribute('data-theme-ready', '')
-  }
-
   try {
     const { createHighlighter } = await import('shiki')
     shikiHighlighter.value = await createHighlighter({
