@@ -26,27 +26,27 @@
 <script setup lang="ts">
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import type { ThemeSwitchProps } from './types'
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
+import Cookies from 'universal-cookie'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
   lightTheme: 'li-light',
   darkTheme: 'li-dark',
 })
 
-const setTheme = (theme: string) => {
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return
-  }
+const cookies = new Cookies()
 
-  localStorage.setItem('li-daisy-theme', theme)
+const setTheme = (theme: string) => {
+  cookies.set('li-daisy-theme', theme)
 }
 
 const getTheme = () => {
-  const storedTheme = localStorage.getItem('li-daisy-theme')
   const validThemes = [props.lightTheme, props.darkTheme]
-  // 如果存储的主题是有效的，返回它
-  if (storedTheme && validThemes.includes(storedTheme)) {
-    return storedTheme
+
+  // 优先从 Cookie 获取
+  const cookieTheme = cookies.get('li-daisy-theme')
+  if (cookieTheme && validThemes.includes(cookieTheme)) {
+    return cookieTheme
   }
 
   // 回退机制：尝试系统偏好
@@ -75,7 +75,6 @@ const switchTheme = async (event: MouseEvent) => {
     nowTheme.value = props.lightTheme
   }
 
-  // 保存到 localStorage
   setTheme(nowTheme.value)
 
   // 执行动画
@@ -129,10 +128,7 @@ const switchAnimation = async (x: number, y: number) => {
   )
 }
 
-// 初始化时应用主题
-onMounted(() => {
-  applyTheme()
-})
+applyTheme()
 </script>
 
 <style scoped>

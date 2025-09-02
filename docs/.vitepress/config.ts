@@ -8,30 +8,7 @@ import { demoBlockPlugin } from './plugins/demo'
 export default defineConfig({
   title: 'Li-Daisy',
   description: 'Li-Daisy组件库文档',
-  head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    [
-      'script',
-      {},
-      `
-        (function() {
-          try {
-            // 同步读取并应用主题
-            const theme = localStorage.getItem('li-daisy-theme') || 
-              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'li-dark' : 'li-light');
-            
-            document.documentElement.setAttribute('data-theme', theme);
-            if (theme === 'li-dark') {
-              document.documentElement.classList.add('dark');
-            }
-          } catch (e) {
-            // 降级处理
-            document.documentElement.setAttribute('data-theme', 'li-light');
-          }
-        })();
-      `,
-    ],
-  ],
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   lang: 'zh',
 
   themeConfig: {

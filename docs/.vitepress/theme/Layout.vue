@@ -4,31 +4,24 @@
 
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-
-// 导入需要的 Vue 函数和 Shiki 类型
 import { computed, nextTick, onMounted, provide, ref, shallowRef } from 'vue'
-
 import type { Highlighter } from 'shiki'
+import Cookies from 'universal-cookie'
 
-// 创建 shallowRef 存储实例
-const shikiHighlighter = shallowRef<Highlighter | null>(null)
-
-provide('shiki', shikiHighlighter)
+const cookies = new Cookies()
 
 const setTheme = (theme: string) => {
-  localStorage.setItem('li-daisy-theme', theme)
+  cookies.set('li-daisy-theme', theme)
 }
 
 const getTheme = () => {
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return 'li-dark'
-  }
+  // 优先从 Cookie 获取
+  const cookieTheme = cookies.get('li-daisy-theme')
 
-  const storedTheme = localStorage.getItem('li-daisy-theme')
   const validThemes = ['li-light', 'li-dark']
   // 如果存储的主题是有效的，返回它
-  if (storedTheme && validThemes.includes(storedTheme)) {
-    return storedTheme
+  if (cookieTheme && validThemes.includes(cookieTheme)) {
+    return cookieTheme
   }
 
   // 回退机制：尝试系统偏好
@@ -40,13 +33,7 @@ const getTheme = () => {
   return 'li-light'
 }
 
-// 从 DOM 读取当前主题状态
-const getCurrentThemeFromDOM = () => {
-  if (typeof document === 'undefined') return 'li-dark'
-  return document.documentElement.getAttribute('data-theme') || getTheme()
-}
-
-const nowTheme = ref(getCurrentThemeFromDOM())
+const nowTheme = ref(getTheme())
 
 const isDark = computed(() => nowTheme.value === 'li-dark')
 
@@ -84,6 +71,8 @@ const applyTheme = () => {
   }
 }
 
+applyTheme()
+
 const switchAnimation = async (x: number, y: number) => {
   if (!enableTransitions()) {
     // 直接应用主题
@@ -115,14 +104,12 @@ const switchAnimation = async (x: number, y: number) => {
 
 provide('toggle-appearance', switchTheme)
 
+// 创建 shallowRef 存储实例
+const shikiHighlighter = shallowRef<Highlighter | null>(null)
+
+provide('shiki', shikiHighlighter)
+
 onMounted(async () => {
-  const domTheme = document.documentElement.getAttribute('data-theme')
-  if (domTheme && domTheme !== nowTheme.value) {
-    nowTheme.value = domTheme as 'li-light' | 'li-dark'
-  } else {
-    // 如果 DOM 没有主题属性，则应用当前主题
-    applyTheme()
-  }
   try {
     const { createHighlighter } = await import('shiki')
     shikiHighlighter.value = await createHighlighter({
