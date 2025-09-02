@@ -42,9 +42,6 @@ importers:
       '@tsconfig/node22':
         specifier: ^22.0.1
         version: 22.0.1
-      '@types/cookie':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@types/glob':
         specifier: ^8.1.0
         version: 8.1.0
@@ -1046,10 +1043,6 @@ packages:
 
   '@types/argparse@1.0.38':
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
-
-  '@types/cookie@1.0.0':
-    resolution: {integrity: sha512-mGFXbkDQJ6kAXByHS7QAggRXgols0mAdP4MuXgloGY1tXokvzaFFM4SMqWvf7AH0oafI7zlFJwoGWzmhDqTZ9w==}
-    deprecated: This is a stub types definition. cookie provides its own type definitions, so you do not need this installed.
 
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
@@ -3568,10 +3561,6 @@ snapshots:
   '@tsconfig/node22@22.0.1': {}
 
   '@types/argparse@1.0.38': {}
-
-  '@types/cookie@1.0.0':
-    dependencies:
-      cookie: 1.0.2
 
   '@types/estree@1.0.7': {}
 
