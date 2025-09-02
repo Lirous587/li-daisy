@@ -1,85 +1,50 @@
 <template>
-  <DefaultTheme.Layout> </DefaultTheme.Layout>
+  <DefaultTheme.Layout />
 </template>
 
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { computed, nextTick, onMounted, provide, ref, shallowRef } from 'vue'
 import type { Highlighter } from 'shiki'
-import Cookies from 'universal-cookie'
 import { isClient, isServer } from '../../../packages/utils/ssr'
 
-const cookies = new Cookies()
+const nowTheme = ref('li-light')
+const isDark = computed(() => nowTheme.value === 'li-dark')
 
 const setTheme = (theme: string) => {
-  cookies.set('li-daisy-theme', theme)
+  if (isClient()) {
+    localStorage.setItem('li-daisy-theme', theme)
+  }
 }
 
 const getTheme = () => {
-  // 优先从 Cookie 获取
-  const cookieTheme = cookies.get('li-daisy-theme')
+  if (isServer()) return 'li-light'
 
+  const stored = localStorage.getItem('li-daisy-theme')
   const validThemes = ['li-light', 'li-dark']
-  // 如果存储的主题是有效的，返回它
-  if (cookieTheme && validThemes.includes(cookieTheme)) {
-    return cookieTheme
+
+  if (stored && validThemes.includes(stored)) {
+    return stored
   }
 
-  // 回退机制：尝试系统偏好
-  if (
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  ) {
+  if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
     return 'li-dark'
   }
 
-  // 最终回退到默认浅色主题
   return 'li-light'
 }
 
-const nowTheme = ref(getTheme())
-
-const isDark = computed(() => nowTheme.value === 'li-dark')
-
-const switchTheme = async (event: MouseEvent) => {
-  const { clientX: x, clientY: y } = event
-
-  if (nowTheme.value === 'li-dark') {
-    nowTheme.value = 'li-light'
-  } else if (nowTheme.value === 'li-light') {
-    nowTheme.value = 'li-dark'
-  } else {
-    nowTheme.value = 'li-light'
-  }
-
-  // 保存到 localStorage
-  setTheme(nowTheme.value)
-
-  // 执行动画
-  await switchAnimation(x, y)
-}
-
-// 检查是否支持 View Transition
-const enableTransitions = () =>
-  isClient() &&
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
-
-// 应用主题到 DOM
 const applyTheme = () => {
   if (isServer()) return
 
   document.documentElement.setAttribute('data-theme', nowTheme.value)
-
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
+  document.documentElement.classList.toggle('dark', isDark.value)
 }
 
-applyTheme()
+const enableTransitions = () =>
+  isClient() &&
+  'startViewTransition' in document &&
+  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
 const switchAnimation = async (x: number, y: number) => {
   if (!enableTransitions()) {
@@ -113,19 +78,36 @@ const switchAnimation = async (x: number, y: number) => {
   )
 }
 
+const switchTheme = async (event: MouseEvent) => {
+  const { clientX: x, clientY: y } = event
+
+  nowTheme.value = nowTheme.value === 'li-dark' ? 'li-light' : 'li-dark'
+  setTheme(nowTheme.value)
+
+  await switchAnimation(x, y)
+}
+
 provide('toggle-appearance', switchTheme)
 
 // 创建 shallowRef 存储实例
 const shikiHighlighter = shallowRef<Highlighter | null>(null)
-
 provide('shiki', shikiHighlighter)
 
 onMounted(async () => {
+  // 同步主题状态
+  nowTheme.value = getTheme()
+  applyTheme()
+
+  // 确保页面已经标记为就绪
+  if (!document.documentElement.hasAttribute('data-theme-ready')) {
+    document.documentElement.setAttribute('data-theme-ready', '')
+  }
+
   try {
     const { createHighlighter } = await import('shiki')
     shikiHighlighter.value = await createHighlighter({
-      themes: ['plastic'], // 只加载 plastic 主题
-      langs: ['vue'], // 只加载 vue 语言
+      themes: ['plastic'],
+      langs: ['vue'],
     })
     console.log('Shiki highlighter initialized in Layout.')
   } catch (error) {

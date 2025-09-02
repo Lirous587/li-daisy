@@ -26,8 +26,7 @@
 <script setup lang="ts">
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import type { ThemeSwitchProps } from './types'
-import { computed, nextTick, ref } from 'vue'
-import Cookies from 'universal-cookie'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { isClient, isServer } from '../../utils/ssr'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
@@ -35,56 +34,80 @@ const props = withDefaults(defineProps<ThemeSwitchProps>(), {
   darkTheme: 'li-dark',
 })
 
-const cookies = new Cookies()
-
 const setTheme = (theme: string) => {
-  cookies.set('li-daisy-theme', theme)
+  if (isServer()) return
+  localStorage.setItem('li-daisy-theme', theme)
 }
 
 const getTheme = () => {
+  if (isServer()) return props.lightTheme
+
   const validThemes = [props.lightTheme, props.darkTheme]
 
-  try {
-    const cookieTheme = cookies.get('li-daisy-theme')
-    if (cookieTheme && validThemes.includes(cookieTheme)) {
-      return cookieTheme
-    }
-  } catch (error) {
-    // Cookie 读取失败时静默处理
+  const stored = localStorage.getItem('li-daisy-theme')
+
+  if (stored && validThemes.includes(stored)) {
+    return stored
   }
 
-  // 回退机制：尝试系统偏好（只在客户端环境）
-  if (isClient() && window.matchMedia) {
-    try {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return props.darkTheme
-      }
-    } catch (error) {
-      // matchMedia 失败时静默处理
-    }
+  if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
+    return props.darkTheme
   }
 
   // 最终回退到默认浅色主题
   return props.lightTheme
 }
 
-const nowTheme = ref(getTheme())
-
 const isDark = computed(() => nowTheme.value === props.darkTheme)
 
+const nowTheme = ref(getTheme())
+
 const containerRef = ref<HTMLButtonElement>()
+
+const applyTheme = () => {
+  if (isServer()) return
+
+  document.documentElement.setAttribute('data-theme', nowTheme.value)
+  document.documentElement.classList.toggle('dark', isDark.value)
+}
+
+const switchAnimation = async (x: number, y: number) => {
+  if (!enableTransitions()) {
+    applyTheme()
+    return
+  }
+
+  // 设置点击位置
+  document.documentElement.style.setProperty('--click-x', `${x}px`)
+  document.documentElement.style.setProperty('--click-y', `${y}px`)
+
+  const clipPath = [
+    `circle(0px at ${x}px ${y}px)`,
+    `circle(${Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
+  ]
+
+  await document.startViewTransition(async () => {
+    applyTheme()
+    await nextTick()
+  }).ready
+
+  document.documentElement.animate(
+    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
+    {
+      duration: 600,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
+  )
+}
 
 const switchTheme = async (event: MouseEvent) => {
   const { clientX: x, clientY: y } = event
 
-  if (nowTheme.value === props.darkTheme) {
-    nowTheme.value = props.lightTheme
-  } else if (nowTheme.value === props.lightTheme) {
-    nowTheme.value = props.darkTheme
-  } else {
-    nowTheme.value = props.lightTheme
-  }
-
+  nowTheme.value = nowTheme.value === props.darkTheme ? props.lightTheme : props.darkTheme
   setTheme(nowTheme.value)
 
   // 执行动画
@@ -97,52 +120,9 @@ const enableTransitions = () =>
   'startViewTransition' in document &&
   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
-// 应用主题到 DOM
-const applyTheme = () => {
-  if (isServer()) return
-
-  document.documentElement.setAttribute('data-theme', nowTheme.value)
-
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-}
-
-const switchAnimation = async (x: number, y: number) => {
-  if (!enableTransitions()) {
-    // 直接应用主题
-    applyTheme()
-    return
-  }
-
-  const clipPath = [
-    `circle(0px at ${x}px ${y}px)`,
-    `circle(${Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y),
-    )}px at ${x}px ${y}px)`,
-  ]
-
-  if (isServer()) return
-
-  await document.startViewTransition(async () => {
-    applyTheme()
-    await nextTick()
-  }).ready
-
-  document.documentElement.animate(
-    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-    {
-      duration: 400,
-      easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    },
-  )
-}
-
-applyTheme()
+onMounted(() => {
+  applyTheme()
+})
 </script>
 
 <style scoped>
