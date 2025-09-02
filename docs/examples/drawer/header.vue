@@ -5,7 +5,7 @@
         <div class="btn btn-primary">打开自定义header抽屉</div>
       </template>
       <template #header="{ close }">
-        <div class="w-full flex justify-between">
+        <div class="w-full flex justify-between border-b border-base-300 p-3">
           <h2 class="font-bold text-primary">这是自定义header</h2>
           <button class="btn btn-xs btn-neutral" @click="close">关闭</button>
         </div>

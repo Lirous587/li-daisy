@@ -24,9 +24,12 @@
       ></label>
 
       <!-- drawer内容 -->
-      <div class="bg-base-100 h-full p-4 flex flex-col" :class="props.size">
+      <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
         <!-- default-header -->
-        <div v-if="!hasHeaderSlot" class="w-full flex items-center justify-between flex-nowrap">
+        <div
+          v-if="!hasHeaderSlot"
+          class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
+        >
           <div class="li-drawer-title text-lg">
             {{ props.title }}
           </div>
@@ -38,12 +41,12 @@
         </div>
 
         <!-- custom-header -->
-        <div v-else>
+        <div v-else class="li-drawer-header">
           <slot name="header" :close="close"></slot>
         </div>
 
         <!-- body -->
-        <div class="mt-3 flex-1 overflow-auto !no-scrollbar">
+        <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
           <slot name="body" />
         </div>
       </div>
