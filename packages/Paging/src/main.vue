@@ -51,6 +51,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import type { PagingProps, PagingItem, PagingRef } from './types'
 import { formatUrl } from '../../utils/format.ts'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { isClient, isServer } from '../../utils/ssr.ts'
 
 const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
@@ -280,11 +281,10 @@ const handleResize = (event: MediaQueryListEvent | MediaQueryList) => {
 
 onMounted(() => {
   // 确保在浏览器环境中执行
-  if (typeof window !== 'undefined') {
-    mediaQueryList = window.matchMedia(mediaQueryString)
-    handleResize(mediaQueryList) // 立即检查一次初始状态
-    mediaQueryList.addEventListener('change', handleResize)
-  }
+  mediaQueryList = window.matchMedia(mediaQueryString)
+  handleResize(mediaQueryList) // 立即检查一次初始状态
+  mediaQueryList.addEventListener('change', handleResize)
+
   if (!currentPage.value) {
     currentPage.value = 1
   }

@@ -3,6 +3,7 @@ import { createApp, type App, type Directive, type DirectiveBinding } from 'vue'
 import Loading from './main.vue'
 import type { LoadingProps, LoadingType, LoadingColor, LoadingSize } from './types'
 import { isLoadingType, isLoadingColor, isLoadingSize } from './types'
+import { isServer } from '../../utils/ssr'
 
 type LoadingEl = HTMLElement & {
   __loadingApp?: App
@@ -58,6 +59,8 @@ function resolveOptions(binding: DirectiveBinding<BindVal>): {
 
 const loadingDirective: Directive<LoadingEl, BindVal> = {
   mounted(el, binding) {
+    if (isServer()) return
+
     const cs = window.getComputedStyle(el)
     // 保证定位
     el.__prevPosition = cs.position === 'static' ? '' : undefined

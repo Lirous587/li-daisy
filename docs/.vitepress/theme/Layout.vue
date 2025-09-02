@@ -7,6 +7,7 @@ import DefaultTheme from 'vitepress/theme'
 import { computed, nextTick, onMounted, provide, ref, shallowRef } from 'vue'
 import type { Highlighter } from 'shiki'
 import Cookies from 'universal-cookie'
+import { isClient, isServer } from '../../../packages/utils/ssr'
 
 const cookies = new Cookies()
 
@@ -25,7 +26,11 @@ const getTheme = () => {
   }
 
   // 回退机制：尝试系统偏好
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
     return 'li-dark'
   }
 
@@ -57,11 +62,14 @@ const switchTheme = async (event: MouseEvent) => {
 
 // 检查是否支持 View Transition
 const enableTransitions = () =>
+  isClient() &&
   'startViewTransition' in document &&
   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
 // 应用主题到 DOM
 const applyTheme = () => {
+  if (isServer()) return
+
   document.documentElement.setAttribute('data-theme', nowTheme.value)
 
   if (isDark.value) {
@@ -79,6 +87,7 @@ const switchAnimation = async (x: number, y: number) => {
     applyTheme()
     return
   }
+
   const clipPath = [
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
@@ -86,6 +95,8 @@ const switchAnimation = async (x: number, y: number) => {
       Math.max(y, innerHeight - y),
     )}px at ${x}px ${y}px)`,
   ]
+
+  if (isServer()) return
 
   await document.startViewTransition(async () => {
     applyTheme()

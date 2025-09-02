@@ -24,6 +24,7 @@
 import { ref, computed, onMounted, onUnmounted, type CSSProperties, nextTick } from 'vue'
 import type { PopoverProps, PopoverPositon, PopoverRef } from './types'
 import { debounce } from '../../utils/performance'
+import { isServer } from '../../utils/ssr'
 
 const props = withDefaults(defineProps<PopoverProps>(), {
   position: 'bottom',
@@ -115,6 +116,8 @@ const calculatePosition = (
 
 // 检查位置是否在视口内
 const isInViewport = (x: number, y: number, width: number, height: number) => {
+  if (isServer()) return
+
   // 检查一个矩形区域（弹出框）是否完全在浏览器窗口的可视范围内，并且距离边缘至少有 8px 的安全距离
   return (
     x >= margin && // 左边界检查
@@ -126,6 +129,12 @@ const isInViewport = (x: number, y: number, width: number, height: number) => {
 
 // 获取最佳位置
 const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
+  if (isServer())
+    return {
+      x: 0,
+      y: 0,
+    }
+
   // 简单回退配置
   const getSimpleFallbacks = (PopoverPositon: PopoverPositon): PopoverPositon[] => {
     const base = PopoverPositon.split('-')[0] as 'top' | 'bottom' | 'left' | 'right'
@@ -183,6 +192,14 @@ const getRealRect = (element: HTMLElement): DOMRect => {
 const popoverStyle = computed((): CSSProperties => {
   // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
   forceUpdate.value
+
+  if (isServer())
+    return {
+      pointerEvents: 'none',
+      visibility: 'hidden',
+      left: '-9999px',
+      top: '-9999px',
+    }
 
   if (!triggerRef.value || !popoverRef.value) {
     return {

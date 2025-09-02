@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput, Notification } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput, Notification, Message } from 'li-daisy'
 import type { FormRef } from 'li-daisy'
 import { ref } from 'vue'
 
@@ -51,7 +51,7 @@ const handleRegister = async () => {
   formRef.value
     ?.validate()
     .then(() => {
-      window.alert('注册成功')
+      Message.info('注册成功')
     })
     .catch(() => {
       Notification.warning({

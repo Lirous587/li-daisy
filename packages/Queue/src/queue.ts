@@ -2,6 +2,7 @@ import { createApp, h, markRaw, reactive, type App, type Component, type VNode }
 import QueueLayout from './layout.vue'
 
 import type { QueueItem, QueueItemOptions, QueuePosition } from './types'
+import { isServer } from '../../utils/ssr'
 
 class QueueManager {
   private app: App | null = null
@@ -90,6 +91,8 @@ class QueueManager {
 
   // 确保容器存在
   private ensureContainer() {
+    if (isServer()) return
+
     if (!this.app) {
       this.container = document.createElement('div')
       document.body.appendChild(this.container)

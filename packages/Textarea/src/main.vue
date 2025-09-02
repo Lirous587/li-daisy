@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts" setup>
+import { isServer } from '../../utils/ssr'
 import type { TextareaProps } from './types'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
@@ -93,7 +94,8 @@ const dynamicRows = ref(props.minRows)
 
 const calculateRows = async () => {
   // 仅当 autoGrow 启用，且在浏览器环境，且 refs 都准备好时执行
-  if (typeof window === 'undefined' || !measureEl.value || !textareaEl.value) {
+  // 否则不计算
+  if (isServer() || !measureEl.value || !textareaEl.value) {
     dynamicRows.value = props.minRows || 5
     return
   }

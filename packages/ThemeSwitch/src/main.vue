@@ -28,6 +28,7 @@ import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import type { ThemeSwitchProps } from './types'
 import { computed, nextTick, ref } from 'vue'
 import Cookies from 'universal-cookie'
+import { isClient, isServer } from '../../utils/ssr'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
   lightTheme: 'li-light',
@@ -49,17 +50,17 @@ const getTheme = () => {
       return cookieTheme
     }
   } catch (error) {
-    // Cookie 读取失败时的静默处理
+    // Cookie 读取失败时静默处理
   }
 
   // 回退机制：尝试系统偏好（只在客户端环境）
-  if (typeof window !== 'undefined' && window.matchMedia) {
+  if (isClient() && window.matchMedia) {
     try {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return props.darkTheme
       }
     } catch (error) {
-      // matchMedia 失败时的静默处理
+      // matchMedia 失败时静默处理
     }
   }
 
@@ -92,12 +93,13 @@ const switchTheme = async (event: MouseEvent) => {
 
 // 检查是否支持 View Transition
 const enableTransitions = () =>
+  isClient() &&
   'startViewTransition' in document &&
   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
 // 应用主题到 DOM
 const applyTheme = () => {
-  if (typeof document === 'undefined') return
+  if (isServer()) return
 
   document.documentElement.setAttribute('data-theme', nowTheme.value)
 
@@ -114,6 +116,7 @@ const switchAnimation = async (x: number, y: number) => {
     applyTheme()
     return
   }
+
   const clipPath = [
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
@@ -121,6 +124,8 @@ const switchAnimation = async (x: number, y: number) => {
       Math.max(y, innerHeight - y),
     )}px at ${x}px ${y}px)`,
   ]
+
+  if (isServer()) return
 
   await document.startViewTransition(async () => {
     applyTheme()
