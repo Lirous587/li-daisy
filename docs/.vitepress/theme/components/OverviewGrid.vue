@@ -4,7 +4,7 @@
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"
-      class="card rounded-md elevated-lg hover:bg-base-200 duration-500 !transition-all !no-underline"
+      class="card rounded-md !transition-transform duration-300 hover:translate-y-[-3px] hover:bg-base-200 !no-underline"
     >
       <figure class="px-4 pt-4">
         <img

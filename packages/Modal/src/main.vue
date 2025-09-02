@@ -1,14 +1,18 @@
 <template>
   <dialog ref="dialogRef" class="modal" :class="directionClass">
-    <div class="modal-box" :class="props.size">
-      <div v-if="hasHeaderSlot" class="top-2 left-2 right-2 h-fit">
+    <div class="modal-box p-0" :class="[props.size]">
+      <div v-if="hasHeaderSlot" class="li-modal-header">
         <slot name="header" :close="close"></slot>
       </div>
-      <div v-else>
-        <div v-if="showCloseIcon" class="absolute right-3 top-2" @click="close">✕</div>
+      <div
+        v-else-if="showCloseIcon"
+        class="li-modal-header-default absolute right-3 top-2"
+        @click="close"
+      >
+        ✕
       </div>
 
-      <div class="mt-2">
+      <div class="mt-2 p-4 li-modal-body">
         <slot name="body"></slot>
       </div>
     </div>
