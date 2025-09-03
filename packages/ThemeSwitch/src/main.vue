@@ -4,25 +4,31 @@
     @click="switchTheme"
     ref="containerRef"
   >
-    <transition name="sun">
-      <span
-        v-if="nowTheme === props.lightTheme"
-        class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
-      >
-        <SunIcon />
-      </span>
-    </transition>
-    <transition name="moon">
-      <span
-        v-if="nowTheme === props.darkTheme"
-        class="absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
-      >
-        <MoonIcon />
-      </span>
-    </transition>
+    <template v-if="isHydrated">
+      <transition name="sun">
+        <span
+          v-if="nowTheme === props.lightTheme"
+          class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+        >
+          <SunIcon />
+        </span>
+      </transition>
+      <transition name="moon">
+        <span
+          v-if="nowTheme === props.darkTheme"
+          class="absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+        >
+          <MoonIcon />
+        </span>
+      </transition>
+    </template>
+
+    <!-- 水合前显示默认状态 -->
+    <template v-else>
+      <span class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"> </span>
+    </template>
   </button>
 </template>
-
 <script setup lang="ts">
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import type { ThemeSwitchProps } from './types'
@@ -33,6 +39,9 @@ const props = withDefaults(defineProps<ThemeSwitchProps>(), {
   lightTheme: 'li-light',
   darkTheme: 'li-dark',
 })
+
+// 水合状态追踪
+const isHydrated = ref(false)
 
 const setTheme = (theme: string) => {
   if (isServer()) return
@@ -58,10 +67,10 @@ const getTheme = () => {
   return props.lightTheme
 }
 
+// 初始化为服务端的默认值，避免水合不一致
+const nowTheme = ref(props.lightTheme)
+
 const isDark = computed(() => nowTheme.value === props.darkTheme)
-
-const nowTheme = ref(getTheme())
-
 const containerRef = ref<HTMLButtonElement>()
 
 const applyTheme = () => {
@@ -117,7 +126,15 @@ const enableTransitions = () =>
   window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
 onMounted(() => {
+  // 在客户端获取真实的主题偏好
+  const actualTheme = getTheme()
+  nowTheme.value = actualTheme
+
   applyTheme()
+  // 标记为已水合
+  nextTick(() => {
+    isHydrated.value = true
+  })
 })
 </script>
 
