@@ -2,7 +2,7 @@
   <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative w-full"
+      class="input flex-1 overflow-hidden relative w-full select-none"
       :class="[inputSizeClass, inputColorClass, hasPrefix ? '!pl-0' : '', hasSuffix ? '!pr-0' : '']"
     >
       <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>

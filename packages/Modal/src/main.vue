@@ -9,7 +9,7 @@
         class="li-modal-header-default absolute right-3 top-2"
         @click="close"
       >
-        ✕
+        <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
       </div>
 
       <div class="mt-2 p-4 li-modal-body">
@@ -28,6 +28,7 @@
 </template>
 
 <script lang="ts" setup>
+import { XMarkIcon } from '@heroicons/vue/24/outline'
 import type { ModalProps, ModalRef } from './types'
 import { computed, ref, useSlots } from 'vue'
 

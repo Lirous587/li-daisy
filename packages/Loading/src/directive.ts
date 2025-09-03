@@ -160,6 +160,7 @@ function createSSRPlaceholder(el: LoadingEl, opts: ReturnType<typeof resolveOpti
     user-select: none;
     transition: opacity 200ms ease;
   `
+  placeholder.classList.add('select-none')
 
   // 背景层
   const backdrop = document.createElement('div')
@@ -222,6 +223,7 @@ function createLoadingOverlay(el: LoadingEl, opts: ReturnType<typeof resolveOpti
   overlay.style.touchAction = 'none' // 阻止所有触摸手势
   overlay.style.userSelect = 'none' // 阻止文本选择
   overlay.style.pointerEvents = 'auto' // 确保接收指针事件
+  overlay.classList.add('select-none')
 
   // 半透明背景层
   const backdrop = document.createElement('div')

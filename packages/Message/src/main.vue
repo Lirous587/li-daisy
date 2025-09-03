@@ -22,7 +22,7 @@
       <XMarkIcon
         v-if="props.showCloseIcon"
         @click="emit('close')"
-        class="ml-auto shrink-0 w-4 h-4 text-base-content hover:cursor-pointer opacity-70"
+        class="ml-auto shrink-0 w-4 h-4 text-base-content cursor-pointer opacity-70"
       />
     </div>
 

@@ -8,7 +8,7 @@
     </div>
 
     <div
-      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md hover:cursor-pointer select-none font-mono relative overflow-hidden"
+      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md cursor-pointer select-none font-mono relative overflow-hidden"
       v-if="pageConfim()"
       :class="[
         displayClass,

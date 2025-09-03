@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 当加载中时显示骨架屏 -->
-    <div v-if="isLoading" :class="$attrs.class">
+    <div v-if="isLoading" :class="$attrs.class" class="select-none">
       <div v-for="i in props.count" :key="i">
         <slot name="skeleton"></slot>
       </div>

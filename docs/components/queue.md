@@ -29,7 +29,7 @@
 
         <!-- 关闭按钮 -->
         <div class="shrink-0">
-          <XMarkIcon class="w-5 h-5 hover:cursor-pointer" @click="props.close()" />
+          <XMarkIcon class="w-5 h-5 cursor-pointer" @click="props.close()" />
         </div>
       </div>
     </div>

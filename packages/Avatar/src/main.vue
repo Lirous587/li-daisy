@@ -1,6 +1,6 @@
 <template>
   <div class="m-1">
-    <div v-if="ifFailed" class="avatar avatar-placeholder">
+    <div v-if="ifFailed" class="avatar avatar-placeholder select-none">
       <div
         class="ring-offset-base-100 ring ring-offset-2 ring-base-300 bg-base-300 text-base-content font-bold rounded-full aspect-square"
         :class="sizeClass"
@@ -8,7 +8,7 @@
         <span class="text-base-content">{{ props.text }}</span>
       </div>
     </div>
-    <div v-else class="avatar">
+    <div v-else class="avatar select-none">
       <div
         class="ring-offset-base-100 ring ring-offset-2 ring-base-300 rounded-full aspect-square"
         :class="sizeClass"

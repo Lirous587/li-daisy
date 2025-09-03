@@ -2,14 +2,14 @@
   <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative !px-0 w-full"
+      class="input flex-1 overflow-hidden relative !px-0 w-full select-none"
       :class="[sizeClass, inputColorClass]"
     >
       <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
 
       <!-- reduce -->
       <div
-        class="h-full flex items-center justify-center hover:cursor-pointer border-r aspect-square select-none"
+        class="h-full flex items-center justify-center cursor-pointer border-r aspect-square select-none"
         :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
         @click="decrease"
       >
@@ -28,7 +28,7 @@
 
       <!-- plus -->
       <div
-        class="h-full flex items-center justify-center hover:cursor-pointer border-l aspect-square select-none"
+        class="h-full flex items-center justify-center cursor-pointer border-l aspect-square select-none"
         :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
         @click="increase"
       >
