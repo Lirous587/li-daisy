@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-x-auto border-base-300 rounded-md"
+    class="overflow-x-auto border-base-300"
     tabindex="-1"
     :class="[props.border ? 'border' : '']"
     ref="scrollContainer"
@@ -737,40 +737,27 @@ onBeforeUnmount(() => {
   box-shadow: inset -10px 0 10px -10px oklch(100% 0 0 / 0.15);
 }
 
-/* 定位处理 避免覆盖table类的pin-cols */
-.table-with-border td:not(.sticky),
-.table-with-border th:not(.sticky) {
-  position: relative;
+/* 使用原生边框 */
+.table-with-border {
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-.table-with-border .sticky {
-  position: sticky !important;
+.table-with-border td,
+.table-with-border th {
+  border-right: var(--border) solid color-mix(in oklch, var(--color-base-content) 5%, #0000);
+  border-top: var(--border) solid color-mix(in oklch, var(--color-base-content) 5%, #0000);
 }
 
-/* 只有当 table 有 table-with-border 类时才显示边框 */
-
-/* 右边框 */
-.table-with-border td::after,
-.table-with-border th::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: var(--border);
-  background-color: color-mix(in oklch, var(--color-base-content) 5%, #0000);
-  pointer-events: none;
-  z-index: 1;
+/* 清理边缘边框 */
+.table-with-border td:last-child,
+.table-with-border th:last-child {
+  border-right: none;
 }
-
-/* 最后一列不需要右边框 */
-.table-with-border td:last-child::after,
-.table-with-border th:last-child::after {
-  display: none;
-}
-
-/* 固定列的边框需要更高的 z-index */
-.table-with-border .sticky::after {
-  z-index: 2;
+.table-with-border thead tr:first-child td,
+.table-with-border thead tr:first-child th,
+.table-with-border tbody tr:first-child td,
+.table-with-border tbody tr:first-child th {
+  border-top: none;
 }
 </style>
