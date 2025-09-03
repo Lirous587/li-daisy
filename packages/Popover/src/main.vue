@@ -4,7 +4,7 @@
     <slot name="trigger" />
 
     <!-- 悬浮内容 -->
-    <Teleport to="body">
+    <CompatiblePortal to="body">
       <div
         ref="popoverRef"
         class="absolute transition-[scale] vp-raw"
@@ -16,12 +16,14 @@
         <!-- 内容插槽 -->
         <slot name="content" />
       </div>
-    </Teleport>
+    </CompatiblePortal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, type CSSProperties, nextTick } from 'vue'
+import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
+
 import type { PopoverProps, PopoverPositon, PopoverRef } from './types'
 import { debounce } from '../../utils/performance'
 import { isServer } from '../../utils/ssr'
@@ -193,42 +195,42 @@ const popoverStyle = computed((): CSSProperties => {
   // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
   forceUpdate.value
 
-  if (isServer())
-    return {
-      pointerEvents: 'none',
-      visibility: 'hidden',
-      left: '-9999px',
-      top: '-9999px',
-    }
-
-  if (!triggerRef.value || !popoverRef.value) {
-    return {
-      pointerEvents: 'none',
-      visibility: 'hidden',
-      left: '-9999px',
-      top: '-9999px',
-    }
+  // 统一的隐藏样式（服务端和客户端一致）
+  const hiddenStyle: CSSProperties = {
+    pointerEvents: 'none',
+    visibility: 'hidden',
+    left: '0px',
+    top: '0px',
+    transform: 'translateX(-100vw)',
   }
 
-  const triggerRect = triggerRef.value.getBoundingClientRect()
-
-  if (!visible.value) {
-    return {
-      pointerEvents: 'none',
-      visibility: 'hidden',
-      left: '-9999px',
-      top: '-9999px',
-    }
+  // 服务端返回隐藏样式
+  if (isServer()) {
+    return hiddenStyle
   }
-  const popoverRect = getRealRect(popoverRef.value)
 
-  const position = getBestPosition(triggerRect, popoverRect)
+  // 元素未准备好时返回隐藏样式
+  if (!triggerRef.value || !popoverRef.value || !visible.value) {
+    return hiddenStyle
+  }
 
-  return {
-    left: `${position.x + window.scrollX}px`,
-    top: `${position.y + window.scrollY}px`,
-    'z-index': props.zIndex || 0,
-    visibility: 'visible',
+  // 计算实际位置
+  try {
+    const triggerRect = triggerRef.value.getBoundingClientRect()
+    const popoverRect = getRealRect(popoverRef.value)
+    const position = getBestPosition(triggerRect, popoverRect)
+
+    return {
+      left: `${position.x + window.scrollX}px`,
+      top: `${position.y + window.scrollY}px`,
+      transform: 'translateX(0)', // 重置 transform
+      'z-index': props.zIndex || 0,
+      visibility: 'visible',
+      // pointerEvents: 'auto',
+    }
+  } catch (error) {
+    console.warn('Popover position calculation failed:', error)
+    return hiddenStyle
   }
 })
 

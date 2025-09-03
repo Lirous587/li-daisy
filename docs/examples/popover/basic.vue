@@ -12,6 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { Popover } from 'li-daisy'
+// import { Popover } from 'li-daisy'
+import { Popover } from '../../../packages'
+
 import Card from '../demo/Card.vue'
 </script>
