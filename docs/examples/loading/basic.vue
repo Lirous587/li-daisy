@@ -1,34 +1,35 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="flex items-center justify-around gap-3">
-      <div class="btn" @click="setTrue">开启 loading</div>
-      <div class="btn" @click="setFalse">关闭 loading</div>
-      <div class="btn" @click="toggle">切换 loading</div>
+      <div class="btn" @click="setTrue">开启 loading1</div>
+      <div class="btn" @click="setFalse">关闭 loading1</div>
+      <div class="btn" @click="toggle">切换 loading1</div>
     </div>
 
     <div
       class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
-      v-loading:infinity="loading"
+      v-loading:infinity="loading1"
     >
       <div>这是一个块级容器</div>
-      <div class="text-sm opacity-70">指令只会覆盖此容器，不是全屏</div>
+      <div class="text-sm opacity-70">该加载状态由loading1控制</div>
+    </div>
+
+    <div
+      class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
+      v-loading:bars.neutral.xs="loading2"
+    >
+      <div>这是另外一个块级容器</div>
+      <div class="text-sm opacity-70">该加载状态由loading2控制</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Notification } from 'li-daisy'
+const loading1 = ref(true)
+const toggle = () => (loading1.value = !loading1.value)
+const setTrue = () => (loading1.value = true)
+const setFalse = () => (loading1.value = false)
 
-const loading = ref(true)
-const toggle = () => (loading.value = !loading.value)
-const setTrue = () => (loading.value = true)
-const setFalse = () => (loading.value = false)
-
-const handleFoo = () => {
-  Notification.warning({
-    title: 'foo title',
-    message: 'foo message',
-  })
-}
+const loading2 = ref(true)
 </script>
