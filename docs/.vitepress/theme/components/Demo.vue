@@ -3,9 +3,7 @@
     <div class="card-body">
       <!-- 组件预览区域 -->
       <div class="relative overflow-auto py-4 vp-raw">
-        <ClientOnly>
-          <component :is="demoComponent" v-if="demoComponent" />
-        </ClientOnly>
+        <component :is="demoComponent" v-if="demoComponent" />
       </div>
     </div>
 

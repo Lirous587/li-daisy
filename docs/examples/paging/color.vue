@@ -26,5 +26,5 @@ const colors = ref<PagingColor[]>([
   'error',
 ])
 
-const currentPage = ref(0)
+const currentPage = ref(1)
 </script>

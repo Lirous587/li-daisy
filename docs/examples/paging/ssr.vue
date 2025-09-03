@@ -2,13 +2,7 @@
   <div class="w-full flex flex-col gap-y-4">
     <!-- 示例 1: 使用 pre-href -->
     <p class="text-center text-sm">使用 <code>pre-href="/article/"</code> (当前第 3 页)</p>
-    <Paging
-      v-model="currentPage"
-      class="m-auto"
-      :pages="10"
-      :current-page="3"
-      pre-href="/article/"
-    ></Paging>
+    <Paging v-model="currentPage1" class="m-auto" :pages="10" pre-href="/article/"></Paging>
     <p class="text-center text-xs text-base-content/70">
       爬虫现在可以发现指向 <code>/article/2</code> (上一页) 和 <code>/article/4</code> (下一页)
       的链接。
@@ -17,10 +11,9 @@
     <!-- 示例 2: 使用 href-generator -->
     <p class="text-center text-sm">使用 <code>href-generator</code> (当前第 5 页)</p>
     <Paging
-      v-model="currentPage"
+      v-model="currentPage2"
       class="m-auto"
       :pages="10"
-      :current-page="5"
       :href-generator="generateLink"
     ></Paging>
     <p class="text-center text-xs text-base-content/70">
@@ -34,7 +27,8 @@
 import { Paging } from 'li-daisy'
 import { ref } from 'vue'
 
-const currentPage = ref(0)
+const currentPage1 = ref(3)
+const currentPage2 = ref(5)
 
 // href-generator 函数示例
 const generateLink = (page: number) => {

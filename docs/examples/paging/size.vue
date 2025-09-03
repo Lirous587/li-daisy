@@ -6,9 +6,10 @@
 
 <script setup lang="ts">
 import { Paging, type PagingSize } from 'li-daisy'
+
 import { ref } from 'vue'
 
 const sizes = ref<PagingSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])
 
-const currentPage = ref(0)
+const currentPage = ref(1)
 </script>

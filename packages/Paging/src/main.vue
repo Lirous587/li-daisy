@@ -8,16 +8,27 @@
     </div>
 
     <div
-      class="flex *:border-y [&>*:first-child]:border-l *:border-r [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md hover:cursor-pointer select-none font-mono relative overflow-hidden"
+      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md hover:cursor-pointer select-none font-mono relative overflow-hidden"
       v-if="pageConfim()"
-      :class="[displayClass, borderColor, sizeClass]"
+      :class="[
+        displayClass,
+        borderColor,
+        sizeClass,
+        props.hideIconOnSm
+          ? 'max-sm:[&>*:nth-child(2)]:border-l max-sm:[&>*:nth-child(2)]:rounded-l-md max-sm:[&>*:nth-last-child(2)]:rounded-r-md'
+          : '',
+      ]"
     >
       <!-- last -->
       <div
         class="flex h-full aspect-square"
-        :class="[ifMin ? 'pointer-events-none' : '', bgColor]"
+        :class="[
+          ifMin ? 'pointer-events-none' : '',
+          bgColor,
+          props.hideIconOnSm ? 'hidden sm:flex' : 'flex',
+        ]"
         @click="changePage(Math.max(1, safeCurrentPage - 1))"
-        v-if="shouldRenderIcons"
+        v-if="props.icon"
       >
         <ArrowLeftIcon class="m-auto w-3 h-3" :class="textColor" />
       </div>
@@ -36,9 +47,13 @@
       <!-- next -->
       <div
         class="flex h-full aspect-square"
-        :class="[ifMax ? 'pointer-events-none' : '', bgColor]"
+        :class="[
+          ifMax ? 'pointer-events-none' : '',
+          bgColor,
+          props.hideIconOnSm ? 'hidden sm:flex' : 'flex',
+        ]"
         @click="changePage(Math.min(pages, safeCurrentPage + 1))"
-        v-if="shouldRenderIcons"
+        v-if="props.icon"
       >
         <ArrowRightIcon class="m-auto h-3 w-3" :class="textColor" />
       </div>
@@ -51,7 +66,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import type { PagingProps, PagingItem, PagingRef } from './types'
 import { formatUrl } from '../../utils/format.ts'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { isClient, isServer } from '../../utils/ssr.ts'
 
 const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
@@ -141,6 +155,7 @@ watch([() => currentPage.value, () => props.offset, () => props.pages], () => {
   list.value = initList()
 })
 
+// 确保ssr渲染
 list.value = initList()
 
 const sizeClass = computed(() => {
@@ -270,45 +285,6 @@ const changePage = (page: number) => {
   emit('change', page)
   currentPage.value = page
 }
-
-const isSmallScreen = ref(false) // 初始值可以根据需要设置，或在 onMounted 中立即检查
-let mediaQueryList: MediaQueryList | null = null
-const mediaQueryString = '(max-width: 639px)' // Tailwind md 断点 - 1px
-
-const handleResize = (event: MediaQueryListEvent | MediaQueryList) => {
-  isSmallScreen.value = event.matches
-}
-
-onMounted(() => {
-  // 确保在浏览器环境中执行
-  mediaQueryList = window.matchMedia(mediaQueryString)
-  handleResize(mediaQueryList) // 立即检查一次初始状态
-  mediaQueryList.addEventListener('change', handleResize)
-
-  if (!currentPage.value) {
-    currentPage.value = 1
-  }
-})
-
-onUnmounted(() => {
-  if (mediaQueryList) {
-    mediaQueryList.removeEventListener('change', handleResize)
-  }
-})
-
-// 计算是否应该渲染图标
-const shouldRenderIcons = computed(() => {
-  // 如果 props.icon 为 false，则始终不渲染
-  if (!props.icon) {
-    return false
-  }
-  // 如果 props.hideIconOnSm 为 false，则始终渲染 (只要 icon 为 true)
-  if (!props.hideIconOnSm) {
-    return true
-  }
-  // 如果 hideIconOnSm 为 true，则仅在非小屏幕时渲染
-  return !isSmallScreen.value
-})
 
 const exposeObject: PagingRef = {
   change: changePage,
