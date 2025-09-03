@@ -25,7 +25,7 @@
         :class="[
           ifMin ? 'pointer-events-none' : '',
           bgColor,
-          props.hideIconOnSm ? 'hidden sm:flex' : 'flex',
+          props.hideIconOnSm ? 'max-sm:hidden' : '',
         ]"
         @click="changePage(Math.max(1, safeCurrentPage - 1))"
         v-if="props.icon"
@@ -50,7 +50,7 @@
         :class="[
           ifMax ? 'pointer-events-none' : '',
           bgColor,
-          props.hideIconOnSm ? 'hidden sm:flex' : 'flex',
+          props.hideIconOnSm ? 'max-sm:hidden' : '',
         ]"
         @click="changePage(Math.min(pages, safeCurrentPage + 1))"
         v-if="props.icon"

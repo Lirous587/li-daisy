@@ -23,9 +23,18 @@
       </transition>
     </template>
 
-    <!-- 水合前显示默认状态 -->
+    <!-- 水合前的占位内容 -->
     <template v-else>
-      <span class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"> </span>
+      <span
+        class="li-theme-placeholder-sun absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+      >
+        <SunIcon />
+      </span>
+      <span
+        class="li-theme-placeholder-moon absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+      >
+        <MoonIcon />
+      </span>
     </template>
   </button>
 </template>
@@ -169,6 +178,23 @@ onMounted(() => {
 .moon-leave-to {
   transform: translateX(-24px);
   opacity: 0;
+}
+
+/* 占位 */
+.li-theme-placeholder-sun {
+  display: block;
+}
+
+.li-theme-placeholder-moon {
+  display: none;
+}
+
+html.dark .li-theme-placeholder-sun {
+  display: none;
+}
+
+html.dark .li-theme-placeholder-moon {
+  display: block;
 }
 </style>
 
