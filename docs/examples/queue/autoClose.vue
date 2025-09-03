@@ -17,7 +17,7 @@
 import { Queue, type QueuePosition } from 'li-daisy'
 
 import component from './toast.vue'
-import type { NotificationProps } from './toast.vue'
+import type { ToastProps } from './toast.vue'
 
 const showNotification = (position: QueuePosition) => {
   Queue.addComponent(
@@ -25,7 +25,7 @@ const showNotification = (position: QueuePosition) => {
     {
       title: '操作成功',
       message: `消息显示在 ${position} 位置`,
-    } as NotificationProps,
+    } as ToastProps,
     {
       position: position,
       autoClose: false,

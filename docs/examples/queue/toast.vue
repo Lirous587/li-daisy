@@ -30,10 +30,10 @@
 import type { QueueItemRef } from 'li-daisy'
 import { BellAlertIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
-export interface NotificationProps {
+export interface ToastProps {
   title?: string
   message?: string
 }
 
-const props = defineProps<QueueItemRef & NotificationProps>()
+const props = defineProps<QueueItemRef & ToastProps>()
 </script>

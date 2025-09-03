@@ -7,13 +7,38 @@
 **queue** 支持传入自定义的 Vue 组件作为消息内容。组件的props应当为 `QueueItemRef` 的扩展：
 
 > **以下是自定义组件部分代码**
-```
+```vue
 <template>
-  ...组件内容
+  <div class="bg-base-100 shadow-lg rounded-xl border border-base-100 overflow-hidden">
+    <!-- 顶部彩色条 -->
+    <div class="h-1 bg-gradient-to-r from-primary to-secondary"></div>
+
+    <!-- 主要内容 -->
+    <div class="p-4">
+      <div class="flex items-start space-x-3">
+        <!-- 图标 -->
+        <div class="shrink-0 text-primary">
+          <BellAlertIcon class="w-5 h-5" />
+        </div>
+
+        <!-- 文本内容 -->
+        <div class="flex-1 min-w-25 whitespace-nowrap">
+          <h3 class="text-sm font-medium text-gray-900">{{ props.title }}</h3>
+          <p class="text-sm text-gray-500 mt-1">{{ props.message }}</p>
+        </div>
+
+        <!-- 关闭按钮 -->
+        <div class="shrink-0">
+          <XMarkIcon class="w-5 h-5 hover:cursor-pointer" @click="props.close()" />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { QueueItemRef } from 'li-daisy'
+import { BellAlertIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 export interface ToastProps {
   title?: string
@@ -22,6 +47,7 @@ export interface ToastProps {
 
 const props = defineProps<QueueItemRef & ToastProps>()
 </script>
+
 ```
 :::demo queue/component
 :::
@@ -54,12 +80,12 @@ const props = defineProps<QueueItemRef & ToastProps>()
 
 **Options：**
 
-| 参数      | 类型            | 默认值      | 说明                            |
-| --------- | --------------- | ----------- | ------------------------------- |
-| position  | `QueuePosition` | `'top-end'` | 消息显示位置                    |
+| 参数      | 类型            | 默认值      | 说明                             |
+| --------- | --------------- | ----------- | -------------------------------- |
+| position  | `QueuePosition` | `'top-end'` | 消息显示位置                     |
 | duration  | `number`        | -           | 自动消失时间（毫秒）低于1000无效 |
-| onClose   | `() => void`    | -           | 消息关闭时的回调函数            |
-| autoClose | `boolean`       | `true`      | 是否自动关闭消息                |
+| onClose   | `() => void`    | -           | 消息关闭时的回调函数             |
+| autoClose | `boolean`       | `true`      | 是否自动关闭消息                 |
 
 
 **返回值：** `string` - 消息的唯一 ID

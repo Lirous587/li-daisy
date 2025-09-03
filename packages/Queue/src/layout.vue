@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="body">
+  <CompatiblePortal to="body">
     <div class="fixed inset-0 pointer-events-none z-[9999] vp-raw">
       <!-- 左上角 -->
       <QueuePositionContainer position="top-start" :items="leftTopItems" @remove="handleRemove" />
@@ -28,11 +28,12 @@
         @remove="handleRemove"
       />
     </div>
-  </Teleport>
+  </CompatiblePortal>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 import type { QueueLayoutProps } from './types'
 import QueuePositionContainer from './position-container.vue'
 
