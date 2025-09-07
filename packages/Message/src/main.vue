@@ -21,13 +21,13 @@
     <div class="flex items-center h-4">
       <XMarkIcon
         v-if="props.showCloseIcon"
-        @click="emit('close')"
         class="ml-auto shrink-0 w-4 h-4 text-base-content cursor-pointer opacity-70"
+        @click="emit('close')"
       />
     </div>
 
     <!-- 背景层 -->
-    <div class="absolute inset-0" :class="bgColorClass" v-if="!props.plain"></div>
+    <div v-if="!props.plain" class="absolute inset-0" :class="bgColorClass"></div>
   </div>
 </template>
 

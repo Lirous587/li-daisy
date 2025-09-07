@@ -5,7 +5,7 @@
       class="input flex-1 overflow-hidden relative !px-0 w-full select-none"
       :class="[sizeClass, inputColorClass]"
     >
-      <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
+      <div v-if="props.disabled" class="absolute inset-0 bg-base-300/70 z-1"></div>
 
       <!-- reduce -->
       <div
@@ -18,8 +18,8 @@
 
       <input
         ref="inputRef"
-        type="number"
         v-model="model"
+        type="number"
         :class="[inputColorClass]"
         :placeholder="props.placeholder"
         :min="props.min"
@@ -58,7 +58,7 @@ onMounted(() => {
   model.value = props.min
 })
 
-watch(model, (newValue) => {
+watch(model, newValue => {
   if (props.min) {
     if (newValue) {
       if (newValue <= props.min) {
@@ -98,6 +98,8 @@ const inputColorClass = computed(() => {
       return 'input-warning'
     case 'error':
       return 'input-error'
+    default:
+      return 'input-base'
   }
 })
 
@@ -122,6 +124,8 @@ const operationBorderClass = computed(() => {
       return 'border-warning'
     case 'error':
       return 'border-error'
+    default:
+      return 'border-base'
   }
 })
 
@@ -145,6 +149,8 @@ const operationBgClass = computed(() => {
       return 'bg-warning/10'
     case 'error':
       return 'bg-error/10'
+    default:
+      return 'bg-base-300'
   }
 })
 
@@ -168,6 +174,8 @@ const operationTextColorClass = computed(() => {
       return 'text-warning'
     case 'error':
       return 'text-error'
+    default:
+      return 'text-base-content'
   }
 })
 

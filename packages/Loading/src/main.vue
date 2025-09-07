@@ -1,7 +1,7 @@
 <template>
   <div
-    class="loading"
     v-if="props.visible"
+    class="loading"
     :class="[loadingClasses.type, loadingClasses.color, loadingClasses.size]"
   ></div>
 </template>

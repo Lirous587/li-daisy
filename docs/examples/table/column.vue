@@ -8,7 +8,7 @@
         <template #default="{ row, index }: TableColumnDefaultScope<Language>">
           <div class="flex gap-x-3">
             <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
-            <Popconfirm @confirm="handleDeleteRow(index)" :z-index="10">
+            <Popconfirm :z-index="10" @confirm="handleDeleteRow(index)">
               <template #trigger>
                 <div class="btn btn-xs btn-success btn-outline">删除</div>
               </template>

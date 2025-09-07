@@ -9,8 +9,8 @@
       </div>
       <XMarkIcon
         v-if="props.showCloseIcon"
-        @click="emit('close')"
         class="shrink-0 w-5 h-5 text-base-content cursor-pointer opacity-70"
+        @click="emit('close')"
       />
     </div>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4 items-center">
-    <Popconfirm @confirm="handleConfirm" @cancle="handleCancle" :width="200" position="bottom">
+    <Popconfirm :width="200" position="bottom" @confirm="handleConfirm" @cancle="handleCancle">
       <template #trigger>
         <button class="btn btn-sm btn-outline btn-warning">自定义</button>
       </template>

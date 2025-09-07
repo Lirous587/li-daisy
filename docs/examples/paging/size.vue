@@ -1,6 +1,12 @@
 <template>
   <div class="w-full flex flex-col gap-y-4 items-center">
-    <Paging v-model="currentPage" v-for="size in sizes" :pages="10" :size="size"></Paging>
+    <Paging
+      v-for="size in sizes"
+      :key="size"
+      v-model="currentPage"
+      :pages="10"
+      :size="size"
+    ></Paging>
   </div>
 </template>
 

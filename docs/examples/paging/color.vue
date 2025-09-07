@@ -1,8 +1,9 @@
 <template>
   <div class="w-full flex flex-col gap-y-4">
     <Paging
-      v-model="currentPage"
       v-for="color in colors"
+      :key="color"
+      v-model="currentPage"
       class="m-auto"
       :pages="10"
       :color="color"

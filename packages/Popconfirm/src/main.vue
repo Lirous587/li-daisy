@@ -18,22 +18,22 @@
         :style="{ width: popWidth + 'px' }"
       >
         <slot name="title"></slot>
-        <slot name="action" :onConfirm="emitConfirm" :onCancle="emitCancle"></slot>
+        <slot name="action" :on-confirm="emitConfirm" :on-cancle="emitCancle"></slot>
         <div v-if="!hasTitleSlot" class="font-semibold">{{ props.title }}</div>
         <div v-if="!hasActionSlot" class="flex items-center ml-auto gap-x-3 font-extrabold text-xs">
           <button
             class="btn btn-info btn-outline"
             :class="btnSizeClass"
-            @click="emitConfirm"
             type="button"
+            @click="emitConfirm"
           >
             {{ props.confirmText }}
           </button>
           <button
             class="btn btn-warning btn-dash"
             :class="btnSizeClass"
-            @click="emitCancle"
             type="button"
+            @click="emitCancle"
           >
             {{ props.cancleText }}
           </button>

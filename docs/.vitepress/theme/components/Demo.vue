@@ -9,7 +9,7 @@
 
     <div class="relative border-t border-base-300">
       <div class="flex p-3 mr-3">
-        <div class="ml-auto cursor-pointer tooltip" @click="toggleCode" data-tip="显示源码">
+        <div class="ml-auto cursor-pointer tooltip" data-tip="显示源码" @click="toggleCode">
           <svg data-v-5009ca8d="" viewBox="0 0 24 24" width="1.2em" height="1.2em">
             <path
               fill="currentColor"
@@ -18,8 +18,8 @@
           </svg>
         </div>
         <div
-          class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
           v-show="codeLoading"
+          class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
         >
           <span class="loading loading-dots loading-xs"></span>
         </div>
@@ -37,12 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, shallowRef, onMounted, markRaw, type Component, computed, inject, watch } from 'vue'
+import { ref, shallowRef, onMounted, markRaw, type Component, computed, inject } from 'vue'
 import type { Highlighter } from 'shiki'
 
-// @ts-ignore  组件模块
 const modules = import.meta.glob<{ default: Component }>('../../../examples/**/*.vue')
-// @ts-ignore  源码模块
 const rawModules = import.meta.glob('../../../examples/**/*.vue', {
   query: '?raw',
   import: 'default',
@@ -87,7 +85,7 @@ async function highlightCode() {
     const highlighter = shikiHighlighter.value
     const importPath = `../../../examples/${props.path}.vue`
     const matchingRawPath = Object.keys(rawModules).find(
-      (p) => p.toLowerCase() === importPath.toLowerCase(),
+      p => p.toLowerCase() === importPath.toLowerCase()
     )
 
     if (matchingRawPath) {
@@ -111,7 +109,7 @@ onMounted(async () => {
   try {
     const importPath = `../../../examples/${props.path}.vue`
     const matchingPath = Object.keys(modules).find(
-      (p) => p.toLowerCase() === importPath.toLowerCase(),
+      p => p.toLowerCase() === importPath.toLowerCase()
     )
     if (matchingPath) {
       const mod = await modules[matchingPath]()

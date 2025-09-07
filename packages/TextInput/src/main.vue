@@ -5,7 +5,7 @@
       class="input flex-1 overflow-hidden relative w-full select-none"
       :class="[inputSizeClass, inputColorClass, hasPrefix ? '!pl-0' : '', hasSuffix ? '!pr-0' : '']"
     >
-      <div class="absolute inset-0 bg-base-300/70 z-1" v-if="props.disabled"></div>
+      <div v-if="props.disabled" class="absolute inset-0 bg-base-300/70 z-1"></div>
 
       <!-- prefix -->
       <div
@@ -140,6 +140,8 @@ const inputSizeClass = computed(() => {
       return 'input-lg'
     case 'xl':
       return 'input-xl'
+    default:
+      return 'input-xs'
   }
 })
 
@@ -164,6 +166,8 @@ const inputColorClass = computed(() => {
       return 'input-warning'
     case 'error':
       return 'input-error'
+    default:
+      return 'input-base'
   }
 })
 
@@ -188,6 +192,8 @@ const slotBorderClass = computed(() => {
       return 'border-warning'
     case 'error':
       return 'border-error'
+    default:
+      return 'border-base-300'
   }
 })
 
@@ -211,6 +217,8 @@ const slotBgClass = computed(() => {
       return 'bg-warning/10'
     case 'error':
       return 'bg-error/10'
+    default:
+      return 'bg-base-200'
   }
 })
 
@@ -234,6 +242,8 @@ const slotTextColorClass = computed(() => {
       return 'text-warning'
     case 'error':
       return 'text-error'
+    default:
+      return 'text-base-content'
   }
 })
 

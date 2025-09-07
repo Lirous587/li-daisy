@@ -2,7 +2,7 @@
   <div>
     <Skeleton :loading="loading" :count="3" :delay="400">
       <template #content>
-        <div class="flex w-full my-3" v-for="i in 3" :key="i">
+        <div v-for="i in 3" :key="i" class="flex w-full my-3">
           <img
             class="m-auto w-30 h-30 rounded-md"
             src="https://picsum.photos/300/300"

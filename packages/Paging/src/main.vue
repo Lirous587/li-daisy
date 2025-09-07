@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sr-only" v-if="props.hrefGenerator || props.preHref">
+    <div v-if="props.hrefGenerator || props.preHref" class="sr-only">
       <!-- 明确的上一页链接 (如果不在第一页) -->
       <a v-if="safeCurrentPage > 1" :href="generateSeoHref(safeCurrentPage - 1)">Previous Page</a>
       <!-- 明确的下一页链接 (如果不在最后一页) -->
@@ -8,8 +8,8 @@
     </div>
 
     <div
-      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md cursor-pointer select-none font-mono relative overflow-hidden"
       v-if="pageConfim()"
+      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md cursor-pointer select-none font-mono relative overflow-hidden"
       :class="[
         displayClass,
         borderColor,
@@ -21,6 +21,7 @@
     >
       <!-- last -->
       <div
+        v-if="props.icon"
         class="flex h-full aspect-square"
         :class="[
           ifMin ? 'pointer-events-none' : '',
@@ -28,7 +29,6 @@
           props.hideIconOnSm ? 'max-sm:hidden' : '',
         ]"
         @click="changePage(Math.max(1, safeCurrentPage - 1))"
-        v-if="props.icon"
       >
         <ArrowLeftIcon class="m-auto w-3 h-3" :class="textColor" />
       </div>
@@ -36,16 +36,17 @@
       <!-- middle -->
       <div
         v-for="(item, index) in list"
-        @click="changePage(item.page)"
         :key="index"
         class="flex h-full aspect-square"
         :class="[bgColor, item.page == currentPage ? activeBgColor : '']"
+        @click="changePage(item.page)"
       >
         <span class="m-auto" :class="textColor"> {{ item.value }}</span>
       </div>
 
       <!-- next -->
       <div
+        v-if="props.icon"
         class="flex h-full aspect-square"
         :class="[
           ifMax ? 'pointer-events-none' : '',
@@ -53,7 +54,6 @@
           props.hideIconOnSm ? 'max-sm:hidden' : '',
         ]"
         @click="changePage(Math.min(pages, safeCurrentPage + 1))"
-        v-if="props.icon"
       >
         <ArrowRightIcon class="m-auto h-3 w-3" :class="textColor" />
       </div>
@@ -65,7 +65,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import type { PagingProps, PagingItem, PagingRef } from './types'
 import { formatUrl } from '../../utils/format.ts'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
@@ -170,6 +170,8 @@ const sizeClass = computed(() => {
       return 'h-9'
     case 'xl':
       return 'h-10'
+    default:
+      return 'h-6'
   }
 })
 
@@ -193,6 +195,8 @@ const bgColor = computed(() => {
       return 'bg-warning/80'
     case 'error':
       return 'bg-error/80'
+    default:
+      return 'bg-base-200'
   }
 })
 
@@ -216,6 +220,8 @@ const activeBgColor = computed(() => {
       return '!bg-warning'
     case 'error':
       return '!bg-error'
+    default:
+      return '!bg-base-300'
   }
 })
 
@@ -239,6 +245,8 @@ const borderColor = computed(() => {
       return '*:border-warning-content/15'
     case 'error':
       return '*:border-error-content/15'
+    default:
+      return '*:border-base-content/15'
   }
 })
 
@@ -262,6 +270,8 @@ const textColor = computed(() => {
       return 'text-warning-content'
     case 'error':
       return 'text-error-content'
+    default:
+      return 'text-base-content'
   }
 })
 

@@ -7,16 +7,16 @@
     </div>
 
     <div
-      class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
       v-loading:infinity="loading1"
+      class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
     >
       <div>这是一个块级容器</div>
       <div class="text-sm opacity-70">该加载状态由loading1控制</div>
     </div>
 
     <div
-      class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
       v-loading:bars.neutral.xs="loading2"
+      class="mx-auto border border-base-300 rounded-lg p-4 w-[280px] h-[120px] relative"
     >
       <div>这是另外一个块级容器</div>
       <div class="text-sm opacity-70">该加载状态由loading2控制</div>

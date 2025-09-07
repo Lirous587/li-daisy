@@ -20,15 +20,14 @@
     "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
-    "format": "prettier --write packages/ examples/",
-    "type-check": "vue-tsc --build",
-    "build": "vite build",
-    "lint": "eslint \"packages/**/*.{ts,vue,js}\" ",
-    "lint:fix": "eslint \"packages/**/*.{ts,vue,js}\" --fix",
+    "type-check": "vue-tsc --build --force",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "build-only": "vite build",
     "dev": "vitepress dev docs",
     "docs:dev": "vitepress dev docs",
     "docs:build": "pnpm run build && vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
@@ -54,8 +53,10 @@
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "~10.0.0",
     "glob": "^11.0.1",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "li-daisy": "workspace:*",
+    "lint-staged": "^16.1.6",
     "markdown-it-container": "^4.0.0",
     "npm-run-all2": "^7.0.2",
     "postcss": "^8.5.6",
@@ -72,5 +73,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lirous587/Li-Daisy.git"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --fix",
+    "*.{js,ts,vue,json,md}": "prettier --write"
   }
 }

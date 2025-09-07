@@ -1,8 +1,8 @@
 <template>
   <div>
     <TextInput
-      class="m-2"
       v-model="text"
+      class="m-2"
       placeholder="此输入框禁用"
       :maxlength="20"
       :disabled="true"

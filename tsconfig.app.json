@@ -1,19 +1,24 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "packages/**/*.ts", // 包含 packages 下所有 .ts 文件
-    "packages/**/*.d.ts", // 包含 packages 下所有 .d.ts 文件
-    "packages/**/*.tsx", // 如果使用 tsx
-    "packages/**/*.vue" // **必须包含 .vue 文件**
-, "docs/.vitepress/theme/store/theme.ts", "docs/.vitepress/theme/store/theme.ts"  ],
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
+    "docs/.vitepress/theme/store/theme.ts"
+  ],
   "exclude": ["node_modules", "dist", "docs"],
-
   "compilerOptions": {
-    // ... 其他选项 ...
-    "outDir": "dist", // 通常会被构建脚本覆盖
-    "rootDir": "packages", // 指定源文件根目录
-    "declaration": true, // 启用 .d.ts 文件生成
-    "declarationMap": true, // 可选：生成 .d.ts.map 文件
-    "emitDeclarationOnly": true // 如果只用 tsc 生成类型，设为 true
+    "outDir": "dist",
+    "rootDir": "packages",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false, // ❌ 改为 false，让 Vite 处理构建
+
+    // ✅ 路径映射
+    "baseUrl": ".",
+    "paths": {
+      "@packages/*": ["./packages/*"]
+    }
   }
 }

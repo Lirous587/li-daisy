@@ -34,8 +34,8 @@
             {{ props.title }}
           </div>
           <XMarkIcon
-            class="li-drawer-icon w-6 h-6 cursor-pointer"
             v-if="showCloseIcon"
+            class="li-drawer-icon w-6 h-6 cursor-pointer"
             @click="close"
           />
         </div>
@@ -102,7 +102,7 @@ const close = () => {
   status.value = false
 }
 
-watch(status, (newStatus) => {
+watch(status, newStatus => {
   if (newStatus) {
     emit('open')
   } else {

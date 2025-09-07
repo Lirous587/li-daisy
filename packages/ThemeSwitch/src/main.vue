@@ -1,8 +1,8 @@
 <template>
   <button
+    ref="containerRef"
     class="relative btn btn-sm hover:!border-primary rounded-xl h-6 w-12 overflow-hidden"
     @click="switchTheme"
-    ref="containerRef"
   >
     <template v-if="isHydrated">
       <transition name="sun">
@@ -99,7 +99,7 @@ const switchAnimation = async (x: number, y: number) => {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y),
+      Math.max(y, innerHeight - y)
     )}px at ${x}px ${y}px)`,
   ]
 
@@ -114,7 +114,7 @@ const switchAnimation = async (x: number, y: number) => {
       duration: 600,
       easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    },
+    }
   )
 }
 

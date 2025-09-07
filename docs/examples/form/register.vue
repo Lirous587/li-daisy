@@ -1,5 +1,5 @@
 <template>
-  <Form v-model="form" ref="formRef" :schema="schema" align="vertical">
+  <Form ref="formRef" v-model="form" :schema="schema" align="vertical">
     <FormItem name="email" label="用户名" trigger="input">
       <TextInput v-model="form.email" placeholder="请输入用户名" />
     </FormItem>
@@ -38,7 +38,7 @@ const schema = yup.object({
     .min(8, '密码不得少于八位')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-      '密码必须包含大小写字母、数字和特殊字符',
+      '密码必须包含大小写字母、数字和特殊字符'
     )
     .trim(),
   re_password: yup

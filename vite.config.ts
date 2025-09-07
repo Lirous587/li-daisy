@@ -12,13 +12,16 @@ export default defineConfig({
       tsconfigPath: './tsconfig.app.json',
       outDir: 'dist/types',
       rollupTypes: false,
+      copyDtsFiles: false,
+      include: ['packages/**/*'],
+      exclude: ['docs/**/*'],
     }),
   ],
   build: {
     lib: {
       entry: resolve(__dirname, 'packages/index.ts'),
       name: 'LiDaisy',
-      fileName: (format) => `li-daisy.${format}.js`,
+      fileName: format => `li-daisy.${format}.js`,
     },
     outDir: 'dist',
     rollupOptions: {
@@ -37,7 +40,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './packages'),
+      '@packages': resolve(__dirname, './packages'),
     },
   },
 })

@@ -4,8 +4,9 @@
       <div>
         <TextInput
           v-for="color in colors"
-          class="m-2"
+          :key="color"
           v-model="text"
+          class="m-2"
           placeholder="请填写信息"
           :maxlength="20"
           type="search"
@@ -49,8 +50,9 @@
       <div>
         <TextInput
           v-for="color in colors"
-          class="m-2"
+          :key="color"
           v-model="text"
+          class="m-2"
           placeholder="请填写网站"
           :maxlength="20"
           type="search"

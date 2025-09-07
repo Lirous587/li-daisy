@@ -8,7 +8,7 @@
 
     <ul class="list">
       <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">当前选择列</li>
-      <li class="list-row" v-for="row in selectRows">
+      <li v-for="row in selectRows" :key="row.id" class="list-row">
         <span>{{ row.id }} - {{ row.name }} - {{ row.score }}</span>
       </li>
     </ul>

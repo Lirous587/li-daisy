@@ -1,11 +1,11 @@
 <template>
   <div
+    ref="scrollContainer"
     class="overflow-x-auto border-base-300"
     tabindex="-1"
     :class="[props.border ? 'border' : '']"
-    ref="scrollContainer"
-    @scroll="handleScroll"
     :style="{ minHeight: currentMinHeight + 'px' }"
+    @scroll="handleScroll"
   >
     <table
       class="li-table table table-pin-rows table-pin-cols table-fixed break-words"
@@ -47,9 +47,9 @@
               :class="scrollState.left ? 'pin-left-shadow' : ''"
             ></span>
             <input
+              v-model="isSelectAll"
               type="checkbox"
               class="checkbox checkbox-sm"
-              v-model="isSelectAll"
               @change="handleSelectAllChange"
             />
           </th>
@@ -148,8 +148,8 @@
                   type="checkbox"
                   class="checkbox checkbox-sm"
                   :checked="selectedRowsSet.has(item)"
-                  @change="handleSelect($event, item)"
                   :disabled="props.selectable ? !props.selectable?.(item) : false"
+                  @change="handleSelect($event, item)"
                 />
               </th>
 
@@ -271,21 +271,25 @@ const props = withDefaults(defineProps<TableProps>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'select-change', items: any[]): void
+  (e: 'select-change', items: unknown[]): void
 }>()
 
 const slots = defineSlots<{
   default(): VNode[]
 }>()
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const generateRowKey = (item: any, index: number): string => {
-  // 如果有有效的id，直接使用
-  if (item.id !== undefined && item.id !== null && item.id !== '') {
-    return `row-${item.id}`
+ 
+const generateRowKey = (item: unknown, index: number): string => {
+  // 需要类型守卫
+  if (typeof item === 'object' && item !== null && 'id' in item) {
+    const typedItem = item as Record<string, unknown>
+    const id = typedItem.id
+    if (id !== undefined && id !== null && id !== '') {
+      return `row-${id}`
+    }
   }
 
-  // 没有id时，使用索引和内容hash生成稳定的key
+  // 回退逻辑
   const contentHash = JSON.stringify(item).substring(0, 20)
   return `row-${index}-${contentHash}`
 }
@@ -301,7 +305,7 @@ const processedColumns = computed(() => {
   let expandSlot: TableSlotFunction | undefined = undefined
 
   const extractColumns = (nodes: VNode[]) => {
-    nodes.forEach((node) => {
+    nodes.forEach(node => {
       if (node.type === TableColumn && node.props) {
         // 步骤 1: 检查 node.children 是否是有效的插槽对象
         const isValidSlotsObject =
@@ -438,17 +442,17 @@ const tableSizeClass = computed(() => {
 // ---  select logic  ---
 const isSelectAll = ref(false)
 
-const selectedRowsSet = ref(new Set<Record<string, any>>())
+const selectedRowsSet = ref(new Set<Record<string, unknown>>())
 
 const selectableData = computed(() => {
   if (!props.selectable) {
     return props.data
   }
-  return props.data.filter((item) => props.selectable!(item))
+  return props.data.filter(item => props.selectable!(item))
 })
 
 const selectedRows = computed(() => {
-  return props.data.filter((item) => selectedRowsSet.value.has(item))
+  return props.data.filter(item => selectedRowsSet.value.has(item))
 })
 
 const handleSelectAllChange = (event: Event) => {
@@ -459,7 +463,7 @@ const handleSelectAllChange = (event: Event) => {
   selectedRowsSet.value.clear()
 
   if (isChecked) {
-    selectableData.value.forEach((item) => selectedRowsSet.value.add(item))
+    selectableData.value.forEach(item => selectedRowsSet.value.add(item))
   }
   emit('select-change', selectedRows.value)
 }
@@ -528,15 +532,15 @@ const finalProcessedColumns = computed(() => {
   if (totalAvailableWidth <= 0) {
     const defaultWidth = 100
 
-    const finalLeftPinCols = leftPinCols.value.map((col) => ({
+    const finalLeftPinCols = leftPinCols.value.map(col => ({
       ...col,
       finalWidth: col.width || defaultWidth,
     }))
-    const finalRegularCols = regularCols.value.map((col) => ({
+    const finalRegularCols = regularCols.value.map(col => ({
       ...col,
       finalWidth: col.width || defaultWidth,
     }))
-    const finalRightPinCols = rightPinCols.value.map((col) => ({
+    const finalRightPinCols = rightPinCols.value.map(col => ({
       ...col,
       finalWidth: col.width || defaultWidth,
     }))
@@ -557,7 +561,7 @@ const finalProcessedColumns = computed(() => {
   if (props.select) fixedWidthSum += 50
 
   // 遍历所有列，累加固定宽度，统计自动宽度列数
-  allCols.forEach((col) => {
+  allCols.forEach(col => {
     if (col.width) {
       fixedWidthSum += col.width
     } else {
@@ -581,16 +585,16 @@ const finalProcessedColumns = computed(() => {
     }
   }
 
-  const finalLeftPinCols = leftPinCols.value.map((col) => ({
+  const finalLeftPinCols = leftPinCols.value.map(col => ({
     ...col,
     finalWidth: calculateFinalWidth(col),
   }))
 
-  const finalRegularCols = regularCols.value.map((col) => ({
+  const finalRegularCols = regularCols.value.map(col => ({
     ...col,
     finalWidth: calculateFinalWidth(col),
   }))
-  const finalRightPinCols = rightPinCols.value.map((col) => ({
+  const finalRightPinCols = rightPinCols.value.map(col => ({
     ...col,
     finalWidth: calculateFinalWidth(col),
   }))
@@ -651,7 +655,7 @@ watch(
     // 我们只需要确保在 DOM 更新后重新检查滚动状态
     nextTick(handleScroll)
   },
-  { deep: true, immediate: true },
+  { deep: true, immediate: true }
 )
 
 // 容器最小高度逻辑
@@ -681,7 +685,7 @@ watch(
   () => (Array.isArray(props.data) ? props.data.length : 0),
   () => {
     recordTableHeight()
-  },
+  }
 )
 
 onMounted(() => {
@@ -717,7 +721,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  cleanupFunctions.forEach((cleanup) => cleanup())
+  cleanupFunctions.forEach(cleanup => cleanup())
   cleanupFunctions = []
 })
 </script>

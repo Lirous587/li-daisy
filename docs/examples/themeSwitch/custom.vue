@@ -1,5 +1,5 @@
 <template>
-  <ThemeSwitch lightTheme="li-light" darkTheme="li-dark" />
+  <ThemeSwitch light-theme="li-light" dark-theme="li-dark" />
 </template>
 
 <script setup lang="ts">
