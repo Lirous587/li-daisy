@@ -61,9 +61,9 @@ const handleError = () => {
 
 watch(
   () => props.url,
-  (newVal) => {
+  newVal => {
     ifFailed.value = !newVal
-  },
+  }
 )
 
 onMounted(() => {

@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 export type PagingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type PagingColor =

@@ -278,7 +278,6 @@ const slots = defineSlots<{
   default(): VNode[]
 }>()
 
- 
 const generateRowKey = (item: unknown, index: number): string => {
   // 需要类型守卫
   if (typeof item === 'object' && item !== null && 'id' in item) {

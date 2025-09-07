@@ -31,7 +31,7 @@ let timer: ReturnType<typeof setTimeout> | null = null
 
 watch(
   () => props.loading,
-  (loadingStatus) => {
+  loadingStatus => {
     if (timer) clearTimeout(timer)
 
     // 如果从加载中变为加载完成，添加延迟
@@ -45,7 +45,7 @@ watch(
       // 如果从加载完成变为加载中，立即显示骨架屏
       isLoading.value = loadingStatus
     }
-  },
+  }
 )
 
 // 组件卸载时清除定时器

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Textarea v-for="color in colors" v-model="text" :color="color" />
+    <Textarea v-for="color in colors" :key="color" v-model="text" :color="color" />
   </div>
 </template>
 

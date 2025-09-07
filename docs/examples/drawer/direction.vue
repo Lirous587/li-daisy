@@ -2,6 +2,7 @@
   <div class="flex justify-between w-full gap-x-5">
     <Drawer
       v-for="direction in directions"
+      :key="direction"
       :title="'打开方向:' + direction"
       :direction="direction"
       class="my-3"

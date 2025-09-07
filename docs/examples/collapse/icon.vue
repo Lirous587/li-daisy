@@ -1,5 +1,10 @@
 <template>
-  <Collapse v-for="icon in icons" class="w-full border border-base-300 rounded-md" :icon="icon">
+  <Collapse
+    v-for="icon in icons"
+    :key="icon"
+    class="w-full border border-base-300 rounded-md"
+    :icon="icon"
+  >
     <CollapseItem title="Li-Daisy"> 小而美的组件库 </CollapseItem>
   </Collapse>
 </template>

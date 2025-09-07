@@ -29,7 +29,7 @@ const showNotification = (position: QueuePosition) => {
     {
       position: position,
       onClose: () => console.log('close callback'),
-    },
+    }
   )
 }
 </script>

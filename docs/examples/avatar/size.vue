@@ -1,6 +1,6 @@
 <template>
   <div class="flex gap-4 items-center m-3">
-    <Avatar v-for="size in sizes" url="https://picsum.photos/600/600" :size="size" />
+    <Avatar v-for="size in sizes" :key="size" url="https://picsum.photos/600/600" :size="size" />
   </div>
 </template>
 

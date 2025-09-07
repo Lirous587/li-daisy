@@ -110,7 +110,7 @@ import type { InstallOptions } from './types'
 
 export default {
   install: (app: App, { prefix = 'Li' }: InstallOptions = {}): App => {
-    components.forEach((component) => {
+    components.forEach(component => {
       if (component.install) {
         component.install(app, { prefix })
       } else if (component.name) {

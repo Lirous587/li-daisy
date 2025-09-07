@@ -2,6 +2,7 @@
   <div class="flex flex-col gap-4">
     <NumberInput
       v-for="color in colors"
+      :key="color"
       v-model="numberValue"
       :color="color"
       :min="0"

@@ -29,7 +29,7 @@ const buildNotification = (options: NotificationOptions, type: NotificationType)
       ...options,
       position: options.position ?? 'top-end',
       autoClose: options.showCloseIcon ? options.autoClose : true,
-    },
+    }
   )
 }
 

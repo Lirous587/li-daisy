@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
-    <TextInput v-for="color in colors" v-model="text" :color="color" />
+    <TextInput v-for="color in colors" :key="color" v-model="text" :color="color" />
   </div>
 </template>
 

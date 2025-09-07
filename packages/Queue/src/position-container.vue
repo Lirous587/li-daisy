@@ -69,12 +69,12 @@ watch(
     await nextTick()
     updateItemHeights()
   },
-  { immediate: true, deep: true },
+  { immediate: true, deep: true }
 )
 
 // 更新元素高度
 const updateItemHeights = () => {
-  itemHeights.value = itemRefs.value.map((el) => {
+  itemHeights.value = itemRefs.value.map(el => {
     return el ? el.offsetHeight + 12 : 80 // 默认高度80px，加上12px间距
   })
 }

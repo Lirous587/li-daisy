@@ -53,7 +53,7 @@ const margin = 8
 const calculatePosition = (
   position: PopoverPositon,
   triggerRect: DOMRect,
-  popoverRect: DOMRect,
+  popoverRect: DOMRect
 ) => {
   const positions: Record<PopoverPositon, { x: number; y: number }> = {
     // Top positions
@@ -166,12 +166,12 @@ const getBestPosition = (triggerRect: DOMRect, popoverRect: DOMRect) => {
   // 限制在视口内即可
   const adjustedX = Math.max(
     margin,
-    Math.min(preferredPos.x, window.innerWidth - popoverRect.width - margin),
+    Math.min(preferredPos.x, window.innerWidth - popoverRect.width - margin)
   )
 
   const adjustedY = Math.max(
     margin,
-    Math.min(preferredPos.y, window.innerHeight - popoverRect.height - margin),
+    Math.min(preferredPos.y, window.innerHeight - popoverRect.height - margin)
   )
   return {
     x: adjustedX,

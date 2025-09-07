@@ -1,4 +1,4 @@
-// ...existing code...
+/* eslint-disable vue/one-component-per-file */
 import { createApp, type App, type Directive, type DirectiveBinding } from 'vue'
 import Loading from './main.vue'
 import type { LoadingProps, LoadingType, LoadingColor, LoadingSize } from './types'
@@ -260,22 +260,22 @@ function createLoadingOverlay(el: LoadingEl, opts: ReturnType<typeof resolveOpti
   // 阻止点击冒泡，使用 passive 处理触摸
   overlay.addEventListener(
     'click',
-    (e) => {
+    e => {
       e.stopPropagation()
       e.preventDefault()
     },
-    { capture: true },
+    { capture: true }
   )
 
   // 触摸事件使用 passive 模式
-  ;['touchstart', 'touchend', 'touchmove'].forEach((evt) => {
+  ;['touchstart', 'touchend', 'touchmove'].forEach(evt => {
     overlay.addEventListener(
       evt,
-      (e) => {
+      e => {
         e.stopPropagation()
         // 不调用 preventDefault()，依靠 CSS touch-action: none
       },
-      { capture: true, passive: true },
+      { capture: true, passive: true }
     )
   })
 

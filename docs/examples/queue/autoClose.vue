@@ -30,7 +30,7 @@ const showNotification = (position: QueuePosition) => {
       position: position,
       autoClose: false,
       onClose: () => console.log('close callback'),
-    },
+    }
   )
 }
 </script>

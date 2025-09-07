@@ -55,6 +55,8 @@ const sizeClass = computed(() => {
       return 'textarea-lg'
     case 'xl':
       return 'textarea-xl'
+    default:
+      return 'textarea-md'
   }
 })
 
@@ -78,6 +80,8 @@ const colorClass = computed(() => {
       return 'textarea-warning'
     case 'error':
       return 'textarea-error'
+    default:
+      return 'textarea-base'
   }
 })
 
@@ -125,7 +129,7 @@ const calculateRows = async () => {
   if (isNaN(lineHeight)) {
     // 处理 lineHeight 为 'normal' 的情况
     console.warn(
-      "Cannot calculate rows: textarea line-height is 'normal'. Falling back to minRows.",
+      "Cannot calculate rows: textarea line-height is 'normal'. Falling back to minRows."
     )
     dynamicRows.value = minRows
     return

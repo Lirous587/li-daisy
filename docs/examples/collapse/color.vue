@@ -2,14 +2,26 @@
   <div class="spacy-4">
     <div class="grid grid-cols-2 gap-4">
       <div>
-        <Collapse v-for="active in actives" class="w-full" icon="arrow" :active-color="active">
+        <Collapse
+          v-for="active in actives"
+          :key="active"
+          class="w-full"
+          icon="arrow"
+          :active-color="active"
+        >
           <CollapseItem :title="active"> item 1</CollapseItem>
           <CollapseItem :title="active"> item 2</CollapseItem>
         </Collapse>
       </div>
 
       <div>
-        <Collapse v-for="def in defaults" class="w-full" icon="arrow" :default-color="def">
+        <Collapse
+          v-for="def in defaults"
+          :key="def"
+          class="w-full"
+          icon="arrow"
+          :default-color="def"
+        >
           <CollapseItem :title="def"> item 1 </CollapseItem>
           <CollapseItem :title="def"> item 2 </CollapseItem>
         </Collapse>

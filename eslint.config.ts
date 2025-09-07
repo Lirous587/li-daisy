@@ -10,7 +10,7 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
-    files: ['packages/**/*.{ts,vue,js}', 'docs/examples/*.{ts,vue,js}'],
+    files: ['packages/**/*.{ts,vue}', 'docs/examples/*.{ts,vue}'],
     ignores: [
       '**/dist/**',
       '**/dist-ssr/**',
@@ -18,6 +18,7 @@ export default defineConfigWithVueTs(
       '**/.nuxt/**',
       '**/node_modules/**',
       '**/.vite/**',
+      'docs/.vitepress/**',
     ],
   },
 

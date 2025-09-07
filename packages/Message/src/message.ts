@@ -30,7 +30,7 @@ const buildMessage = (message: string | VNode, type: MessageType, options?: Mess
       position: 'top-center',
       // 当 showCloseIcon 设置为false时, autoClose 必定为 true，即使给定值为 false 也不会生效
       autoClose: options?.showCloseIcon === false ? true : options?.autoClose,
-    },
+    }
   )
 }
 

@@ -1,69 +1,65 @@
 /* 移除 input 和 textarea 默认聚焦状态 */
 @layer override {
+  /* 聚焦状态 */
+  .input:focus,
+  .input:focus-visible,
+  .input:focus-within {
+    outline: none;
+  }
 
-    /* 聚焦状态 */
-    .input:focus,
-    .input:focus-visible,
-    .input:focus-within {
-        outline: none;
-    }
-
-    /* 聚焦状态 */
-    .textarea:focus,
-    .textarea:focus-visible,
-    .textarea:focus-within {
-        outline: none;
-    }
+  /* 聚焦状态 */
+  .textarea:focus,
+  .textarea:focus-visible,
+  .textarea:focus-within {
+    outline: none;
+  }
 }
 
 /* 移除数字输入框的上下箭头 (Spinner) */
 @utility no-spinner {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    & {
-        -moz-appearance: textfield;
-    }
+  /* Firefox */
+  & {
+    -moz-appearance: textfield;
+  }
 }
 
 /* 隐藏原生浏览器输入框控件 */
 @layer utilities {
+  /* 隐藏 Edge/IE 的密码显示图标 */
+  input[type='password']::-ms-reveal {
+    display: none;
+  }
 
-    /* 隐藏 Edge/IE 的密码显示图标 */
-    input[type='password']::-ms-reveal {
-        display: none;
-    }
+  /* 隐藏 Webkit (Chrome/Safari) 的密码显示/清除按钮 */
+  input[type='password']::-webkit-clear-button,
+  input[type='password']::-webkit-reveal-button {
+    display: none;
+    -webkit-appearance: none;
+  }
 
-    /* 隐藏 Webkit (Chrome/Safari) 的密码显示/清除按钮 */
-    input[type='password']::-webkit-clear-button,
-    input[type='password']::-webkit-reveal-button {
-        display: none;
-        -webkit-appearance: none;
-    }
+  /* 隐藏 Webkit 的搜索输入框相关按钮 */
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
+  }
 
-    /* 隐藏 Webkit 的搜索输入框相关按钮 */
-    input[type='search']::-webkit-search-decoration,
-    input[type='search']::-webkit-search-cancel-button,
-    input[type='search']::-webkit-search-results-button,
-    input[type='search']::-webkit-search-results-decoration {
-        display: none;
-    }
+  /* 隐藏 Chrome, Safari, Edge, Opera 的上下箭头 */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
 
-
-    /* 隐藏 Chrome, Safari, Edge, Opera 的上下箭头 */
-    input[type='number']::-webkit-outer-spin-button,
-    input[type='number']::-webkit-inner-spin-button {
-        -webkit-appearance: none !important;
-        margin: 0 !important;
-    }
-
-    /* 隐藏 Firefox 的上下箭头 */
-    input[type='number'] {
-        -moz-appearance: textfield !important;
-    }
+  /* 隐藏 Firefox 的上下箭头 */
+  input[type='number'] {
+    -moz-appearance: textfield !important;
+  }
 }

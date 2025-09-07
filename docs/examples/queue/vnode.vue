@@ -30,7 +30,7 @@ const showNotification = (position: QueuePosition) => {
         h('li', null, '使用queue组件重构新版toast'),
         h('li', null, '修复已知 Bug'),
       ]),
-    ],
+    ]
   )
 
   Queue.addVnode(hVnode, {

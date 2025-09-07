@@ -4,8 +4,7 @@
     "packages/**/*.ts",
     "packages/**/*.d.ts",
     "packages/**/*.tsx",
-    "packages/**/*.vue",
-    "docs/.vitepress/theme/store/theme.ts"
+    "packages/**/*.vue"
   ],
   "exclude": ["node_modules", "dist", "docs"],
   "compilerOptions": {
@@ -13,9 +12,8 @@
     "rootDir": "packages",
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": false, // ❌ 改为 false，让 Vite 处理构建
+    "emitDeclarationOnly": false,
 
-    // ✅ 路径映射
     "baseUrl": ".",
     "paths": {
       "@packages/*": ["./packages/*"]

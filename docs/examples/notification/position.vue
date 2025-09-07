@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { Notification, type NotificationPosition, type NotificationType } from 'li-daisy'
+import { Notification, type NotificationPosition } from 'li-daisy'
 
 const toastFunc = (position: NotificationPosition) => {
   const options = {

@@ -78,7 +78,7 @@ class QueueManager {
     // 遍历所有位置找到对应的消息
     for (const position of Object.keys(this.queues) as QueuePosition[]) {
       const queue = this.queues[position]
-      const index = queue.findIndex((item) => item.id === id)
+      const index = queue.findIndex(item => item.id === id)
 
       if (index > -1) {
         const item = queue[index]
@@ -142,7 +142,7 @@ export const Queue = {
   addComponent: <T extends Record<string, any>>(
     component: Component,
     props: T,
-    options: QueueItemOptions,
+    options: QueueItemOptions
   ) => {
     const vnode = h(component, props)
     return queueManager.add({

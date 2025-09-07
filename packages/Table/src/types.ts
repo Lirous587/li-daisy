@@ -40,14 +40,12 @@ export interface TableColumnHeaderScope {
   prop?: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnDefaultScope<T extends any = any> {
+export interface TableColumnDefaultScope<T = object> {
   row: T
   index: number
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface TableColumnExpandScope<T extends any = any> {
+export interface TableColumnExpandScope<T = object> {
   row: T
   index: number
 }

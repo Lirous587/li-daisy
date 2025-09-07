@@ -1,6 +1,13 @@
 <template>
   <div class="flex flex-col gap-y-4">
-    <NumberInput v-for="size in sizes" v-model="numberValue" :size="size" :min="0" :max="10" />
+    <NumberInput
+      v-for="size in sizes"
+      :key="size"
+      v-model="numberValue"
+      :size="size"
+      :min="0"
+      :max="10"
+    />
   </div>
 </template>
 

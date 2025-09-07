@@ -84,12 +84,12 @@ const error = ref('')
 
 watch(
   errors,
-  (newError) => {
+  newError => {
     if (props.name) {
       error.value = newError[props.name]
     }
   },
-  { deep: true },
+  { deep: true }
 )
 
 const interactionState = ref({

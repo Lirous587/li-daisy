@@ -4,9 +4,9 @@
  * @param delay 延迟时间（毫秒）
  * @returns 节流后的函数
  */
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
-  delay: number,
+  delay: number
 ): (...args: Parameters<T>) => void {
   let timeoutId: number | null = null
   let lastExecTime = 0
@@ -26,7 +26,7 @@ export function throttle<T extends (...args: any[]) => any>(
           func.apply(this, args)
           lastExecTime = Date.now()
         },
-        delay - (currentTime - lastExecTime),
+        delay - (currentTime - lastExecTime)
       ) as unknown as number
     }
   }
@@ -38,9 +38,9 @@ export function throttle<T extends (...args: any[]) => any>(
  * @param delay 延迟时间（毫秒）
  * @returns 防抖后的函数
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
-  delay: number,
+  delay: number
 ): (...args: Parameters<T>) => void {
   let timeoutId: number | null = null
 
@@ -61,9 +61,9 @@ export function debounce<T extends (...args: any[]) => any>(
  * @param delay 延迟时间（毫秒）
  * @returns 防抖后的函数
  */
-export function debounceImmediate<T extends (...args: any[]) => any>(
+export function debounceImmediate<T extends (...args: unknown[]) => unknown>(
   func: T,
-  delay: number,
+  delay: number
 ): (...args: Parameters<T>) => void {
   let timeoutId: number | null = null
 

@@ -1,6 +1,12 @@
 <template>
   <div class="flex flex-col gap-y-4">
-    <Textarea v-for="size in sizes" v-model="text" :size="size" placeholder="请输入文本" />
+    <Textarea
+      v-for="size in sizes"
+      :key="size"
+      v-model="text"
+      :size="size"
+      placeholder="请输入文本"
+    />
   </div>
 </template>
 
