@@ -117,7 +117,7 @@
           <td :colspan="totalColumnsCount" class="text-center text-base-content/60">no result</td>
         </tr>
         <template v-else>
-          <template v-for="(item, rowIndex) in props.data" :key="generateRowKey(item, rowIndex)">
+          <template v-for="(item, rowIndex) in props.data" :key="getRowKey(item, rowIndex)">
             <tr :class="[handleZebraStyle(rowIndex), handleHoverHightlight()]">
               <!-- expand -->
               <th v-if="hasExpand" class="sticky left-0 z-1">
@@ -127,7 +127,11 @@
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
                 <label class="swap swap-rotate">
-                  <input type="checkbox" @change="toggleExpand(item)" />
+                  <input
+                    type="checkbox"
+                    :checked="isRowExpanded(item, rowIndex)"
+                    @change="toggleExpand(item, rowIndex)"
+                  />
                   <ChevronDownIcon class="swap-on w-5 h-5" />
                   <ChevronRightIcon class="swap-off w-5 h-5" />
                 </label>
@@ -147,9 +151,9 @@
                 <input
                   type="checkbox"
                   class="checkbox checkbox-sm"
-                  :checked="selectedRowsSet.has(item)"
+                  :checked="isRowSelected(item, rowIndex)"
                   :disabled="props.selectable ? !props.selectable?.(item) : false"
-                  @change="handleSelect($event, item)"
+                  @change="handleSelect($event, item, rowIndex)"
                 />
               </th>
 
@@ -238,7 +242,7 @@
             </tr>
 
             <!-- expand rows -->
-            <tr v-if="expandedRowsSet.has(item)">
+            <tr v-if="isRowExpanded(item, rowIndex)">
               <td :colspan="totalColumnsCount">
                 <component :is="expandSlot" :row="item" :index="rowIndex" />
               </td>
@@ -250,7 +254,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends Record<string, any>">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, type VNode, watch } from 'vue'
 import type {
   TableProps,
@@ -262,7 +266,7 @@ import TableColumn from './column.vue'
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 import OverflowTip from './overflowTip.vue'
 
-const props = withDefaults(defineProps<TableProps>(), {
+const props = withDefaults(defineProps<TableProps<T>>(), {
   size: 'md',
   zebra: false,
   border: false,
@@ -271,14 +275,14 @@ const props = withDefaults(defineProps<TableProps>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'select-change', items: unknown[]): void
+  (e: 'select-change', items: T[]): void
 }>()
 
 const slots = defineSlots<{
   default(): VNode[]
 }>()
 
-const generateRowKey = (item: unknown, index: number): string => {
+const getRowKey = (item: T, index: number): string => {
   // 需要类型守卫
   if (typeof item === 'object' && item !== null && 'id' in item) {
     const typedItem = item as Record<string, unknown>
@@ -395,19 +399,6 @@ const handleHoverHightlight = () => {
   return props.hoverHighlight ? 'hover:bg-base-200 hover:[&>th]:bg-base-200' : ''
 }
 
-// --- expand ---
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type RowType = Record<string, any>
-const expandedRowsSet = ref(new Set<RowType>())
-
-const toggleExpand = (row: RowType) => {
-  if (expandedRowsSet.value.has(row)) {
-    expandedRowsSet.value.delete(row)
-  } else {
-    expandedRowsSet.value.add(row)
-  }
-}
-
 const totalColumnsCount = computed(() => {
   let count = 1
   count += leftPinCols.value.length
@@ -418,8 +409,6 @@ const totalColumnsCount = computed(() => {
   }
   return count
 })
-
-const hasExpand = computed(() => !!expandSlot.value)
 
 const tableSizeClass = computed(() => {
   switch (props.size) {
@@ -438,10 +427,23 @@ const tableSizeClass = computed(() => {
   }
 })
 
+const hasExpand = computed(() => !!expandSlot.value)
+
+// 基于 ID 的状态管理
+const expandedRowIds = ref<Set<string | number>>(new Set())
+
+const toggleExpand = (row: T, index: number) => {
+  const rowId = getRowKey(row, index)
+  if (expandedRowIds.value.has(rowId)) {
+    expandedRowIds.value.delete(rowId)
+  } else {
+    expandedRowIds.value.add(rowId)
+  }
+}
+
 // ---  select logic  ---
 const isSelectAll = ref(false)
-
-const selectedRowsSet = ref(new Set<Record<string, unknown>>())
+const selectedRowIds = ref<Set<string | number>>(new Set())
 
 const selectableData = computed(() => {
   if (!props.selectable) {
@@ -450,42 +452,52 @@ const selectableData = computed(() => {
   return props.data.filter(item => props.selectable!(item))
 })
 
-const selectedRows = computed(() => {
-  return props.data.filter(item => selectedRowsSet.value.has(item))
-})
+const handleSelect = (event: Event, rowData: T, index: number) => {
+  const target = event.target as HTMLInputElement
+  const isChecked = target.checked
+  const rowId = getRowKey(rowData, index)
+
+  if (isChecked) {
+    selectedRowIds.value.add(rowId)
+  } else {
+    selectedRowIds.value.delete(rowId)
+  }
+
+  // 计算选中的行
+  const selectedRows = props.data.filter((item, idx) =>
+    selectedRowIds.value.has(getRowKey(item, idx))
+  )
+
+  // 只有当可选行数量大于0，且选中行的数量等于可选行数量时，才全选
+  const selectableCount = selectableData.value.length
+  if (selectableCount > 0 && selectedRows.length === selectableCount) {
+    isSelectAll.value = true
+  } else {
+    isSelectAll.value = false
+  }
+  emit('select-change', selectedRows)
+}
 
 const handleSelectAllChange = (event: Event) => {
   const target = event.target as HTMLInputElement
   const isChecked = target.checked
   isSelectAll.value = isChecked
 
-  selectedRowsSet.value.clear()
+  selectedRowIds.value.clear()
 
   if (isChecked) {
-    selectableData.value.forEach(item => selectedRowsSet.value.add(item))
+    selectableData.value.forEach((item, index) => {
+      const rowId = getRowKey(item, index)
+      selectedRowIds.value.add(rowId)
+    })
   }
-  emit('select-change', selectedRows.value)
+  const selectedRows = isChecked ? [...selectableData.value] : []
+  emit('select-change', selectedRows)
 }
+// 模板中的检查方法
+const isRowSelected = (item: T, index: number) => selectedRowIds.value.has(getRowKey(item, index))
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const handleSelect = (event: Event, rowData: Record<string, any>) => {
-  const target = event.target as HTMLInputElement
-  const isChecked = target.checked
-  if (isChecked) {
-    selectedRowsSet.value.add(rowData)
-  } else {
-    selectedRowsSet.value.delete(rowData)
-  }
-
-  const selectableCount = selectableData.value.length
-  // 只有当可选行数量大于0，且选中行的数量等于可选行数量时，才全选
-  if (selectableCount > 0 && selectedRows.value.length === selectableCount) {
-    isSelectAll.value = true
-  } else {
-    isSelectAll.value = false
-  }
-  emit('select-change', selectedRows.value)
-}
+const isRowExpanded = (item: T, index: number) => expandedRowIds.value.has(getRowKey(item, index))
 
 // ---  样式计算 ---
 const getAlgin = (algin?: 'left' | 'center' | 'right'): string => {
