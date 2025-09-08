@@ -22,7 +22,7 @@
   "scripts": {
     "type-check": "vue-tsc --build --force",
     "lint": "eslint \"packages/**/*.{js,ts,vue}\" --fix",
-    "lint:docs": "eslint \"docs/**/**/*.{js,ts,vue}\" --fix",
+    "lint:docs": "eslint \"docs/examples/**/*.{js,ts,vue}\" --fix",
     "format": "prettier --write packages/ docs/examples",
     "build": "run-p type-check \"build-only {@}\" --",
     "build-only": "vite build",

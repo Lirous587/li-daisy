@@ -1,12 +1,6 @@
-import type { App } from 'vue'
-import type { InstallOptions } from '../types'
 import Avatar from './src/main.vue'
 
 export type { AvatarSize } from './src/types'
-
-Avatar.install = (app: App, { prefix = 'Li' }: InstallOptions = {}): void => {
-  app.component(`${prefix}Avatar`, Avatar)
-}
 
 export { Avatar }
 
