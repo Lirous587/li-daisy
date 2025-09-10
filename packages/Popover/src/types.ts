@@ -1,5 +1,3 @@
-import type { ComputedRef } from 'vue'
-
 export type PopoverPositon =
   | 'top'
   | 'top-start'
@@ -30,5 +28,5 @@ export interface PopoverRef {
   show: () => void
   hide: () => void
   toggle: () => void
-  visible: ComputedRef<boolean>
+  visible: boolean
 }

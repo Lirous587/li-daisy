@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
-import type { ThemeSwitchProps } from './types'
+import type { ThemeSwitchProps, ThemeSwitchRef } from './types'
 import { computed, nextTick, onMounted, ref } from 'vue'
 import { isClient } from '../../utils/ssr'
 
@@ -145,6 +145,17 @@ onMounted(() => {
     isHydrated.value = true
   })
 })
+
+const exposeObject: ThemeSwitchRef = {
+  get nowTheme(): string {
+    return nowTheme.value
+  },
+  get isDark(): boolean {
+    return isDark.value
+  },
+}
+
+defineExpose(exposeObject)
 </script>
 
 <style scoped>

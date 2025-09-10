@@ -54,6 +54,7 @@ export type { PopconfirmPositon } from './Popconfirm'
 
 // 主题 (Theme)
 import { ThemeSwitch } from './ThemeSwitch'
+export type { ThemeSwitchRef } from './ThemeSwitch'
 
 // 工具类 (Tools)
 import { loadingDirective } from './Loading'

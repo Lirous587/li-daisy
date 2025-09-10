@@ -358,6 +358,8 @@ defineExpose<PopoverRef>({
   show,
   hide,
   toggle,
-  visible: computed(() => visible.value),
+  get visible() {
+    return visible.value
+  },
 })
 </script>

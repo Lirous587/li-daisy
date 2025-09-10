@@ -109,3 +109,10 @@ export default defineNuxtConfig({
 |  名称  |     说明     |      类型      |
 | :----: | :----------: | :------------: | ---------------- |
 | toggle | 修改模式回调 | `(mode:'light' | 'dark') => void` |
+
+### Expose
+
+|  方法名  |      说明      |   类型    |
+| :------: | :------------: | :-------: |
+| nowTheme |    当前主题    | `string`  |
+|  isDark  | 是否为黑暗模式 | `boolean` |

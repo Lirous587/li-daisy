@@ -116,7 +116,9 @@ watch(status, newStatus => {
 const exposeObject: DrawerRef = {
   open,
   close,
-  status,
+  get status() {
+    return status.value
+  },
 }
 
 defineExpose(exposeObject)

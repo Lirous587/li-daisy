@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 export type DrawerDirection = 'ltr' | 'rtl'
 
 export interface DrawerProps {
@@ -11,7 +9,7 @@ export interface DrawerProps {
 }
 
 export interface DrawerRef {
-  status: Ref<boolean>
+  status: boolean
   open: () => void
   close: () => void
 }

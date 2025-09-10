@@ -4,6 +4,10 @@
     <Drawer ref="drawerRef" title="抽屉标题">
       <template #body>
         <p>这是使用open方法打开的抽屉</p>
+
+        <div @click="test">
+          {{ drawerRef?.status }}
+        </div>
       </template>
     </Drawer>
 
@@ -27,5 +31,9 @@ import { ref } from 'vue'
 const drawerRef = ref<DrawerRef>()
 const handleOpenDrawer = () => {
   drawerRef.value?.open()
+}
+
+const test = () => {
+  console.log(drawerRef.value?.status)
 }
 </script>
