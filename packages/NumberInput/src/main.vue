@@ -1,11 +1,14 @@
 <template>
-  <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
+  <div :class="props.disabled ? '!cursor-not-allowed' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative !px-0 w-full select-none"
+      class="li-input flex-1 overflow-hidden relative !px-0 w-full select-none"
       :class="[sizeClass, inputColorClass]"
     >
-      <div v-if="props.disabled" class="absolute inset-0 bg-base-300/70 z-1"></div>
+      <div
+        v-if="props.disabled"
+        class="absolute inset-0 bg-base-300/70 z-1 !cursor-not-allowed"
+      ></div>
 
       <!-- reduce -->
       <div
@@ -20,7 +23,8 @@
         ref="inputRef"
         v-model="model"
         type="number"
-        :class="[inputColorClass]"
+        :disabled="props.disabled"
+        :class="[inputColorClass, props.disabled ? '!cursor-not-allowed' : '']"
         :placeholder="props.placeholder"
         :min="props.min"
         :max="props.max"
@@ -46,7 +50,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   min: 0,
   placeholder: '',
   disabled: false,
-  size: 'md',
+  size: 'sm',
   color: 'base',
 })
 
@@ -81,25 +85,25 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'input-base'
+      return 'li-input-base'
     case 'neutral':
-      return 'input-neutral'
+      return 'li-input-neutral'
     case 'primary':
-      return 'input-primary'
+      return 'li-input-primary'
     case 'secondary':
-      return 'input-secondary'
+      return 'li-input-secondary'
     case 'accent':
-      return 'input-accent'
+      return 'li-input-accent'
     case 'info':
-      return 'input-info'
+      return 'li-input-info'
     case 'success':
-      return 'input-success'
+      return 'li-input-success'
     case 'warning':
-      return 'input-warning'
+      return 'li-input-warning'
     case 'error':
-      return 'input-error'
+      return 'li-input-error'
     default:
-      return 'input-base'
+      return 'li-input-base'
   }
 })
 
@@ -182,17 +186,17 @@ const operationTextColorClass = computed(() => {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'input-xs'
+      return 'li-input-xs'
     case 'sm':
-      return 'input-sm'
+      return 'li-input-sm'
     case 'md':
-      return 'input-md'
+      return 'li-input-md'
     case 'lg':
-      return 'input-lg'
+      return 'li-input-lg'
     case 'xl':
-      return 'input-xl'
+      return 'li-input-xl'
     default:
-      return 'input-xs'
+      return 'li-input-sm'
   }
 })
 
@@ -218,7 +222,7 @@ const increase = () => {
 </script>
 
 <style scoped>
-.input-base {
+.li-input-base {
   & {
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
   }
@@ -227,7 +231,7 @@ const increase = () => {
     --input-color: var(--color-info);
   }
 }
-.input {
+.li-input {
   transition:
     border-color 0.2s,
     box-shadow 0.2s,

@@ -86,7 +86,7 @@ watch(
   () => errors.value,
   newError => {
     if (props.name) {
-      error.value = newError[props.name] || 'fuck err'
+      error.value = newError[props.name]
     }
   },
   { deep: true }

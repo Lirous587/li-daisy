@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Table, TableColumn, type TableColumnExpandScope } from 'li-daisy'
-import { Table, TableColumn, type TableColumnExpandScope } from '../../../packages'
+import { Table, TableColumn, type TableColumnExpandScope } from 'li-daisy'
 
 import { ref } from 'vue'
 

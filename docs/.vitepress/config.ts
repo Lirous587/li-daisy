@@ -52,7 +52,6 @@ export default defineConfig({
       {
         text: '布局 (Layout)',
         items: [
-          { text: 'Collapse 折叠面板', link: '/components/collapse' },
           { text: 'Drawer 抽屉', link: '/components/drawer' },
           { text: 'Queue 队列', link: '/components/queue' },
         ],
@@ -69,7 +68,6 @@ export default defineConfig({
       {
         text: '数据展示 (Data Display)',
         items: [
-          { text: 'Avatar 头像', link: '/components/avatar' },
           { text: 'Table 表格', link: '/components/table' },
           { text: 'Paging 分页', link: '/components/paging' },
         ],

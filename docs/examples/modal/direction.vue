@@ -8,7 +8,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
     </Modal>
-    <button class="btn btn-primary" @click="modalTtb?.open()">上↓下 Modal</button>
+    <button class="li-btn li-btn-primary" @click="modalTtb?.open()">上↓下 Modal</button>
 
     <div></div>
 
@@ -18,7 +18,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
     </Modal>
-    <button class="btn btn-primary" @click="modalLtr?.open()">左→右 Modal</button>
+    <button class="li-btn li-btn-primary" @click="modalLtr?.open()">左→右 Modal</button>
 
     <Modal ref="modalMid" direction="middle">
       <template #body>
@@ -26,7 +26,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
     </Modal>
-    <button class="btn btn-primary" @click="modalMid?.open()">中间 Modal</button>
+    <button class="li-btn li-btn-primary" @click="modalMid?.open()">中间 Modal</button>
 
     <Modal ref="modalRtl" direction="rtl">
       <template #body>
@@ -34,7 +34,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
     </Modal>
-    <button class="btn btn-primary" @click="modalRtl?.open()">左←右 Modal</button>
+    <button class="li-btn li-btn-primary" @click="modalRtl?.open()">左←右 Modal</button>
 
     <div></div>
 
@@ -44,7 +44,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
     </Modal>
-    <button class="btn btn-primary" @click="modalBtt?.open()">上↑下 Modal</button>
+    <button class="li-btn li-btn-primary" @click="modalBtt?.open()">上↑下 Modal</button>
   </div>
 </template>
 

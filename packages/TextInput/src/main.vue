@@ -1,11 +1,20 @@
 <template>
-  <div :class="props.disabled ? 'hover:cursor-not-allowed pointer-events-none' : ''">
+  <div :class="props.disabled ? '!cursor-not-allowed' : ''">
     <!-- input -->
     <label
-      class="input flex-1 overflow-hidden relative w-full select-none"
-      :class="[inputSizeClass, inputColorClass, hasPrefix ? '!pl-0' : '', hasSuffix ? '!pr-0' : '']"
+      class="li-input flex-1 overflow-hidden relative w-full select-none"
+      :class="[
+        inputSizeClass,
+        inputColorClass,
+        hasPrefix ? '!pl-0' : '',
+        hasSuffix ? '!pr-0' : '',
+        props.disabled ? '!cursor-not-allowed pointer-events-none' : '',
+      ]"
     >
-      <div v-if="props.disabled" class="absolute inset-0 bg-base-300/70 z-1"></div>
+      <div
+        v-if="props.disabled"
+        class="absolute inset-0 bg-base-300/70 z-1 !cursor-not-allowed"
+      ></div>
 
       <!-- prefix -->
       <div
@@ -22,6 +31,8 @@
         :type="passwordFieldType"
         :placeholder="placeholder"
         :maxlength="maxlength"
+        :disabled="props.disabled"
+        :class="props.disabled ? '!cursor-not-allowed' : ''"
         @blur="handleBlur"
         @input="handleInput"
         @focus="handleFocus"
@@ -30,7 +41,7 @@
       <!-- eye -->
       <div
         v-if="props.type === 'password' && isEyeIconShow"
-        class="join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+        class="li-join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
         @mousedown.prevent="togglePasswordVisibility"
       >
         <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
@@ -73,7 +84,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   type: 'text',
   placeholder: '',
   disabled: false,
-  size: 'md',
+  size: 'sm',
   color: 'base',
 })
 const model = defineModel<string | undefined>('modelValue', {
@@ -131,17 +142,17 @@ const hasSuffix = computed(() => !!slots.suffix)
 const inputSizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'input-xs'
+      return 'li-input-xs'
     case 'sm':
-      return 'input-sm'
+      return 'li-input-sm'
     case 'md':
-      return 'input-md'
+      return 'li-input-md'
     case 'lg':
-      return 'input-lg'
+      return 'li-input-lg'
     case 'xl':
-      return 'input-xl'
+      return 'li-input-xl'
     default:
-      return 'input-xs'
+      return 'li-input-sm'
   }
 })
 
@@ -149,25 +160,25 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'input-base'
+      return 'li-input-base'
     case 'neutral':
-      return 'input-neutral'
+      return 'li-input-neutral'
     case 'primary':
-      return 'input-primary'
+      return 'li-input-primary'
     case 'secondary':
-      return 'input-secondary'
+      return 'li-input-secondary'
     case 'accent':
-      return 'input-accent'
+      return 'li-input-accent'
     case 'info':
-      return 'input-info'
+      return 'li-input-info'
     case 'success':
-      return 'input-success'
+      return 'li-input-success'
     case 'warning':
-      return 'input-warning'
+      return 'li-input-warning'
     case 'error':
-      return 'input-error'
+      return 'li-input-error'
     default:
-      return 'input-base'
+      return 'li-input-base'
   }
 })
 
@@ -259,7 +270,7 @@ const shouldShowCounter = computed<boolean>(() => {
 </script>
 
 <style scoped>
-.input-base {
+.li-input-base {
   & {
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
   }
@@ -268,7 +279,7 @@ const shouldShowCounter = computed<boolean>(() => {
     --input-color: var(--color-info);
   }
 }
-.input {
+.li-input {
   transition:
     border-color 0.2s,
     box-shadow 0.2s,

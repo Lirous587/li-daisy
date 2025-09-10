@@ -4,6 +4,5 @@
 @import './scroll.css';
 @import './base.css';
 
-@custom-variant dark (&:where(.dark, .dark *));
 
-@plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));

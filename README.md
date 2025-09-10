@@ -3,29 +3,26 @@
 [![npm version](https://img.shields.io/npm/v/li-daisy.svg)](https://www.npmjs.com/package/li-daisy)
 [![npm downloads](https://img.shields.io/npm/dt/li-daisy.svg)](https://www.npmjs.com/package/li-daisy)
 
-
 ## 官方文档
 
 [官方文档](https://li-daisy.lirous.com/)
 
 ## 组件库列表
 
-1. `Avatar` ✅
-2. `Collapse` ✅
-3. `Drawer` ✅
-4. `Modal` ✅
-5. `Form` ✅
-6. `TextInput` ✅
-7. `NumberInput` ✅
-8. `Textarea` ✅
-9. `Paging` ✅
-10. `Skeleton` ✅
-11. `ThemeSwitch` ✅
-12. `Notification` ✅
-13. `Table` ✅
-14. `Popover` ✅
-15. `Popover` ✅
-16. `loading` ✅
-17. `Queue` ✅
-18. `Message` ✅
-<!-- 19. `Tree` 待开发 -->
+1. `Drawer` ✅
+2. `Modal` ✅
+3. `Form` ✅
+4. `TextInput` ✅
+5. `NumberInput` ✅
+6. `Textarea` ✅
+7. `Paging` ✅
+8. `Skeleton` ✅
+9. `ThemeSwitch` ✅
+10. `Notification` ✅
+11. `Table` ✅
+12. `Popover` ✅
+13. `Popover` ✅
+14. `loading` ✅
+15. `Queue` ✅
+16. `Message` ✅
+<!-- `Tree` 待开发 -->

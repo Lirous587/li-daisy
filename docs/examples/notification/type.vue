@@ -1,10 +1,10 @@
 <template>
   <div class="flex gap-x-3 flex-nowrap">
-    <button class="btn btn-primary" @click="toastFunc('primary')">primary</button>
-    <button class="btn btn-info" @click="toastFunc('info')">info</button>
-    <button class="btn btn-success" @click="toastFunc('success')">success</button>
-    <button class="btn btn-warning" @click="toastFunc('warning')">warn</button>
-    <button class="btn btn-error" @click="toastFunc('error')">error</button>
+    <button class="li-btn li-btn-primary" @click="toastFunc('primary')">primary</button>
+    <button class="li-btn li-btn-info" @click="toastFunc('info')">info</button>
+    <button class="li-btn li-btn-success" @click="toastFunc('success')">success</button>
+    <button class="li-btn li-btn-warning" @click="toastFunc('warning')">warn</button>
+    <button class="li-btn li-btn-error" @click="toastFunc('error')">error</button>
   </div>
 </template>
 

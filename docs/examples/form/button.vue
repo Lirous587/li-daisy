@@ -8,8 +8,8 @@
     </FormItem>
     <FormItem label="操作">
       <div class="flex flex-col space-y-3">
-        <button class="btn">触发表单提交</button>
-        <button class="btn" type="button">无副作用</button>
+        <button class="li-btn">触发表单提交</button>
+        <button class="li-btn" type="button">无副作用</button>
       </div>
     </FormItem>
   </Form>

@@ -8,20 +8,32 @@
     @scroll="handleScroll"
   >
     <table
-      class="li-table table table-pin-rows table-pin-cols table-fixed break-words"
+      class="li-table li-table-pin-rows li-table-pin-cols table-fixed break-words"
       :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
         <!-- expand -->
-        <col v-if="hasExpand" width="50" />
+        <col v-if="hasExpand" :style="{ width: '50px' }" />
         <!-- select -->
-        <col v-if="props.select" width="50" />
+        <col v-if="props.select" :style="{ width: '50px' }" />
         <!-- left pin  -->
-        <col v-for="column in finalLeftPinCols" :key="column.prop" :width="column.finalWidth" />
+        <col
+          v-for="column in finalLeftPinCols"
+          :key="column.prop"
+          :style="{ width: column.finalWidth + 'px' }"
+        />
         <!-- regular -->
-        <col v-for="column in finalRegularCols" :key="column.prop" :width="column.finalWidth" />
+        <col
+          v-for="column in finalRegularCols"
+          :key="column.prop"
+          :style="{ width: column.finalWidth + 'px' }"
+        />
         <!-- right pin -->
-        <col v-for="column in finalRightPinCols" :key="column.prop" :width="column.finalWidth" />
+        <col
+          v-for="column in finalRightPinCols"
+          :key="column.prop"
+          :style="{ width: column.finalWidth + 'px' }"
+        />
       </colgroup>
 
       <thead>
@@ -49,7 +61,7 @@
             <input
               v-model="isSelectAll"
               type="checkbox"
-              class="checkbox checkbox-sm"
+              class="li-checkbox li-checkbox-sm"
               @change="handleSelectAllChange"
             />
           </th>
@@ -126,14 +138,14 @@
                   class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
-                <label class="swap swap-rotate">
+                <label class="li-swap li-swap-rotate">
                   <input
                     type="checkbox"
                     :checked="isRowExpanded(item, rowIndex)"
                     @change="toggleExpand(item, rowIndex)"
                   />
-                  <ChevronDownIcon class="swap-on w-5 h-5" />
-                  <ChevronRightIcon class="swap-off w-5 h-5" />
+                  <ChevronDownIcon class="li-swap-on w-5 h-5" />
+                  <ChevronRightIcon class="li-swap-off w-5 h-5" />
                 </label>
               </th>
 
@@ -150,7 +162,7 @@
                 ></span>
                 <input
                   type="checkbox"
-                  class="checkbox checkbox-sm"
+                  class="li-checkbox li-checkbox-sm"
                   :checked="isRowSelected(item, rowIndex)"
                   :disabled="props.selectable ? !props.selectable?.(item) : false"
                   @change="handleSelect($event, item, rowIndex)"
@@ -413,17 +425,17 @@ const totalColumnsCount = computed(() => {
 const tableSizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'table-xs'
+      return 'li-table-xs'
     case 'sm':
-      return 'table-sm'
+      return 'li-table-sm'
     case 'md':
-      return 'table-md'
+      return 'li-table-md'
     case 'lg':
-      return 'table-lg'
+      return 'li-table-lg'
     case 'xl':
-      return 'table-xl'
+      return 'li-table-xl'
     default:
-      return 'table-md'
+      return 'li-table-md'
   }
 })
 

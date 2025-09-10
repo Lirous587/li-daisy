@@ -1,6 +1,6 @@
 <template>
   <div class="space-x-3">
-    <button class="btn btn-primary btn-dash" @click="vnodeNotification">vnode消息</button>
+    <button class="li-btn li-btn-primary li-btn-dash" @click="vnodeNotification">vnode消息</button>
   </div>
 </template>
 

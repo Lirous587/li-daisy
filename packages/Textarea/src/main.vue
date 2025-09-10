@@ -10,7 +10,7 @@
       :disabled="props.disabled"
       :maxlength="props.maxlength"
       :rows="dynamicRows"
-      class="textarea min-h-0 w-full scrollbar-xs"
+      class="li-textarea min-h-0 w-full scrollbar-xs"
       :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none !border-base-300' : '']"
     ></textarea>
 
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   disabled: false,
   minRows: 5,
   maxRows: 10,
-  size: 'md',
+  size: 'sm',
   color: 'base',
 })
 
@@ -46,42 +46,42 @@ const model = defineModel<string | undefined>('modelValue', {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'textarea-xs'
+      return 'li-textarea-xs'
     case 'sm':
-      return 'textarea-sm'
+      return 'li-textarea-sm'
     case 'md':
-      return 'textarea-md'
+      return 'li-textarea-md'
     case 'lg':
-      return 'textarea-lg'
+      return 'li-textarea-lg'
     case 'xl':
-      return 'textarea-xl'
+      return 'li-textarea-xl'
     default:
-      return 'textarea-md'
+      return 'li-textarea-sm'
   }
 })
 
 const colorClass = computed(() => {
   switch (props.color) {
     case 'base':
-      return 'textarea-base'
+      return 'li-textarea-base'
     case 'neutral':
-      return 'textarea-neutral'
+      return 'li-textarea-neutral'
     case 'primary':
-      return 'textarea-primary'
+      return 'li-textarea-primary'
     case 'secondary':
-      return 'textarea-secondary'
+      return 'li-textarea-secondary'
     case 'accent':
-      return 'textarea-accent'
+      return 'li-textarea-accent'
     case 'info':
-      return 'textarea-info'
+      return 'li-textarea-info'
     case 'success':
-      return 'textarea-success'
+      return 'li-textarea-success'
     case 'warning':
-      return 'textarea-warning'
+      return 'li-textarea-warning'
     case 'error':
-      return 'textarea-error'
+      return 'li-textarea-error'
     default:
-      return 'textarea-base'
+      return 'li-textarea-base'
   }
 })
 
@@ -155,7 +155,7 @@ onMounted(calculateRows)
 </script>
 
 <style scoped>
-.textarea-base {
+.li-textarea-base {
   & {
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
   }
@@ -164,7 +164,7 @@ onMounted(calculateRows)
     --input-color: var(--color-info);
   }
 }
-.input {
+.li-input {
   transition:
     border-color 0.2s,
     box-shadow 0.2s,

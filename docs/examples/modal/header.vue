@@ -4,7 +4,7 @@
       <template #header="{ close }">
         <div class="flex w-full justify-between border-b border-b-base-300 p-3">
           <h2 class="font-bold">自定义header</h2>
-          <div class="btn btn-primary btn-circle btn-xs text-lg" @click="close">×</div>
+          <div class="li-btn li-btn-primary li-btn-circle li-btn-xs text-lg" @click="close">×</div>
         </div>
       </template>
       <template #body>
@@ -12,7 +12,7 @@
       </template>
     </Modal>
 
-    <button class="btn btn-primary" @click="handleOpenModal">自定义header</button>
+    <button class="li-btn li-btn-primary" @click="handleOpenModal">自定义header</button>
   </div>
 </template>
 

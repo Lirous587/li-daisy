@@ -1,6 +1,6 @@
 <template>
-  <div class="li-demo card rounded-lg border border-base-300">
-    <div class="card-body">
+  <div class="li-demo li-card rounded-lg border border-base-300">
+    <div class="li-card-body">
       <!-- 组件预览区域 -->
       <div class="relative overflow-auto py-4 vp-raw">
         <component :is="demoComponent" v-if="demoComponent" />
@@ -9,7 +9,7 @@
 
     <div class="relative border-t border-base-300">
       <div class="flex p-3 mr-3">
-        <div class="ml-auto cursor-pointer tooltip" data-tip="显示源码" @click="toggleCode">
+        <div class="ml-auto cursor-pointer li-tooltip" data-tip="显示源码" @click="toggleCode">
           <svg data-v-5009ca8d="" viewBox="0 0 24 24" width="1.2em" height="1.2em">
             <path
               fill="currentColor"
@@ -21,7 +21,7 @@
           v-show="codeLoading"
           class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
         >
-          <span class="loading loading-dots loading-xs"></span>
+          <span class="li-loading li-loading-dots li-loading-xs"></span>
         </div>
       </div>
       <div

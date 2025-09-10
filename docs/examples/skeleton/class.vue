@@ -12,7 +12,7 @@
       </template>
       <template #skeleton>
         <div class="flex w-full my-3">
-          <div class="skeleton m-auto w-30 h-30" />
+          <div class="li-skeleton m-auto w-30 h-30" />
         </div>
       </template>
     </Skeleton>

@@ -1,6 +1,6 @@
 <template>
-  <dialog ref="dialogRef" class="modal" :class="directionClass">
-    <div class="modal-box p-0" :class="[props.size]">
+  <dialog ref="dialogRef" class="li-modal" :class="directionClass">
+    <div class="li-modal-box p-0" :class="[props.size]">
       <div v-if="hasHeaderSlot" class="li-modal-header">
         <slot name="header" :close="close"></slot>
       </div>
@@ -21,7 +21,7 @@
     <form
       v-if="props.closeOnClickModal"
       method="dialog"
-      class="modal-backdrop"
+      class="li-modal-backdrop"
       @click="close"
     ></form>
   </dialog>
@@ -59,17 +59,17 @@ const showCloseIcon = computed(() => {
 const directionClass = computed(() => {
   switch (props.direction) {
     case 'ltr':
-      return 'modal-start'
+      return 'li-modal-start'
     case 'rtl':
-      return 'modal-end'
+      return 'li-modal-end'
     case 'ttb':
-      return 'modal-top !w-screen'
+      return 'li-modal-top !w-screen'
     case 'middle':
-      return 'modal-middle'
+      return 'li-modal-middle'
     case 'btt':
-      return 'modal-bottom !w-screen'
+      return 'li-modal-bottom !w-screen'
     default:
-      return 'modal-middle'
+      return 'li-modal-middle'
   }
 })
 

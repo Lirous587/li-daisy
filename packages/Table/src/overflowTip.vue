@@ -1,9 +1,9 @@
 <template>
-  <Popover class="w-full tooltip" :z-index="1" position="top" :duration="200" :offset="3">
+  <Popover class="w-full" :z-index="1" position="top" :duration="200" :offset="3">
     <template #content>
       <div
         v-show="isOverflowing"
-        class="relative bg-neutral px-1.5 py-0.5 rounded-lg border border-accent text-neutral-content text-sm max-w-sm tooltip-container"
+        class="relative bg-neutral px-1.5 py-0.5 rounded-lg border border-accent text-neutral-content text-sm max-w-sm"
       >
         {{ tooltipContent }}
       </div>

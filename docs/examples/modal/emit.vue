@@ -7,7 +7,7 @@
       </template>
     </Modal>
 
-    <button class="btn btn-primary" @click="handleOpenModal">emit例子</button>
+    <button class="li-btn li-btn-primary" @click="handleOpenModal">emit例子</button>
   </div>
 </template>
 

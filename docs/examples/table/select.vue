@@ -6,8 +6,8 @@
       <TableColumn prop="score" label="得分" />
     </Table>
 
+    <p class="mt-2 text-sm opacity-60 font-bold">当前选择列</p>
     <ul class="list">
-      <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">当前选择列</li>
       <li v-for="row in selectRows" :key="row.id" class="list-row">
         <span>{{ row.id }} - {{ row.name }} - {{ row.score }}</span>
       </li>

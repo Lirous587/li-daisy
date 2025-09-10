@@ -12,12 +12,6 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 
 <ComponentGrid :componentList="[
   {
-    img:'/collapse.png',
-    url: '/components/collapse',
-    title: 'Collapse 折叠面板',
-    details: '用于展示和隐藏信息'
-  },
-  {
     img:'/drawer.png',
     url: '/components/drawer',
     title: 'Drawer 抽屉',
@@ -70,7 +64,6 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
   {
     img: '/avatar.png',  
     url: '/components/avatar',
-    title: 'Avatar 头像',
     details: '用于展示用户或对象的缩略图'
   },
   {
@@ -142,8 +135,6 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     details: '用于切换应用的主题样式'
   },
 ]" />
-
-
 
 ### 工具类 (Tools)
 

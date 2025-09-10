@@ -14,15 +14,15 @@
     </template>
     <template #content>
       <div
-        class="flex flex-col gap-y-1 p-2 bg-base-100 rounded-md border border-base-300 shadow-lg"
+        class="flex flex-col gap-y-1 px-2 py-2.5 bg-base-100 rounded-md border border-base-300 shadow-lg"
         :style="{ width: popWidth + 'px' }"
       >
         <slot name="title"></slot>
         <slot name="action" :on-confirm="emitConfirm" :on-cancle="emitCancle"></slot>
-        <div v-if="!hasTitleSlot" class="font-semibold">{{ props.title }}</div>
-        <div v-if="!hasActionSlot" class="flex items-center ml-auto gap-x-3 font-extrabold text-xs">
+        <div v-if="!hasTitleSlot" class="text-sm font-semibold">{{ props.title }}</div>
+        <div v-if="!hasActionSlot" class="flex items-center ml-auto gap-x-2 font-extrabold text-xs">
           <button
-            class="btn btn-info btn-outline"
+            class="li-btn li-btn-primary"
             :class="btnSizeClass"
             type="button"
             @click="emitConfirm"
@@ -30,7 +30,7 @@
             {{ props.confirmText }}
           </button>
           <button
-            class="btn btn-warning btn-dash"
+            class="li-btn li-btn-warning"
             :class="btnSizeClass"
             type="button"
             @click="emitCancle"
@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
   width: 150,
   duration: 250,
   offset: 6,
-  btnSize: 'sm',
+  btnSize: 'xs',
 })
 
 const popoverRef = ref<PopoverRef>()
@@ -71,17 +71,17 @@ const popWidth = computed(() => {
 const btnSizeClass = computed(() => {
   switch (props.btnSize) {
     case 'xs':
-      return 'btn-xs'
+      return 'li-btn-xs'
     case 'sm':
-      return 'btn-sm'
+      return 'li-btn-sm'
     case 'md':
-      return 'btn-md'
+      return 'li-btn-md'
     case 'lg':
-      return 'btn-lg'
+      return 'li-btn-lg'
     case 'xl':
-      return 'btn-xl'
+      return 'li-btn-xl'
     default:
-      return 'btn-md'
+      return 'li-btn-xs'
   }
 })
 

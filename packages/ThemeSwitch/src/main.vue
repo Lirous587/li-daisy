@@ -1,7 +1,7 @@
 <template>
   <button
     ref="containerRef"
-    class="relative btn btn-sm hover:border-primary rounded-xl h-6 w-12 overflow-hidden"
+    class="relative li-btn ld-btn-sm hover:border-primary rounded-xl h-6 w-12 overflow-hidden"
     @click="switchTheme"
   >
     <template v-if="isHydrated">

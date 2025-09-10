@@ -2,7 +2,7 @@
   <div class="flex justify-between w-full gap-x-5">
     <Drawer title="抽屉标题" show-close-icon>
       <template #trigger>
-        <div class="btn btn-primary">该抽屉有close图标</div>
+        <div class="li-btn li-btn-primary">该抽屉有close图标</div>
       </template>
       <template #body>
         <p>该抽屉有close图标</p>
@@ -11,7 +11,7 @@
 
     <Drawer title="抽屉标题" :show-close-icon="false">
       <template #trigger>
-        <div class="btn btn-primary">该抽屉无close图标</div>
+        <div class="li-btn li-btn-primary">该抽屉无close图标</div>
       </template>
       <template #body>
         <p>该抽屉无close图标</p>

@@ -1,3 +1,8 @@
+@plugin "daisyui" {
+  prefix: 'li-';
+  logs: true;
+}
+
 @plugin "daisyui/theme" {
   name: 'li-light';
   default: true;

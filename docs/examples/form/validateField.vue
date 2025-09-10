@@ -7,7 +7,7 @@
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
     <FormItem>
-      <button class="btn btn-primary w-full" type="button" @click="handleValidateEmail">
+      <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidateEmail">
         验证邮箱
       </button>
     </FormItem>

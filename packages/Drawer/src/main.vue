@@ -1,25 +1,25 @@
 <template>
-  <div class="drawer" :class="drawerDirection">
+  <div class="li-drawer" :class="drawerDirection">
     <input
       :id="uniqueID"
       ref="drawerToggleRef"
       v-model="status"
       type="checkbox"
-      class="drawer-toggle"
+      class="li-drawer-toggle"
     />
     <!-- trigger -->
-    <div class="drawer-content">
+    <div class="li-drawer-content">
       <label :for="uniqueID">
         <slot name="trigger" />
       </label>
     </div>
 
-    <div class="drawer-side z-[100]">
+    <div class="li-drawer-side z-[100]">
       <!-- 蒙层 -->
       <label
         :for="uniqueID"
         aria-label="close sidebar"
-        class="drawer-overlay"
+        class="li-drawer-overlay"
         :class="closeOnClickModal ? '' : 'pointer-events-none'"
       ></label>
 
@@ -75,11 +75,11 @@ const uniqueID = useId()
 const drawerDirection = computed(() => {
   switch (props.direction) {
     case 'ltr':
-      return 'drawer-start'
+      return 'li-drawer-start'
     case 'rtl':
-      return 'drawer-end'
+      return 'li-drawer-end'
     default:
-      return 'drawer-start'
+      return 'li-drawer-start'
   }
 })
 

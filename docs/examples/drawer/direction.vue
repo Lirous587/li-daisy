@@ -8,7 +8,7 @@
       class="my-3"
     >
       <template #trigger>
-        <div class="btn btn-primary">打开方向: {{ direction }}</div>
+        <div class="li-btn li-btn-primary">打开方向: {{ direction }}</div>
       </template>
       <template #body>
         <p>打开方向: {{ direction }}</p>

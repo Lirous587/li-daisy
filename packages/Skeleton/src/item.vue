@@ -1,3 +1,3 @@
 <template>
-  <div class="skeleton"></div>
+  <div class="li-skeleton"></div>
 </template>

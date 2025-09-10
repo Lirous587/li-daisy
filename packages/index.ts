@@ -1,9 +1,5 @@
 import './assets/css/tailwind.css'
 
-// 布局 (Layout)
-import { Collapse, CollapseItem } from './Collapse'
-export type { CollapseIcon, CollapseDefaultColor, CollapseActiveColor } from './Collapse'
-
 import { Drawer } from './Drawer'
 export type { DrawerRef, DrawerDirection } from './Drawer'
 
@@ -25,9 +21,6 @@ export type { FormRef } from './Form'
 export { useYup } from './Form'
 
 // 数据展示 (Data Display)
-import { Avatar } from './Avatar'
-export type { AvatarSize } from './Avatar'
-
 import { Table, TableColumn } from './Table'
 export type { TableSize, TableColumnDefaultScope, TableColumnExpandScope } from './Table'
 
@@ -62,9 +55,6 @@ export { loadingDirective }
 
 // 导出组件
 export {
-  Avatar,
-  Collapse,
-  CollapseItem,
   Drawer,
   Modal,
   Paging,

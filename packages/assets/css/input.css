@@ -1,16 +1,16 @@
 /* 移除 input 和 textarea 默认聚焦状态 */
 @layer override {
   /* 聚焦状态 */
-  .input:focus,
-  .input:focus-visible,
-  .input:focus-within {
+  .li-input:focus,
+  .li-input:focus-visible,
+  .li-input:focus-within {
     outline: none;
   }
 
   /* 聚焦状态 */
-  .textarea:focus,
-  .textarea:focus-visible,
-  .textarea:focus-within {
+  .li-textarea:focus,
+  .li-textarea:focus-visible,
+  .li-textarea:focus-within {
     outline: none;
   }
 }

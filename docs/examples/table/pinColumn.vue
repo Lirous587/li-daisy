@@ -1,9 +1,9 @@
 <template>
   <div class="p-4">
     <Table :data="data" border>
-      <TableColumn prop="id" label="ID" align="center" pin-col="left" />
-      <TableColumn prop="name" label="编程语言" />
-      <TableColumn prop="score" label="得分" />
+      <TableColumn prop="id" label="ID" align="center" pin-col="left" :width="120" />
+      <TableColumn prop="name" label="编程语言" :width="120" />
+      <TableColumn prop="score" label="得分" :width="120" />
       <TableColumn prop="description" label="描述" :width="300" />
     </Table>
   </div>
@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import { Table, TableColumn } from 'li-daisy'
+
 import { ref } from 'vue'
 
 interface Language {

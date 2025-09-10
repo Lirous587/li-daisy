@@ -2,7 +2,7 @@
   <div class="w-full flex justify-between">
     <Popover trigger="hover" :z-index="100">
       <template #trigger>
-        <button class="btn btn-primary">hover</button>
+        <button class="li-btn li-btn-primary">hover</button>
       </template>
       <template #content>
         <Card />
@@ -10,7 +10,7 @@
     </Popover>
     <Popover trigger="click" :z-index="100">
       <template #trigger>
-        <button class="btn btn-primary">click</button>
+        <button class="li-btn li-btn-primary">click</button>
       </template>
       <template #content>
         <Card />
