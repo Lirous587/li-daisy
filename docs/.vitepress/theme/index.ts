@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 
 import { type App } from 'vue'
-import { createPinia } from 'pinia'
 
 import ComponentGrid from './components/OverviewGrid.vue'
 
@@ -22,8 +21,6 @@ export default {
   ...DefaultTheme,
   Layout: Layout,
   enhanceApp({ app }: { app: App }) {
-    const pinia = createPinia()
-    app.use(pinia)
     app.component('ComponentGrid', ComponentGrid)
     app.component('Demo', Demo)
     app.directive('loading', loadingDirective)

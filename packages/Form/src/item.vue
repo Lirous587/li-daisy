@@ -78,15 +78,15 @@ const marginLeftStyle = computed(() => {
   return {}
 })
 
-const errors = inject<Record<string, string>>('errors', {})
+const errors = inject<Ref<Record<string, string>>>('errors', ref({}))
 
 const error = ref('')
 
 watch(
-  errors,
+  () => errors.value,
   newError => {
     if (props.name) {
-      error.value = newError[props.name]
+      error.value = newError[props.name] || 'fuck err'
     }
   },
   { deep: true }

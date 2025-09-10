@@ -1,7 +1,7 @@
 <template>
   <button
     ref="containerRef"
-    class="relative btn btn-sm hover:!border-primary rounded-xl h-6 w-12 overflow-hidden"
+    class="relative btn btn-sm hover:border-primary rounded-xl h-6 w-12 overflow-hidden"
     @click="switchTheme"
   >
     <template v-if="isHydrated">
@@ -105,27 +105,26 @@ const switchAnimation = async (x: number, y: number) => {
 
   await document.startViewTransition(async () => {
     applyTheme()
-    await nextTick()
   }).ready
 
   document.documentElement.animate(
     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
     {
-      duration: 600,
+      duration: 1000,
       easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     }
   )
 }
 
-const switchTheme = async (event: MouseEvent) => {
+const switchTheme = (event: MouseEvent) => {
   const { clientX: x, clientY: y } = event
 
   nowTheme.value = nowTheme.value === props.darkTheme ? props.lightTheme : props.darkTheme
   setTheme(nowTheme.value)
 
   // 执行动画
-  await switchAnimation(x, y)
+  switchAnimation(x, y)
 }
 
 // 检查是否支持 View Transition

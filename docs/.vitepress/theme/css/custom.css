@@ -1,7 +1,5 @@
 :root {
   scrollbar-gutter: stable;
-  /* 使用硬件加速 */
-  --theme-transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 * {

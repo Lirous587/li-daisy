@@ -10,7 +10,7 @@ import { Form as VeeForm } from 'vee-validate'
 import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
-const model = defineModel<Record<string, unknown>>()
+const model = defineModel<Record<string, any>>()
 
 const props = withDefaults(defineProps<FormProps>(), {
   labelWidth: '60px',
@@ -29,21 +29,19 @@ const {
   validationSchema: props.schema,
 })
 
-console.log(1)
-
 // 初始化表单字段
 onMounted(() => {
-  if (model.value) {
-    for (const fieldName in model.value) {
-      if (Object.prototype.hasOwnProperty.call(model.value, fieldName)) {
-        setFieldValue(fieldName, model.value[fieldName])
-      }
+  for (const fieldName in model.value) {
+    if (Object.prototype.hasOwnProperty.call(model.value, fieldName)) {
+      console.log(fieldName, model.value[fieldName])
+
+      setFieldValue(fieldName, model.value[fieldName])
     }
   }
 })
 
 watch(
-  model,
+  () => model.value,
   newValue => {
     if (newValue) {
       for (const fieldName in newValue) {
