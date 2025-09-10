@@ -114,7 +114,7 @@ export default defineConfig({
   },
 
   markdown: {
-    config: (md) => {
+    config: md => {
       md.use(demoBlockPlugin)
     },
   },

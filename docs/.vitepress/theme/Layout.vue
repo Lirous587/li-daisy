@@ -57,7 +57,7 @@ const switchAnimation = async (x: number, y: number) => {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y),
+      Math.max(y, innerHeight - y)
     )}px at ${x}px ${y}px)`,
   ]
 
@@ -74,7 +74,7 @@ const switchAnimation = async (x: number, y: number) => {
       duration: 400,
       easing: 'ease-in',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    },
+    }
   )
 }
 
@@ -110,21 +110,3 @@ onMounted(async () => {
   }
 })
 </script>
-
-<style>
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root),
-.dark::view-transition-new(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root),
-.dark::view-transition-old(root) {
-  z-index: 99999;
-}
-</style>

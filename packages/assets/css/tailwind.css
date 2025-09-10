@@ -2,15 +2,8 @@
 @import './daisyui.css';
 @import './input.css';
 @import './scroll.css';
+@import './base.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @plugin "daisyui";
-
-:root {
-  interpolate-size: allow-keywords;
-}
-
-.btn {
-  white-space: nowrap;
-}

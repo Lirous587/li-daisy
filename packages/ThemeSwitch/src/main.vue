@@ -38,28 +38,37 @@
     </template>
   </button>
 </template>
+
 <script setup lang="ts">
 import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
 import type { ThemeSwitchProps } from './types'
 import { computed, nextTick, onMounted, ref } from 'vue'
-import { isClient, isServer } from '../../utils/ssr'
+import { isClient } from '../../utils/ssr'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
   lightTheme: 'li-light',
   darkTheme: 'li-dark',
 })
 
+const emit = defineEmits<{
+  toggle: [mode: 'light' | 'dark']
+}>()
+
+// 初始化为服务端的默认值，避免水合不一致
+const nowTheme = ref(props.lightTheme)
+
+const isDark = computed(() => nowTheme.value === props.darkTheme)
+
 // 水合状态追踪
 const isHydrated = ref(false)
 
+const containerRef = ref<HTMLButtonElement>()
+
 const setTheme = (theme: string) => {
-  if (isServer()) return
   localStorage.setItem('li-daisy-theme', theme)
 }
 
 const getTheme = () => {
-  if (isServer()) return props.lightTheme
-
   const validThemes = [props.lightTheme, props.darkTheme]
 
   const stored = localStorage.getItem('li-daisy-theme')
@@ -76,17 +85,22 @@ const getTheme = () => {
   return props.lightTheme
 }
 
-// 初始化为服务端的默认值，避免水合不一致
-const nowTheme = ref(props.lightTheme)
-
-const isDark = computed(() => nowTheme.value === props.darkTheme)
-const containerRef = ref<HTMLButtonElement>()
-
 const applyTheme = () => {
-  if (isServer()) return
-
   document.documentElement.setAttribute('data-theme', nowTheme.value)
   document.documentElement.classList.toggle('dark', isDark.value)
+}
+
+const switchTheme = (event: MouseEvent) => {
+  const { clientX: x, clientY: y } = event
+
+  emit('toggle', nowTheme.value === props.darkTheme ? 'light' : 'dark')
+  // 主题反转
+  nowTheme.value = nowTheme.value === props.darkTheme ? props.lightTheme : props.darkTheme
+
+  setTheme(nowTheme.value)
+
+  // 执行动画
+  switchAnimation(x, y)
 }
 
 const switchAnimation = async (x: number, y: number) => {
@@ -117,21 +131,8 @@ const switchAnimation = async (x: number, y: number) => {
   )
 }
 
-const switchTheme = (event: MouseEvent) => {
-  const { clientX: x, clientY: y } = event
-
-  nowTheme.value = nowTheme.value === props.darkTheme ? props.lightTheme : props.darkTheme
-  setTheme(nowTheme.value)
-
-  // 执行动画
-  switchAnimation(x, y)
-}
-
 // 检查是否支持 View Transition
-const enableTransitions = () =>
-  isClient() &&
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+const enableTransitions = () => isClient() && document.startViewTransition
 
 onMounted(() => {
   // 在客户端获取真实的主题偏好
@@ -194,23 +195,5 @@ html.dark .li-theme-placeholder-sun {
 
 html.dark .li-theme-placeholder-moon {
   display: block;
-}
-</style>
-
-<style>
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root),
-.dark::view-transition-new(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root),
-.dark::view-transition-old(root) {
-  z-index: 99999;
 }
 </style>
