@@ -90,8 +90,8 @@ const hasTitleSlot = computed(() => !!slots.title)
 const hasActionSlot = computed(() => !!slots.action)
 
 const emit = defineEmits<{
-  (e: 'confirm'): void
-  (e: 'cancle'): void
+  confirm: []
+  cancle: []
 }>()
 
 const emitConfirm = () => {

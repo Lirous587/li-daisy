@@ -10,6 +10,7 @@ import { Form as VeeForm } from 'vee-validate'
 import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
+// @typescript-eslint/no-explicit-any
 const model = defineModel<Record<string, any>>()
 
 const props = withDefaults(defineProps<FormProps>(), {
@@ -33,8 +34,6 @@ const {
 onMounted(() => {
   for (const fieldName in model.value) {
     if (Object.prototype.hasOwnProperty.call(model.value, fieldName)) {
-      console.log(fieldName, model.value[fieldName])
-
       setFieldValue(fieldName, model.value[fieldName])
     }
   }

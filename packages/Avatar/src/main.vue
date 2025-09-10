@@ -47,16 +47,19 @@ const sizeClass = computed(() => {
   }
 })
 
-const emits = defineEmits(['success', 'failed'])
+const emit = defineEmits<{
+  success: []
+  failed: []
+}>()
 
 const handleLoad = () => {
   ifFailed.value = false
-  emits('success')
+  emit('success')
 }
 
 const handleError = () => {
   ifFailed.value = true
-  emits('failed')
+  emit('failed')
 }
 
 watch(

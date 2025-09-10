@@ -45,7 +45,9 @@ const props = withDefaults(defineProps<NotificationProps>(), {
 })
 
 // 添加emit以通知插件Notification已关闭
-const emit = defineEmits(['close'])
+const emit = defineEmits<{
+  close: []
+}>()
 
 const iconColorClass = computed(() => {
   switch (props.type) {

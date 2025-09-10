@@ -52,7 +52,10 @@ const props = withDefaults(defineProps<MessageProps>(), {
 })
 
 // 添加emit以通知插件Notification已关闭
-const emit = defineEmits(['close'])
+
+const emit = defineEmits<{
+  close: []
+}>()
 
 const textColorClass = computed(() => {
   switch (props.type) {

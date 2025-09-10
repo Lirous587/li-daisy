@@ -275,7 +275,7 @@ const props = withDefaults(defineProps<TableProps<T>>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'select-change', items: T[]): void
+  'select-change': [items: T[]]
 }>()
 
 const slots = defineSlots<{

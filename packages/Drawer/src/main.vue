@@ -93,7 +93,10 @@ const showCloseIcon = computed(() => {
 
 const hasHeaderSlot = computed(() => !!useSlots().header)
 
-const emit = defineEmits(['open', 'close'])
+const emit = defineEmits<{
+  open: []
+  close: []
+}>()
 
 const open = () => {
   status.value = true

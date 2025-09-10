@@ -92,7 +92,7 @@ const generateSeoHref = (page: number): string => {
 }
 
 const emit = defineEmits<{
-  (e: 'change', page: number): void
+  change: [page: number]
 }>()
 
 const currentPage = defineModel<number | undefined>('modelValue', {

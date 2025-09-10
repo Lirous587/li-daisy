@@ -38,8 +38,8 @@ const props = withDefaults(defineProps<ModalProps>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'open'): void
-  (e: 'close'): void
+  open: []
+  close: []
 }>()
 
 const dialogRef = ref<HTMLDialogElement>()
