@@ -1,20 +1,23 @@
 # Message 消息条
 
-## 类型 
+## 类型
+
 > 通过 `type` 来设置消息类型，可选值有 `info` `success` `warning` `error`
->>
-> `plain` 可设置消息是否取消背景色
-:::demo message/type
-:::
+>
+> > `plain` 可设置消息是否取消背景色
+> > :::demo message/type
+> > :::
 
 ## 关闭图标
+
 > 通过 `showCloseIcon` 来设置是否显示关闭图标，默认值为 `true`
 > 当 `showCloseIcon` 设置为false时, autoClose必定为 `true`，即使给定值为 `false` 也不会生效
 
-:::demo message/CloseIcon
+:::demo message/closeIcon
 :::
 
 ## Vnode
+
 > `message` 参数也可为 `Vnode`
 
 :::demo message/vnode
