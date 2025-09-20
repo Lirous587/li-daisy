@@ -11,9 +11,9 @@
 
 > 通过传递 `lightTheme` 和 `darkTheme` 来分别设置明暗模式
 >
-> > 若需额外自行定义可参考[daisyui文档](https://daisyui.com/docs/themes/)
-> >
-> > 需要使用时仅仅需要分别传递定义好的明暗模式的 `name` 即可
+> 若需额外自行定义可参考[daisyui文档](https://daisyui.com/docs/themes/)
+>
+> 需要使用时仅仅需要分别传递定义好的明暗模式的 `name` 即可
 
 ## 服务端渲染注意事项
 

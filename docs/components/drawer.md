@@ -20,7 +20,7 @@
 
 > 通过size设置宽度大小，支持 Tailwind CSS 的任意宽度值（包括响应式写法）
 >
-> > 默认值为 `w-[40vw] min-w-[250px]`
+> 默认值为 `w-[40vw] min-w-[250px]`
 
 :::warning 注意
 该本质是绑定到Drawer上的动态css，所有使用的要尤其小心，避免造成副作用
@@ -53,7 +53,7 @@
 > [!IMPORTANT]
 > 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
 >
-> > 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
+> 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
 
 :::demo drawer/header
 :::

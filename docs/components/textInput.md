@@ -15,9 +15,9 @@
 
 > 为了更好的浏览器补全，支持以下类型
 >
-> > `text`， `password`， `email`， `url`， `tel`， `search`
-> > :::demo textInput/type
-> > :::
+> `text`， `password`， `email`， `url`， `tel`， `search`
+> :::demo textInput/type
+> :::
 
 ## 最大长度
 
@@ -33,9 +33,9 @@
 
 > 通过 `color` 来设置颜色
 >
-> > 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
-> > :::demo textInput/color
-> > :::
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
+> :::demo textInput/color
+> :::
 
 ## API
 

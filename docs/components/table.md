@@ -4,13 +4,13 @@
 
 > `Table` 组件通过 `data` 属性接收需要渲染的表格数据数组。`TableColumn` 组件用于定义表格的列，其 `prop` 属性指定该列需要展示的数据对象的键名，`label` 属性则定义了该列的表头标题
 >
-> > `zebra` 来设置是否显示斑马条纹，`border` 来设置是否显示边框
-> >
-> > 可以使用 `width` 属性来定义列宽的，类型为 `number`，单位为 `px`
-> >
-> > `align` 和 `header-align` 来定义对齐方式
-> > :::demo table/basic
-> > :::
+> `zebra` 来设置是否显示斑马条纹，`border` 来设置是否显示边框
+>
+> 可以使用 `width` 属性来定义列宽的，类型为 `number`，单位为 `px`
+>
+> `align` 和 `header-align` 来定义对齐方式
+> :::demo table/basic
+> :::
 
 ## 自定义表头
 
@@ -37,28 +37,28 @@
 
 > 通过设置 `pin-col` 来设置固定列位置，可选值有 `left` `right`
 >
-> > 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
-> >
-> > 设置 `select` 之后，选择列默认为固定列
-> > :::demo table/pinColumn
-> > :::
+> 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
+>
+> 设置 `select` 之后，选择列默认为固定列
+> :::demo table/pinColumn
+> :::
 
 ## 展开行
 
 > `TableColumn` 组件设置 `type` 为 `expand` 即可设置展开行
 >
-> > 该插槽暴露 `row` `index` 两个属性
-> > :::demo table/expand
-> > :::
+> 该插槽暴露 `row` `index` 两个属性
+> :::demo table/expand
+> :::
 
 ## 选择列
 
 > `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
 >
-> > 当全选或选择列时会触发 `select-change` 回调
-> > :::tip 有序排序
-> > 选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
-> > :::
+> 当全选或选择列时会触发 `select-change` 回调
+> :::tip 有序排序
+> 选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
+> :::
 
 :::demo table/select
 :::
@@ -84,8 +84,8 @@
 #### Table
 
 |       属性值       |          说明          |             类型             |  默认值  |
-| :----------------: | :--------------------: | :--------------------------: | :------: | --- |
-|        data        |        表格数据        | `Array<Record<string, any>>` |    -     | -   |
+| :----------------: | :--------------------: | :--------------------------: | :------: |
+|        data        |        表格数据        | `Array<Record<string, any>>` |    -     |
 |        size        |        表格大小        |         `TableSize`          | `'info'` |
 |       zebra        |     是否带有斑马纹     |          `boolean`           | `false`  |
 |       border       |      是否显示边框      |          `boolean`           | `false`  |

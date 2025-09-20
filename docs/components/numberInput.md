@@ -19,7 +19,7 @@
 
 > 通过 `color` 来设置颜色
 >
-> > 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 
 :::demo numberInput/color
 :::

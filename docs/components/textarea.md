@@ -4,9 +4,9 @@
 
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
 >
-> > 与 `daisyui` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
-> > :::demo textarea/size
-> > :::
+> 与 `daisyui` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
+> :::demo textarea/size
+> :::
 
 ## 禁用状态
 
@@ -21,15 +21,15 @@
 
 > 通过 `min-rows` `max-rows` 来分别设置最小和最大行数
 >
-> > 行数超出 `max-rows` 时将显示滚动条
-> > :::demo textarea/rows
-> > :::
+> 行数超出 `max-rows` 时将显示滚动条
+> :::demo textarea/rows
+> :::
 
 ## color颜色
 
 > 通过 `color` 来设置颜色
 >
-> > 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 
 :::demo textarea/color
 :::
