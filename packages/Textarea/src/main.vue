@@ -10,8 +10,9 @@
       :disabled="props.disabled"
       :maxlength="props.maxlength"
       :rows="dynamicRows"
-      class="li-textarea min-h-0 w-full scrollbar-xs"
+      class="li-textarea min-h-0 w-full scrollbar-xs leading-[calc(1em+8px)]"
       :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none !border-base-300' : '']"
+      :style="{ minHeight: minHeightPx }"
     ></textarea>
 
     <div v-if="maxlength" class="absolute right-2.5 bottom-2.5 text-sm text-base-content/70">
@@ -89,6 +90,8 @@ const currentLength = computed<number>(() => {
   return String(model.value ?? '').length
 })
 
+const minHeightPx = ref('')
+
 // 实际文本域
 const textareaEl = ref<HTMLTextAreaElement | null>(null)
 // 隐藏的测量元素
@@ -114,10 +117,10 @@ const calculateRows = async () => {
   const computedStyle = window.getComputedStyle(textareaEl.value)
   measureEl.value.style.font = computedStyle.font
   measureEl.value.style.letterSpacing = computedStyle.letterSpacing
-  measureEl.value.style.padding = computedStyle.padding // 关键：同步 padding
-  measureEl.value.style.width = computedStyle.width // 关键：同步宽度
-  measureEl.value.style.border = computedStyle.border // 考虑边框
-  measureEl.value.style.boxSizing = computedStyle.boxSizing // 必须同步 box-sizing
+  measureEl.value.style.padding = computedStyle.padding // 同步 padding
+  measureEl.value.style.width = computedStyle.width // 同步宽度
+  measureEl.value.style.border = computedStyle.border // 同步边框
+  measureEl.value.style.boxSizing = computedStyle.boxSizing // 同步box-sizing
 
   // 2. 设置内容并测量
   // 使用空格确保至少有一行的高度，防止空内容时 scrollHeight 为 0
@@ -143,15 +146,41 @@ const calculateRows = async () => {
 
   // 4. 应用 min/max 约束并更新 ref
   dynamicRows.value = Math.min(Math.max(calculatedRows, minRows), maxRows)
+
   // 5.清空测量元素的内容
   measureEl.value.textContent = ' '
 }
 
+// 计算一行高度并设置 minHeight
+const updateMinHeight = () => {
+  if (!textareaEl.value) return
+  const computedStyle = window.getComputedStyle(textareaEl.value)
+  let lineHeight = parseFloat(computedStyle.lineHeight)
+  let paddingTop = parseFloat(computedStyle.paddingTop)
+  let paddingBottom = parseFloat(computedStyle.paddingBottom)
+
+  if (isNaN(lineHeight)) lineHeight = 24 // fallback
+  if (isNaN(paddingTop)) paddingTop = 0
+  if (isNaN(paddingBottom)) paddingBottom = 0
+  minHeightPx.value = `${lineHeight * props.minRows + paddingTop + paddingBottom}px`
+}
+
 watch(model, calculateRows)
 
-watch(() => props.size, calculateRows)
+watch(() => props.minRows, updateMinHeight)
 
-onMounted(calculateRows)
+watch(
+  () => props.size,
+  () => {
+    calculateRows()
+    updateMinHeight()
+  }
+)
+
+onMounted(() => {
+  calculateRows()
+  updateMinHeight()
+})
 </script>
 
 <style scoped>

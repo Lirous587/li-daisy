@@ -1,5 +1,9 @@
 <template>
+  {{ form }}
   <Form :form="form" label-width="40px" :schema="schema" align="vertical">
+    <FormItem name="text" label="文本" trigger="input">
+      <TextInput v-model="form.text" placeholder="请输入文本" />
+    </FormItem>
     <FormItem name="email" label="用户名" trigger="input">
       <TextInput v-model="form.email" placeholder="请输入用户名" />
     </FormItem>
@@ -16,17 +20,20 @@
 </template>
 
 <script setup lang="ts">
-import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+// import { Form, FormItem, useYup, TextInput } from 'li-daisy'
+import { Form, FormItem, useYup, TextInput } from '../../../packages'
 
 import { ref } from 'vue'
 
 const form = ref({
+  text: '',
   email: '',
   password: '',
 })
 
 const yup = useYup()
 const schema = yup.object({
+  text: yup.string().required(),
   email: yup.string().email().required('请输入邮箱').trim(),
   password: yup.string().required('请输入密码').min(6).trim(),
 })
