@@ -1,5 +1,5 @@
 <template>
-  <Form ref="formRef" v-model="form" :schema="schema" align="vertical">
+  <Form ref="formRef" :form="form" :schema="schema" align="vertical">
     <FormItem name="email" label="用户名" trigger="input">
       <TextInput v-model="form.email" placeholder="请输入用户名" />
     </FormItem>

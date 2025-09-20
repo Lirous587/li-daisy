@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-2">
     <p class="font-bold">Form设置align为vertical</p>
-    <Form v-model="form" :schema="schema" align="vertical">
+    <Form :form="form" :schema="schema" align="vertical">
       <FormItem name="email" label="用户名" trigger="input">
         <TextInput v-model="form.email" placeholder="请输入用户名" />
       </FormItem>
@@ -11,7 +11,7 @@
     </Form>
 
     <p class="font-bold">Form设置align为horizontal</p>
-    <Form v-model="form" :schema="schema" align="horizontal">
+    <Form :form="form" :schema="schema" align="horizontal">
       <FormItem name="email" label="用户名" trigger="input">
         <TextInput v-model="form.email" placeholder="请输入用户名" />
       </FormItem>
@@ -21,7 +21,7 @@
     </Form>
 
     <p class="font-bold">Form设置align为vertical，email项设置align为horizontal</p>
-    <Form v-model="form" :schema="schema" align="vertical">
+    <Form :form="form" :schema="schema" align="vertical">
       <FormItem name="email" label="用户名" trigger="input" align="horizontal">
         <TextInput v-model="form.email" placeholder="请输入用户名" />
       </FormItem>

@@ -47,7 +47,7 @@ const props = withDefaults(defineProps<FormItemProps>(), {
 
 const labelWidth = inject<string>('labelWidth', '')
 
-const align = inject<string>('align', 'horizontal')
+const align = inject<string>('align', 'vertical')
 
 const alignClass = computed(() => {
   if (props.align === 'horizontal') {

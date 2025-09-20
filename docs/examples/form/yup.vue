@@ -1,5 +1,5 @@
 <template>
-  <Form v-model="form" label-width="40px" :schema="schema" align="vertical">
+  <Form :form="form" label-width="40px" :schema="schema" align="vertical">
     <FormItem name="email" label="用户名" trigger="input">
       <TextInput v-model="form.email" placeholder="请输入用户名" />
     </FormItem>

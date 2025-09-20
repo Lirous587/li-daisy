@@ -10,12 +10,9 @@ import { Form as VeeForm } from 'vee-validate'
 import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
-// @typescript-eslint/no-explicit-any
-const model = defineModel<Record<string, any>>()
-
 const props = withDefaults(defineProps<FormProps>(), {
   labelWidth: '60px',
-  align: 'horizontal',
+  align: 'vertical',
 })
 
 provide('labelWidth', props.labelWidth)
@@ -32,15 +29,15 @@ const {
 
 // 初始化表单字段
 onMounted(() => {
-  for (const fieldName in model.value) {
-    if (Object.prototype.hasOwnProperty.call(model.value, fieldName)) {
-      setFieldValue(fieldName, model.value[fieldName])
+  for (const fieldName in props.form) {
+    if (Object.prototype.hasOwnProperty.call(props.form, fieldName)) {
+      setFieldValue(fieldName, props.form[fieldName])
     }
   }
 })
 
 watch(
-  () => model.value,
+  () => props.form,
   newValue => {
     if (newValue) {
       for (const fieldName in newValue) {
