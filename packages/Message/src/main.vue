@@ -27,7 +27,11 @@
     </div>
 
     <!-- 背景层 -->
-    <div v-if="!props.plain" class="absolute inset-0" :class="bgColorClass"></div>
+    <div
+      v-if="!props.plain"
+      class="absolute inset-0 pointer-events-none"
+      :class="bgColorClass"
+    ></div>
   </div>
 </template>
 
