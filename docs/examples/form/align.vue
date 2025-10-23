@@ -2,8 +2,8 @@
   <div class="space-y-2">
     <p class="font-bold">Form设置align为vertical</p>
     <Form :form="form" :schema="schema" align="vertical">
-      <FormItem name="email" label="用户名" trigger="input">
-        <TextInput v-model="form.email" placeholder="请输入用户名" />
+      <FormItem name="email" label="邮箱" trigger="input">
+        <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
@@ -12,8 +12,8 @@
 
     <p class="font-bold">Form设置align为horizontal</p>
     <Form :form="form" :schema="schema" align="horizontal">
-      <FormItem name="email" label="用户名" trigger="input">
-        <TextInput v-model="form.email" placeholder="请输入用户名" />
+      <FormItem name="email" label="邮箱" trigger="input">
+        <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
@@ -22,8 +22,8 @@
 
     <p class="font-bold">Form设置align为vertical，email项设置align为horizontal</p>
     <Form :form="form" :schema="schema" align="vertical">
-      <FormItem name="email" label="用户名" trigger="input" align="horizontal">
-        <TextInput v-model="form.email" placeholder="请输入用户名" />
+      <FormItem name="email" label="邮箱" trigger="input" align="horizontal">
+        <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />

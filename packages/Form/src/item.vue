@@ -103,7 +103,9 @@ const handleInteraction = (type: 'blur' | 'input' | 'change') => {
   interactionState.value[type] = true
 }
 
-const isExecuteErrorAnimation = inject<Ref<boolean>>('isExecuteErrorAnimation', ref(false))
+// const isExecuteErrorAnimation = inject<Ref<boolean>>('isExecuteErrorAnimation', ref(false))
+
+const errorAnimationFields = inject<Ref<Record<string, boolean>>>('errorAnimationFields', ref({}))
 
 // 计算属性，决定是否应该显示错误
 const showError = computed(() => {
@@ -112,8 +114,8 @@ const showError = computed(() => {
     return false
   }
 
-  // 如果验证被主动触发，直接显示错误，忽略交互条件
-  if (isExecuteErrorAnimation.value) {
+  // 如果该字段被标记要执行错误动画，则直接显示错误（忽略交互条件）
+  if (props.name && errorAnimationFields.value[props.name]) {
     return true
   }
 

@@ -4,8 +4,8 @@
     <FormItem name="text" label="文本" trigger="input">
       <TextInput v-model="form.text" placeholder="请输入文本" />
     </FormItem>
-    <FormItem name="email" label="用户名" trigger="input">
-      <TextInput v-model="form.email" placeholder="请输入用户名" />
+    <FormItem name="email" label="邮箱" trigger="input">
+      <TextInput v-model="form.email" placeholder="请输入邮箱" />
     </FormItem>
     <FormItem name="password" label="密码" trigger="blur">
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Form, FormItem, useYup, TextInput } from 'li-daisy'
-import { Form, FormItem, useYup, TextInput } from '../../../packages'
+import { Form, FormItem, useYup, TextInput } from 'li-daisy'
 
 import { ref } from 'vue'
 

@@ -7,9 +7,14 @@
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
     <FormItem>
-      <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidateEmail">
-        验证邮箱
-      </button>
+      <div class="space-y-3">
+        <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidateEmail">
+          验证邮箱
+        </button>
+        <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidatePassword">
+          验证密码
+        </button>
+      </div>
     </FormItem>
   </Form>
 </template>
@@ -30,12 +35,26 @@ const yup = useYup()
 
 const schema = yup.object({
   email: yup.string().email().required('请输入邮箱').trim(),
-  password: yup.string().required('请输入密码').trim(),
+  password: yup.string().required('请输入密码').min(6).trim(),
 })
 
-const handleValidateEmail = async () => {
+const handleValidateEmail = () => {
   formRef.value
     ?.validateField('email')
+    .then(() => {
+      Message.info('注册成功')
+    })
+    .catch(err => {
+      Notification.warning({
+        title: '验证失败',
+        message: err,
+      })
+    })
+}
+
+const handleValidatePassword = () => {
+  formRef.value
+    ?.validateField('password')
     .then(() => {
       Message.info('注册成功')
     })

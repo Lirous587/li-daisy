@@ -65,11 +65,39 @@ watch(
 
 provide('errors', readonly(errors))
 
-const isExecuteErrorAnimation = ref(false)
+const errorAnimationFields = ref<Record<string, boolean>>({})
+
+const markFieldAnimation = (fieldName: string) => {
+  if (!fieldName) return
+  errorAnimationFields.value[fieldName] = true
+}
+
+const markAllFieldsAnimation = () => {
+  if (props.form) {
+    for (const k in props.form) {
+      errorAnimationFields.value[k] = true
+    }
+  }
+}
+
+// 根据errors同步errorAnimationFields
+watch(
+  errors,
+  newErrors => {
+    for (const k in errorAnimationFields.value) {
+      if (!newErrors || !newErrors[k]) {
+        delete errorAnimationFields.value[k]
+      }
+    }
+  },
+  { deep: true }
+)
 
 // 包装 validate 函数
 const validate = async (): Promise<void> => {
-  isExecuteErrorAnimation.value = true
+  // 全表触发动画显示
+  markAllFieldsAnimation()
+
   const result = await veeValidate()
   if (result.valid) {
     return
@@ -80,6 +108,9 @@ const validate = async (): Promise<void> => {
 
 // 包装 validateField 函数
 const validateField = async (fieldName: string): Promise<void> => {
+  // 标记当前字段
+  markFieldAnimation(fieldName)
+
   const result = await veeValidateField(fieldName)
   if (result.valid) {
     return
@@ -88,7 +119,7 @@ const validateField = async (fieldName: string): Promise<void> => {
   }
 }
 
-provide('isExecuteErrorAnimation', readonly(isExecuteErrorAnimation))
+provide('errorAnimationFields', readonly(errorAnimationFields))
 
 const exposeObject: FormRef = {
   validate,
