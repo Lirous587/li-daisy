@@ -1,5 +1,4 @@
 <template>
-  {{ form }}
   <Form :form="form" label-width="40px" :schema="schema" align="vertical">
     <FormItem name="text" label="文本" trigger="input">
       <TextInput v-model="form.text" placeholder="请输入文本" />

@@ -124,7 +124,9 @@ provide('errorAnimationFields', readonly(errorAnimationFields))
 const exposeObject: FormRef = {
   validate,
   validateField,
-  isValid,
+  get isValid() {
+    return isValid.value
+  },
 }
 
 defineExpose(exposeObject)

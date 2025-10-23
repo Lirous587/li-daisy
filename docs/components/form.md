@@ -113,5 +113,5 @@
 | :-----------: | :----------: | :------------------------------------: |
 |   validate    | 验证整个表单 |         `() => Promise<void>`          |
 | validateField | 验证某个字段 | `(fieldName: string) => Promise<void>` |
-|    isValid    | 验证是否通过 |             `Ref<boolean>`             |
+|    isValid    | 验证是否通过 |               `boolean`                |
 
