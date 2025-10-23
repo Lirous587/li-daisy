@@ -53,6 +53,22 @@
 > :::demo form/validateField
 > :::
 
+
+## 检测验证是否通过
+
+> 提供两种互补方式，选择取决于场景（UI 状态 vs 提交时需触发异步 schema 规则）。
+
+- `isValid`（响应式）
+  - 描述：响应式布尔值，用于反映当前表单是否有错误（基于内部 errors）。
+  - 适用场景：实时 UI 控制，例如禁用/启用提交按钮、显示简单状态提示。
+  - 注意：不会主动触发 yup 的异步 test 或远程校验，仅反映已被触发并记录的错误状态。
+
+- `validate` / `validateField`（手动触发的异步校验）
+  - 描述：调用时会执行 yup schema 上的所有规则（包括自定义的异步 test），返回 Promise。
+  - validate(): 校验整个表单，常用于提交前的最终校验。
+  - validateField(name): 校验单个字段，适合失焦校验或需要远程校验的场景。
+  - 适用场景：提交时需等待异步规则（如远程唯一性校验）、对单字段做即时校验。
+
 ## API
 
 ### Attributes
@@ -97,3 +113,5 @@
 | :-----------: | :----------: | :------------------------------------: |
 |   validate    | 验证整个表单 |         `() => Promise<void>`          |
 | validateField | 验证某个字段 | `(fieldName: string) => Promise<void>` |
+|    isValid    | 验证是否通过 |             `Ref<boolean>`             |
+

@@ -1,4 +1,5 @@
 import type { GenericObject } from 'vee-validate'
+import type { Ref } from 'vue'
 
 export interface FormProps {
   schema: GenericObject
@@ -11,6 +12,7 @@ export interface FormProps {
 export interface FormRef {
   validate: () => Promise<void>
   validateField: (fieldName: string) => Promise<void>
+  isValid: Ref<boolean>
 }
 
 export interface FormItemProps {

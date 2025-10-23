@@ -27,6 +27,18 @@ const {
   validationSchema: props.schema,
 })
 
+const isValid = ref(false)
+
+watch(
+  errors,
+  newErrors => {
+    // newErrors 是当前所有字段的错误集合（可能为空对象）
+    const hasErrors = Object.keys(newErrors || {}).length > 0
+    isValid.value = !hasErrors
+  },
+  { deep: true, immediate: true }
+)
+
 // 初始化表单字段
 onMounted(() => {
   for (const fieldName in props.form) {
@@ -81,6 +93,7 @@ provide('isExecuteErrorAnimation', readonly(isExecuteErrorAnimation))
 const exposeObject: FormRef = {
   validate,
   validateField,
+  isValid,
 }
 
 defineExpose(exposeObject)
