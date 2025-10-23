@@ -21,10 +21,12 @@
         leave-active-class="transition ease-in duration-200"
         leave-from-class="opacity-100 translate-y-0"
         leave-to-class="opacity-0 -translate-y-2"
+        mode="out-in"
       >
         <!-- 使用 v-if 控制元素渲染 -->
         <div
           v-if="showError"
+          :key="errorKey"
           :style="marginLeftStyle"
           class="truncate text-error text-sm"
           :title="error"
@@ -82,11 +84,15 @@ const errors = inject<Ref<Record<string, string>>>('errors', ref({}))
 
 const error = ref('')
 
+// 用于在错误内容变化时强制重新渲染并触发 transition
+const errorKey = ref('')
+
 watch(
   () => errors.value,
   newError => {
     if (props.name) {
       error.value = newError[props.name]
+      errorKey.value = error.value ? `${error.value}}` : ''
     }
   },
   { deep: true }
