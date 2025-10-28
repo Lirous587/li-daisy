@@ -8,7 +8,7 @@
     </div>
 
     <!-- 加载完成后显示实际内容 -->
-    <div v-show="!isLoading">
+    <div v-if="props.loading && !isLoading">
       <slot name="content" />
     </div>
   </div>
