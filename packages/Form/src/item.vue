@@ -44,7 +44,7 @@ import type { FormItemProps } from './types'
 import { computed, inject, ref, watch, type Ref } from 'vue'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
-  trigger: 'change',
+  trigger: 'input',
 })
 
 const labelWidth = inject<string>('labelWidth', '')
@@ -127,13 +127,13 @@ const showError = computed(() => {
   const hasInteracted =
     interactionState.value.blur || interactionState.value.input || interactionState.value.change
 
-  // 如果 trigger 是 'blur'，则仅在 blur 后显示
-  if (props.trigger === 'blur') {
-    return interactionState.value.blur && !!error.value
-  }
   // 如果 trigger 是 'change'，则仅在 change 后显示
   if (props.trigger === 'change') {
     return interactionState.value.change && !!error.value
+  }
+  // 如果 trigger 是 'blur'，则仅在 blur 后显示
+  if (props.trigger === 'blur') {
+    return interactionState.value.blur && !!error.value
   }
   // 如果 trigger 是 'input'，则仅在 input 后显示
   if (props.trigger === 'input') {

@@ -1,6 +1,6 @@
 <template>
   <Form :form="form" label-width="40px" :schema="schema" align="vertical">
-    <FormItem name="email" label="邮箱" trigger="input">
+    <FormItem name="email" label="邮箱">
       <TextInput v-model="form.email" placeholder="请输入邮箱" />
     </FormItem>
     <FormItem name="password" label="密码" trigger="blur">

@@ -2,7 +2,7 @@
   <div class="space-y-2">
     <p class="font-bold">Form设置align为vertical</p>
     <Form :form="form" :schema="schema" align="vertical">
-      <FormItem name="email" label="邮箱" trigger="input">
+      <FormItem name="email" label="邮箱">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
@@ -12,7 +12,7 @@
 
     <p class="font-bold">Form设置align为horizontal</p>
     <Form :form="form" :schema="schema" align="horizontal">
-      <FormItem name="email" label="邮箱" trigger="input">
+      <FormItem name="email" label="邮箱">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
@@ -22,7 +22,7 @@
 
     <p class="font-bold">Form设置align为vertical，email项设置align为horizontal</p>
     <Form :form="form" :schema="schema" align="vertical">
-      <FormItem name="email" label="邮箱" trigger="input" align="horizontal">
+      <FormItem name="email" label="邮箱" align="horizontal">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
       <FormItem name="password" label="密码" trigger="blur">
