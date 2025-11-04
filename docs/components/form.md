@@ -90,7 +90,7 @@
 | :-----: | :--------------: | :-------------------------: | :----------: |
 |  name   |   schema的key    |          `string`           |      -       |
 |  label  |     label名      |          `string`           |      -       |
-| trigger | 错误信息显示时机 | `['change','blur','input']` |   `'blur'`   |
+| trigger | 错误信息显示时机 | `['change','blur','input']` |   `'change'`   |
 |  align  |     对齐方向     | `['horizontal','vertical']` | `'vertical'` |
 
 ### Slots

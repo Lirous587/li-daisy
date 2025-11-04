@@ -44,7 +44,7 @@ import type { FormItemProps } from './types'
 import { computed, inject, ref, watch, type Ref } from 'vue'
 
 const props = withDefaults(defineProps<FormItemProps>(), {
-  trigger: 'blur',
+  trigger: 'change',
 })
 
 const labelWidth = inject<string>('labelWidth', '')
@@ -108,8 +108,6 @@ const interactionState = ref({
 const handleInteraction = (type: 'blur' | 'input' | 'change') => {
   interactionState.value[type] = true
 }
-
-// const isExecuteErrorAnimation = inject<Ref<boolean>>('isExecuteErrorAnimation', ref(false))
 
 const errorAnimationFields = inject<Ref<Record<string, boolean>>>('errorAnimationFields', ref({}))
 
