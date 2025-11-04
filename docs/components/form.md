@@ -2,14 +2,16 @@
 
 ## 按钮导致的表单提交
 
-> 当 `Form` 组件下存在 `button` 时，点击 `button` 会默认触发表单验证
+:::tip 2.6.9 之前
+当 `Form` 组件下存在 `button` 时，点击 `button` 会默认触发表单验证
 >
-> 这并不是 **bug**，这是HTML的标准行为，`button` 的默认type就是 `submit`
+这并不是 **bug**，这是HTML的标准行为，`button` 的默认type就是 `submit`
 >
-> 不想触发该行为的话将 `button` 的 type 设置了 `button` 即可
-
-:::demo form/button
+不想触发该行为的话将 `button` 的 type 设置了 `button` 即可
+>
+**该问题已于2.6.10解决，无需额外处理，已自动阻止表单自动提交事件**
 :::
+
 
 ## 排列方向
 

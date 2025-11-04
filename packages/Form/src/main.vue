@@ -1,5 +1,5 @@
 <template>
-  <VeeForm>
+  <VeeForm @submit.prevent="onSubmit">
     <slot />
   </VeeForm>
 </template>
@@ -130,4 +130,12 @@ const exposeObject: FormRef = {
 }
 
 defineExpose(exposeObject)
+
+const emit = defineEmits<{
+  submit: [void]
+}>()
+
+const onSubmit = () => {
+  emit('submit')
+}
 </script>
