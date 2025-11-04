@@ -8,7 +8,7 @@
     </div>
 
     <!-- 加载完成后显示实际内容 -->
-    <div v-else-if="hasLoaded">
+    <div v-else>
       <slot name="content" />
     </div>
   </div>
@@ -26,9 +26,6 @@ const props = withDefaults(defineProps<SkeletonProps>(), {
 // 代理props 用于delay
 const isLoading = ref(props.loading)
 
-// 标志位：是否曾经完成过加载
-const hasLoaded = ref(false)
-
 // delay计时器
 let timer: ReturnType<typeof setTimeout> | null = null
 
@@ -43,12 +40,14 @@ watch(
       // 并且组件内部当前仍然处于加载状态
       timer = setTimeout(() => {
         isLoading.value = false
-        hasLoaded.value = true // 标记已加载过一次
       }, props.delay)
     } else {
       // 如果从加载完成变为加载中，立即显示骨架屏
       isLoading.value = loadingStatus
     }
+  },
+  {
+    immediate: true,
   }
 )
 
