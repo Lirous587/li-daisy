@@ -1,66 +1,58 @@
 <template>
-  <div>
-    <CompatiblePortal to="body">
-      <div class="li-drawer" :class="drawerDirection">
-        <input
-          :id="uniqueID"
-          ref="drawerToggleRef"
-          v-model="status"
-          type="checkbox"
-          class="li-drawer-toggle"
-        />
+  <CompatiblePortal to="body">
+    <div class="li-drawer" :class="drawerDirection">
+      <input :id="uniqueID" v-model="visible" type="checkbox" class="li-drawer-toggle" />
 
-        <div class="li-drawer-side z-[999]">
-          <!-- 蒙层 -->
-          <label
-            :for="uniqueID"
-            aria-label="close sidebar"
-            class="li-drawer-overlay"
-            :class="closeOnClickModal ? '' : 'pointer-events-none'"
-          ></label>
+      <div class="li-drawer-side z-[999]">
+        <!-- 蒙层 -->
+        <label
+          :for="uniqueID"
+          aria-label="close sidebar"
+          class="li-drawer-overlay"
+          :class="closeOnClickModal ? '' : 'pointer-events-none'"
+        ></label>
 
-          <!-- drawer内容 -->
-          <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
-            <!-- default-header -->
-            <div
-              v-if="!hasHeaderSlot"
-              class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
-            >
-              <div class="li-drawer-title text-lg">
-                {{ props.title }}
-              </div>
-              <XMarkIcon
-                v-if="showCloseIcon"
-                class="li-drawer-icon w-6 h-6 cursor-pointer"
-                @click="close"
-              />
+        <!-- drawer内容 -->
+        <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
+          <!-- default-header -->
+          <div
+            v-if="!hasHeaderSlot"
+            class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
+          >
+            <div class="li-drawer-title text-lg">
+              {{ props.title }}
             </div>
+            <XMarkIcon
+              v-if="showCloseIcon"
+              class="li-drawer-icon w-6 h-6 cursor-pointer"
+              @click="close"
+            />
+          </div>
 
-            <!-- custom-header -->
-            <div v-else class="li-drawer-header">
-              <slot name="header" :close="close"></slot>
-            </div>
+          <!-- custom-header -->
+          <div v-else class="li-drawer-header">
+            <slot name="header" :close="close"></slot>
+          </div>
 
-            <!-- body -->
-            <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
-              <slot name="body" />
-            </div>
+          <!-- body -->
+          <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
+            <slot name="body" />
           </div>
         </div>
       </div>
-    </CompatiblePortal>
-
-    <!-- trigger -->
-    <div @click="open">
-      <slot name="trigger"></slot>
     </div>
+  </CompatiblePortal>
+
+  <!-- trigger -->
+  <div v-if="slots.trigger" class="contents" @click="open">
+    <slot name="trigger"></slot>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { DrawerRef, DrawerProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { computed, ref, watch, useId, useSlots } from 'vue'
+import { computed, ref, watch, useId, useSlots, nextTick } from 'vue'
 import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
@@ -70,8 +62,11 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   showCloseIcon: true,
 })
 
-const status = ref(false)
-const drawerToggleRef = ref<HTMLInputElement | null>(null)
+const active = ref(false)
+
+const slots = useSlots()
+
+const visible = ref(false)
 
 // 生成唯一 ID
 const uniqueID = useId()
@@ -95,7 +90,7 @@ const showCloseIcon = computed(() => {
   }
 })
 
-const hasHeaderSlot = computed(() => !!useSlots().header)
+const hasHeaderSlot = computed(() => !!slots.header)
 
 const emit = defineEmits<{
   open: []
@@ -103,14 +98,27 @@ const emit = defineEmits<{
 }>()
 
 const open = () => {
-  status.value = true
-}
-const close = () => {
-  status.value = false
+  active.value = true
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      visible.value = true
+      emit('open')
+    })
+  })
 }
 
-watch(status, newStatus => {
-  if (newStatus) {
+const close = () => {
+  visible.value = false
+  emit('close')
+  if (props.destroyOnClose) {
+    setTimeout(() => {
+      active.value = false
+    }, 300)
+  }
+}
+
+watch(visible, newVisible => {
+  if (newVisible) {
     emit('open')
   } else {
     emit('close')
@@ -120,9 +128,6 @@ watch(status, newStatus => {
 const exposeObject: DrawerRef = {
   open,
   close,
-  get status() {
-    return status.value
-  },
 }
 
 defineExpose(exposeObject)

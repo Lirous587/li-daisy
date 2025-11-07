@@ -6,10 +6,10 @@ export interface DrawerProps {
   size?: string
   closeOnClickModal?: boolean
   showCloseIcon?: boolean
+  destroyOnClose?: boolean
 }
 
 export interface DrawerRef {
-  status: boolean
   open: () => void
   close: () => void
 }

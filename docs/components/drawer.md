@@ -66,13 +66,14 @@
 
 #### Drawer
 
-|        属性值        |         说明         |      类型       |           默认值           |
-| :------------------: | :------------------: | :-------------: | :------------------------: |
-|        title         |       抽屉标题       |    `string`     |             -              |
-|         size         |       抽屉大小       |    `string`     | `'w-[40vw] min-w-[250px]'` |
-|      direction       |       打开方向       | `['ltr','rtl']` |          `'ltr'`           |
-|   show-close-icon    |   是否显示关闭图标   |    `boolean`    |           `true`           |
-| close-on-click-modal | 点击蒙层是否关闭抽屉 |    `boolean`    |           `true`           |
+|        属性值        |          说明          |      类型       |           默认值           |
+| :------------------: | :--------------------: | :-------------: | :------------------------: |
+|        title         |        抽屉标题        |    `string`     |             -              |
+|         size         |        抽屉大小        |    `string`     | `'w-[40vw] min-w-[250px]'` |
+|      direction       |        打开方向        | `['ltr','rtl']` |          `'ltr'`           |
+|   show-close-icon    |    是否显示关闭图标    |    `boolean`    |           `true`           |
+| close-on-click-modal |  点击蒙层是否关闭抽屉  |    `boolean`    |           `true`           |
+|   destroy-on-close   | 关闭组件时是否卸载组件 |    `boolean`    |          `false`           |
 
 ### Slots
 
@@ -86,6 +87,5 @@
 
 | 方法名 |     说明     |     类型     |
 | :----: | :----------: | :----------: |
-| status | 抽屉打开状态 |  `boolean`   |
 |  open  | 控制抽屉打开 | `() => void` |
 | close  | 控制抽屉关闭 | `() => void` |

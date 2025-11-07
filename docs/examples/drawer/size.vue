@@ -5,7 +5,7 @@
     size="w-[80vw] min-w-[200px] md:w-[60vw] md:max-w-[400px] lg:w-[50vw] lg:max-w-[600px]"
   >
     <template #trigger>
-      <div class="li-btn li-btn-primary">打开动态drawer</div>
+      <div class="li-btn">打开动态drawer</div>
     </template>
     <template #body>
       <p>调整屏幕大小，观察drawer宽度</p>
