@@ -1,6 +1,6 @@
 <template>
   <CompatiblePortal to="body">
-    <div class="li-drawer" :class="drawerDirection">
+    <div v-if="active" class="li-drawer" :class="drawerDirection">
       <input :id="uniqueID" v-model="visible" type="checkbox" class="li-drawer-toggle" />
 
       <div class="li-drawer-side z-[999]">
@@ -60,6 +60,7 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   size: 'w-[40vw] min-w-[250px]',
   closeOnClickModal: true,
   showCloseIcon: true,
+  destroyOnClose: false,
 })
 
 const active = ref(false)
@@ -119,9 +120,9 @@ const close = () => {
 
 watch(visible, newVisible => {
   if (newVisible) {
-    emit('open')
+    open()
   } else {
-    emit('close')
+    close()
   }
 })
 

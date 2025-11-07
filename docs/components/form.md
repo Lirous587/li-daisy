@@ -41,17 +41,21 @@
 
 ### 验证表单（注册示例）
 
-> 通过 `FormRef` 的 `validate` 方法校验整个表单，返回一个 Promise。校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调。
+> 通过 `FormRef` 的 `validate` 方法校验整个表单，返回一个 Promise
+> 
+> 校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调
 >
-> 校验失败后，表单 **会** 自动展示对应的错误提示效果。
+> 该方法只校验单个字段，失败时智慧展示**所有字段**的错误提示
 > :::demo form/register
 > :::
 
 ### 验证单个字段
 
-> 通过 `FormRef` 的 `validateField` 方法校验指定字段，返回一个 Promise。校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调，并可获取错误信息。
+> 通过 `FormRef` 的 `validateField` 方法校验指定字段，返回一个 Promise
+> 
+> 校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调，并可获取错误信息
 >
-> 该方法只校验单个字段，失败时 **不会** 自动展示表单错误提示。
+> 该方法只校验单个字段，失败时智慧展示**指定字段**的错误提示
 > :::demo form/validateField
 > :::
 

@@ -3,7 +3,7 @@
     <FormItem name="email" label="邮箱">
       <TextInput v-model="form.email" placeholder="请输入邮箱" />
     </FormItem>
-    <FormItem name="password" label="密码" trigger="blur">
+    <FormItem name="password" label="密码">
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
   </Form>
@@ -18,6 +18,7 @@ const useYup = () => {
   yupInstance.setLocale({
     string: {
       email: '${path} 必须是有效的邮箱地址',
+      min: '${path} 必须是长度不小于 ${min} 个字符',
     },
   })
   return yupInstance

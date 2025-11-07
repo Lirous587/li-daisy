@@ -3,16 +3,14 @@
     <FormItem name="email" label="邮箱">
       <TextInput v-model="form.email" placeholder="请输入邮箱" />
     </FormItem>
-    <FormItem name="password" label="密码" trigger="blur">
+    <FormItem name="password" label="密码">
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
-    <FormItem name="re_password" label="重复密码" trigger="change">
+    <FormItem name="re_password" label="重复密码">
       <TextInput v-model="form.re_password" type="password" placeholder="请重复输入密码" />
     </FormItem>
     <FormItem>
-      <button class="li-btn li-btn-primary w-full" type="button" @click="handleRegister">
-        注册用户
-      </button>
+      <button class="li-btn w-full" type="button" @click="handleRegister">注册用户</button>
     </FormItem>
   </Form>
 </template>

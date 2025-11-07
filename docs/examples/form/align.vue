@@ -5,7 +5,7 @@
       <FormItem name="email" label="邮箱">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
-      <FormItem name="password" label="密码" trigger="blur">
+      <FormItem name="password" label="密码">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
       </FormItem>
     </Form>
@@ -15,7 +15,7 @@
       <FormItem name="email" label="邮箱">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
-      <FormItem name="password" label="密码" trigger="blur">
+      <FormItem name="password" label="密码">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
       </FormItem>
     </Form>
@@ -25,7 +25,7 @@
       <FormItem name="email" label="邮箱" align="horizontal">
         <TextInput v-model="form.email" placeholder="请输入邮箱" />
       </FormItem>
-      <FormItem name="password" label="密码" trigger="blur">
+      <FormItem name="password" label="密码">
         <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
       </FormItem>
     </Form>

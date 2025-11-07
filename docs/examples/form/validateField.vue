@@ -3,15 +3,13 @@
     <FormItem name="email" label="邮箱">
       <TextInput v-model="form.email" placeholder="请输入邮箱" />
     </FormItem>
-    <FormItem name="password" label="密码" trigger="blur">
+    <FormItem name="password" label="密码">
       <TextInput v-model="form.password" type="password" placeholder="请输入密码" />
     </FormItem>
     <FormItem>
       <div class="space-y-3">
-        <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidateEmail">
-          验证邮箱
-        </button>
-        <button class="li-btn li-btn-primary w-full" type="button" @click="handleValidatePassword">
+        <button class="li-btn w-full" type="button" @click="handleValidateEmail">验证邮箱</button>
+        <button class="li-btn w-full" type="button" @click="handleValidatePassword">
           验证密码
         </button>
       </div>

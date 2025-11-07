@@ -60,6 +60,19 @@
 :::demo drawer/header
 :::
 
+
+## 关闭时注销组件
+`destroy-on-close` 属性决定关闭 `drawer` 时是否卸载组件，默认为 `false`
+
+> 需要每次打开弹窗都初始化内容时，建议设置 `destroy-on-close` 为 `true`
+> 
+> 需要保留弹窗内表单、计数器等状态时，建议保持默认（`false`）
+> 
+> 效果类似于 [keep-alive](https://cn.vuejs.org/guide/built-ins/keep-alive.html#basic-usage)
+:::demo drawer/destory
+:::
+
+
 ## API
 
 ### Attributes
