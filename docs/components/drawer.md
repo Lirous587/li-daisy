@@ -2,9 +2,11 @@
 
 ## 打开方式
 
-> 支持两种打开方式 使用 **default插槽** 或 **drawerRef**
-> 使用 **default插槽** 时点击即可自动打开抽屉
-> 使用 **drawerRef** 时需自行调用 `open` 方法
+> 支持两种打开方式 使用 **trigger插槽** 或 **DrawerRef**
+> 
+> 使用 **trigger插槽** 时点击即可自动打开抽屉
+> 
+> 使用 **DrawerRef** 时需自行调用 `open` 方法
 
 :::demo drawer/method
 :::
