@@ -10,7 +10,7 @@
           class="li-drawer-toggle"
         />
 
-        <div class="li-drawer-side z-[100]">
+        <div class="li-drawer-side z-[999]">
           <!-- 蒙层 -->
           <label
             :for="uniqueID"
@@ -51,11 +51,6 @@
     </CompatiblePortal>
 
     <!-- trigger -->
-    <!-- <label :for="uniqueID">
-      <slot name="trigger" />
-    </label> -->
-    <!-- 改为使用js -->
-
     <div @click="open">
       <slot name="trigger"></slot>
     </div>
