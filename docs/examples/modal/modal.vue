@@ -7,7 +7,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn li-btn-primary" @click="handleOpenModal1">点击蒙层可关闭</button>
+    <button class="li-btn" @click="handleOpenModal1">点击蒙层可关闭</button>
 
     <Modal ref="modalRef2" :close-on-click-modal="false">
       <template #body>
@@ -16,7 +16,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn li-btn-primary" @click="handleOpenModal2">点击蒙层不可关闭</button>
+    <button class="li-btn" @click="handleOpenModal2">点击蒙层不可关闭</button>
   </div>
 </template>
 

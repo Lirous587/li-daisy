@@ -1,6 +1,6 @@
 <template>
   <CompatiblePortal to="body">
-    <dialog v-if="active" ref="dialogRef" class="li-modal" :class="directionClass">
+    <dialog ref="dialogRef" class="li-modal" :class="directionClass">
       <div class="li-modal-box p-0 flex flex-col" :class="[props.size]">
         <div v-if="hasHeaderSlot" class="li-modal-header">
           <slot name="header" :close="close"></slot>
@@ -27,6 +27,10 @@
       ></form>
     </dialog>
   </CompatiblePortal>
+
+  <div v-if="slots.trigger" class="contents" @click="open">
+    <slot name="trigger"></slot>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -48,9 +52,9 @@ const emit = defineEmits<{
 
 const active = ref(false)
 
-const dialogRef = ref<HTMLDialogElement>()
-
 const slots = useSlots()
+
+const dialogRef = ref<HTMLDialogElement>()
 
 const hasHeaderSlot = computed(() => slots.header)
 
@@ -82,8 +86,10 @@ const directionClass = computed(() => {
 const open = () => {
   active.value = true
   nextTick(() => {
-    dialogRef.value?.showModal()
-    emit('open')
+    requestAnimationFrame(() => {
+      dialogRef.value?.showModal()
+      emit('open')
+    })
   })
 }
 

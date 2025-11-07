@@ -2,6 +2,17 @@
 
 > Modal的用法大致和Drawer一致
 
+## 打开方式
+
+> 支持两种打开方式 使用 **trigger插槽** 或 **ModalRef**
+> 
+> 使用 **trigger插槽** 时点击即可自动打开抽屉
+> 
+> 使用 **ModalRef** 时需自行调用 `open` 方法
+
+:::demo modal/method
+:::
+
 ## 打开方向 
 >  direction可选值有 `ltr` `rtl` `middle` `ttb` `btt`，默认值为 无打开方向居中显示
 

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Modal ref="modalRef" :close-on-click-modal="false" title="title">
+    <Modal ref="modalRef" :close-on-click-modal="false">
       <template #header="{ close }">
         <div class="flex w-full justify-between border-b border-b-base-300 p-3">
           <h2 class="font-bold">自定义header</h2>
-          <div class="li-btn li-btn-primary li-btn-circle li-btn-xs text-lg" @click="close">×</div>
+          <div class="li-btn li-btn-circle li-btn-xs text-lg" @click="close">×</div>
         </div>
       </template>
       <template #body>
@@ -12,7 +12,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn li-btn-primary" @click="handleOpenModal">自定义header</button>
+    <button class="li-btn" @click="handleOpenModal">自定义header</button>
   </div>
 </template>
 
