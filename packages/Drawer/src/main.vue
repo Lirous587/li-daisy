@@ -1,55 +1,63 @@
 <template>
-  <div class="li-drawer" :class="drawerDirection">
-    <input
-      :id="uniqueID"
-      ref="drawerToggleRef"
-      v-model="status"
-      type="checkbox"
-      class="li-drawer-toggle"
-    />
-    <!-- trigger -->
-    <div class="li-drawer-content">
-      <label :for="uniqueID">
-        <slot name="trigger" />
-      </label>
-    </div>
+  <div>
+    <CompatiblePortal to="body">
+      <div class="li-drawer" :class="drawerDirection">
+        <input
+          :id="uniqueID"
+          ref="drawerToggleRef"
+          v-model="status"
+          type="checkbox"
+          class="li-drawer-toggle"
+        />
 
-    <div class="li-drawer-side z-[100]">
-      <!-- 蒙层 -->
-      <label
-        :for="uniqueID"
-        aria-label="close sidebar"
-        class="li-drawer-overlay"
-        :class="closeOnClickModal ? '' : 'pointer-events-none'"
-      ></label>
+        <div class="li-drawer-side z-[100]">
+          <!-- 蒙层 -->
+          <label
+            :for="uniqueID"
+            aria-label="close sidebar"
+            class="li-drawer-overlay"
+            :class="closeOnClickModal ? '' : 'pointer-events-none'"
+          ></label>
 
-      <!-- drawer内容 -->
-      <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
-        <!-- default-header -->
-        <div
-          v-if="!hasHeaderSlot"
-          class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
-        >
-          <div class="li-drawer-title text-lg">
-            {{ props.title }}
+          <!-- drawer内容 -->
+          <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
+            <!-- default-header -->
+            <div
+              v-if="!hasHeaderSlot"
+              class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
+            >
+              <div class="li-drawer-title text-lg">
+                {{ props.title }}
+              </div>
+              <XMarkIcon
+                v-if="showCloseIcon"
+                class="li-drawer-icon w-6 h-6 cursor-pointer"
+                @click="close"
+              />
+            </div>
+
+            <!-- custom-header -->
+            <div v-else class="li-drawer-header">
+              <slot name="header" :close="close"></slot>
+            </div>
+
+            <!-- body -->
+            <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
+              <slot name="body" />
+            </div>
           </div>
-          <XMarkIcon
-            v-if="showCloseIcon"
-            class="li-drawer-icon w-6 h-6 cursor-pointer"
-            @click="close"
-          />
-        </div>
-
-        <!-- custom-header -->
-        <div v-else class="li-drawer-header">
-          <slot name="header" :close="close"></slot>
-        </div>
-
-        <!-- body -->
-        <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
-          <slot name="body" />
         </div>
       </div>
+    </CompatiblePortal>
+
+    <!-- trigger -->
+    <!-- <label :for="uniqueID">
+      <slot name="trigger" />
+    </label> -->
+    <!-- 改为使用js -->
+
+    <div @click="open">
+      <slot name="trigger"></slot>
     </div>
   </div>
 </template>
@@ -58,6 +66,7 @@
 import type { DrawerRef, DrawerProps } from './types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed, ref, watch, useId, useSlots } from 'vue'
+import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
