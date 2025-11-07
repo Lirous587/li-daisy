@@ -1,7 +1,7 @@
 <template>
   <CompatiblePortal to="body">
     <dialog ref="dialogRef" class="li-modal" :class="directionClass">
-      <div class="li-modal-box p-0" :class="[props.size]">
+      <div class="li-modal-box p-0 flex flex-col" :class="[props.size]">
         <div v-if="hasHeaderSlot" class="li-modal-header">
           <slot name="header" :close="close"></slot>
         </div>
@@ -13,7 +13,7 @@
           <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
         </div>
 
-        <div class="mt-2 p-4 li-modal-body">
+        <div class="li-modal-body mt-2 p-4 flex-1">
           <slot name="body"></slot>
         </div>
       </div>
