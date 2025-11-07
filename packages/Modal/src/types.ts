@@ -5,6 +5,7 @@ export interface ModalProps {
   direction?: ModalDirection
   showCloseIcon?: boolean
   closeOnClickModal?: boolean
+  destroyOnClose?: boolean
 }
 
 export interface ModalRef {

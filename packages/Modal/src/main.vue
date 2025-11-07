@@ -1,6 +1,6 @@
 <template>
   <CompatiblePortal to="body">
-    <dialog ref="dialogRef" class="li-modal" :class="directionClass">
+    <dialog v-if="active" ref="dialogRef" class="li-modal" :class="directionClass">
       <div class="li-modal-box p-0 flex flex-col" :class="[props.size]">
         <div v-if="hasHeaderSlot" class="li-modal-header">
           <slot name="header" :close="close"></slot>
@@ -32,18 +32,21 @@
 <script lang="ts" setup>
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import type { ModalProps, ModalRef } from './types'
-import { computed, ref, useSlots } from 'vue'
+import { computed, nextTick, ref, useSlots } from 'vue'
 import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
 const props = withDefaults(defineProps<ModalProps>(), {
   showCloseIcon: true,
   closeOnClickModal: true,
+  destroyOnClose: false,
 })
 
 const emit = defineEmits<{
   open: []
   close: []
 }>()
+
+const active = ref(false)
 
 const dialogRef = ref<HTMLDialogElement>()
 
@@ -77,13 +80,21 @@ const directionClass = computed(() => {
 })
 
 const open = () => {
-  dialogRef.value?.showModal()
-  emit('open')
+  active.value = true
+  nextTick(() => {
+    dialogRef.value?.showModal()
+    emit('open')
+  })
 }
 
 const close = () => {
   dialogRef.value?.close()
   emit('close')
+  if (props.destroyOnClose) {
+    setTimeout(() => {
+      active.value = false
+    }, 300)
+  }
 }
 
 const exposeObject: ModalRef = {
