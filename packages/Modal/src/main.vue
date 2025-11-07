@@ -1,36 +1,39 @@
 <template>
-  <dialog ref="dialogRef" class="li-modal" :class="directionClass">
-    <div class="li-modal-box p-0" :class="[props.size]">
-      <div v-if="hasHeaderSlot" class="li-modal-header">
-        <slot name="header" :close="close"></slot>
+  <CompatiblePortal to="body">
+    <dialog ref="dialogRef" class="li-modal" :class="directionClass">
+      <div class="li-modal-box p-0" :class="[props.size]">
+        <div v-if="hasHeaderSlot" class="li-modal-header">
+          <slot name="header" :close="close"></slot>
+        </div>
+        <div
+          v-else-if="showCloseIcon"
+          class="li-modal-header-default absolute right-3 top-2"
+          @click="close"
+        >
+          <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
+        </div>
+
+        <div class="mt-2 p-4 li-modal-body">
+          <slot name="body"></slot>
+        </div>
       </div>
-      <div
-        v-else-if="showCloseIcon"
-        class="li-modal-header-default absolute right-3 top-2"
+
+      <!-- 蒙层 -->
+      <form
+        v-if="props.closeOnClickModal"
+        method="dialog"
+        class="li-modal-backdrop"
         @click="close"
-      >
-        <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
-      </div>
-
-      <div class="mt-2 p-4 li-modal-body">
-        <slot name="body"></slot>
-      </div>
-    </div>
-
-    <!-- 蒙层 -->
-    <form
-      v-if="props.closeOnClickModal"
-      method="dialog"
-      class="li-modal-backdrop"
-      @click="close"
-    ></form>
-  </dialog>
+      ></form>
+    </dialog>
+  </CompatiblePortal>
 </template>
 
 <script lang="ts" setup>
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import type { ModalProps, ModalRef } from './types'
 import { computed, ref, useSlots } from 'vue'
+import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
 const props = withDefaults(defineProps<ModalProps>(), {
   showCloseIcon: true,
