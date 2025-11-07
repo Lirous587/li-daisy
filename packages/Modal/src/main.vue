@@ -1,6 +1,6 @@
 <template>
   <CompatiblePortal to="body">
-    <dialog ref="dialogRef" class="li-modal" :class="directionClass">
+    <dialog v-if="active" ref="dialogRef" class="li-modal" :class="directionClass">
       <div class="li-modal-box p-0 flex flex-col" :class="[props.size]">
         <div v-if="hasHeaderSlot" class="li-modal-header">
           <slot name="header" :close="close"></slot>
@@ -28,6 +28,7 @@
     </dialog>
   </CompatiblePortal>
 
+  <!-- trigger -->
   <div v-if="slots.trigger" class="contents" @click="open">
     <slot name="trigger"></slot>
   </div>
