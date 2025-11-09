@@ -55,6 +55,10 @@ import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed, ref, watch, useId, useSlots, nextTick } from 'vue'
 import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<DrawerProps>(), {
   direction: 'ltr',
   size: 'w-[40vw] min-w-[250px]',

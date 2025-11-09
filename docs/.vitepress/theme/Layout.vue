@@ -4,8 +4,7 @@
 
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-import { computed, nextTick, onMounted, provide, ref, shallowRef } from 'vue'
-import type { Highlighter } from 'shiki'
+import { computed, onMounted, provide, ref } from 'vue'
 import { isClient, isServer } from '../../../packages/utils/ssr'
 
 const nowTheme = ref('li-light')
@@ -41,72 +40,42 @@ const applyTheme = () => {
   document.documentElement.classList.toggle('dark', isDark.value)
 }
 
-const enableTransitions = () =>
-  isClient() &&
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
-
-const switchAnimation = async (x: number, y: number) => {
-  if (!enableTransitions()) {
-    // 直接应用主题
-    applyTheme()
-    return
-  }
-
-  const clipPath = [
-    `circle(0px at ${x}px ${y}px)`,
-    `circle(${Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
-    )}px at ${x}px ${y}px)`,
-  ]
-
+const switchTheme = () => {
   if (isServer()) return
 
-  await document.startViewTransition(async () => {
-    applyTheme()
-    await nextTick()
-  }).ready
-
-  document.documentElement.animate(
-    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-    {
-      duration: 400,
-      easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    }
-  )
-}
-
-const switchTheme = async (event: MouseEvent) => {
-  const { clientX: x, clientY: y } = event
+  // 添加禁用过渡的类
+  document.documentElement.classList.add('disable-transitions')
 
   nowTheme.value = nowTheme.value === 'li-dark' ? 'li-light' : 'li-dark'
   setTheme(nowTheme.value)
+  applyTheme()
 
-  await switchAnimation(x, y)
+  // 强制重绘,确保禁用过渡生效
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  document.documentElement.offsetHeight
+
+  // 在下一帧移除禁用类,恢复过渡
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('disable-transitions')
+    })
+  })
 }
 
 provide('toggle-appearance', switchTheme)
 
-// 创建 shallowRef 存储实例
-const shikiHighlighter = shallowRef<Highlighter | null>(null)
-provide('shiki', shikiHighlighter)
-
-onMounted(async () => {
-  // 同步主题状态
+onMounted(() => {
   nowTheme.value = getTheme()
   applyTheme()
-
-  try {
-    const { createHighlighter } = await import('shiki')
-    shikiHighlighter.value = await createHighlighter({
-      themes: ['plastic'],
-      langs: ['vue'],
-    })
-    console.log('Shiki highlighter initialized in Layout.')
-  } catch (error) {
-    console.error('Failed to initialize Shiki highlighter:', error)
-  }
 })
 </script>
+
+<style>
+.disable-transitions,
+.disable-transitions *,
+.disable-transitions *::before,
+.disable-transitions *::after {
+  transition: none !important;
+  animation: none !important;
+}
+</style>

@@ -40,6 +40,10 @@ import type { ModalProps, ModalRef } from './types'
 import { computed, nextTick, ref, useSlots } from 'vue'
 import CompatiblePortal from '../../ssr/CompatiblePortal.vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<ModalProps>(), {
   showCloseIcon: true,
   closeOnClickModal: true,

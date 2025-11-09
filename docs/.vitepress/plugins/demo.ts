@@ -1,13 +1,18 @@
-import path from 'path'
-import fs from 'fs'
 import container from 'markdown-it-container'
+import fs from 'fs'
+import path from 'path'
 
 type MarkdownIt = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   use: (plugin: any, ...params: any[]) => void
+  render: (src: string) => string
 }
+
 interface Token {
   nesting: number
   info: string
+  type: string
+  children?: Array<{ content: string }>
 }
 
 export function demoBlockPlugin(md: MarkdownIt): void {
@@ -22,14 +27,27 @@ export function demoBlockPlugin(md: MarkdownIt): void {
         if (!match) return ''
 
         const demoPath = match[1]
-        const filePath = path.resolve(__dirname, `../../examples/${demoPath}.vue`)
-        if (!fs.existsSync(filePath)) {
-          console.error(`示例文件不存在: ${filePath}`)
-          return `<div>示例文件不存在: ${demoPath}.vue</div>`
+        const examplesRoot = path.resolve(process.cwd(), 'docs/examples')
+        const filePath = path.resolve(examplesRoot, `${demoPath}.vue`)
+
+        let source = ''
+        try {
+          source = fs.readFileSync(filePath, 'utf-8')
+        } catch (err) {
+          console.error(`读取示例文件失败: ${filePath}`, err)
         }
-        return `<Demo path="${demoPath}">`
+
+        const componentName = `demo-${demoPath.replace(/\//g, '-')}`
+
+        // 使用 md.render 直接渲染代码块,得到高亮后的 HTML
+        const highlightedCode = md.render('```vue\n' + source + '\n```')
+
+        return `<Demo path="${demoPath}">
+  <template #source><${componentName} /></template>
+  <template #rawSource>${highlightedCode}</template>`
+      } else {
+        return '</Demo>\n'
       }
-      return '</Demo>'
     },
   })
 }
