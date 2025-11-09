@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="mb-4">
-      <button class="btn btn-primary ml-auto" @click="getNewDataset">生成新数据</button>
+      <button class="li-btn ml-auto" @click="getNewDataset">生成新数据</button>
     </div>
     <Table
       v-loading="loading"
