@@ -18,7 +18,7 @@
         </div>
       </div>
       <div
-        class="text-sm transition-[height] duration-500 border-t border-base-300"
+        class="text-sm transition-[height] duration-500 border-t relative border-base-300"
         :class="codeClass"
       >
         <slot name="rawSource" />

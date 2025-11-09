@@ -1,7 +1,16 @@
 .language-vue {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  border-radius: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+    position: static !important;
+}
+
+
+/* 确保代码块在小屏幕下的内边距 */
+@media (max-width: 640px) {
+    .li-demo .language-vue pre {
+        padding: 12px !important;
+    }
 }
 
 .last-updated {
