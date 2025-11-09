@@ -1,24 +1,24 @@
 <template>
   <button
     ref="containerRef"
-    class="relative li-btn ld-btn-sm hover:border-primary rounded-xl h-6 w-12 overflow-hidden"
+    class="relative li-btn ld-btn-sm hover:border-primary rounded-full h-6 w-12 overflow-hidden"
     @click="switchTheme"
   >
     <template v-if="isHydrated">
       <transition name="sun">
         <span
           v-if="nowTheme === props.lightTheme"
-          class="absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+          class="absolute left-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
         >
-          <SunIcon />
+          <SunIcon class="h-4 w-4 m-auto" />
         </span>
       </transition>
       <transition name="moon">
         <span
           v-if="nowTheme === props.darkTheme"
-          class="absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+          class="absolute right-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
         >
-          <MoonIcon />
+          <MoonIcon class="h-4 w-4 m-auto" />
         </span>
       </transition>
     </template>
@@ -26,14 +26,14 @@
     <!-- 水合前的占位内容 -->
     <template v-else>
       <span
-        class="li-theme-placeholder-sun absolute left-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+        class="li-theme-placeholder-sun absolute left-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
       >
-        <SunIcon />
+        <SunIcon class="h-4 w-4 m-auto" />
       </span>
       <span
-        class="li-theme-placeholder-moon absolute right-1 top-1/2 translate-y-[-50%] h-4 w-4 text-base-content"
+        class="li-theme-placeholder-moon absolute right-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
       >
-        <MoonIcon />
+        <MoonIcon class="h-4 w-4 m-auto" />
       </span>
     </template>
   </button>
@@ -54,9 +54,8 @@ const emit = defineEmits<{
   toggle: [mode: 'light' | 'dark']
 }>()
 
-// 初始化为服务端的默认值，避免水合不一致
+// 初始化为服务端的默认值,避免水合不一致
 const nowTheme = ref(props.lightTheme)
-
 const isDark = computed(() => nowTheme.value === props.darkTheme)
 
 // 水合状态追踪
@@ -65,12 +64,15 @@ const isHydrated = ref(false)
 const containerRef = ref<HTMLButtonElement>()
 
 const setTheme = (theme: string) => {
-  localStorage.setItem('li-daisy-theme', theme)
+  if (isClient()) {
+    localStorage.setItem('li-daisy-theme', theme)
+  }
 }
 
 const getTheme = () => {
-  const validThemes = [props.lightTheme, props.darkTheme]
+  if (!isClient()) return props.lightTheme
 
+  const validThemes = [props.lightTheme, props.darkTheme]
   const stored = localStorage.getItem('li-daisy-theme')
 
   if (stored && validThemes.includes(stored)) {
@@ -81,65 +83,46 @@ const getTheme = () => {
     return props.darkTheme
   }
 
-  // 最终回退到默认浅色主题
   return props.lightTheme
 }
 
 const applyTheme = () => {
+  if (!isClient()) return
+
   document.documentElement.setAttribute('data-theme', nowTheme.value)
   document.documentElement.classList.toggle('dark', isDark.value)
 }
 
-const switchTheme = (event: MouseEvent) => {
-  const { clientX: x, clientY: y } = event
+const switchTheme = () => {
+  if (!isClient()) return
 
-  emit('toggle', nowTheme.value === props.darkTheme ? 'light' : 'dark')
+  // 添加禁用过渡的类
+  document.documentElement.classList.add('disable-transitions')
+
   // 主题反转
   nowTheme.value = nowTheme.value === props.darkTheme ? props.lightTheme : props.darkTheme
-
   setTheme(nowTheme.value)
+  applyTheme()
 
-  // 执行动画
-  switchAnimation(x, y)
+  emit('toggle', isDark.value ? 'dark' : 'light')
+
+  // 强制重绘,确保禁用过渡生效
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  document.documentElement.offsetHeight
+
+  // 在下一帧移除禁用类,恢复过渡
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('disable-transitions')
+    })
+  })
 }
-
-const switchAnimation = async (x: number, y: number) => {
-  if (!enableTransitions()) {
-    applyTheme()
-    return
-  }
-
-  const clipPath = [
-    `circle(0px at ${x}px ${y}px)`,
-    `circle(${Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
-    )}px at ${x}px ${y}px)`,
-  ]
-
-  await document.startViewTransition(async () => {
-    applyTheme()
-  }).ready
-
-  document.documentElement.animate(
-    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
-    {
-      duration: 1000,
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
-    }
-  )
-}
-
-// 检查是否支持 View Transition
-const enableTransitions = () => isClient() && document.startViewTransition
 
 onMounted(() => {
   // 在客户端获取真实的主题偏好
-  const actualTheme = getTheme()
-  nowTheme.value = actualTheme
-
+  nowTheme.value = getTheme()
   applyTheme()
+
   // 标记为已水合
   nextTick(() => {
     isHydrated.value = true
@@ -163,31 +146,37 @@ defineExpose(exposeObject)
 .sun-leave-active,
 .moon-enter-active,
 .moon-leave-active {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .sun-enter-from {
-  transform: translateX(-10px);
+  transform: translateX(28px);
   opacity: 0;
 }
 .sun-enter-to {
   opacity: 1;
 }
 
+.sun-leave-from {
+  opacity: 0;
+}
+
 .sun-leave-to {
-  transform: translateX(24px);
   opacity: 0;
 }
 
 .moon-enter-from {
-  transform: translateX(10px);
+  transform: translateX(-28px);
   opacity: 0;
 }
 .moon-enter-to {
   opacity: 1;
 }
+
+.moon-leave-from {
+  opacity: 0;
+}
 .moon-leave-to {
-  transform: translateX(-24px);
   opacity: 0;
 }
 
@@ -206,5 +195,14 @@ html.dark .li-theme-placeholder-sun {
 
 html.dark .li-theme-placeholder-moon {
   display: block;
+}
+
+/* 禁用过渡 */
+:global(.disable-transitions),
+:global(.disable-transitions *),
+:global(.disable-transitions *::before),
+:global(.disable-transitions *::after) {
+  transition: none !important;
+  animation: none !important;
 }
 </style>
