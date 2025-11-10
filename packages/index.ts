@@ -37,7 +37,7 @@ export type { NotificationPosition, NotificationType } from './Notification'
 export { Message } from './Message'
 export type { MessageType } from './Message'
 
-import { Skeleton, SkeletonItem } from './Skeleton'
+import { Skeleton } from './Skeleton'
 
 import { Popover } from './Popover'
 export type { PopoverRef, PopoverPositon } from './Popover'
@@ -59,7 +59,6 @@ export {
   Modal,
   Paging,
   Skeleton,
-  SkeletonItem,
   ThemeSwitch,
   TextInput,
   Textarea,

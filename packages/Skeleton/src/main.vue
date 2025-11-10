@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <!-- 当加载中时显示骨架屏 -->
-    <div v-if="isLoading" :class="$attrs.class" class="select-none">
-      <div v-for="i in props.count" :key="i">
-        <slot name="skeleton"></slot>
-      </div>
-    </div>
+  <!-- 当加载中时显示骨架屏 -->
+  <template v-if="isLoading">
+    <slot name="skeleton"></slot>
+  </template>
 
-    <!-- 加载完成后显示实际内容 -->
-    <div v-else>
-      <slot name="content" />
-    </div>
-  </div>
+  <!-- 加载完成后显示实际内容 -->
+  <template v-else>
+    <slot name="content" />
+  </template>
 </template>
 
 <script lang="ts" setup>
