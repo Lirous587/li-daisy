@@ -1,23 +1,35 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: 'Li-Daisy组件库'
-  text: 'Li-Daisy组件库文档'
-  tagline: 使用daisyui+tailwindcss构建的小而美的组件库
+  name: 'Li-Daisy'
+  text: '基于 daisyUI 的 Vue3 组件库'
+  tagline: 轻量 · 优雅 · 开箱即用
+  image:
+    src: https://img.daisyui.com/images/daisyui/mark-rotating.svg
+    alt: cute logo of daisyUI 
   actions:
     - theme: brand
+      text: 快速开始 →
+      link: /components/setup
+    - theme: alt
       text: 组件列表
-      link: /components/overview.md
-    - theme: brand
-      text: 待补充
+      link: /components/overview
+    - theme: alt
+      text: GitHub
+      link: https://github.com/Lirous587/Li-Daisy
 
 features:
-  - title: 特点一
-    details: 天然支持SPA和SSR
-  - title: 特点二
-    details: 高度集成tailwindcss 无学习包袱
-  - title: 特点三
-    details: 仅提供基础组件 避免过重的依赖
+  - icon: 🚀
+    title: 开箱即用
+    details: 基于 daisyUI，天然支持 SPA 和 SSR，零配置即可使用
+  - icon: 🎯
+    title: 强大生态
+    details: 完美融合 daisyUI 和 Tailwind CSS 生态，集两大框架之所长
+  - icon: 💪
+    title: TypeScript 支持
+    details: 使用 TypeScript 编写，提供完整的类型定义和智能提示
+  - icon: ⚡
+    title: 体积小巧
+    details: 整个库仅 200KB，极致轻量不影响加载性能
 ---

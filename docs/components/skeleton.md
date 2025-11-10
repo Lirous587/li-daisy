@@ -1,5 +1,5 @@
 # Skeleton骨架屏
-
+> 在数据加载时提供占位效果
 
 :::tip 事先说明
 关于 `loading` 的初始值，使用 `true` 无疑是最佳实践，这确保了后续访问字段的存在性
@@ -25,9 +25,9 @@
 :::
 
 ## 基础用法 
-> `Skeleton` 的使用不太同于其它框架，在 ***li-daisy*** 中 `Skeleton` 作为一个容器，然后借助 ***daisyui*** 的 [skeleton](https://daisyui.com/components/skeleton/) 去实现具体的骨架屏效果
+> `Skeleton` 的使用不太同于其它框架，在 ***li-daisy*** 中 `Skeleton` 作为一个容器，然后借助 ***daisyUI*** 的 [skeleton](https://daisyui.com/components/skeleton/) 去实现具体的骨架屏效果
 >
-> 例子中的 `li-skeleton` 是加了前缀的类名，具体类名取决于你项目中的 ***daisyui*** 的[配置](https://daisyui.com/docs/config/#prefix)
+> 例子中的 `li-skeleton` 是加了前缀的类名，具体类名取决于你项目中的 ***daisyUI*** 的[配置](https://daisyui.com/docs/config/#prefix)
 :::demo skeleton/basic
 :::
 
@@ -65,7 +65,7 @@
 ## 设置delay
 > 通过设置 `delay` 来设置延迟效果
 >> 
-> 当网络请求较快时，较容易出现闪烁的现象，通过设置这项，用户可以得到较好的视觉效果，默认值为 `200`（单位为ms）
+> 当网络请求较快时，较容易出现闪烁的现象，通过设置这项，用户可以得到较好的视觉效果，默认值为 `300`（单位为ms）
 
 
 ## 渲染说明

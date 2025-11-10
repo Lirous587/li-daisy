@@ -46,8 +46,11 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '开始',
-        items: [{ text: '组件列表', link: '/components/overview' }],
+        text: '总览',
+        items: [
+          { text: '快速开始', link: '/components/setup' },
+          { text: '组件列表', link: '/components/overview' },
+        ],
       },
       {
         text: '布局 (Layout)',

@@ -2,7 +2,13 @@
 
 ## 介绍
 
-Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子化能力，提供了一系列简洁、易用的 UI 组件，帮助开发者快速构建现代化的 Web 应用。
+Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 daisyUI 的原子化能力，提供了一系列简洁、易用的 UI 组件，帮助开发者快速构建现代化的 Web 应用。
+
+::: warning 非官方项目
+Li-Daisy 并非 daisyUI 或 Tailwind CSS 的官方扩展，而是由个人开发者基于这些优秀框架创建的第三方组件库。
+
+本项目旨在为 Vue 3 生态提供更便捷的 daisyUI 集成方案。
+:::
 
 ## 组件导航
 
@@ -61,11 +67,6 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
 用于呈现结构化数据的组件。
 
 <ComponentGrid :componentList="[
-  {
-    img: '/avatar.png',  
-    url: '/components/avatar',
-    details: '用于展示用户或对象的缩略图'
-  },
   {
     img: '/table.png',  
     url: '/components/table',
@@ -132,7 +133,7 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
     img: '/themeSwitch.png',  
     url: '/components/themeSwitch',
     title: 'ThemeSwitch 主题切换器',
-    details: '用于切换应用的主题样式'
+    details: '用于切换应用的明暗主题'
   },
 ]" />
 
@@ -149,9 +150,19 @@ Li-Daisy 是一个基于 Vue 3 的轻量级组件库，结合 DaisyUI 的原子�
   },
 ]" />
 
-<!-- ## 快速导航
+## 开发计划
 
-- 开始使用
-- 设计原则
-- 主题定制
-- 更新日志 -->
+::: tip 持续更新
+Li-Daisy 正在积极开发中，未来将会添加更多实用组件
+
+如果你有好的建议或需求，欢迎在 [GitHub Issues](https://github.com/Lirous587/Li-Daisy/issues) 中提出
+:::
+
+**即将推出**:
+- [] Tree 通用树
+
+## 贡献指南
+欢迎贡献代码! 
+
+## 许可证
+Li-Daisy 基于 [MIT](https://github.com/Lirous587/Li-Daisy/blob/main/LICENSE) 许可证开源

@@ -30,5 +30,5 @@
 </template>
 
 <script setup lang="ts">
-import { Skeleton } from '../../../packages'
+import { Skeleton } from 'li-daisy'
 </script>

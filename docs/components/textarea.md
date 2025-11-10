@@ -1,10 +1,11 @@
 # Textarea多行文本输入框
+> 用于输入较长文本数据
 
 ## 尺寸
 
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
 >
-> 与 `daisyui` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
+> 与 `daisyUI` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
 > :::demo textarea/size
 > :::
 

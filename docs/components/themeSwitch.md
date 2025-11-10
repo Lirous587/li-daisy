@@ -1,4 +1,5 @@
 # ThemeSwitch主题切换器
+> 用于切换应用的明暗主题
 
 ## 默认主题
 
@@ -11,7 +12,7 @@
 
 > 通过传递 `lightTheme` 和 `darkTheme` 来分别设置明暗模式
 >
-> 若需额外自行定义可参考[daisyui文档](https://daisyui.com/docs/themes/)
+> 若需额外自行定义可参考[daisyUI文档](https://daisyui.com/docs/themes/)
 >
 > 需要使用时仅仅需要分别传递定义好的明暗模式的 `name` 即可
 
