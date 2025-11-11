@@ -24,9 +24,14 @@ export default defineConfig({
             if (theme === 'li-dark') {
               document.documentElement.classList.add('dark');
             }
+
+          // 同步到 VitePress 的主题设置
+          const vpTheme = theme === 'li-dark' ? 'dark' : 'auto';
+          localStorage.setItem('vitepress-theme-appearance', vpTheme);
           } catch (e) {
             // 降级处理
             document.documentElement.setAttribute('data-theme', 'li-light');
+            localStorage.setItem('vitepress-theme-appearance', 'light');
           }
         })();
       `,

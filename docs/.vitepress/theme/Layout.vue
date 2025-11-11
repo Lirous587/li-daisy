@@ -66,7 +66,6 @@ provide('toggle-appearance', switchTheme)
 
 onMounted(() => {
   nowTheme.value = getTheme()
-  applyTheme()
 })
 </script>
 
