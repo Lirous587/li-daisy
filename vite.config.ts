@@ -25,11 +25,10 @@ export default defineConfig({
     },
     outDir: 'dist',
     rollupOptions: {
-      external: ['vue', 'vee-validate'],
+      external: ['vue'],
       output: {
         globals: {
           vue: 'Vue',
-          'vee-validate': 'VeeValidate',
         },
         assetFileNames: 'style.css',
         exports: 'named',
