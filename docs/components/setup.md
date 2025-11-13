@@ -77,7 +77,7 @@ import App from './App.vue'
 
 // 引入全局样式
 import './assets/css/global.css' // 你配置的 CSS 文件路径
-import 'li-daisy/dist/style.css'  // li-daisy 组件样式
+import 'li-daisy/style.css'  // li-daisy 组件样式
 
 const app = createApp(App)
 app.mount('#app')
@@ -93,7 +93,7 @@ import App from './App.vue'
 import { loadingDirective } from 'li-daisy'
 
 import './assets/css/global.css'
-import 'li-daisy/dist/style.css'
+import 'li-daisy/style.css'
 
 const app = createApp(App)
 
