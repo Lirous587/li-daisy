@@ -49,15 +49,14 @@ const props = withDefaults(defineProps<FormItemProps>(), {
 
 const labelWidth = inject<string>('labelWidth', '')
 
-const align = inject<string>('align', 'vertical')
+const injectAlign = inject<string>('align', 'vertical')
+// const align = inject<string>('align', 'vertical')
+const align = computed(() => {
+  return props.align ? props.align : injectAlign
+})
 
 const alignClass = computed(() => {
-  if (props.align === 'horizontal') {
-    return 'items-center'
-  } else if (props.align === 'vertical') {
-    return 'flex-col items-start'
-  }
-  if (align === 'horizontal') {
+  if (align.value === 'horizontal') {
     return 'items-center'
   } else {
     return 'flex-col items-start'
@@ -66,7 +65,7 @@ const alignClass = computed(() => {
 
 // label width
 const widthStyle = computed(() => {
-  if (align === 'horizontal' || props.align === 'horizontal') {
+  if (align.value === 'horizontal') {
     return { width: labelWidth }
   }
   return {}
@@ -74,7 +73,7 @@ const widthStyle = computed(() => {
 
 // error marginLeft
 const marginLeftStyle = computed(() => {
-  if (align === 'horizontal' || props.align === 'horizontal') {
+  if (align.value === 'horizontal') {
     return { marginLeft: labelWidth }
   }
   return {}
