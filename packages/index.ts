@@ -1,72 +1,40 @@
 import './assets/css/tailwind.css'
 
-import { Drawer } from './Drawer'
+// 类型导出
 export type { DrawerRef, DrawerDirection } from './Drawer'
-
-export { Queue } from './Queue'
 export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
-
-// 数据输入 (Data Entry)
-import { TextInput } from './TextInput'
 export type { TextInputSize, TextInputColor } from './TextInput'
-
-import { Textarea } from './Textarea'
 export type { TextareaSize, TextareaColor } from './Textarea'
-
-import { NumberInput } from './NumberInput'
 export type { NumberInputSize, NumberInputColor } from './NumberInput'
-
-import { Form, FormItem } from './Form'
 export type { FormRef } from './Form'
-export { useYup } from './Form'
-
-// 数据展示 (Data Display)
-import { Table, TableColumn } from './Table'
 export type { TableSize, TableColumnDefaultScope, TableColumnExpandScope } from './Table'
-
-import { Paging } from './Paging'
 export type { PagingColor, PagingSize, PagingRef } from './Paging'
-
-// 反馈 (Feedback)
-import { Modal } from './Modal'
 export type { ModalRef, ModalDirection } from './Modal'
-
-export { Notification } from './Notification'
 export type { NotificationPosition, NotificationType } from './Notification'
-
-export { Message } from './Message'
 export type { MessageType } from './Message'
-
-import { Skeleton } from './Skeleton'
-
-import { Popover } from './Popover'
 export type { PopoverRef, PopoverPositon } from './Popover'
-
-import { Popconfirm } from './Popconfirm'
 export type { PopconfirmPositon } from './Popconfirm'
-
-// 主题 (Theme)
-import { ThemeSwitch } from './ThemeSwitch'
 export type { ThemeSwitchRef } from './ThemeSwitch'
 
-// 工具类 (Tools)
-import { loadingDirective } from './Loading'
-export { loadingDirective }
+// 函数导出
+export { useYup } from './Form'
+export { Notification } from './Notification'
+export { Message } from './Message'
+export { loadingDirective } from './Loading'
 
-// 导出组件
-export {
-  Drawer,
-  Modal,
-  Paging,
-  Skeleton,
-  ThemeSwitch,
-  TextInput,
-  Textarea,
-  Form,
-  FormItem,
-  NumberInput,
-  Table,
-  TableColumn,
-  Popover,
-  Popconfirm,
-}
+// 组件逐个导出
+export { Drawer } from './Drawer'
+export { Queue } from './Queue'
+export { Modal } from './Modal'
+export { Paging } from './Paging'
+export { Skeleton } from './Skeleton'
+export { ThemeSwitch } from './ThemeSwitch'
+export { TextInput } from './TextInput'
+export { Textarea } from './Textarea'
+export { Form } from './Form'
+export { FormItem } from './Form'
+export { NumberInput } from './NumberInput'
+export { Table } from './Table'
+export { TableColumn } from './Table'
+export { Popover } from './Popover'
+export { Popconfirm } from './Popconfirm'

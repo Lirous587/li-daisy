@@ -1,6 +1,5 @@
 @plugin "daisyui" {
   prefix: 'li-';
-  logs: true;
 }
 
 @plugin "daisyui/theme" {

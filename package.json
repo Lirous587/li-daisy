@@ -1,6 +1,6 @@
 {
   "name": "li-daisy",
-  "version": "2.8.4",
+  "version": "3.0.0",
   "description": "基于 DaisyUI 和 Tailwind CSS 的 Vue 3 组件库",
   "keywords": [
     "vue",
@@ -13,8 +13,8 @@
   "license": "MIT",
   "private": false,
   "type": "module",
-  "main": "./dist/li-daisy.umd.js",
-  "module": "./dist/li-daisy.es.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "style": "./dist/style.css",
   "sideEffects": false,
@@ -24,8 +24,7 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/li-daisy.es.js",
-      "require": "./dist/li-daisy.umd.js"
+      "import": "./dist/index.js"
     },
     "./style.css": "./dist/style.css"
   },
@@ -34,7 +33,7 @@
     "lint": "eslint \"packages/**/*.{js,ts,vue}\" --fix",
     "lint:docs": "eslint \"docs/examples/**/*.{js,ts,vue}\" --fix",
     "format": "prettier --write packages/ docs/examples",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-s type-check build-only",
     "build-only": "vite build",
     "dev": "vitepress dev docs",
     "docs:dev": "vitepress dev docs",

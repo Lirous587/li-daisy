@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
-import Popover from '../../Popover'
+import { Popover } from '../../Popover'
 
 interface TooltipProps {
   content: unknown

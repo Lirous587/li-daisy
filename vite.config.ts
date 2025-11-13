@@ -22,17 +22,17 @@ export default defineConfig({
       entry: resolve(__dirname, 'packages/index.ts'),
       name: 'LiDaisy',
       fileName: format => `li-daisy.${format}.js`,
+      formats: ['es'],
     },
     outDir: 'dist',
     rollupOptions: {
       external: ['vue', 'vee-validate'],
       output: {
-        globals: {
-          vue: 'Vue',
-          'vee-validate': 'VeeValidate',
-        },
-        assetFileNames: 'style.css',
         exports: 'named',
+        preserveModules: true,
+        preserveModulesRoot: 'packages',
+        entryFileNames: '[name].js',
+        assetFileNames: 'style.css',
       },
     },
     cssCodeSplit: false,

@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { computed, ref, useSlots, type Slots } from 'vue'
-import Popover from '../../Popover'
+import { Popover } from '../../Popover'
 import type { PopoverRef } from '../../Popover'
 import type { PopconfirmProps } from './types'
 

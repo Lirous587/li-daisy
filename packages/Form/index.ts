@@ -8,5 +8,3 @@ import { useYup } from './src/yup'
 export { Form, FormItem, useYup }
 
 export type { FormRef }
-
-export default Form
