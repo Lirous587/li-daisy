@@ -33,6 +33,7 @@
         :maxlength="maxlength"
         :disabled="props.disabled"
         :class="props.disabled ? '!cursor-not-allowed' : ''"
+        :autocomplete="props.autocomplete"
         @blur="handleBlur"
         @input="handleInput"
         @focus="handleFocus"
@@ -86,6 +87,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   disabled: false,
   size: 'sm',
   color: 'base',
+  autocomplete: 'off',
 })
 const model = defineModel<string | undefined>('modelValue', {
   required: true,

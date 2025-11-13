@@ -18,4 +18,5 @@ export interface TextInputProps {
   maxlength?: number
   size?: TextInputSize
   color?: TextInputColor
+  autocomplete?: string
 }
