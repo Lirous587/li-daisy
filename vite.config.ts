@@ -14,7 +14,7 @@ export default defineConfig({
       rollupTypes: false,
       copyDtsFiles: false,
       include: ['packages/**/*'],
-      exclude: ['docs/**/*'],
+      exclude: ['docs/**/*', 'packages/assets/**/*'],
     }),
   ],
   build: {
@@ -25,10 +25,11 @@ export default defineConfig({
     },
     outDir: 'dist',
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vee-validate'],
       output: {
         globals: {
           vue: 'Vue',
+          'vee-validate': 'VeeValidate',
         },
         assetFileNames: 'style.css',
         exports: 'named',
