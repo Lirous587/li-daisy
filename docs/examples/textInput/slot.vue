@@ -4,7 +4,7 @@
       v-for="color in colors"
       :key="color"
       v-model="text"
-      class="my-2 w-full"
+      class="my-2"
       placeholder="请填写信息"
       :maxlength="20"
       type="search"

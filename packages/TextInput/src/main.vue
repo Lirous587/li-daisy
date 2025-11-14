@@ -1,6 +1,6 @@
 <template>
   <!-- input -->
-  <label class="li-input select-none" :class="[inputSizeClass, inputColorClass]">
+  <label class="li-input select-none w-full" :class="[inputSizeClass, inputColorClass]">
     <!-- prefix -->
     <div v-if="hasPrefix" class="h-full flex items-center justify-center" :class="textClass">
       <slot name="prefix" />

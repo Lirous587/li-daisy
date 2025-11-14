@@ -4,7 +4,7 @@
       v-for="color in colors"
       :key="color"
       v-model="text"
-      class="m-2"
+      class="mt-2"
       placeholder="此输入框禁用"
       :color="color"
       :maxlength="20"
