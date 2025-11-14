@@ -8,10 +8,8 @@
     </FormItem>
     <FormItem>
       <div class="space-y-3">
-        <button class="li-btn w-full" type="button" @click="handleValidateEmail">验证邮箱</button>
-        <button class="li-btn w-full" type="button" @click="handleValidatePassword">
-          验证密码
-        </button>
+        <button class="li-btn w-full" @click="handleValidateEmail">验证邮箱</button>
+        <button class="li-btn w-full" @click="handleValidatePassword">验证密码</button>
       </div>
     </FormItem>
   </Form>
