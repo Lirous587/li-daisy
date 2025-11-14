@@ -6,6 +6,7 @@ export interface ModalProps {
   showCloseIcon?: boolean
   closeOnClickModal?: boolean
   destroyOnClose?: boolean
+  noBodyPadding?: boolean
 }
 
 export interface ModalRef {

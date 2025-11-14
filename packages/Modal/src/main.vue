@@ -13,7 +13,7 @@
           <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
         </div>
 
-        <div class="li-modal-body mt-2 p-4 flex-1">
+        <div class="li-modal-body flex-1" :class="props.noBodyPadding ? '' : 'pt-2 p-4'">
           <slot name="body"></slot>
         </div>
       </div>
@@ -48,6 +48,7 @@ const props = withDefaults(defineProps<ModalProps>(), {
   showCloseIcon: true,
   closeOnClickModal: true,
   destroyOnClose: false,
+  noBodyPadding: false,
 })
 
 const emit = defineEmits<{

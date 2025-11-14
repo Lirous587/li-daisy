@@ -59,17 +59,6 @@
 :::
 
 
-## 自定义header
-可使用 `header` 插槽自定义抽屉头部，并且该插槽暴露一个 `close` 方法用于关闭抽屉
-> [!IMPORTANT]
-> 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
->> 
-> 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
-
-:::demo modal/header
-:::
-
-
 ## 关闭时注销组件
 `destroy-on-close` 属性决定关闭 `modal` 时是否卸载组件，默认为 `false`
 
@@ -81,17 +70,34 @@
 :::demo modal/destory
 :::
 
+## 自定义header
+可使用 `header` 插槽自定义抽屉头部，并且该插槽暴露一个 `close` 方法用于关闭抽屉
+> [!IMPORTANT]
+> 由于自定义了header，由此此时 `show-close-icon` 将不再有实际作用
+>> 
+> 同理，若将 `close-on-click-modal` 设置为 `false`，请务必确保留有关闭的按钮或图标等，以此确保用户体验
+
+:::demo modal/header
+:::
+
+## 去除body插槽的padding
+
+> 通过设置 `no-body-padding` 属性，可以去除 Modal 内容区域（body 插槽）的默认内边距，方便你自定义内容样式
+> 
+> 默认情况下 body 区域会有适当的 padding，设置为 `true` 后将完全移除，内容将紧贴容器边缘
 
 
 ## API
 
 ### Attributes
-|        属性值        |          说明          |   类型    |          默认值           |
-| :------------------: | :--------------------: | :-------: | :-----------------------: |
-|         size         |        抽屉大小        | `string`  | `'w-11/12 max-w-[512px]'` |
-|   show-close-icon    |    是否显示关闭图标    | `boolean` |          `true`           |
-| close-on-click-modal |  点击蒙层是否关闭抽屉  | `boolean` |          `true`           |
-|   destroy-on-close   | 关闭组件时是否卸载组件 | `boolean` |          `false`          |
+|        属性值        |               说明               |   类型    |          默认值           |
+| :------------------: | :------------------------------: | :-------: | :-----------------------: |
+|         size         |             抽屉大小             | `string`  | `'w-11/12 max-w-[512px]'` |
+|   show-close-icon    |         是否显示关闭图标         | `boolean` |          `true`           |
+| close-on-click-modal |       点击蒙层是否关闭抽屉       | `boolean` |          `true`           |
+|   destroy-on-close   |      关闭组件时是否卸载组件      | `boolean` |          `false`          |
+|   no-body-padding    | 是否去除 body 区域的默认 padding | `boolean` |          `false`          |
+
 
 
 
