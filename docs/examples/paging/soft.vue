@@ -7,7 +7,7 @@
       class="m-auto"
       :pages="10"
       :color="color"
-      :soft="false"
+      :soft="true"
     ></Paging>
   </div>
 </template>

@@ -15,6 +15,7 @@ export interface PagingProps {
   pages: number
   size?: PagingSize
   color?: PagingColor
+  soft?: boolean
   hideOnSinglePage?: boolean
   offset?: number
   icon?: boolean

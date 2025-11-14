@@ -1,6 +1,9 @@
 # Paging分页
 > 用于对大量数据进行分页展示
 
+:::demo paging/dev
+:::
+
 ## 尺寸
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
 :::demo paging/size
@@ -11,6 +14,13 @@
 >>
 > 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 :::demo paging/color
+:::
+
+
+## 柔和色
+> 通过 `soft` 来设置是否使用柔和色
+>>
+:::demo paging/soft
 :::
 
 
@@ -69,6 +79,7 @@
 |        pages        |          分页总数          |          `number`          |    -    |
 |        size         |            尺寸            |        `PagingSize`        | `'md'`  |
 |        color        |            颜色            |       `PagingColor`        | `base`  |
+|        soft         |       是否使用柔和色       |         `boolean`          | `true`  |
 | hide-on-single-page |       单页时是否隐藏       |         `boolean`          | `false` |
 |       offset        |           偏移量           |          `number`          |   `1`   |
 |        icon         |       否显示箭头图标       |         `boolean`          | `ture`  |

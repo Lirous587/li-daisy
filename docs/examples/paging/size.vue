@@ -17,5 +17,5 @@ import { ref } from 'vue'
 
 const sizes = ref<PagingSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])
 
-const currentPage = ref(1)
+const currentPage = ref(5)
 </script>

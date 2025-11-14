@@ -1,63 +1,49 @@
 <template>
-  <div>
-    <div v-if="props.hrefGenerator || props.preHref" class="sr-only">
-      <!-- 明确的上一页链接 (如果不在第一页) -->
-      <a v-if="safeCurrentPage > 1" :href="generateSeoHref(safeCurrentPage - 1)">Previous Page</a>
-      <!-- 明确的下一页链接 (如果不在最后一页) -->
-      <a v-if="safeCurrentPage < pages" :href="generateSeoHref(safeCurrentPage + 1)">Next Page</a>
-    </div>
+  <div v-if="props.hrefGenerator || props.preHref" class="sr-only">
+    <!-- 明确的上一页链接 (如果不在第一页) -->
+    <a v-if="safeCurrentPage > 1" :href="generateSeoHref(safeCurrentPage - 1)">Previous Page</a>
+    <!-- 明确的下一页链接 (如果不在最后一页) -->
+    <a v-if="safeCurrentPage < pages" :href="generateSeoHref(safeCurrentPage + 1)">Next Page</a>
+  </div>
 
-    <div
-      v-if="pageConfim()"
-      class="flex *:border-y *:border-r [&>*:first-child]:border-l [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md cursor-pointer select-none font-mono relative overflow-hidden"
-      :class="[
-        displayClass,
-        borderColor,
-        sizeClass,
-        props.hideIconOnSm
-          ? 'max-sm:[&>*:nth-child(2)]:border-l max-sm:[&>*:nth-child(2)]:rounded-l-md max-sm:[&>*:nth-last-child(2)]:rounded-r-md'
-          : '',
-      ]"
+  <div
+    v-if="pageConfim()"
+    v-bind="$attrs"
+    class="flex cursor-pointer select-none font-mono relative *:border-y *:border-x li-join"
+    :class="[props.hideOnSinglePage && props.pages === 1 ? 'hidden' : '']"
+  >
+    <!-- last -->
+    <button
+      v-if="showIcon"
+      class="li-btn li-btn-square li-join-item"
+      :class="[btnSize, btnColor, btnSoft]"
+      :disabled="ifMin"
+      @click="changePage(Math.max(1, safeCurrentPage - 1))"
     >
-      <!-- last -->
-      <div
-        v-if="props.icon"
-        class="flex h-full aspect-square"
-        :class="[
-          ifMin ? 'pointer-events-none' : '',
-          bgColor,
-          props.hideIconOnSm ? 'max-sm:hidden' : '',
-        ]"
-        @click="changePage(Math.max(1, safeCurrentPage - 1))"
-      >
-        <ArrowLeftIcon class="m-auto w-3 h-3" :class="textColor" />
-      </div>
+      <ArrowLeftIcon class="m-auto w-3 h-3" />
+    </button>
 
-      <!-- middle -->
-      <div
-        v-for="(item, index) in list"
-        :key="index"
-        class="flex h-full aspect-square"
-        :class="[bgColor, item.page == currentPage ? activeBgColor : '']"
-        @click="changePage(item.page)"
-      >
-        <span class="m-auto" :class="textColor"> {{ item.value }}</span>
-      </div>
+    <!-- middle -->
+    <button
+      v-for="(item, index) in list"
+      :key="index"
+      class="li-btn li-join-item"
+      :class="[btnSize, btnColor, btnSoft, item.page == currentPage ? 'li-btn-active' : '']"
+      @click="changePage(item.page)"
+    >
+      <span class="m-auto"> {{ item.value }}</span>
+    </button>
 
-      <!-- next -->
-      <div
-        v-if="props.icon"
-        class="flex h-full aspect-square"
-        :class="[
-          ifMax ? 'pointer-events-none' : '',
-          bgColor,
-          props.hideIconOnSm ? 'max-sm:hidden' : '',
-        ]"
-        @click="changePage(Math.min(pages, safeCurrentPage + 1))"
-      >
-        <ArrowRightIcon class="m-auto h-3 w-3" :class="textColor" />
-      </div>
-    </div>
+    <!-- next -->
+    <button
+      v-if="showIcon"
+      class="li-btn li-btn-square li-join-item"
+      :class="[btnSize, btnColor, btnSoft]"
+      :disabled="ifMax"
+      @click="changePage(Math.min(pages, safeCurrentPage + 1))"
+    >
+      <ArrowRightIcon class="m-auto h-3 w-3" />
+    </button>
   </div>
 </template>
 
@@ -65,16 +51,96 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 import type { PagingProps, PagingItem, PagingRef } from './types'
 import { formatUrl } from '../../utils/format.ts'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+defineOptions({
+  inheritAttrs: false,
+})
 
 const props = withDefaults(defineProps<PagingProps>(), {
   pages: 1,
   size: 'md',
   color: 'base',
+  soft: true,
   hideOnSinglePage: false,
   offset: 1,
   icon: true,
   hideIconOnSm: true,
+})
+
+const currentPage = defineModel<number | undefined>('modelValue', {
+  required: true,
+})
+
+const btnSize = computed(() => {
+  switch (props.size) {
+    case 'xs':
+      return 'li-btn-xs'
+    case 'sm':
+      return 'li-btn-sm'
+    case 'md':
+      return 'li-btn-md'
+    case 'lg':
+      return 'li-btn-lg'
+    case 'xl':
+      return 'li-btn-xl'
+    default:
+      return 'li-btn-sm'
+  }
+})
+
+const btnColor = computed(() => {
+  switch (props.color) {
+    case 'base':
+      return 'li-btn'
+    case 'neutral':
+      return 'li-btn-neutral'
+    case 'primary':
+      return 'li-btn-primary'
+    case 'secondary':
+      return 'li-btn-secondary'
+    case 'accent':
+      return 'li-btn-accent'
+    case 'info':
+      return 'li-btn--info'
+    case 'success':
+      return 'li-btn--success'
+    case 'warning':
+      return 'li-btn-warning'
+    case 'error':
+      return 'li-btn-error'
+    default:
+      return 'li-btn'
+  }
+})
+
+const showIcon = computed(() => {
+  // 如果 icon 为 false,直接不显示
+  if (!props.icon) return false
+
+  // 如果不需要在小屏隐藏,直接显示
+  if (!props.hideIconOnSm) return true
+
+  // 如果需要在小屏隐藏,则根据屏幕尺寸决定
+  return !isSmallScreen.value
+})
+
+const btnSoft = computed(() => {
+  if (props.soft) return 'li-btn-soft'
+  return 'shadow-none'
+})
+
+const isSmallScreen = ref(false)
+
+const checkScreenSize = () => {
+  isSmallScreen.value = window.innerWidth < 640
+}
+
+const ifMin = computed(() => {
+  return currentPage.value === 1 ? true : false
+})
+
+const ifMax = computed(() => {
+  return currentPage.value === props.pages ? true : false
 })
 
 const generateSeoHref = (page: number): string => {
@@ -94,10 +160,6 @@ const generateSeoHref = (page: number): string => {
 const emit = defineEmits<{
   change: [page: number]
 }>()
-
-const currentPage = defineModel<number | undefined>('modelValue', {
-  required: true,
-})
 
 const safeCurrentPage = computed(() => currentPage.value || 1)
 
@@ -158,140 +220,9 @@ watch([() => currentPage.value, () => props.offset, () => props.pages], () => {
 // 确保ssr渲染
 list.value = initList()
 
-const sizeClass = computed(() => {
-  switch (props.size) {
-    case 'xs':
-      return 'h-6'
-    case 'sm':
-      return 'h-7'
-    case 'md':
-      return 'h-8'
-    case 'lg':
-      return 'h-9'
-    case 'xl':
-      return 'h-10'
-    default:
-      return 'h-6'
-  }
-})
-
-const bgColor = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return 'bg-base-200'
-    case 'neutral':
-      return 'bg-neutral/80'
-    case 'primary':
-      return 'bg-primary/80'
-    case 'secondary':
-      return 'bg-secondary/80'
-    case 'accent':
-      return 'bg-accent/80'
-    case 'info':
-      return 'bg-info/80'
-    case 'success':
-      return 'bg-success/80'
-    case 'warning':
-      return 'bg-warning/80'
-    case 'error':
-      return 'bg-error/80'
-    default:
-      return 'bg-base-200'
-  }
-})
-
-const activeBgColor = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return '!bg-base-300'
-    case 'neutral':
-      return '!bg-neutral'
-    case 'primary':
-      return '!bg-primary'
-    case 'secondary':
-      return '!bg-secondary'
-    case 'accent':
-      return '!bg-accent'
-    case 'info':
-      return '!bg-info'
-    case 'success':
-      return '!bg-success'
-    case 'warning':
-      return '!bg-warning'
-    case 'error':
-      return '!bg-error'
-    default:
-      return '!bg-base-300'
-  }
-})
-
-const borderColor = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return '*:border-base-content/15'
-    case 'neutral':
-      return '*:border-neutral-content/15'
-    case 'primary':
-      return '*:border-primary-content/15'
-    case 'secondary':
-      return '*:border-secondary-content/15'
-    case 'accent':
-      return '*:border-accent-content/15'
-    case 'info':
-      return '*:border-info-content/15'
-    case 'success':
-      return '*:border-success-content/15'
-    case 'warning':
-      return '*:border-warning-content/15'
-    case 'error':
-      return '*:border-error-content/15'
-    default:
-      return '*:border-base-content/15'
-  }
-})
-
-const textColor = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return 'text-base-content'
-    case 'neutral':
-      return 'text-neutral-content'
-    case 'primary':
-      return 'text-primary-content'
-    case 'secondary':
-      return 'text-secondary-content'
-    case 'accent':
-      return 'text-accent-content'
-    case 'info':
-      return 'text-info-content'
-    case 'success':
-      return 'text-success-content'
-    case 'warning':
-      return 'text-warning-content'
-    case 'error':
-      return 'text-error-content'
-    default:
-      return 'text-base-content'
-  }
-})
-
-const ifMin = computed(() => {
-  return currentPage.value === 1 ? true : false
-})
-
-const ifMax = computed(() => {
-  return currentPage.value === props.pages ? true : false
-})
-
-const displayClass = computed(() => {
-  if (props.hideOnSinglePage && props.pages === 1) {
-    return 'hidden'
-  } else {
-    return ''
-  }
-})
-
 const changePage = (page: number) => {
+  console.log(1)
+
   emit('change', page)
   currentPage.value = page
 }
@@ -303,4 +234,13 @@ const exposeObject: PagingRef = {
 }
 
 defineExpose(exposeObject)
+
+onMounted(() => {
+  checkScreenSize()
+  window.addEventListener('resize', checkScreenSize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenSize)
+})
 </script>
