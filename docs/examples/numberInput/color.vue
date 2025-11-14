@@ -4,10 +4,10 @@
       v-for="color in colors"
       :key="color"
       v-model="numberValue"
+      class="w-64 mx-auto"
       :color="color"
       :min="0"
       :max="10"
-      class="w-64 mx-auto"
     />
   </div>
 </template>
@@ -17,6 +17,7 @@ import { ref } from 'vue'
 import { NumberInput, type NumberInputColor } from 'li-daisy'
 
 const colors = ref<NumberInputColor[]>([
+  'base',
   'neutral',
   'primary',
   'secondary',

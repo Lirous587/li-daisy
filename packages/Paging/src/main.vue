@@ -17,8 +17,8 @@
     <!-- last -->
     <button
       v-if="showIcon"
-      class="li-btn li-btn-square li-join-item"
-      :class="[btnSize, btnColor, btnSoft]"
+      class="li-btn li-btn-square li-join-item li-btn-soft"
+      :class="[btnSize, btnColor]"
       :disabled="ifMin"
       @click="changePage(Math.max(1, safeCurrentPage - 1))"
     >
@@ -29,8 +29,8 @@
     <button
       v-for="(item, index) in list"
       :key="index"
-      class="li-btn li-join-item"
-      :class="[btnSize, btnColor, btnSoft, item.page == currentPage ? 'li-btn-active' : '']"
+      class="li-btn li-join-item li-btn-soft"
+      :class="[btnSize, btnColor, item.page == currentPage ? 'li-btn-active' : '']"
       @click="changePage(item.page)"
     >
       <span class="m-auto"> {{ item.value }}</span>
@@ -39,8 +39,8 @@
     <!-- next -->
     <button
       v-if="showIcon"
-      class="li-btn li-btn-square li-join-item"
-      :class="[btnSize, btnColor, btnSoft]"
+      class="li-btn li-btn-square li-join-item li-btn-soft"
+      :class="[btnSize, btnColor]"
       :disabled="ifMax"
       @click="changePage(Math.min(totalPages, safeCurrentPage + 1))"
     >
@@ -61,7 +61,6 @@ defineOptions({
 const props = withDefaults(defineProps<PagingProps>(), {
   size: 'md',
   color: 'base',
-  soft: true,
   hideOnSinglePage: false,
   offset: 1,
   icon: true,
@@ -159,11 +158,6 @@ const showIcon = computed(() => {
 
   // 如果需要在小屏隐藏,则根据屏幕尺寸决定
   return !isSmallScreen.value
-})
-
-const btnSoft = computed(() => {
-  if (props.soft) return 'li-btn-soft'
-  return 'shadow-none'
 })
 
 const isSmallScreen = ref(false)

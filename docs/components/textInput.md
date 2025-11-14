@@ -11,7 +11,7 @@
 ## color颜色
 > 通过 `color` 来设置颜色
 >
-> 可选值 `[neutral,primary,secondary,accent,info,success,warning,error] `
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 :::demo textInput/color
 :::
 
@@ -45,15 +45,15 @@
 
 ### Attributes
 
-|    属性值    |     说明     |       类型       |  默认值   |
-| :----------: | :----------: | :--------------: | :-------: |
-|     type     |     类型     | `TextInputType`  | `'text'`  |
-|     size     |     尺寸     | `TextInputSize`  |  `'md'`   |
-| placeholder  |    占位符    |     `string`     |     -     |
-|   disabled   |   是否禁用   |    `boolean`     |  `false`  |
-|  maxlength   | 最大文本长度 |     `number`     |     -     |
-|    color     |     颜色     | `TextInputColor` | `neutral` |
-| autocomplete | 是否自动补全 |    `boolean`     |  `false`  |
+|    属性值    |     说明     |       类型       |  默认值  |
+| :----------: | :----------: | :--------------: | :------: |
+|     type     |     类型     | `TextInputType`  | `'text'` |
+|     size     |     尺寸     | `TextInputSize`  |  `'md'`  |
+| placeholder  |    占位符    |     `string`     |    -     |
+|   disabled   |   是否禁用   |    `boolean`     | `false`  |
+|  maxlength   | 最大文本长度 |     `number`     |    -     |
+|    color     |     颜色     | `TextInputColor` |  `base`  |
+| autocomplete | 是否自动补全 |    `boolean`     | `false`  |
 
 
 ### Slots

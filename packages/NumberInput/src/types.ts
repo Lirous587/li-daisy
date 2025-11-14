@@ -1,6 +1,7 @@
 export type NumberInputSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type NumberInputColor =
+  | 'base'
   | 'neutral'
   | 'primary'
   | 'secondary'

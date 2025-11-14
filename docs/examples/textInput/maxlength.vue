@@ -17,6 +17,7 @@ import { TextInput, type TextInputColor } from 'li-daisy'
 import { ref } from 'vue'
 
 const colors = ref<TextInputColor[]>([
+  'base',
   'neutral',
   'primary',
   'secondary',

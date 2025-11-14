@@ -20,7 +20,7 @@
 
 > 通过 `color` 来设置颜色
 >
-> 可选值 `[neutral,primary,secondary,accent,info,success,warning,error] `
+> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
 
 :::demo numberInput/color
 :::
@@ -36,4 +36,4 @@
 |  disabled   | 是否禁用 |     `boolean`      | `false` |
 |     min     |  最小值  |      `number`      |    -    |
 |     max     |  最大值  |      `number`      |    -    |
-|    color    |   颜色   | `NumberInputColor` | `neutral`  |
+|    color    |   颜色   | `NumberInputColor` | `base`  |

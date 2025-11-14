@@ -17,6 +17,7 @@ import { Textarea, type TextareaColor } from 'li-daisy'
 import { ref } from 'vue'
 
 const colors = ref<TextareaColor[]>([
+  'base',
   'neutral',
   'primary',
   'secondary',

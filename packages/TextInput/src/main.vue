@@ -65,7 +65,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   placeholder: '',
   disabled: false,
   size: 'md',
-  color: 'neutral',
+  color: 'base',
   autocomplete: 'off',
 })
 const model = defineModel<string | number | undefined>('modelValue', {
@@ -140,6 +140,8 @@ const inputSizeClass = computed(() => {
 const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
+    case 'base':
+      return 'li-input'
     case 'neutral':
       return 'li-input-neutral'
     case 'primary':
@@ -157,7 +159,7 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'li-input-error'
     default:
-      return 'li-input-neutral'
+      return 'li-input'
   }
 })
 
@@ -167,6 +169,8 @@ const textClass = computed(() => {
 
 const textColor = computed(() => {
   switch (props.color) {
+    case 'base':
+      return 'text-base-content'
     case 'neutral':
       return 'text-neutral'
     case 'primary':
@@ -184,7 +188,7 @@ const textColor = computed(() => {
     case 'error':
       return 'text-error'
     default:
-      return 'text-neutral'
+      return 'text-base-content'
   }
 })
 

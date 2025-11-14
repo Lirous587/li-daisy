@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   minRows: 5,
   maxRows: 10,
   size: 'md',
-  color: 'neutral',
+  color: 'base',
 })
 
 const model = defineModel<string | undefined>('modelValue', {
@@ -63,6 +63,8 @@ const sizeClass = computed(() => {
 
 const colorClass = computed(() => {
   switch (props.color) {
+    case 'base':
+      return 'li-textarea'
     case 'neutral':
       return 'li-textarea-neutral'
     case 'primary':
@@ -80,7 +82,7 @@ const colorClass = computed(() => {
     case 'error':
       return 'li-textarea-error'
     default:
-      return 'li-textarea-neutral'
+      return 'li-textarea'
   }
 })
 
@@ -90,6 +92,8 @@ const textClass = computed(() => {
 
 const textColor = computed(() => {
   switch (props.color) {
+    case 'base':
+      return 'text-base-content'
     case 'neutral':
       return 'text-neutral'
     case 'primary':
@@ -107,7 +111,7 @@ const textColor = computed(() => {
     case 'error':
       return 'text-error'
     default:
-      return 'text-neutral'
+      return 'text-base-content'
   }
 })
 

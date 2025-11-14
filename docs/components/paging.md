@@ -24,12 +24,6 @@
 :::
 
 
-## 柔和色
-> 通过 `soft` 来设置是否使用柔和色
->>
-:::demo paging/soft
-:::
-
 
 ## 单页时隐藏
 > 通过 `hide-on-single-page` 设置单页隐藏分页，默认为 `false`
@@ -88,7 +82,6 @@
 |      page-size      |        每页显示条数        |          `number`          |    -    |
 |        size         |            尺寸            |        `PagingSize`        | `'md'`  |
 |        color        |            颜色            |       `PagingColor`        | `base`  |
-|        soft         |       是否使用柔和色       |         `boolean`          | `true`  |
 | hide-on-single-page |       单页时是否隐藏       |         `boolean`          | `false` |
 |       offset        |           偏移量           |          `number`          |   `1`   |
 |        icon         |       否显示箭头图标       |         `boolean`          | `ture`  |
