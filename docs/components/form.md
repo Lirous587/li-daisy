@@ -3,7 +3,7 @@
 
 ## 按钮导致的表单提交
 
-:::tip 2.6.9 之前
+:::tip 3.0.11 之前
 当 `Form` 组件下存在 `button` 时，点击 `button` 会默认触发表单验证
 >
 这并不是 **bug**，这是HTML的标准行为，`button` 的默认type就是 `submit`

@@ -1,12 +1,11 @@
 <template>
-  <VeeForm>
+  <form @submit.prevent>
     <slot />
-  </VeeForm>
+  </form>
 </template>
 
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-import { Form as VeeForm } from 'vee-validate'
 import { onMounted, provide, readonly, ref, watch } from 'vue'
 import type { FormProps, FormRef } from './types'
 
