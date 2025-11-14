@@ -1,7 +1,6 @@
 export type TextareaSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type TextareaColor =
-  | 'base'
   | 'neutral'
   | 'primary'
   | 'secondary'

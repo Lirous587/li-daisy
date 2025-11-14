@@ -1,10 +1,31 @@
 <template>
-  <Textarea v-model="text" placeholder="此输入框禁用" :maxlength="30" :disabled="true" />
+  <div class="flex flex-col gap-4">
+    <Textarea
+      v-for="color in colors"
+      :key="color"
+      v-model="text"
+      :color="color"
+      placeholder="请输入文本"
+      :disabled="true"
+      :maxlength="20"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { Textarea } from 'li-daisy'
+import { Textarea, type TextareaColor } from 'li-daisy'
 import { ref } from 'vue'
 
-const text = ref<string>('')
+const colors = ref<TextareaColor[]>([
+  'neutral',
+  'primary',
+  'secondary',
+  'accent',
+  'info',
+  'success',
+  'warning',
+  'error',
+])
+
+const text = ref('')
 </script>

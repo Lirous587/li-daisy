@@ -1,9 +1,12 @@
 <template>
   <div>
     <TextInput
+      v-for="color in colors"
+      :key="color"
       v-model="text"
       class="m-2"
       placeholder="此输入框禁用"
+      :color="color"
       :maxlength="20"
       :disabled="true"
     >
@@ -44,9 +47,20 @@
 </template>
 
 <script setup lang="ts">
-import { TextInput } from 'li-daisy'
+import { TextInput, type TextInputColor } from 'li-daisy'
 
 import { ref } from 'vue'
+
+const colors = ref<TextInputColor[]>([
+  'neutral',
+  'primary',
+  'secondary',
+  'accent',
+  'info',
+  'success',
+  'warning',
+  'error',
+])
 
 const text = ref<string>('')
 </script>

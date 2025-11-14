@@ -6,17 +6,29 @@
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
 >
 > 与 `daisyUI` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
-::demo textarea/size
-::
+:::demo textarea/size
+:::
+
+## color颜色
+> 通过 `color` 来设置颜色
+>
+> 可选值 `[neutral,primary,secondary,accent,info,success,warning,error] `
+:::demo textarea/color
+:::
+
+
+## 最大长度
+> 通过 `maxlength` 来设置最大文本长度
+:::demo textarea/maxlength
+:::
 
 ## 禁用状态
-
+> 通过 `disable` 来设置禁用状态 
 :::demo textarea/disable
 :::
 
-## 最大长度
 
-> 通过 `maxlength` 来设置最大文本长度
+
 
 ## 设置行数
 
@@ -26,23 +38,16 @@
 ::demo textarea/rows
 ::
 
-## color颜色
 
-> 通过 `color` 来设置颜色
->
-> 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
-
-:::demo textarea/color
-:::
 
 ## API
 
 ### Attributes
 
-|   属性值    |     说明     |      类型       | 默认值  |
-| :---------: | :----------: | :-------------: | :-----: |
-|    size     |     尺寸     | `TextareaSize`  | `'sm'`  |
-| placeholder |    占位符    |    `string`     |    -    |
-|  disabled   |   是否禁用   |    `boolean`    | `false` |
-|  maxlength  | 最大文本长度 |    `number`     |    -    |
-|    color    |     颜色     | `TextareaColor` | `base`  |
+|   属性值    |     说明     |      类型       |  默认值   |
+| :---------: | :----------: | :-------------: | :-------: |
+|    size     |     尺寸     | `TextareaSize`  |  `'md'`   |
+| placeholder |    占位符    |    `string`     |     -     |
+|  disabled   |   是否禁用   |    `boolean`    |  `false`  |
+|  maxlength  | 最大文本长度 |    `number`     |     -     |
+|    color    |     颜色     | `TextareaColor` | `neutral` |

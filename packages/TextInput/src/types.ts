@@ -1,7 +1,6 @@
 export type TextInputSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type TextInputColor =
-  | 'base'
   | 'neutral'
   | 'primary'
   | 'secondary'

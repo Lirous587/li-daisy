@@ -1,6 +1,12 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Textarea v-for="color in colors" :key="color" v-model="text" :color="color" />
+    <Textarea
+      v-for="color in colors"
+      :key="color"
+      v-model="text"
+      :color="color"
+      placeholder="请输入文本"
+    />
   </div>
 </template>
 
@@ -9,7 +15,6 @@ import { Textarea, type TextareaColor } from 'li-daisy'
 import { ref } from 'vue'
 
 const colors = ref<TextareaColor[]>([
-  'base',
   'neutral',
   'primary',
   'secondary',

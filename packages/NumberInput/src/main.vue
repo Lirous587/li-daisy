@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<NumberInputProps>(), {
   placeholder: '',
   disabled: false,
   size: 'md',
-  color: 'base',
+  color: 'neutral',
 })
 
 const model = defineModel<number | undefined>('modelValue', {
@@ -74,8 +74,6 @@ const inputRef = ref<HTMLInputElement>()
 const inputColor = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
-    case 'base':
-      return 'li-input-base'
     case 'neutral':
       return 'li-input-neutral'
     case 'primary':
@@ -93,7 +91,7 @@ const inputColor = computed(() => {
     case 'error':
       return 'li-input-error'
     default:
-      return 'li-input-base'
+      return 'li-input-neutral'
   }
 })
 
@@ -134,8 +132,6 @@ const operationBtnSize = computed(() => {
 const operationBtnColor = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
-    case 'base':
-      return 'li-input-base'
     case 'neutral':
       return 'li-btn-neutral'
     case 'primary':
@@ -153,7 +149,7 @@ const operationBtnColor = computed(() => {
     case 'error':
       return 'li-btn-error'
     default:
-      return 'li-input-base'
+      return 'li-btn-neutral'
   }
 })
 
@@ -181,20 +177,3 @@ onMounted(() => {
   model.value = props.min
 })
 </script>
-
-<style scoped>
-.li-input-base {
-  & {
-    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
-  }
-  &:focus,
-  &:focus-within,
-  &.is-active {
-    --input-color: var(--color-info);
-  }
-}
-.li-input-base.is-active {
-  --li-input-color: var(--color-base-content);
-  z-index: 1;
-}
-</style>

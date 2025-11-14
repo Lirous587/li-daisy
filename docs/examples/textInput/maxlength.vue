@@ -1,22 +1,22 @@
 <template>
   <div class="flex flex-col gap-4">
-    <NumberInput
+    <TextInput
       v-for="color in colors"
       :key="color"
-      v-model="numberValue"
+      v-model="text"
       :color="color"
-      :min="0"
-      :max="10"
-      class="w-64 mx-auto"
+      placeholder="请输入文本"
+      :maxlength="20"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { NumberInput, type NumberInputColor } from 'li-daisy'
+import { TextInput, type TextInputColor } from 'li-daisy'
 
-const colors = ref<NumberInputColor[]>([
+import { ref } from 'vue'
+
+const colors = ref<TextInputColor[]>([
   'neutral',
   'primary',
   'secondary',
@@ -27,5 +27,5 @@ const colors = ref<NumberInputColor[]>([
   'error',
 ])
 
-const numberValue = ref<number>(0)
+const text = ref('')
 </script>

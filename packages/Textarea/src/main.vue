@@ -11,11 +11,11 @@
       :maxlength="props.maxlength"
       :rows="dynamicRows"
       class="li-textarea min-h-0 w-full scrollbar-xs leading-[calc(1em+8px)]"
-      :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none !border-base-300' : '']"
+      :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none' : '']"
       :style="{ minHeight: minHeightPx }"
     ></textarea>
 
-    <div v-if="maxlength" class="absolute right-2.5 bottom-2.5 text-sm text-base-content/70">
+    <div v-if="maxlength" class="absolute right-2.5 bottom-2.5 text-sm" :class="textClass">
       {{ currentLength }}/{{ maxlength }}
     </div>
 
@@ -36,8 +36,8 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   disabled: false,
   minRows: 5,
   maxRows: 10,
-  size: 'sm',
-  color: 'base',
+  size: 'md',
+  color: 'neutral',
 })
 
 const model = defineModel<string | undefined>('modelValue', {
@@ -63,8 +63,6 @@ const sizeClass = computed(() => {
 
 const colorClass = computed(() => {
   switch (props.color) {
-    case 'base':
-      return 'li-textarea-base'
     case 'neutral':
       return 'li-textarea-neutral'
     case 'primary':
@@ -82,8 +80,39 @@ const colorClass = computed(() => {
     case 'error':
       return 'li-textarea-error'
     default:
-      return 'li-textarea-base'
+      return 'li-textarea-neutral'
   }
+})
+
+const textClass = computed(() => {
+  return [textColor.value, textColorOpacity.value]
+})
+
+const textColor = computed(() => {
+  switch (props.color) {
+    case 'neutral':
+      return 'text-neutral'
+    case 'primary':
+      return 'text-primary'
+    case 'secondary':
+      return 'text-secondary'
+    case 'accent':
+      return 'text-accent'
+    case 'info':
+      return 'text-info'
+    case 'success':
+      return 'text-success'
+    case 'warning':
+      return 'text-warning'
+    case 'error':
+      return 'text-error'
+    default:
+      return 'text-neutral'
+  }
+})
+
+const textColorOpacity = computed(() => {
+  return props.disabled ? 'opacity-60' : ''
 })
 
 const currentLength = computed<number>(() => {
@@ -182,21 +211,3 @@ onMounted(() => {
   updateMinHeight()
 })
 </script>
-
-<style scoped>
-.li-textarea-base {
-  & {
-    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
-  }
-  &:focus,
-  &:focus-within {
-    --input-color: var(--color-info);
-  }
-}
-.li-input {
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    outline-color 0.2s;
-}
-</style>

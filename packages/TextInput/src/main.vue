@@ -2,11 +2,7 @@
   <!-- input -->
   <label class="li-input select-none" :class="[inputSizeClass, inputColorClass]">
     <!-- prefix -->
-    <div
-      v-if="hasPrefix"
-      class="h-full flex items-center justify-center"
-      :class="slotTextColorClass"
-    >
+    <div v-if="hasPrefix" class="h-full flex items-center justify-center" :class="textClass">
       <slot name="prefix" />
     </div>
 
@@ -28,7 +24,8 @@
     <!-- eye -->
     <div
       v-if="props.type === 'password' && isEyeIconShow"
-      class="li-join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+      class="li-join-item flex items-center cursor-pointer px-1 shrink-0"
+      :class="textClass"
       @mousedown.prevent="togglePasswordVisibility"
     >
       <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
@@ -38,23 +35,20 @@
     <!-- search -->
     <div
       v-if="props.type === 'search' && isXIconShow"
-      class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+      class="flex items-center cursor-pointer px-1 shrink-0"
+      :class="textClass"
       @mousedown.prevent="clearSearch"
     >
       <XMarkIcon class="w-4 h-4" />
     </div>
 
     <!-- counter -->
-    <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
+    <div v-if="shouldShowCounter" class="flex items-center px-1" :class="textClass">
       {{ currentLength }}/{{ props.maxlength }}
     </div>
 
     <!-- suffix -->
-    <div
-      v-if="hasSuffix"
-      class="h-full flex items-center justify-center"
-      :class="slotTextColorClass"
-    >
+    <div v-if="hasSuffix" class="h-full flex items-center justify-center" :class="textClass">
       <slot name="suffix" />
     </div>
   </label>
@@ -70,8 +64,8 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   type: 'text',
   placeholder: '',
   disabled: false,
-  size: 'sm',
-  color: 'base',
+  size: 'md',
+  color: 'neutral',
   autocomplete: 'off',
 })
 const model = defineModel<string | number | undefined>('modelValue', {
@@ -146,8 +140,6 @@ const inputSizeClass = computed(() => {
 const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
-    case 'base':
-      return ''
     case 'neutral':
       return 'li-input-neutral'
     case 'primary':
@@ -165,14 +157,16 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'li-input-error'
     default:
-      return ''
+      return 'li-input-neutral'
   }
 })
 
-const slotTextColorClass = computed(() => {
+const textClass = computed(() => {
+  return [textColor.value, textColorOpacity.value]
+})
+
+const textColor = computed(() => {
   switch (props.color) {
-    case 'base':
-      return 'text-base-content'
     case 'neutral':
       return 'text-neutral'
     case 'primary':
@@ -190,8 +184,12 @@ const slotTextColorClass = computed(() => {
     case 'error':
       return 'text-error'
     default:
-      return 'text-base-content'
+      return 'text-neutral'
   }
+})
+
+const textColorOpacity = computed(() => {
+  return props.disabled ? 'opacity-60' : ''
 })
 
 // 计算当前输入的长度
