@@ -4,8 +4,8 @@
 ## 尺寸
 
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
-> :::demo textInput/size
-> :::
+:::demo textInput/size
+:::
 
 ## 禁用状态
 
@@ -14,11 +14,13 @@
 
 ## 输入类型
 
-> 为了更好的浏览器补全，支持以下类型
+> 为了更好的浏览器补全，支持以下类型：
 >
-> `text`， `password`， `email`， `url`， `tel`， `search`
-> :::demo textInput/type
-> :::
+> `TextInput` 上可用于任何**文本类型**
+> 
+> 如 `text`、`password`、`email`、`number`、`tel`、`url`、`search`
+:::demo textInput/type
+:::
 
 ## 最大长度
 
@@ -27,16 +29,16 @@
 ## 使用插槽
 
 > 通过 `prefix` 和 `suffix` 来设置前后插槽
-> :::demo textInput/slot
-> :::
+:::demo textInput/slot
+:::
 
 ## color颜色
 
 > 通过 `color` 来设置颜色
 >
 > 可选值 `[base,neutral,primary,secondary,accent,info,success,warning,error] `
-> :::demo textInput/color
-> :::
+:::demo textInput/color
+:::
 
 ## API
 

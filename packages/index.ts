@@ -3,7 +3,7 @@ import './assets/css/tailwind.css'
 // 类型导出
 export type { DrawerRef, DrawerDirection } from './Drawer'
 export type { QueueItemRef, QueuePosition, QueueItemOptions } from './Queue'
-export type { TextInputSize, TextInputColor } from './TextInput'
+export type { TextInputSize, TextInputColor, TextInputType } from './TextInput'
 export type { TextareaSize, TextareaColor } from './Textarea'
 export type { NumberInputSize, NumberInputColor } from './NumberInput'
 export type { FormRef } from './Form'

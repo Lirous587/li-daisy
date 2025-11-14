@@ -11,8 +11,10 @@ export type TextInputColor =
   | 'warning'
   | 'error'
 
+export type TextInputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search'
+
 export interface TextInputProps {
-  type?: 'text' | 'password' | 'email' | 'url' | 'tel' | 'search'
+  type?: TextInputType
   placeholder?: string
   disabled?: boolean
   maxlength?: number

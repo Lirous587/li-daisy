@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { TextInput, type TextInputColor } from 'li-daisy'
+
 import { ref } from 'vue'
 
 const colors = ref<TextInputColor[]>([

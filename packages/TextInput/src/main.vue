@@ -1,78 +1,63 @@
 <template>
-  <div :class="props.disabled ? '!cursor-not-allowed' : ''">
-    <!-- input -->
-    <label
-      class="li-input flex-1 overflow-hidden relative w-full select-none"
-      :class="[
-        inputSizeClass,
-        inputColorClass,
-        hasPrefix ? '!pl-0' : '',
-        hasSuffix ? '!pr-0' : '',
-        props.disabled ? '!cursor-not-allowed pointer-events-none' : '',
-      ]"
+  <!-- input -->
+  <label class="li-input select-none" :class="[inputSizeClass, inputColorClass]">
+    <!-- prefix -->
+    <div
+      v-if="hasPrefix"
+      class="h-full flex items-center justify-center"
+      :class="slotTextColorClass"
     >
-      <div
-        v-if="props.disabled"
-        class="absolute inset-0 bg-base-300/70 z-1 !cursor-not-allowed"
-      ></div>
+      <slot name="prefix" />
+    </div>
 
-      <!-- prefix -->
-      <div
-        v-if="hasPrefix"
-        class="h-full flex items-center justify-center border-r px-2"
-        :class="[slotBorderClass, slotBgClass, slotTextColorClass]"
-      >
-        <slot name="prefix" />
-      </div>
+    <input
+      ref="inputRef"
+      v-model="model"
+      :type="passwordFieldType"
+      :placeholder="placeholder"
+      :maxlength="maxlength"
+      :disabled="props.disabled"
+      class="grow"
+      :class="props.disabled ? '!cursor-not-allowed' : ''"
+      :autocomplete="props.autocomplete"
+      @blur="handleBlur"
+      @input="handleInput"
+      @focus="handleFocus"
+    />
 
-      <input
-        ref="inputRef"
-        v-model="model"
-        :type="passwordFieldType"
-        :placeholder="placeholder"
-        :maxlength="maxlength"
-        :disabled="props.disabled"
-        :class="props.disabled ? '!cursor-not-allowed' : ''"
-        :autocomplete="props.autocomplete"
-        @blur="handleBlur"
-        @input="handleInput"
-        @focus="handleFocus"
-      />
+    <!-- eye -->
+    <div
+      v-if="props.type === 'password' && isEyeIconShow"
+      class="li-join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+      @mousedown.prevent="togglePasswordVisibility"
+    >
+      <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
+      <EyeSlashIcon v-else class="w-4 h-4" />
+    </div>
 
-      <!-- eye -->
-      <div
-        v-if="props.type === 'password' && isEyeIconShow"
-        class="li-join-item flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
-        @mousedown.prevent="togglePasswordVisibility"
-      >
-        <EyeIcon v-if="isPasswordVisible" class="w-4 h-4" />
-        <EyeSlashIcon v-else class="w-4 h-4" />
-      </div>
+    <!-- search -->
+    <div
+      v-if="props.type === 'search' && isXIconShow"
+      class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
+      @mousedown.prevent="clearSearch"
+    >
+      <XMarkIcon class="w-4 h-4" />
+    </div>
 
-      <!-- search -->
-      <div
-        v-if="props.type === 'search' && isXIconShow"
-        class="flex items-center text-base-content/70 hover:text-base-content cursor-pointer px-1 shrink-0"
-        @mousedown.prevent="clearSearch"
-      >
-        <XMarkIcon class="w-4 h-4" />
-      </div>
+    <!-- counter -->
+    <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
+      {{ currentLength }}/{{ props.maxlength }}
+    </div>
 
-      <!-- counter -->
-      <div v-if="shouldShowCounter" class="flex items-center text-base-content px-1">
-        {{ currentLength }}/{{ props.maxlength }}
-      </div>
-
-      <!-- suffix -->
-      <div
-        v-if="hasSuffix"
-        class="h-full flex items-center justify-center border-l px-2"
-        :class="[slotBorderClass, slotBgClass, slotTextColorClass]"
-      >
-        <slot name="suffix" />
-      </div>
-    </label>
-  </div>
+    <!-- suffix -->
+    <div
+      v-if="hasSuffix"
+      class="h-full flex items-center justify-center"
+      :class="slotTextColorClass"
+    >
+      <slot name="suffix" />
+    </div>
+  </label>
 </template>
 
 <script lang="ts" setup>
@@ -89,7 +74,7 @@ const props = withDefaults(defineProps<TextInputProps>(), {
   color: 'base',
   autocomplete: 'off',
 })
-const model = defineModel<string | undefined>('modelValue', {
+const model = defineModel<string | number | undefined>('modelValue', {
   required: true,
 })
 
@@ -162,7 +147,7 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'li-input-base'
+      return ''
     case 'neutral':
       return 'li-input-neutral'
     case 'primary':
@@ -180,58 +165,7 @@ const inputColorClass = computed(() => {
     case 'error':
       return 'li-input-error'
     default:
-      return 'li-input-base'
-  }
-})
-
-const slotBorderClass = computed(() => {
-  if (props.disabled) return 'border-none'
-  switch (props.color) {
-    case 'base':
-      return 'border-base-300'
-    case 'neutral':
-      return 'border-neutral'
-    case 'primary':
-      return 'border-primary'
-    case 'secondary':
-      return 'border-secondary'
-    case 'accent':
-      return 'border-accent'
-    case 'info':
-      return 'border-info'
-    case 'success':
-      return 'border-success'
-    case 'warning':
-      return 'border-warning'
-    case 'error':
-      return 'border-error'
-    default:
-      return 'border-base-300'
-  }
-})
-
-const slotBgClass = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return 'bg-base-200'
-    case 'neutral':
-      return 'bg-neutral/10'
-    case 'primary':
-      return 'bg-primary/10'
-    case 'secondary':
-      return 'bg-secondary/10'
-    case 'accent':
-      return 'bg-accent/10'
-    case 'info':
-      return 'bg-info/10'
-    case 'success':
-      return 'bg-success/10'
-    case 'warning':
-      return 'bg-warning/10'
-    case 'error':
-      return 'bg-error/10'
-    default:
-      return 'bg-base-200'
+      return ''
   }
 })
 
@@ -270,21 +204,3 @@ const shouldShowCounter = computed<boolean>(() => {
   return props.maxlength !== undefined
 })
 </script>
-
-<style scoped>
-.li-input-base {
-  & {
-    --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
-  }
-  &:focus,
-  &:focus-within {
-    --input-color: var(--color-info);
-  }
-}
-.li-input {
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    outline-color 0.2s;
-}
-</style>
