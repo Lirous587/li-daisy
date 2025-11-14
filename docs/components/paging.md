@@ -1,7 +1,14 @@
 # Paging分页
 > 用于对大量数据进行分页展示
 
-:::demo paging/dev
+
+## 分页数表示
+> 分页组件支持两种方式指定总页数：
+> 1. 直接通过 `pages` 属性指定总页数
+> 2. 通过 `total` 和 `page-size` 属性自动计算总页数
+> 
+> 若同时指定，**前者**优先级更高
+:::demo paging/compute
 :::
 
 ## 尺寸
@@ -77,6 +84,8 @@
 |       属性值        |            说明            |            类型            | 默认值  |
 | :-----------------: | :------------------------: | :------------------------: | :-----: |
 |        pages        |          分页总数          |          `number`          |    -    |
+|        total        |         数据总条数         |          `number`          |    -    |
+|      page-size      |        每页显示条数        |          `number`          |    -    |
 |        size         |            尺寸            |        `PagingSize`        | `'md'`  |
 |        color        |            颜色            |       `PagingColor`        | `base`  |
 |        soft         |       是否使用柔和色       |         `boolean`          | `true`  |

@@ -12,7 +12,12 @@ export type PagingColor =
   | 'error'
 
 export interface PagingProps {
-  pages: number
+  // 方式一:直接传页数
+  pages?: number
+  // 方式二:传总数和每页条数
+  total?: number
+  pageSize?: number
+
   size?: PagingSize
   color?: PagingColor
   soft?: boolean

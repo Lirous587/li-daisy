@@ -3,14 +3,16 @@
     <!-- 明确的上一页链接 (如果不在第一页) -->
     <a v-if="safeCurrentPage > 1" :href="generateSeoHref(safeCurrentPage - 1)">Previous Page</a>
     <!-- 明确的下一页链接 (如果不在最后一页) -->
-    <a v-if="safeCurrentPage < pages" :href="generateSeoHref(safeCurrentPage + 1)">Next Page</a>
+    <a v-if="safeCurrentPage < totalPages" :href="generateSeoHref(safeCurrentPage + 1)"
+      >Next Page</a
+    >
   </div>
 
   <div
     v-if="pageConfim()"
     v-bind="$attrs"
     class="flex cursor-pointer select-none font-mono relative *:border-y *:border-x li-join"
-    :class="[props.hideOnSinglePage && props.pages === 1 ? 'hidden' : '']"
+    :class="[props.hideOnSinglePage && totalPages === 1 ? 'hidden' : '']"
   >
     <!-- last -->
     <button
@@ -40,7 +42,7 @@
       class="li-btn li-btn-square li-join-item"
       :class="[btnSize, btnColor, btnSoft]"
       :disabled="ifMax"
-      @click="changePage(Math.min(pages, safeCurrentPage + 1))"
+      @click="changePage(Math.min(totalPages, safeCurrentPage + 1))"
     >
       <ArrowRightIcon class="m-auto h-3 w-3" />
     </button>
@@ -57,7 +59,6 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<PagingProps>(), {
-  pages: 1,
   size: 'md',
   color: 'base',
   soft: true,
@@ -69,6 +70,42 @@ const props = withDefaults(defineProps<PagingProps>(), {
 
 const currentPage = defineModel<number | undefined>('modelValue', {
   required: true,
+})
+
+const totalPages = computed(() => {
+  // 优先使用 pages，但需要验证其有效性
+  if (props.pages) {
+    const pages = Number(props.pages)
+    if (!Number.isInteger(pages) || pages < 1) {
+      console.warn(`Paging: Invalid pages value "${props.pages}", expected positive integer`)
+      return 1
+    }
+    return pages
+  }
+
+  // 根据 total 和 perPage 计算
+  if (props.total !== undefined && props.pageSize !== undefined) {
+    const total = Number(props.total)
+    const perPage = Number(props.pageSize)
+
+    // 验证 total
+    if (!Number.isInteger(total) || total < 0) {
+      console.warn(`Paging: Invalid total value "${props.total}", expected non-negative integer`)
+      return 1
+    }
+
+    // 验证 perPage
+    if (!Number.isInteger(perPage) || perPage < 1) {
+      console.warn(`Paging: Invalid perPage value "${props.pageSize}", expected positive integer`)
+      return 1
+    }
+
+    // 计算总页数
+    return Math.max(1, Math.ceil(total / perPage))
+  }
+
+  // 默认 1 页
+  return 1
 })
 
 const btnSize = computed(() => {
@@ -140,7 +177,7 @@ const ifMin = computed(() => {
 })
 
 const ifMax = computed(() => {
-  return currentPage.value === props.pages ? true : false
+  return currentPage.value === totalPages.value ? true : false
 })
 
 const generateSeoHref = (page: number): string => {
@@ -167,15 +204,15 @@ const offsetValue = computed(() => props.offset)
 const list = ref<PagingItem[]>([])
 
 const pageConfim = (): boolean => {
-  return typeof props.pages === 'number'
+  return typeof totalPages.value === 'number'
 }
 
 const initList = (): PagingItem[] => {
   if (!pageConfim()) return []
 
   // 页数较少时直接返回所有页码
-  if (props.pages <= 3 + offsetValue.value * 2) {
-    return Array.from({ length: props.pages }, (_, i): PagingItem => {
+  if (totalPages.value <= 3 + offsetValue.value * 2) {
+    return Array.from({ length: totalPages.value }, (_, i): PagingItem => {
       const pageNum = i + 1
       return {
         value: pageNum,
@@ -188,7 +225,7 @@ const initList = (): PagingItem[] => {
 
   // 计算中间部分页码
   const start = Math.max(2, safeCurrentPage.value - offsetValue.value)
-  const end = Math.min(props.pages - 1, safeCurrentPage.value + offsetValue.value)
+  const end = Math.min(totalPages.value - 1, safeCurrentPage.value + offsetValue.value)
 
   // 前省略号跳转
   if (start > 2) {
@@ -202,26 +239,30 @@ const initList = (): PagingItem[] => {
   }
 
   // 后省略号跳转
-  if (end < props.pages - 1) {
-    const jumpTarget = Math.min(props.pages, safeCurrentPage.value + offsetValue.value + 1)
+  if (end < totalPages.value - 1) {
+    const jumpTarget = Math.min(totalPages.value, safeCurrentPage.value + offsetValue.value + 1)
     result.push({ value: '...', page: jumpTarget })
   }
 
   // 添加最后一页
-  result.push({ value: props.pages, page: props.pages })
+  result.push({ value: totalPages.value, page: totalPages.value })
 
   return result
 }
 
-watch([() => currentPage.value, () => props.offset, () => props.pages], () => {
-  list.value = initList()
-})
+watch(
+  [() => currentPage.value, () => props.offset, () => totalPages.value],
+  () => {
+    list.value = initList()
+  },
+  { immediate: true }
+)
 
 // 确保ssr渲染
 list.value = initList()
 
 const changePage = (page: number) => {
-  console.log(1)
+  if (page === currentPage.value) return
 
   emit('change', page)
   currentPage.value = page
@@ -229,7 +270,7 @@ const changePage = (page: number) => {
 
 const exposeObject: PagingRef = {
   change: changePage,
-  pages: props.pages,
+  pages: totalPages.value,
   currentPage: safeCurrentPage.value,
 }
 
