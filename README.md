@@ -21,7 +21,7 @@
 10. `Notification` ✅
 11. `Table` ✅
 12. `Popover` ✅
-13. `Popover` ✅
+13. `Popconfirm` ✅
 14. `loading` ✅
 15. `Queue` ✅
 16. `Message` ✅
