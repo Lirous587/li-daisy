@@ -1,56 +1,46 @@
 <template>
-  <div :class="props.disabled ? '!cursor-not-allowed' : ''">
-    <!-- input -->
-    <label
-      class="li-input flex-1 overflow-hidden relative !px-0 w-full select-none"
-      :class="[sizeClass, inputColorClass]"
+  <div class="li-join" :class="props.disabled ? '!cursor-not-allowed' : ''">
+    <!-- reduce -->
+    <button
+      class="li-btn li-btn-outline li-btn-square li-join-item"
+      :disabled="props.disabled"
+      :class="[operationBtnSize, operationBtnColor]"
     >
-      <div
-        v-if="props.disabled"
-        class="absolute inset-0 bg-base-300/70 z-1 !cursor-not-allowed"
-      ></div>
+      <MinusIcon class="p-[25%]" @click="decrease" />
+    </button>
 
-      <!-- reduce -->
-      <div
-        class="h-full flex items-center justify-center cursor-pointer border-r aspect-square select-none"
-        :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
-        @click="decrease"
-      >
-        -
-      </div>
-
-      <input
-        ref="inputRef"
-        v-model="model"
-        type="number"
-        :disabled="props.disabled"
-        :class="[inputColorClass, props.disabled ? '!cursor-not-allowed' : '']"
-        :placeholder="props.placeholder"
-        :min="props.min"
-        :max="props.max"
-      />
-
-      <!-- plus -->
-      <div
-        class="h-full flex items-center justify-center cursor-pointer border-l aspect-square select-none"
-        :class="[operationBorderClass, operationBgClass, operationTextColorClass]"
-        @click="increase"
-      >
-        +
-      </div>
-    </label>
+    <input
+      ref="inputRef"
+      v-model="model"
+      type="number"
+      :disabled="props.disabled"
+      class="li-input li-join-item shadow-none is-active"
+      :class="[inputSize, inputColor]"
+      :placeholder="props.placeholder"
+      :min="props.min"
+      :max="props.max"
+    />
+    <!-- plus -->
+    <button
+      class="li-btn li-btn-outline li-btn-square li-join-item"
+      :disabled="props.disabled"
+      :class="[operationBtnSize, operationBtnColor]"
+    >
+      <PlusIcon class="p-[25%]" @click="increase" />
+    </button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { NumberInputProps } from './types'
 import { computed, onMounted, ref, watch } from 'vue'
+import { PlusIcon, MinusIcon } from '@heroicons/vue/24/outline'
 
 const props = withDefaults(defineProps<NumberInputProps>(), {
   min: 0,
   placeholder: '',
   disabled: false,
-  size: 'sm',
+  size: 'md',
   color: 'base',
 })
 
@@ -81,7 +71,7 @@ watch(model, newValue => {
 
 const inputRef = ref<HTMLInputElement>()
 
-const inputColorClass = computed(() => {
+const inputColor = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
@@ -107,83 +97,7 @@ const inputColorClass = computed(() => {
   }
 })
 
-const operationBorderClass = computed(() => {
-  if (props.disabled) return 'border-none'
-  switch (props.color) {
-    case 'base':
-      return 'border-base'
-    case 'neutral':
-      return 'border-neutral'
-    case 'primary':
-      return 'border-primary'
-    case 'secondary':
-      return 'border-secondary'
-    case 'accent':
-      return 'border-accent'
-    case 'info':
-      return 'border-info'
-    case 'success':
-      return 'border-success'
-    case 'warning':
-      return 'border-warning'
-    case 'error':
-      return 'border-error'
-    default:
-      return 'border-base'
-  }
-})
-
-const operationBgClass = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return 'bg-base-300'
-    case 'neutral':
-      return 'bg-neutral/10'
-    case 'primary':
-      return 'bg-primary/10'
-    case 'secondary':
-      return 'bg-secondary/10'
-    case 'accent':
-      return 'bg-accent/10'
-    case 'info':
-      return 'bg-info/10'
-    case 'success':
-      return 'bg-success/10'
-    case 'warning':
-      return 'bg-warning/10'
-    case 'error':
-      return 'bg-error/10'
-    default:
-      return 'bg-base-300'
-  }
-})
-
-const operationTextColorClass = computed(() => {
-  switch (props.color) {
-    case 'base':
-      return 'text-base-content'
-    case 'neutral':
-      return 'text-neutral'
-    case 'primary':
-      return 'text-primary'
-    case 'secondary':
-      return 'text-secondary'
-    case 'accent':
-      return 'text-accent'
-    case 'info':
-      return 'text-info'
-    case 'success':
-      return 'text-success'
-    case 'warning':
-      return 'text-warning'
-    case 'error':
-      return 'text-error'
-    default:
-      return 'text-base-content'
-  }
-})
-
-const sizeClass = computed(() => {
+const inputSize = computed(() => {
   switch (props.size) {
     case 'xs':
       return 'li-input-xs'
@@ -197,6 +111,49 @@ const sizeClass = computed(() => {
       return 'li-input-xl'
     default:
       return 'li-input-sm'
+  }
+})
+
+const operationBtnSize = computed(() => {
+  switch (props.size) {
+    case 'xs':
+      return 'li-btn-xs'
+    case 'sm':
+      return 'li-btn-sm'
+    case 'md':
+      return 'li-btn-md'
+    case 'lg':
+      return 'li-btn-lg'
+    case 'xl':
+      return 'li-btn-xl'
+    default:
+      return 'li-btn-sm'
+  }
+})
+
+const operationBtnColor = computed(() => {
+  if (props.disabled) return ''
+  switch (props.color) {
+    case 'base':
+      return 'li-input-base'
+    case 'neutral':
+      return 'li-btn-neutral'
+    case 'primary':
+      return 'li-btn-primary'
+    case 'secondary':
+      return 'li-btn-secondary'
+    case 'accent':
+      return 'li-btn-accent'
+    case 'info':
+      return 'li-btn-info'
+    case 'success':
+      return 'li-btn-success'
+    case 'warning':
+      return 'li-btn-warning'
+    case 'error':
+      return 'li-btn-error'
+    default:
+      return 'li-input-base'
   }
 })
 
@@ -219,6 +176,10 @@ const increase = () => {
   currentValue += 1
   model.value = currentValue
 }
+
+onMounted(() => {
+  model.value = props.min
+})
 </script>
 
 <style scoped>
@@ -227,18 +188,13 @@ const increase = () => {
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
   }
   &:focus,
-  &:focus-within {
+  &:focus-within,
+  &.is-active {
     --input-color: var(--color-info);
   }
 }
-.li-input {
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    outline-color 0.2s;
-}
-
-.border-base {
-  border-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
+.li-input-base.is-active {
+  --li-input-color: var(--color-base-content);
+  z-index: 1;
 }
 </style>
