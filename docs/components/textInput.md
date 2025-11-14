@@ -44,14 +44,14 @@
 
 ### Attributes
 
-|   属性值    |     说明     |         类型         |  默认值  |
-| :---------: | :----------: | :------------------: | :------: |
-|    type     |     类型     | `浏览器原生type属性` | `'text'` |
-|    size     |     尺寸     |   `TextInputSize`    |  `'sm'`  |
-| placeholder |    占位符    |       `string`       |    -     |
-|  disabled   |   是否禁用   |      `boolean`       | `false`  |
-|  maxlength  | 最大文本长度 |       `number`       |    -     |
-|    color    |     颜色     |   `TextInputColor`   |  `base`  |
+|   属性值    |     说明     |       类型       |  默认值  |
+| :---------: | :----------: | :--------------: | :------: |
+|    type     |     类型     | `TextInputType`  | `'text'` |
+|    size     |     尺寸     | `TextInputSize`  |  `'sm'`  |
+| placeholder |    占位符    |     `string`     |    -     |
+|  disabled   |   是否禁用   |    `boolean`     | `false`  |
+|  maxlength  | 最大文本长度 |     `number`     |    -     |
+|    color    |     颜色     | `TextInputColor` |  `base`  |
 
 ### Slots
 

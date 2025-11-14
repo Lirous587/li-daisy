@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { TextInput } from '../../../packages'
+import { TextInput } from 'li-daisy'
 import { ref } from 'vue'
 
 const text = ref('')

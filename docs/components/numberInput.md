@@ -4,8 +4,8 @@
 ## 尺寸
 
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`
-> :::demo numberInput/size
-> :::
+:::demo numberInput/size
+:::
 
 ## 禁用状态
 

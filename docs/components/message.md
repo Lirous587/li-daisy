@@ -6,8 +6,8 @@
 > 通过 `type` 来设置消息类型，可选值有 `info` `success` `warning` `error`
 >
 > `plain` 可设置消息是否取消背景色
-> :::demo message/type
-> :::
+:::demo message/type
+:::
 
 ## 关闭图标
 

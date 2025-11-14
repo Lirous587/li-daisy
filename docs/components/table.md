@@ -10,8 +10,8 @@
 > 可以使用 `width` 属性来定义列宽的，类型为 `number`，单位为 `px`
 >
 > `align` 和 `header-align` 来定义对齐方式
-> :::demo table/basic
-> :::
+:::demo table/basic
+:::
 
 ## 自定义表头
 
@@ -24,8 +24,8 @@
 
 > 通过 `TableColumn` 下的 `default` 插槽来自定义表头，其内可以提取 `row` 和 `index` 两个属性
 > 使用 `TableColumnDefaultScope<type>` 可以实现ts提示
-> :::demo table/column
-> :::
+::demo table/column
+::
 
 ## 固定表头
 
@@ -41,25 +41,25 @@
 > 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
 >
 > 设置 `select` 之后，选择列默认为固定列
-> :::demo table/pinColumn
-> :::
+::demo table/pinColumn
+::
 
 ## 展开行
 
 > `TableColumn` 组件设置 `type` 为 `expand` 即可设置展开行
 >
 > 该插槽暴露 `row` `index` 两个属性
-> :::demo table/expand
-> :::
+::demo table/expand
+::
 
 ## 选择列
 
 > `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
 >
 > 当全选或选择列时会触发 `select-change` 回调
-> :::tip 有序排序
+::tip 有序排序
 > 选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
-> :::
+::
 
 :::demo table/select
 :::

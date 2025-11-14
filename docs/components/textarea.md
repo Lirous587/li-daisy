@@ -6,8 +6,8 @@
 > 通过 `size` 来设置尺寸大小 可选值有 `xs` `sm` `md` `lg` `xl`，默认值是 `md`
 >
 > 与 `daisyUI` 不同的是此处尺寸不会影响 `textarea` 这一元素的高度,影响的是 `textarea` 内字体大小属性
-> :::demo textarea/size
-> :::
+::demo textarea/size
+::
 
 ## 禁用状态
 
@@ -23,8 +23,8 @@
 > 通过 `min-rows` `max-rows` 来分别设置最小和最大行数
 >
 > 行数超出 `max-rows` 时将显示滚动条
-> :::demo textarea/rows
-> :::
+::demo textarea/rows
+::
 
 ## color颜色
 

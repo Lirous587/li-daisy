@@ -11,8 +11,8 @@
 ## 设置trigger
 
 > 可选值有 `hover` 和 `click`，默认为 `hover`
-> :::demo popover/trigger
-> :::
+:::demo popover/trigger
+:::
 
 ## 设置位置
 

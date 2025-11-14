@@ -21,8 +21,8 @@
 > 考虑到一些情况下可能需要更为灵活的排列方式 故此 `FormItem` 也可以设置 `align` 属性来修改对齐方式，该项优先级更大
 >
 > 两者的 `align` 可选值有 `horizontal` `vertical` ，默认为 `horizontal`
-> :::demo form/align
-> :::
+:::demo form/align
+:::
 
 ## 使用yup验证
 
@@ -35,8 +35,8 @@
 > 同理用户可以自行定义一系列基础配置，比如基础验证消息中文翻译，`i18n` 等
 >
 > 下面将演示如何去使用 `yup` ，以及如何实现一个简单的配置
-> :::demo form/yup
-> :::
+:::demo form/yup
+:::
 
 ## 例子
 
@@ -47,8 +47,8 @@
 > 校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调
 >
 > 该方法只校验单个字段，失败时智慧展示**所有字段**的错误提示
-> :::demo form/register
-> :::
+:::demo form/register
+:::
 
 ### 验证单个字段
 
@@ -57,8 +57,8 @@
 > 校验通过时进入 `then` 回调，校验失败时进入 `catch` 回调，并可获取错误信息
 >
 > 该方法只校验单个字段，失败时智慧展示**指定字段**的错误提示
-> :::demo form/validateField
-> :::
+:::demo form/validateField
+:::
 
 
 ## 检测验证是否通过

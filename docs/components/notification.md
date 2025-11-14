@@ -43,6 +43,3 @@
 | duration      | `number`               | `2000`      | 自动消失时间（毫秒），低于1000无效 |
 | autoClose     | `boolean`              | `true`      | 是否自动关闭                       |
 | showCloseIcon | `boolean`              | `false`     | 是否显示右上角关闭图标             |
-
-git mv ./PinHeader.vue ./tempClose.vue
-git mv ./tempClose.vue ./pinHeader.vue
