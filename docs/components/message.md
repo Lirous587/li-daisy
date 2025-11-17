@@ -34,6 +34,6 @@
 | **以下为options配置** |                    |          |                                    |
 | type                  | `NotificationType` | `'info'` | 消息类型                           |
 | plain                 | `boolean`          | `false`  | 是否取消背景色                     |
-| duration              | `number`           | `2000`   | 自动消失时间（毫秒），低于1000无效 |
+| duration              | `number`           | `2000`   | 自动消失时间（毫秒）低于1000无效 |
 | autoClose             | `boolean`          | `true`   | 是否自动关闭                       |
 | showCloseIcon         | `boolean`          | `false`  | 是否显示右侧关闭图标               |

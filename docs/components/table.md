@@ -16,7 +16,6 @@
 ## 自定义表头
 
 > 通过 `TableColumn` 下的 `header` 插槽来自定义表头，其内可以提取 `label` 和 `prop` 两个属性
-
 :::demo table/header
 :::
 
@@ -30,7 +29,6 @@
 ## 固定表头
 
 > 为 `Table` 设置高度后，y轴溢出即可体现固定表头的效果
-
 :::demo table/pinHeader
 :::
 
@@ -41,25 +39,25 @@
 > 被设置了 `pin-col` 的TableColumn，其布局不再按照简单的先后顺序来排列，而是将 `left` 依次排在前列，`right` 依次排在后列
 >
 > 设置 `select` 之后，选择列默认为固定列
-::demo table/pinColumn
-::
+:::demo table/pinColumn
+:::
 
 ## 展开行
 
 > `TableColumn` 组件设置 `type` 为 `expand` 即可设置展开行
 >
 > 该插槽暴露 `row` `index` 两个属性
-::demo table/expand
-::
+:::demo table/expand
+:::
 
 ## 选择列
 
 > `select` 来设置表格是否可选，`selectable` 来设置可选列的回调函数
 >
 > 当全选或选择列时会触发 `select-change` 回调
-::tip 有序排序
-> 选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
-::
+:::tip 有序排序
+选择之后的顺序**为原有列表顺序**,而**不是选择顺序**
+:::
 
 :::demo table/select
 :::
@@ -67,7 +65,6 @@
 ## 溢出提示
 
 > 当表格内容过长时，可设置 `tooltip` 来配置溢出提示
-
 :::demo table/tooltip
 :::
 
