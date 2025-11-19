@@ -18,5 +18,5 @@ import { ref } from 'vue'
 
 const sizes = ref<NumberInputSize[]>(['xs', 'sm', 'md', 'lg', 'xl'])
 
-const numberValue = ref<number>(0)
+const numberValue = ref<number>(10)
 </script>

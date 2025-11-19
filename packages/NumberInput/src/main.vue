@@ -5,8 +5,10 @@
       class="li-btn li-btn-outline li-btn-square li-join-item"
       :disabled="props.disabled"
       :class="[operationBtnSize, operationBtnColor]"
+      aria-label="decrease"
+      @click="decrease"
     >
-      <MinusIcon class="p-[25%]" @click="decrease" />
+      <MinusIcon class="p-[25%]" />
     </button>
 
     <input
@@ -25,8 +27,10 @@
       class="li-btn li-btn-outline li-btn-square li-join-item"
       :disabled="props.disabled"
       :class="[operationBtnSize, operationBtnColor]"
+      aria-label="increase"
+      @click="increase"
     >
-      <PlusIcon class="p-[25%]" @click="increase" />
+      <PlusIcon class="p-[25%]" />
     </button>
   </div>
 </template>
@@ -48,26 +52,36 @@ const model = defineModel<number | undefined>('modelValue', {
   required: true,
 })
 
+const clamp = (val: number | undefined, min?: number, max?: number) => {
+  if (!Number.isFinite(Number(val))) return val
+  let v = Number(val)
+  if (min !== undefined && v < min) v = min
+  if (max !== undefined && v > max) v = max
+  return v
+}
+
 onMounted(() => {
-  model.value = props.min
+  // 如果有初始值，做边界限制；否则设置为 props.min
+  if (model.value === undefined || model.value === null || !Number.isFinite(Number(model.value))) {
+    model.value = props.min
+    return
+  }
+  const clamped = clamp(model.value, props.min, props.max)
+  if (clamped !== model.value) model.value = clamped as number
 })
 
-watch(model, newValue => {
-  if (props.min) {
-    if (newValue) {
-      if (newValue <= props.min) {
-        model.value = props.min
-      }
+watch(
+  model,
+  newValue => {
+    // 若不是数字则不处理
+    if (newValue === undefined || newValue === null) return
+    const clamped = clamp(newValue, props.min, props.max)
+    if (clamped !== newValue) {
+      model.value = clamped as number
     }
-  }
-  if (props.max) {
-    if (newValue) {
-      if (newValue >= props.max) {
-        model.value = props.max
-      }
-    }
-  }
-})
+  },
+  { immediate: false }
+)
 
 const inputRef = ref<HTMLInputElement>()
 
@@ -158,28 +172,16 @@ const operationBtnColor = computed(() => {
 })
 
 const decrease = () => {
-  let currentValue = model.value || 0
-  // 确保不小于最小值
-  if (props.min && currentValue <= props.min) {
-    return
-  }
-  currentValue -= 1
-  model.value = currentValue
+  const currentValue = Number(model.value) || 0
+  if (props.min !== undefined && currentValue <= props.min) return
+  model.value = currentValue - 1
 }
 
 const increase = () => {
-  let currentValue = model.value || 0
-  // 确保不大于最大值
-  if (props.max && currentValue >= props.max) {
-    return
-  }
-  currentValue += 1
-  model.value = currentValue
+  const currentValue = Number(model.value) || 0
+  if (props.max !== undefined && currentValue >= props.max) return
+  model.value = currentValue + 1
 }
-
-onMounted(() => {
-  model.value = props.min
-})
 </script>
 
 <style scoped>

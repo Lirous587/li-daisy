@@ -6,8 +6,6 @@
       v-model="numberValue"
       class="w-64 mx-auto"
       :color="color"
-      :min="0"
-      :max="10"
       :disabled="true"
     />
   </div>
@@ -29,5 +27,5 @@ const colors = ref<NumberInputColor[]>([
   'error',
 ])
 
-const numberValue = ref<number>(0)
+const numberValue = ref<number>(10)
 </script>
