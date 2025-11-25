@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import tailwindcssPlugin from '@tailwindcss/postcss'
 import { postcssIsolateStyles } from 'vitepress'
-
+import path from 'path'
 import { demoBlockPlugin } from './plugins/demo'
 
 // https://vitepress.dev/reference/site-config
@@ -134,6 +134,15 @@ export default defineConfig({
             includeFiles: [/vp-doc\.css/, /base\.css/],
           }),
         ],
+      },
+    },
+    resolve: {
+      alias: {
+        // 1. 精确匹配主入口，末尾添加 '$'
+        'li-daisy$': path.resolve(__dirname, '../../packages/index.ts'),
+
+        // 2. 为 style.css 单独创建别名，指向其源文件
+        'li-daisy/style.css': path.resolve(__dirname, '../../packages/assets/css/tailwind.css'),
       },
     },
   },
