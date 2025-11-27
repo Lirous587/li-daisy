@@ -26,34 +26,78 @@ export default defineConfig({
       {},
       `
         (function() {
-          document.documentElement.classList.add('disable-transitions');
-
           try {
+            // 1. 定义遮罩样式 (使用伪元素实现，无需额外 DOM)
+            const maskStyle = document.createElement('style');
+            maskStyle.innerHTML = \`
+              html.hydrating {
+                overflow: hidden !important;
+              }
+              
+              /* 全屏遮罩背景 */
+              html.hydrating::before {
+                content: '';
+                position: fixed;
+                z-index: 99999;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--bg-color, #fff);
+                transition: opacity 0.3s ease-out;
+              }
+
+              /* 加载转圈圈 */
+              html.hydrating::after {
+                content: '';
+                position: fixed;
+                z-index: 99999;
+                top: 50%;
+                left: 50%;
+                width: 40px;
+                height: 40px;
+                margin: -20px 0 0 -20px;
+                border: 4px solid var(--border-color, #e5e7eb);
+                border-top-color: var(--primary-color, #3b82f6);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+              }
+
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            \`;
+            document.head.appendChild(maskStyle);
+
+            // 2. 检测主题并设置 CSS 变量供遮罩使用
             const theme = localStorage.getItem('li-daisy-theme') || 
               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'li-dark' : 'li-light');
             
+            // 设置主题颜色变量 (硬编码以匹配您的 daisyui 配置)
+            const isDark = theme === 'li-dark';
+            const bgColor = isDark ? 'oklch(25.33% 0.016 252.42)' : '#ffffff';
+            const borderColor = isDark ? '#374151' : '#e5e7eb';
+            const primaryColor = isDark ? 'oklch(58% 0.233 277.117)' : 'oklch(45% 0.24 277.023)';
+
+            document.documentElement.style.setProperty('--bg-color', bgColor);
+            document.documentElement.style.setProperty('--border-color', borderColor);
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
+
+            // 3. 立即应用遮罩类
+            document.documentElement.classList.add('hydrating');
+
+            // 4. 常规主题设置
             document.documentElement.setAttribute('data-theme', theme);
-            if (theme === 'li-dark') {
+            if (isDark) {
               document.documentElement.classList.add('dark');
-              const style = document.createElement('style');
-              style.innerHTML = 'html { background-color: oklch(25.33% 0.016 252.42); color: oklch(97.807% 0.029 256.847); }';
-              document.head.appendChild(style);
             }
-
-            const vpTheme = theme === 'li-dark' ? 'dark' : 'auto';
+            
+            const vpTheme = isDark ? 'dark' : 'auto';
             localStorage.setItem('vitepress-theme-appearance', vpTheme);
-          } catch (e) {
-            document.documentElement.setAttribute('data-theme', 'li-light');
-            localStorage.setItem('vitepress-theme-appearance', 'light');
-          }
 
-          window.addEventListener('load', () => {
-            // 使用 setTimeout 将移除类的操作推迟到下一个事件循环
-            // 这能确保浏览器有足够的时间完成最后的渲染
-            setTimeout(() => {
-              document.documentElement.classList.remove('disable-transitions');
-            }, 0);
-          });
+          } catch (e) {
+            console.error('Theme initialization failed', e);
+          }
         })();
       `,
     ],

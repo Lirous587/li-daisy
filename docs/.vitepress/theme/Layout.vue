@@ -66,6 +66,12 @@ provide('toggle-appearance', switchTheme)
 
 onMounted(() => {
   nowTheme.value = getTheme()
+
+  // 移除遮罩
+  // 稍微延迟一小会儿，确保 Vue 已经完成首次渲染并且 CSS 已经生效
+  setTimeout(() => {
+    document.documentElement.classList.remove('hydrating')
+  }, 50)
 })
 </script>
 
