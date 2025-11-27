@@ -23,6 +23,10 @@ export default defineConfig({
             document.documentElement.setAttribute('data-theme', theme);
             if (theme === 'li-dark') {
               document.documentElement.classList.add('dark');
+              // 注入关键样式防止白屏
+              const style = document.createElement('style');
+              style.innerHTML = 'html { background-color: oklch(25.33% 0.016 252.42); color: oklch(97.807% 0.029 256.847); }';
+              document.head.appendChild(style);
             }
 
           // 同步到 VitePress 的主题设置

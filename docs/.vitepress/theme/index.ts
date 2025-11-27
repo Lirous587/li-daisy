@@ -8,9 +8,9 @@ import Layout from './Layout.vue'
 
 // 导入样式
 import '../../../packages/assets/css/tailwind.css'
-import 'li-daisy/style.css'
 import '../theme/css/vitepress.css'
 import '../theme/css/custom.css'
+import 'li-daisy/style.css'
 
 import { loadingDirective } from '../../../packages/'
 
