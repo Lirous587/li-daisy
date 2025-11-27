@@ -66,19 +66,6 @@ provide('toggle-appearance', switchTheme)
 
 onMounted(() => {
   nowTheme.value = getTheme()
-
-  // 移除初始化时注入的样式
-  // 使用双重 requestAnimationFrame 确保在移除前浏览器已经完成了首次渲染
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const noTransitions = document.getElementById('vp-no-transitions')
-      if (noTransitions) noTransitions.remove()
-
-      // 背景色样式也可以移除了，因为此时 CSS 文件应该已经加载完成
-      const darkBg = document.getElementById('vp-dark-bg')
-      if (darkBg) darkBg.remove()
-    })
-  })
 })
 </script>
 

@@ -10,33 +10,50 @@ export default defineConfig({
   description: 'Li-Daisy组件库文档',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    //  注入一个 <style> 块，用于定义禁用过渡的工具类
+    [
+      'style',
+      {},
+      `
+        /* 当这个类存在于 <html> 标签上时，所有元素的过渡效果都将被禁用 */
+        html.disable-transitions * {
+          transition: none !important;
+        }
+      `,
+    ],
     [
       'script',
       {},
       `
         (function() {
+          document.documentElement.classList.add('disable-transitions');
+
           try {
-            // 同步读取并应用主题
             const theme = localStorage.getItem('li-daisy-theme') || 
               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'li-dark' : 'li-light');
             
             document.documentElement.setAttribute('data-theme', theme);
             if (theme === 'li-dark') {
               document.documentElement.classList.add('dark');
-              // 注入关键样式防止白屏
               const style = document.createElement('style');
               style.innerHTML = 'html { background-color: oklch(25.33% 0.016 252.42); color: oklch(97.807% 0.029 256.847); }';
               document.head.appendChild(style);
             }
 
-          // 同步到 VitePress 的主题设置
-          const vpTheme = theme === 'li-dark' ? 'dark' : 'auto';
-          localStorage.setItem('vitepress-theme-appearance', vpTheme);
+            const vpTheme = theme === 'li-dark' ? 'dark' : 'auto';
+            localStorage.setItem('vitepress-theme-appearance', vpTheme);
           } catch (e) {
-            // 降级处理
             document.documentElement.setAttribute('data-theme', 'li-light');
             localStorage.setItem('vitepress-theme-appearance', 'light');
           }
+
+          window.addEventListener('load', () => {
+            // 使用 setTimeout 将移除类的操作推迟到下一个事件循环
+            // 这能确保浏览器有足够的时间完成最后的渲染
+            setTimeout(() => {
+              document.documentElement.classList.remove('disable-transitions');
+            }, 0);
+          });
         })();
       `,
     ],
