@@ -34,7 +34,7 @@
     "lint:docs": "eslint \"docs/examples/**/*.{js,ts,vue}\" --fix",
     "format": "prettier --write packages/ docs/examples",
     "build": "run-s build-only type-check docs:build",
-    "build-only": "vite build && npm run clean-css",
+    "build-only": "node scripts/build-lib.mjs",
     "clean-css": "node scripts/clean-css.mjs",
     "release": "node scripts/release.mjs",
     "dev": "vitepress dev docs",
