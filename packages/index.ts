@@ -1,4 +1,4 @@
-import './assets/css/tailwind.css'
+import './assets/css/index.css'
 
 // 类型导出
 export type { DrawerRef, DrawerDirection } from './Drawer'

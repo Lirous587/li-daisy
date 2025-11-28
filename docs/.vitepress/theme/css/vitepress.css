@@ -20,18 +20,6 @@
     margin-left: auto;
 }
 
-/* .VPNav .VPNavBar {
-    transition: none !important;
-} */
-
-/* button.menu {
-    flex-direction: row !important;
-} */
-
-/* .VPNavBarMenu {
-    flex-direction: row !important;
-} */
-
 .vp-doc table:not(.li-table) {
     table-layout: auto;
     width: 100%;

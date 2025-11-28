@@ -1,7 +1,0 @@
-@import 'tailwindcss';
-@import './daisyui.css';
-@import './input.css';
-@import './scroll.css';
-@import './custom.css';
-
-@custom-variant dark (&:where(.dark, .dark *));

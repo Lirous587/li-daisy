@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@plugin "daisyui" {
+  prefix: 'li-';
+}
+
+
+@custom-variant dark (&:where(.dark, .dark *));
