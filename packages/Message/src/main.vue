@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex items-center gap-x-2 border border-base-300 py-1.5 px-2 rounded-sm bg-base-100 overflow-hidden"
+    class="relative flex items-center gap-x-2 border border-base-300 py-1.5 px-2 rounded-box bg-base-100 overflow-hidden"
   >
     <!-- icon -->
     <div class="flex h-5 items-center">

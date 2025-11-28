@@ -1,5 +1,5 @@
 <template>
-  <div class="li-demo card rounded-lg border overflow-hidden border-base-300" v-bind="$attrs">
+  <div class="li-demo card rounded-box border overflow-hidden border-base-300" v-bind="$attrs">
     <div class="card-body">
       <div class="relative overflow-auto py-4 vp-raw">
         <slot name="source" />

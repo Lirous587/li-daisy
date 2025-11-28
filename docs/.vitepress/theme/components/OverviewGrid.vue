@@ -4,11 +4,11 @@
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"
-      class="card rounded-md !transition-transform duration-300 hover:translate-y-[-3px] hover:bg-base-200 !no-underline"
+      class="card rounded-box transition-transform! duration-300 hover:translate-y-[-3px] hover:bg-base-200 no-underline!"
     >
       <figure class="px-4 pt-4">
         <img
-          class="border-base-content/5 bg-base-300 rounded-lg border dark:opacity-75"
+          class="border-base-content/5 bg-base-300 rounded-box border dark:opacity-75"
           loading="lazy"
           :src="item.img"
           :alt="item.title"

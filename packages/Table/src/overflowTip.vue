@@ -3,7 +3,7 @@
     <template #content>
       <div
         v-show="isOverflowing"
-        class="relative bg-neutral px-1.5 py-0.5 rounded-lg border border-accent text-neutral-content text-sm max-w-sm"
+        class="relative bg-neutral px-1.5 py-0.5 rounded-box border border-accent text-neutral-content text-sm max-w-sm"
       >
         {{ tooltipContent }}
       </div>

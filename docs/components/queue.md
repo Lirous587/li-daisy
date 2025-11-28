@@ -7,9 +7,9 @@
 > **以下是自定义组件部分代码**
 ```vue
 <template>
-  <div class="bg-base-100 shadow-lg rounded-xl border border-base-100 overflow-hidden">
+  <div class="bg-base-100 shadow-lg rounded-box border border-base-100 overflow-hidden">
     <!-- 顶部彩色条 -->
-    <div class="h-1 bg-gradient-to-r from-primary to-secondary"></div>
+    <div class="h-1 bg-linear-to-r from-primary to-secondary"></div>
 
     <!-- 主要内容 -->
     <div class="p-4">

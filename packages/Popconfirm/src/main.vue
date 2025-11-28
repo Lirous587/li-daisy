@@ -14,7 +14,7 @@
     </template>
     <template #content>
       <div
-        class="flex flex-col gap-y-1 px-2 py-2.5 bg-base-100 rounded-md border border-base-300 shadow-lg"
+        class="flex flex-col gap-y-1 px-2 py-2.5 bg-base-100 rounded-box border border-base-300 shadow-lg"
         :style="{ width: popWidth + 'px' }"
       >
         <slot name="title"></slot>
