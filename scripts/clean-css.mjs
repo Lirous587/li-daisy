@@ -12,13 +12,17 @@ if (!fs.existsSync(filePath)) {
   process.exit(1);
 }
 
+// Get initial stats for logging
+const initialStats = fs.statSync(filePath);
+const initialSize = initialStats.size;
+
 let css = fs.readFileSync(filePath, 'utf-8');
 
 // Helper function to remove a block starting with a specific string
 function removeBlock(css, startIdentifier) {
   const startIndex = css.indexOf(startIdentifier);
   if (startIndex === -1) {
-    console.log(`Block '${startIdentifier}' not found.`);
+    // console.log(`Block '${startIdentifier}' not found.`);
     return css;
   }
 
@@ -84,9 +88,21 @@ while (true) {
 }
 
 if (css.length < originalLength) {
-    console.log(`Removed total ${originalLength - css.length} characters.`);
     fs.writeFileSync(filePath, css, 'utf-8');
-    console.log('dist/style.css updated successfully.');
+    
+    // Get final stats
+    const finalStats = fs.statSync(filePath);
+    const finalSize = finalStats.size;
+    const savedBytes = initialSize - finalSize;
+    const savedPercent = ((savedBytes / initialSize) * 100).toFixed(2);
+
+    console.log(`\n✅ CSS Cleaned Successfully!`);
+    console.log(`----------------------------------------`);
+    console.log(`Original Size:  ${(initialSize / 1024).toFixed(2)} KB`);
+    console.log(`Optimized Size: ${(finalSize / 1024).toFixed(2)} KB`);
+    console.log(`Removed:        ${(savedBytes / 1024).toFixed(2)} KB (${savedBytes} bytes)`);
+    console.log(`Reduction:      ${savedPercent}%`);
+    console.log(`----------------------------------------\n`);
 } else {
     console.log('No changes made to dist/style.css');
 }
