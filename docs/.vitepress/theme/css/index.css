@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-  exclude: divider,menu,
+  exclude: divider, menu,
 }
 
 /* 扫描组件库源码 */

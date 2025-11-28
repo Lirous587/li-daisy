@@ -35,7 +35,7 @@
           </div>
 
           <!-- body -->
-          <div class="drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
+          <div class="drawer-body mt-3 px-4 flex-1 overflow-auto no-scrollbar">
             <slot name="body" />
           </div>
         </div>

@@ -17,7 +17,9 @@
   "module": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "style": "./dist/style.css",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist"
   ],

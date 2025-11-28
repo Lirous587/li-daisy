@@ -6,6 +6,7 @@
       </template>
       <template #body>
         <p>这是点击trigger插槽打开的抽屉</p>
+        <div class="h-screen bg-base-300">这是一个较高的元素</div>
       </template>
     </Drawer>
 
@@ -13,6 +14,7 @@
     <Drawer ref="drawerRef" title="抽屉标题">
       <template #body>
         <p>这是使用open方法打开的抽屉</p>
+        <div class="h-screen bg-base-300">这是一个较高的元素</div>
       </template>
     </Drawer>
   </div>

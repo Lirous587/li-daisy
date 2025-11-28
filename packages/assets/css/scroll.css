@@ -1,5 +1,5 @@
 /* 隐藏滚动条但保留滚动功能 */
-@utility no-scrollbar {
+.no-scrollbar {
   & {
     /* Firefox */
     scrollbar-width: none;
@@ -28,7 +28,7 @@
   }
 }
 
-@utility scrollbar-xs {
+.scrollbar-xs {
   & {
     /* Firefox */
     scrollbar-width: thin;
