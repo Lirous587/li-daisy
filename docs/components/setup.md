@@ -69,8 +69,6 @@ npm install li-daisy
 */
 @source "../../../node_modules/li-daisy/dist/**/*.{js,vue}";
 
-/* 同时扫描您自己项目的源文件 */
-@source "./src/**/*.{vue,js,ts,jsx,tsx}";
 
 /* 自定义深色模式变体 */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -84,7 +82,6 @@ npm install li-daisy
 
 - **`@source`**: 这是 Tailwind 4 的核心指令，用于按需生成样式。
   - `../../../node_modules/li-daisy/...`: **此行必须存在**。它会扫描 `li-daisy` 的文件，确保其内部使用的 `btn`, `modal` 等类能被你的项目正确编译。**如果缺少此行，所有 `li-daisy` 组件都将没有样式。**
-  - `./src/...`: 扫描你自己的项目文件，以便你也能在代码中使用 Tailwind 和 daisyUI。
 
 - **`@custom-variant dark`**: 为深色模式定义一个自定义变体，确保主题切换功能正常工作。
 :::
