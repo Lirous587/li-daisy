@@ -1,2 +1,0 @@
-/* 显式声明图层顺序，确保样式优先级正确 */
-@layer base, components, utilities;
