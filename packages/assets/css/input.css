@@ -1,5 +1,6 @@
 /* 移除 input 和 textarea 默认聚焦状态 */
 @layer override {
+
   /* 聚焦状态 */
   .input:focus,
   .input:focus-visible,
@@ -15,22 +16,10 @@
   }
 }
 
-/* 移除数字输入框的上下箭头 (Spinner) */
-@utility no-spinner {
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  & {
-    -moz-appearance: textfield;
-  }
-}
 
 /* 隐藏原生浏览器输入框控件 */
 @layer utilities {
+
   /* 隐藏 Edge/IE 的密码显示图标 */
   input[type='password']::-ms-reveal {
     display: none;

@@ -1,5 +1,5 @@
 <template>
-  <div class="join" :class="props.disabled ? '!cursor-not-allowed' : ''">
+  <div class="join" :class="props.disabled ? 'cursor-not-allowed!' : ''">
     <!-- reduce -->
     <button
       class="btn btn-outline btn-square join-item"

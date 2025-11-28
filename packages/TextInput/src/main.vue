@@ -14,7 +14,7 @@
       :maxlength="maxlength"
       :disabled="props.disabled"
       class="grow"
-      :class="props.disabled ? '!cursor-not-allowed' : ''"
+      :class="props.disabled ? 'cursor-not-allowed!' : ''"
       :autocomplete="props.autocomplete"
       @blur="handleBlur"
       @input="handleInput"

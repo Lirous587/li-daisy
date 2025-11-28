@@ -8,7 +8,7 @@
     @scroll="handleScroll"
   >
     <table
-      class="table table-pin-rows table-pin-cols table-fixed break-words"
+      class="table table-pin-rows table-pin-cols table-fixed wrap-break-word"
       :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
@@ -42,7 +42,7 @@
           <th v-if="hasExpand" class="sticky left-0 z-1">
             <span
               v-if="!props.select && leftPinCols.length === 0"
-              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              class="absolute top-0 bottom-0 w-2.5 -right-2.5"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
             ></span>
           </th>
@@ -55,7 +55,7 @@
           >
             <span
               v-if="leftPinCols.length === 0"
-              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              class="absolute top-0 bottom-0 w-2.5 -right-2.5"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
             ></span>
             <input
@@ -73,7 +73,7 @@
             :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
-              class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+              class="absolute top-0 bottom-0 w-2.5 -right-2.5"
               :class="scrollState.left ? 'pin-left-shadow' : ''"
             ></span>
             <div class="flex items-center">
@@ -108,7 +108,7 @@
             :style="getPinColumnStyle(columnIndex, column.pinCol)"
           >
             <span
-              class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+              class="absolute top-0 bottom-0 w-2.5 -left-2.5"
               :class="scrollState.right ? ' pin-right-shadow' : ''"
             ></span>
             <div class="flex items-center">
@@ -135,7 +135,7 @@
               <th v-if="hasExpand" class="sticky left-0 z-1">
                 <span
                   v-if="!props.select && leftPinCols.length === 0"
-                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  class="absolute top-0 bottom-0 w-2.5 -right-2.5"
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
                 <label class="swap swap-rotate">
@@ -157,7 +157,7 @@
               >
                 <span
                   v-if="leftPinCols.length === 0"
-                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  class="absolute top-0 bottom-0 w-2.5 -right-2.5"
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
                 <input
@@ -177,7 +177,7 @@
                 class="sticky z-1"
               >
                 <span
-                  class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
+                  class="absolute top-0 bottom-0 w-2.5 -right-2.5"
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
                 <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">
@@ -229,7 +229,7 @@
                 class="sticky z-1"
               >
                 <span
-                  class="absolute top-0 bottom-0 w-[10px] left-[-10px]"
+                  class="absolute top-0 bottom-0 w-2.5 -left-2.5"
                   :class="scrollState.right ? 'pin-right-shadow' : ''"
                 ></span>
                 <OverflowTip v-if="column.tooltip" :content="column.prop ? item[column.prop] : ''">

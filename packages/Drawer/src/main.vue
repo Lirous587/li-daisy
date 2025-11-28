@@ -3,7 +3,7 @@
     <div v-if="active" class="drawer" :class="drawerDirection">
       <input :id="uniqueID" v-model="visible" type="checkbox" class="drawer-toggle" />
 
-      <div class="drawer-side z-[999]">
+      <div class="drawer-side z-999">
         <!-- 蒙层 -->
         <label
           :for="uniqueID"
@@ -13,7 +13,7 @@
         ></label>
 
         <!-- drawer内容 -->
-        <div class="!bg-base-100 h-full flex flex-col" :class="props.size">
+        <div class="bg-base-100! h-full flex flex-col" :class="props.size">
           <!-- default-header -->
           <div
             v-if="!hasHeaderSlot"

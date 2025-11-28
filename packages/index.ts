@@ -1,7 +1,7 @@
 import './assets/css/index.css'
 import './assets/css/input.css'
 import './assets/css/scroll.css'
-import './assets/css/custom.css'
+import './assets/css/btn.css'
 
 // 类型导出
 export type { DrawerRef, DrawerDirection } from './Drawer'

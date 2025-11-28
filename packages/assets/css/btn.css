@@ -1,0 +1,5 @@
+@layer override {
+  .btn {
+    white-space: nowrap;
+  }
+}

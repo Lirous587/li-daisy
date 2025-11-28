@@ -22,7 +22,7 @@
     <!-- 隐藏的测量元素 -->
     <div
       ref="measureEl"
-      class="absolute top-0 left-0 w-full invisible opacity-0 whitespace-pre-wrap break-words overflow-hidden pointer-events-none"
+      class="absolute top-0 left-0 w-full invisible opacity-0 whitespace-pre-wrap wrap-break-word overflow-hidden pointer-events-none"
     ></div>
   </div>
 </template>
