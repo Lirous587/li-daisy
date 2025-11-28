@@ -10,7 +10,7 @@
       :disabled="props.disabled"
       :maxlength="props.maxlength"
       :rows="dynamicRows"
-      class="li-textarea min-h-0 w-full scrollbar-xs leading-[calc(1em+8px)]"
+      class="textarea min-h-0 w-full scrollbar-xs leading-[calc(1em+8px)]"
       :class="[sizeClass, colorClass, props.disabled ? 'pointer-events-none' : '']"
       :style="{ minHeight: minHeightPx }"
     ></textarea>
@@ -47,42 +47,42 @@ const model = defineModel<string | undefined>('modelValue', {
 const sizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-textarea-xs'
+      return 'textarea-xs'
     case 'sm':
-      return 'li-textarea-sm'
+      return 'textarea-sm'
     case 'md':
-      return 'li-textarea-md'
+      return 'textarea-md'
     case 'lg':
-      return 'li-textarea-lg'
+      return 'textarea-lg'
     case 'xl':
-      return 'li-textarea-xl'
+      return 'textarea-xl'
     default:
-      return 'li-textarea-sm'
+      return 'textarea-sm'
   }
 })
 
 const colorClass = computed(() => {
   switch (props.color) {
     case 'base':
-      return 'li-textarea'
+      return 'textarea'
     case 'neutral':
-      return 'li-textarea-neutral'
+      return 'textarea-neutral'
     case 'primary':
-      return 'li-textarea-primary'
+      return 'textarea-primary'
     case 'secondary':
-      return 'li-textarea-secondary'
+      return 'textarea-secondary'
     case 'accent':
-      return 'li-textarea-accent'
+      return 'textarea-accent'
     case 'info':
-      return 'li-textarea-info'
+      return 'textarea-info'
     case 'success':
-      return 'li-textarea-success'
+      return 'textarea-success'
     case 'warning':
-      return 'li-textarea-warning'
+      return 'textarea-warning'
     case 'error':
-      return 'li-textarea-error'
+      return 'textarea-error'
     default:
-      return 'li-textarea'
+      return 'textarea'
   }
 })
 

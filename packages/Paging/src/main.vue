@@ -11,13 +11,13 @@
   <div
     v-if="pageConfim()"
     v-bind="$attrs"
-    class="flex cursor-pointer select-none font-mono relative *:border-y *:border-x li-join"
+    class="flex cursor-pointer select-none font-mono relative *:border-y *:border-x join"
     :class="[props.hideOnSinglePage && totalPages === 1 ? 'hidden' : '']"
   >
     <!-- last -->
     <button
       v-if="showIcon"
-      class="li-btn li-btn-square li-join-item li-btn-soft"
+      class="btn btn-square join-item btn-soft"
       :class="[btnSize, btnColor]"
       :disabled="ifMin"
       @click="changePage(Math.max(1, safeCurrentPage - 1))"
@@ -29,8 +29,8 @@
     <button
       v-for="(item, index) in list"
       :key="index"
-      class="li-btn li-join-item li-btn-soft"
-      :class="[btnSize, btnColor, item.page == currentPage ? 'li-btn-active' : '']"
+      class="btn join-item btn-soft"
+      :class="[btnSize, btnColor, item.page == currentPage ? 'btn-active' : '']"
       @click="changePage(item.page)"
     >
       <span class="m-auto"> {{ item.value }}</span>
@@ -39,7 +39,7 @@
     <!-- next -->
     <button
       v-if="showIcon"
-      class="li-btn li-btn-square li-join-item li-btn-soft"
+      class="btn btn-square join-item btn-soft"
       :class="[btnSize, btnColor]"
       :disabled="ifMax"
       @click="changePage(Math.min(totalPages, safeCurrentPage + 1))"
@@ -110,42 +110,42 @@ const totalPages = computed(() => {
 const btnSize = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-btn-xs'
+      return 'btn-xs'
     case 'sm':
-      return 'li-btn-sm'
+      return 'btn-sm'
     case 'md':
-      return 'li-btn-md'
+      return 'btn-md'
     case 'lg':
-      return 'li-btn-lg'
+      return 'btn-lg'
     case 'xl':
-      return 'li-btn-xl'
+      return 'btn-xl'
     default:
-      return 'li-btn-sm'
+      return 'btn-sm'
   }
 })
 
 const btnColor = computed(() => {
   switch (props.color) {
     case 'base':
-      return 'li-btn'
+      return 'btn'
     case 'neutral':
-      return 'li-btn-neutral'
+      return 'btn-neutral'
     case 'primary':
-      return 'li-btn-primary'
+      return 'btn-primary'
     case 'secondary':
-      return 'li-btn-secondary'
+      return 'btn-secondary'
     case 'accent':
-      return 'li-btn-accent'
+      return 'btn-accent'
     case 'info':
-      return 'li-btn--info'
+      return 'btn--info'
     case 'success':
-      return 'li-btn--success'
+      return 'btn--success'
     case 'warning':
-      return 'li-btn-warning'
+      return 'btn-warning'
     case 'error':
-      return 'li-btn-error'
+      return 'btn-error'
     default:
-      return 'li-btn'
+      return 'btn'
   }
 })
 

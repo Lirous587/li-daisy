@@ -15,7 +15,7 @@
       </template>
       <template #skeleton>
         <div class="space-y-3">
-          <div v-for="i in 3" :key="i" class="li-skeleton mx-auto w-30 h-30 rounded-md" />
+          <div v-for="i in 3" :key="i" class="skeleton mx-auto w-30 h-30 rounded-md" />
         </div>
       </template>
     </Skeleton>

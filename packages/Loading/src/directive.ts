@@ -26,19 +26,19 @@ export const getLoadingClasses = (opts: {
   const getTypeClass = (type?: LoadingType) => {
     switch (type) {
       case 'spinner':
-        return 'li-loading-spinner'
+        return 'loading-spinner'
       case 'dots':
-        return 'li-loading-dots'
+        return 'loading-dots'
       case 'ring':
-        return 'li-loading-ring'
+        return 'loading-ring'
       case 'ball':
-        return 'li-loading-ball'
+        return 'loading-ball'
       case 'bars':
-        return 'li-loading-bars'
+        return 'loading-bars'
       case 'infinity':
-        return 'li-loading-infinity'
+        return 'loading-infinity'
       default:
-        return 'li-loading-spinner'
+        return 'loading-spinner'
     }
   }
 
@@ -68,17 +68,17 @@ export const getLoadingClasses = (opts: {
   const getSizeClass = (size?: LoadingSize) => {
     switch (size) {
       case 'xs':
-        return 'li-loading-xs'
+        return 'loading-xs'
       case 'sm':
-        return 'li-loading-sm'
+        return 'loading-sm'
       case 'md':
-        return 'li-loading-md'
+        return 'loading-md'
       case 'lg':
-        return 'li-loading-lg'
+        return 'loading-lg'
       case 'xl':
-        return 'li-loading-xl'
+        return 'loading-xl'
       default:
-        return 'li-loading-md'
+        return 'loading-md'
     }
   }
 

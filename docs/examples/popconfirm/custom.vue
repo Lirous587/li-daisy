@@ -2,25 +2,15 @@
   <div class="flex flex-col gap-4 items-center">
     <Popconfirm :width="200" position="bottom" @confirm="handleConfirm" @cancle="handleCancle">
       <template #trigger>
-        <button class="li-btn li-btn-sm li-btn-outline li-btn-warning">自定义</button>
+        <button class="btn btn-sm btn-outline btn-warning">自定义</button>
       </template>
       <template #title>
         <p class="font-serif">Are you sure to delete?</p>
       </template>
       <template #action="{ onConfirm, onCancle }">
         <div class="flex items-center justify-end gap-x-5">
-          <button
-            class="li-btn li-btn-primary li-btn-sm li-btn-dash li-btn-circle"
-            @click="onConfirm"
-          >
-            √
-          </button>
-          <button
-            class="li-btn li-btn-secondary li-btn-sm li-btn-dash li-btn-circle"
-            @click="onCancle"
-          >
-            ×
-          </button>
+          <button class="btn btn-primary btn-sm btn-dash btn-circle" @click="onConfirm">√</button>
+          <button class="btn btn-secondary btn-sm btn-dash btn-circle" @click="onCancle">×</button>
         </div>
       </template>
     </Popconfirm>

@@ -2,7 +2,7 @@
   <div class="p-1 my-1">
     <div class="flex gap-1.5 w-full" :class="alignClass">
       <div :style="widthStyle">
-        <label v-if="label" class="li-form-item-label text-xs">{{ label }}</label>
+        <label v-if="label" class="form-item-label text-xs">{{ label }}</label>
       </div>
       <div
         :class="align === 'horizontal' ? 'flex-1' : 'w-full'"
@@ -145,7 +145,7 @@ const showError = computed(() => {
 </script>
 
 <style scoped>
-.li-form-item-label {
+.form-item-label {
   color: color-mix(in oklab, var(--color-base-100) 40%, var(--color-base-content) 60%);
 }
 </style>

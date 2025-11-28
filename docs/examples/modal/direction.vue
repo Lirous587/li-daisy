@@ -8,7 +8,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
       <template #trigger>
-        <div class="li-btn">上↓下</div>
+        <div class="btn">上↓下</div>
       </template>
     </Modal>
 
@@ -20,7 +20,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
       <template #trigger>
-        <div class="li-btn">左→右</div>
+        <div class="btn">左→右</div>
       </template>
     </Modal>
 
@@ -30,7 +30,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
       <template #trigger>
-        <div class="li-btn">中间</div>
+        <div class="btn">中间</div>
       </template>
     </Modal>
 
@@ -40,7 +40,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
       <template #trigger>
-        <div class="li-btn">左←右</div>
+        <div class="btn">左←右</div>
       </template>
     </Modal>
 
@@ -52,7 +52,7 @@
         <p class="py-4">This is the modal content.</p>
       </template>
       <template #trigger>
-        <div class="li-btn">上↑下</div>
+        <div class="btn">上↑下</div>
       </template>
     </Modal>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <!-- input -->
-  <label class="li-input select-none w-full" :class="[inputSizeClass, inputColorClass]">
+  <label class="input select-none w-full" :class="[inputSizeClass, inputColorClass]">
     <!-- prefix -->
     <div v-if="hasPrefix" class="h-full flex items-center justify-center" :class="textClass">
       <slot name="prefix" />
@@ -24,7 +24,7 @@
     <!-- eye -->
     <div
       v-if="props.type === 'password' && isEyeIconShow"
-      class="li-join-item flex items-center cursor-pointer px-1 shrink-0"
+      class="join-item flex items-center cursor-pointer px-1 shrink-0"
       :class="textClass"
       @mousedown.prevent="togglePasswordVisibility"
     >
@@ -123,17 +123,17 @@ const hasSuffix = computed(() => !!slots.suffix)
 const inputSizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-input-xs'
+      return 'input-xs'
     case 'sm':
-      return 'li-input-sm'
+      return 'input-sm'
     case 'md':
-      return 'li-input-md'
+      return 'input-md'
     case 'lg':
-      return 'li-input-lg'
+      return 'input-lg'
     case 'xl':
-      return 'li-input-xl'
+      return 'input-xl'
     default:
-      return 'li-input-sm'
+      return 'input-sm'
   }
 })
 
@@ -141,25 +141,25 @@ const inputColorClass = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'li-input'
+      return 'input'
     case 'neutral':
-      return 'li-input-neutral'
+      return 'input-neutral'
     case 'primary':
-      return 'li-input-primary'
+      return 'input-primary'
     case 'secondary':
-      return 'li-input-secondary'
+      return 'input-secondary'
     case 'accent':
-      return 'li-input-accent'
+      return 'input-accent'
     case 'info':
-      return 'li-input-info'
+      return 'input-info'
     case 'success':
-      return 'li-input-success'
+      return 'input-success'
     case 'warning':
-      return 'li-input-warning'
+      return 'input-warning'
     case 'error':
-      return 'li-input-error'
+      return 'input-error'
     default:
-      return 'li-input'
+      return 'input'
   }
 })
 

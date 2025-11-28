@@ -6,17 +6,17 @@
           <ul class="list flex flex-col divide-y divide-base-300">
             <li v-for="i in 3" :key="i" class="p-4 space-y-3">
               <div class="grid items-center gap-4" style="grid-template-columns: auto 1fr auto">
-                <div class="li-skeleton opacity-60 size-10 rounded-full"></div>
+                <div class="skeleton opacity-60 size-10 rounded-full"></div>
 
                 <div class="space-y-2">
-                  <div class="li-skeleton opacity-60 w-36 h-3 rounded-box"></div>
-                  <div class="li-skeleton opacity-60 w-24 h-2 rounded-box"></div>
+                  <div class="skeleton opacity-60 w-36 h-3 rounded-box"></div>
+                  <div class="skeleton opacity-60 w-24 h-2 rounded-box"></div>
                 </div>
 
-                <div class="li-skeleton opacity-60 h-8 w-8 rounded-box"></div>
+                <div class="skeleton opacity-60 h-8 w-8 rounded-box"></div>
               </div>
 
-              <div class="li-skeleton opacity-60 w-[50%] h-3 rounded-box"></div>
+              <div class="skeleton opacity-60 w-[50%] h-3 rounded-box"></div>
             </li>
           </ul>
 

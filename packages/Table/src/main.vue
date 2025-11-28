@@ -8,7 +8,7 @@
     @scroll="handleScroll"
   >
     <table
-      class="li-table li-table-pin-rows li-table-pin-cols table-fixed break-words"
+      class="table table-pin-rows table-pin-cols table-fixed break-words"
       :class="[tableSizeClass, props.border ? 'table-with-border' : '']"
     >
       <colgroup>
@@ -61,7 +61,7 @@
             <input
               v-model="isSelectAll"
               type="checkbox"
-              class="li-checkbox li-checkbox-sm"
+              class="checkbox checkbox-sm"
               @change="handleSelectAllChange"
             />
           </th>
@@ -138,14 +138,14 @@
                   class="absolute top-0 bottom-0 w-[10px] right-[-10px]"
                   :class="scrollState.left ? 'pin-left-shadow' : ''"
                 ></span>
-                <label class="li-swap li-swap-rotate">
+                <label class="swap swap-rotate">
                   <input
                     type="checkbox"
                     :checked="isRowExpanded(item, rowIndex)"
                     @change="toggleExpand(item, rowIndex)"
                   />
-                  <ChevronDownIcon class="li-swap-on w-5 h-5" />
-                  <ChevronRightIcon class="li-swap-off w-5 h-5" />
+                  <ChevronDownIcon class="swap-on w-5 h-5" />
+                  <ChevronRightIcon class="swap-off w-5 h-5" />
                 </label>
               </th>
 
@@ -162,7 +162,7 @@
                 ></span>
                 <input
                   type="checkbox"
-                  class="li-checkbox li-checkbox-sm"
+                  class="checkbox checkbox-sm"
                   :checked="isRowSelected(item, rowIndex)"
                   :disabled="props.selectable ? !props.selectable?.(item) : false"
                   @change="handleSelect($event, item, rowIndex)"
@@ -425,17 +425,17 @@ const totalColumnsCount = computed(() => {
 const tableSizeClass = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-table-xs'
+      return 'table-xs'
     case 'sm':
-      return 'li-table-sm'
+      return 'table-sm'
     case 'md':
-      return 'li-table-md'
+      return 'table-md'
     case 'lg':
-      return 'li-table-lg'
+      return 'table-lg'
     case 'xl':
-      return 'li-table-xl'
+      return 'table-xl'
     default:
-      return 'li-table-md'
+      return 'table-md'
   }
 })
 

@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col gap-6">
     <div class="flex items-center justify-around gap-3">
-      <div class="li-btn" @click="setTrue">开启 loading</div>
-      <div class="li-btn" @click="setFalse">关闭 loading</div>
-      <div class="li-btn" @click="toggle">切换 loading</div>
+      <div class="btn" @click="setTrue">开启 loading</div>
+      <div class="btn" @click="setFalse">关闭 loading</div>
+      <div class="btn" @click="toggle">切换 loading</div>
     </div>
 
     <div class="flex flex-col gap-8 mt-4 items-center">

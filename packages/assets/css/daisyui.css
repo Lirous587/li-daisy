@@ -1,6 +1,4 @@
-@plugin "daisyui" {
-  prefix: 'li-';
-}
+@plugin "daisyui";
 
 @plugin "daisyui/theme" {
   name: 'li-light';

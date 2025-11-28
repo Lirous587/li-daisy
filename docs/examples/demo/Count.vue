@@ -11,6 +11,6 @@ const handleAdd = () => {
 <template>
   <div class="flex items-center gap-x-4">
     {{ count }}
-    <span class="li-btn li-btn-sm" @click="handleAdd"> + </span>
+    <span class="btn btn-sm" @click="handleAdd"> + </span>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
-  <div class="li-join" :class="props.disabled ? '!cursor-not-allowed' : ''">
+  <div class="join" :class="props.disabled ? '!cursor-not-allowed' : ''">
     <!-- reduce -->
     <button
-      class="li-btn li-btn-outline li-btn-square li-join-item"
+      class="btn btn-outline btn-square join-item"
       :disabled="props.disabled"
       :class="[operationBtnSize, operationBtnColor]"
       aria-label="decrease"
@@ -16,7 +16,7 @@
       v-model="model"
       type="number"
       :disabled="props.disabled"
-      class="li-input li-join-item shadow-none is-active"
+      class="input join-item shadow-none is-active"
       :class="[inputSize, inputColor]"
       :placeholder="props.placeholder"
       :min="props.min"
@@ -24,7 +24,7 @@
     />
     <!-- plus -->
     <button
-      class="li-btn li-btn-outline li-btn-square li-join-item"
+      class="btn btn-outline btn-square join-item"
       :disabled="props.disabled"
       :class="[operationBtnSize, operationBtnColor]"
       aria-label="increase"
@@ -89,59 +89,59 @@ const inputColor = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'li-input-base'
+      return 'input-base'
     case 'neutral':
-      return 'li-input-neutral'
+      return 'input-neutral'
     case 'primary':
-      return 'li-input-primary'
+      return 'input-primary'
     case 'secondary':
-      return 'li-input-secondary'
+      return 'input-secondary'
     case 'accent':
-      return 'li-input-accent'
+      return 'input-accent'
     case 'info':
-      return 'li-input-info'
+      return 'input-info'
     case 'success':
-      return 'li-input-success'
+      return 'input-success'
     case 'warning':
-      return 'li-input-warning'
+      return 'input-warning'
     case 'error':
-      return 'li-input-error'
+      return 'input-error'
     default:
-      return 'li-input-base'
+      return 'input-base'
   }
 })
 
 const inputSize = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-input-xs'
+      return 'input-xs'
     case 'sm':
-      return 'li-input-sm'
+      return 'input-sm'
     case 'md':
-      return 'li-input-md'
+      return 'input-md'
     case 'lg':
-      return 'li-input-lg'
+      return 'input-lg'
     case 'xl':
-      return 'li-input-xl'
+      return 'input-xl'
     default:
-      return 'li-input-sm'
+      return 'input-sm'
   }
 })
 
 const operationBtnSize = computed(() => {
   switch (props.size) {
     case 'xs':
-      return 'li-btn-xs'
+      return 'btn-xs'
     case 'sm':
-      return 'li-btn-sm'
+      return 'btn-sm'
     case 'md':
-      return 'li-btn-md'
+      return 'btn-md'
     case 'lg':
-      return 'li-btn-lg'
+      return 'btn-lg'
     case 'xl':
-      return 'li-btn-xl'
+      return 'btn-xl'
     default:
-      return 'li-btn-sm'
+      return 'btn-sm'
   }
 })
 
@@ -149,25 +149,25 @@ const operationBtnColor = computed(() => {
   if (props.disabled) return ''
   switch (props.color) {
     case 'base':
-      return 'li-input-base'
+      return 'input-base'
     case 'neutral':
-      return 'li-btn-neutral'
+      return 'btn-neutral'
     case 'primary':
-      return 'li-btn-primary'
+      return 'btn-primary'
     case 'secondary':
-      return 'li-btn-secondary'
+      return 'btn-secondary'
     case 'accent':
-      return 'li-btn-accent'
+      return 'btn-accent'
     case 'info':
-      return 'li-btn-info'
+      return 'btn-info'
     case 'success':
-      return 'li-btn-success'
+      return 'btn-success'
     case 'warning':
-      return 'li-btn-warning'
+      return 'btn-warning'
     case 'error':
-      return 'li-btn-error'
+      return 'btn-error'
     default:
-      return 'li-input-base'
+      return 'input-base'
   }
 })
 
@@ -185,7 +185,7 @@ const increase = () => {
 </script>
 
 <style scoped>
-.li-input-base {
+.input-base {
   & {
     --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
   }
@@ -195,8 +195,8 @@ const increase = () => {
     --input-color: var(--color-info);
   }
 }
-.li-input-base.is-active {
-  --li-input-color: var(--color-base-content);
+.input-base.is-active {
+  --input-color: var(--color-base-content);
   z-index: 1;
 }
 </style>

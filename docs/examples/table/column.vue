@@ -7,12 +7,10 @@
       <TableColumn label="操作">
         <template #default="{ row, index }: TableColumnDefaultScope<Language>">
           <div class="flex gap-x-3">
-            <div class="li-btn li-btn-xs li-btn-success li-btn-outline" @click="handleToatRow(row)">
-              toast
-            </div>
+            <div class="btn btn-xs btn-success btn-outline" @click="handleToatRow(row)">toast</div>
             <Popconfirm :z-index="10" @confirm="handleDeleteRow(index)">
               <template #trigger>
-                <div class="li-btn li-btn-xs li-btn-success li-btn-outline">删除</div>
+                <div class="btn btn-xs btn-success btn-outline">删除</div>
               </template>
             </Popconfirm>
           </div>

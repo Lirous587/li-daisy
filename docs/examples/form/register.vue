@@ -10,7 +10,7 @@
       <TextInput v-model="form.re_password" type="password" placeholder="请重复输入密码" />
     </FormItem>
     <FormItem>
-      <button class="li-btn w-full" @click="handleRegister">注册用户</button>
+      <button class="btn w-full" @click="handleRegister">注册用户</button>
     </FormItem>
   </Form>
 </template>

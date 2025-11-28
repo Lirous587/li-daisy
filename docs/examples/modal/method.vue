@@ -2,14 +2,14 @@
   <div class="flex flex-col gap-y-4">
     <Modal>
       <template #trigger>
-        <div class="li-btn">点击trigger插槽打开</div>
+        <div class="btn">点击trigger插槽打开</div>
       </template>
       <template #body>
         <p>这是点击trigger插槽打开的对话框</p>
       </template>
     </Modal>
 
-    <div class="li-btn" @click="handleOpenModal">使用 open 方法打开</div>
+    <div class="btn" @click="handleOpenModal">使用 open 方法打开</div>
 
     <Modal ref="drawerRef">
       <template #body>

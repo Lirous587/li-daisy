@@ -7,7 +7,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn" @click="handleOpenModal1">该modal有关闭图标</button>
+    <button class="btn" @click="handleOpenModal1">该modal有关闭图标</button>
 
     <Modal ref="modalRef2" :show-close-icon="false">
       <template #body>
@@ -16,7 +16,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn" @click="handleOpenModal2">该modal无关闭图标</button>
+    <button class="btn" @click="handleOpenModal2">该modal无关闭图标</button>
   </div>
 </template>
 

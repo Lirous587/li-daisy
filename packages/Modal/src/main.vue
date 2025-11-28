@@ -1,19 +1,19 @@
 <template>
   <CompatiblePortal to="body">
-    <dialog v-if="active" ref="dialogRef" class="li-modal" :class="directionClass">
-      <div class="li-modal-box p-0 flex flex-col" :class="[props.size]">
-        <div v-if="hasHeaderSlot" class="li-modal-header">
+    <dialog v-if="active" ref="dialogRef" class="modal" :class="directionClass">
+      <div class="modal-box p-0 flex flex-col" :class="[props.size]">
+        <div v-if="hasHeaderSlot" class="modal-header">
           <slot name="header" :close="close"></slot>
         </div>
         <div
           v-else-if="showCloseIcon"
-          class="li-modal-header-default absolute right-3 top-2"
+          class="modal-header-default absolute right-3 top-2"
           @click="close"
         >
           <XMarkIcon class="w-5 h-5 text-base-content cursor-pointer opacity-70" />
         </div>
 
-        <div class="li-modal-body flex-1" :class="props.noBodyPadding ? '' : 'pt-2 p-4'">
+        <div class="modal-body flex-1" :class="props.noBodyPadding ? '' : 'pt-2 p-4'">
           <slot name="body"></slot>
         </div>
       </div>
@@ -22,7 +22,7 @@
       <form
         v-if="props.closeOnClickModal"
         method="dialog"
-        class="li-modal-backdrop"
+        class="modal-backdrop"
         @click="close"
       ></form>
     </dialog>
@@ -75,17 +75,17 @@ const showCloseIcon = computed(() => {
 const directionClass = computed(() => {
   switch (props.direction) {
     case 'ltr':
-      return 'li-modal-start'
+      return 'modal-start'
     case 'rtl':
-      return 'li-modal-end'
+      return 'modal-end'
     case 'ttb':
-      return 'li-modal-top !w-screen'
+      return 'modal-top !w-screen'
     case 'middle':
-      return 'li-modal-middle'
+      return 'modal-middle'
     case 'btt':
-      return 'li-modal-bottom !w-screen'
+      return 'modal-bottom !w-screen'
     default:
-      return 'li-modal-middle'
+      return 'modal-middle'
   }
 })
 

@@ -1,7 +1,7 @@
 <template>
   <button
     ref="containerRef"
-    class="relative li-btn ld-btn-sm hover:border-primary rounded-full h-6 w-12 overflow-hidden"
+    class="relative btn ld-btn-sm hover:border-primary rounded-full h-6 w-12 overflow-hidden"
     @click="switchTheme"
   >
     <template v-if="isHydrated">
@@ -26,12 +26,12 @@
     <!-- 水合前的占位内容 -->
     <template v-else>
       <span
-        class="li-theme-placeholder-sun absolute left-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
+        class="theme-placeholder-sun absolute left-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
       >
         <SunIcon class="h-4 w-4 m-auto" />
       </span>
       <span
-        class="li-theme-placeholder-moon absolute right-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
+        class="theme-placeholder-moon absolute right-0 top-1/2 translate-y-[-50%] text-base-content h-5 w-5 p-0.5 bg-base-100 rounded-full flex"
       >
         <MoonIcon class="h-4 w-4 m-auto" />
       </span>
@@ -46,8 +46,8 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 import { isClient } from '../../utils/ssr'
 
 const props = withDefaults(defineProps<ThemeSwitchProps>(), {
-  lightTheme: 'li-light',
-  darkTheme: 'li-dark',
+  lightTheme: 'light',
+  darkTheme: 'dark',
 })
 
 const emit = defineEmits<{
@@ -65,7 +65,7 @@ const containerRef = ref<HTMLButtonElement>()
 
 const setTheme = (theme: string) => {
   if (isClient()) {
-    localStorage.setItem('li-daisy-theme', theme)
+    localStorage.setItem('daisy-theme', theme)
   }
 }
 
@@ -73,7 +73,7 @@ const getTheme = () => {
   if (!isClient()) return props.lightTheme
 
   const validThemes = [props.lightTheme, props.darkTheme]
-  const stored = localStorage.getItem('li-daisy-theme')
+  const stored = localStorage.getItem('daisy-theme')
 
   if (stored && validThemes.includes(stored)) {
     return stored
@@ -181,19 +181,19 @@ defineExpose(exposeObject)
 }
 
 /* 占位 */
-.li-theme-placeholder-sun {
+.theme-placeholder-sun {
   display: block;
 }
 
-.li-theme-placeholder-moon {
+.theme-placeholder-moon {
   display: none;
 }
 
-html.dark .li-theme-placeholder-sun {
+html.dark .theme-placeholder-sun {
   display: none;
 }
 
-html.dark .li-theme-placeholder-moon {
+html.dark .theme-placeholder-moon {
   display: block;
 }
 

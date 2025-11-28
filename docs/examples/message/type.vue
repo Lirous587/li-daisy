@@ -2,19 +2,19 @@
   <div class="flex flex-col gap-y-5 w-auto">
     <p class="mx-auto">无背景信息条</p>
     <div class="flex gap-x-3 flex-nowrap mx-auto">
-      <button class="li-btn" @click="toastFunc('primary', true)">primary</button>
-      <button class="li-btn" @click="toastFunc('info', true)">info</button>
-      <button class="li-btn" @click="toastFunc('success', true)">success</button>
-      <button class="li-btn" @click="toastFunc('warning', true)">warn</button>
-      <button class="li-btn" @click="toastFunc('error', true)">error</button>
+      <button class="btn" @click="toastFunc('primary', true)">primary</button>
+      <button class="btn" @click="toastFunc('info', true)">info</button>
+      <button class="btn" @click="toastFunc('success', true)">success</button>
+      <button class="btn" @click="toastFunc('warning', true)">warn</button>
+      <button class="btn" @click="toastFunc('error', true)">error</button>
     </div>
     <p class="mx-auto text-primary">有背景信息条</p>
     <div class="flex gap-x-3 flex-nowrap mx-auto">
-      <button class="li-btn li-btn-primary" @click="toastFunc('primary')">primary</button>
-      <button class="li-btn li-btn-info" @click="toastFunc('info')">info</button>
-      <button class="li-btn li-btn-success" @click="toastFunc('success')">success</button>
-      <button class="li-btn li-btn-warning" @click="toastFunc('warning')">warn</button>
-      <button class="li-btn li-btn-error" @click="toastFunc('error')">error</button>
+      <button class="btn btn-primary" @click="toastFunc('primary')">primary</button>
+      <button class="btn btn-info" @click="toastFunc('info')">info</button>
+      <button class="btn btn-success" @click="toastFunc('success')">success</button>
+      <button class="btn btn-warning" @click="toastFunc('warning')">warn</button>
+      <button class="btn btn-error" @click="toastFunc('error')">error</button>
     </div>
   </div>
 </template>

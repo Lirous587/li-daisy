@@ -2,7 +2,7 @@
   <div class="w-full flex justify-center">
     <Popover position="bottom" trigger="hover" :z-index="100">
       <template #trigger>
-        <button class="li-btn li-btn-primary">trigger</button>
+        <button class="btn btn-primary">trigger</button>
       </template>
       <template #content>
         <Card />

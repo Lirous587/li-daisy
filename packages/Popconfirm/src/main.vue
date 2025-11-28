@@ -22,20 +22,10 @@
 
         <slot name="action" :on-confirm="emitConfirm" :on-cancle="emitCancle"></slot>
         <div v-if="!hasActionSlot" class="flex items-center ml-auto gap-x-2 font-extrabold text-xs">
-          <button
-            class="li-btn li-btn-primary"
-            :class="btnSizeClass"
-            type="button"
-            @click="emitConfirm"
-          >
+          <button class="btn btn-primary" :class="btnSizeClass" type="button" @click="emitConfirm">
             {{ props.confirmText }}
           </button>
-          <button
-            class="li-btn li-btn-warning"
-            :class="btnSizeClass"
-            type="button"
-            @click="emitCancle"
-          >
+          <button class="btn btn-warning" :class="btnSizeClass" type="button" @click="emitCancle">
             {{ props.cancleText }}
           </button>
         </div>
@@ -72,17 +62,17 @@ const popWidth = computed(() => {
 const btnSizeClass = computed(() => {
   switch (props.btnSize) {
     case 'xs':
-      return 'li-btn-xs'
+      return 'btn-xs'
     case 'sm':
-      return 'li-btn-sm'
+      return 'btn-sm'
     case 'md':
-      return 'li-btn-md'
+      return 'btn-md'
     case 'lg':
-      return 'li-btn-lg'
+      return 'btn-lg'
     case 'xl':
-      return 'li-btn-xl'
+      return 'btn-xl'
     default:
-      return 'li-btn-xs'
+      return 'btn-xs'
   }
 })
 

@@ -9,7 +9,7 @@
           <Count />
         </template>
       </Modal>
-      <button class="li-btn" @click="handleOpenModal1">打开弹窗（卸载内容）</button>
+      <button class="btn" @click="handleOpenModal1">打开弹窗（卸载内容）</button>
     </div>
 
     <!-- 不会卸载内容的弹窗 -->
@@ -21,7 +21,7 @@
           <Count />
         </template>
       </Modal>
-      <button class="li-btn" @click="handleOpenModal2">打开弹窗（保留内容）</button>
+      <button class="btn" @click="handleOpenModal2">打开弹窗（保留内容）</button>
     </div>
   </div>
 </template>

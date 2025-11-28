@@ -3,7 +3,7 @@
     <!-- 会卸载内容的弹窗 -->
     <Drawer :destroy-on-close="true">
       <template #trigger>
-        <div class="li-btn">打开弹窗（卸载内容）</div>
+        <div class="btn">打开弹窗（卸载内容）</div>
       </template>
 
       <template #body>
@@ -16,7 +16,7 @@
     <!-- 不会卸载内容的弹窗 -->
     <Drawer>
       <template #trigger>
-        <div class="li-btn">打开弹窗（保留内容）</div>
+        <div class="btn">打开弹窗（保留内容）</div>
       </template>
       <template #body>
         <h3 class="font-bold text-lg">关闭时不卸载组件</h3>

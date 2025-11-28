@@ -9,7 +9,7 @@
         trigger="click"
       >
         <template #trigger>
-          <div class="li-btn li-btn-sm min-w-24">{{ position }}</div>
+          <div class="btn btn-sm min-w-24">{{ position }}</div>
         </template>
         <template #content>
           <Card />
@@ -29,7 +29,7 @@
           :z-index="999"
         >
           <template #trigger>
-            <div class="li-btn li-btn-sm min-w-24">{{ position }}</div>
+            <div class="btn btn-sm min-w-24">{{ position }}</div>
           </template>
           <template #content>
             <Card />
@@ -51,7 +51,7 @@
           trigger="click"
         >
           <template #trigger>
-            <div class="li-btn li-btn-sm min-w-24">{{ position }}</div>
+            <div class="btn btn-sm min-w-24">{{ position }}</div>
           </template>
           <template #content>
             <Card />
@@ -69,7 +69,7 @@
         trigger="click"
       >
         <template #trigger>
-          <div class="li-btn li-btn-sm min-w-24">{{ position }}</div>
+          <div class="btn btn-sm min-w-24">{{ position }}</div>
         </template>
         <template #content>
           <Card />

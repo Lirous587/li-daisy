@@ -11,7 +11,7 @@
       </template>
     </Modal>
 
-    <button class="li-btn" @click="handleOpenModal">打开动态modal</button>
+    <button class="btn" @click="handleOpenModal">打开动态modal</button>
   </div>
 </template>
 

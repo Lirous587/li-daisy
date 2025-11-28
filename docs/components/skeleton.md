@@ -27,7 +27,7 @@
 ## 基础用法 
 > `Skeleton` 的使用不太同于其它框架，在 ***li-daisy*** 中 `Skeleton` 作为一个容器，然后借助 ***daisyUI*** 的 [skeleton](https://daisyui.com/components/skeleton/) 去实现具体的骨架屏效果
 >
-> 例子中的 `li-skeleton` 是加了前缀的类名，具体类名取决于你项目中的 ***daisyUI*** 的[配置](https://daisyui.com/docs/config/#prefix)
+> 例子中的 `skeleton` 是加了前缀的类名，具体类名取决于你项目中的 ***daisyUI*** 的[配置](https://daisyui.com/docs/config/#prefix)
 :::demo skeleton/basic
 :::
 

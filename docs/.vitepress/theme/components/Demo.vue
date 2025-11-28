@@ -1,6 +1,6 @@
 <template>
-  <div class="li-demo li-card rounded-lg border overflow-hidden border-base-300" v-bind="$attrs">
-    <div class="li-card-body">
+  <div class="li-demo card rounded-lg border overflow-hidden border-base-300" v-bind="$attrs">
+    <div class="card-body">
       <div class="relative overflow-auto py-4 vp-raw">
         <slot name="source" />
       </div>
@@ -8,7 +8,7 @@
 
     <div class="relative border-t border-base-300">
       <div class="flex p-3 mr-3">
-        <div class="ml-auto cursor-pointer li-tooltip" data-tip="显示源码" @click="toggleCode">
+        <div class="ml-auto cursor-pointer tooltip" data-tip="显示源码" @click="toggleCode">
           <svg viewBox="0 0 24 24" width="1.2em" height="1.2em">
             <path
               fill="currentColor"

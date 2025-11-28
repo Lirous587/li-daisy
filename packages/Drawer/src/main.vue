@@ -1,14 +1,14 @@
 <template>
   <CompatiblePortal to="body">
-    <div v-if="active" class="li-drawer" :class="drawerDirection">
-      <input :id="uniqueID" v-model="visible" type="checkbox" class="li-drawer-toggle" />
+    <div v-if="active" class="drawer" :class="drawerDirection">
+      <input :id="uniqueID" v-model="visible" type="checkbox" class="drawer-toggle" />
 
-      <div class="li-drawer-side z-[999]">
+      <div class="drawer-side z-[999]">
         <!-- 蒙层 -->
         <label
           :for="uniqueID"
           aria-label="close sidebar"
-          class="li-drawer-overlay"
+          class="drawer-overlay"
           :class="closeOnClickModal ? '' : 'pointer-events-none'"
         ></label>
 
@@ -17,25 +17,25 @@
           <!-- default-header -->
           <div
             v-if="!hasHeaderSlot"
-            class="li-drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
+            class="drawer-header-default pt-2 px-4 w-full flex items-center justify-between flex-nowrap"
           >
-            <div class="li-drawer-title text-lg">
+            <div class="drawer-title text-lg">
               {{ props.title }}
             </div>
             <XMarkIcon
               v-if="showCloseIcon"
-              class="li-drawer-icon w-6 h-6 cursor-pointer"
+              class="drawer-icon w-6 h-6 cursor-pointer"
               @click="close"
             />
           </div>
 
           <!-- custom-header -->
-          <div v-else class="li-drawer-header">
+          <div v-else class="drawer-header">
             <slot name="header" :close="close"></slot>
           </div>
 
           <!-- body -->
-          <div class="li-drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
+          <div class="drawer-body mt-3 px-4 flex-1 overflow-auto !no-scrollbar">
             <slot name="body" />
           </div>
         </div>
@@ -79,11 +79,11 @@ const uniqueID = useId()
 const drawerDirection = computed(() => {
   switch (props.direction) {
     case 'ltr':
-      return 'li-drawer-start'
+      return 'drawer-start'
     case 'rtl':
-      return 'li-drawer-end'
+      return 'drawer-end'
     default:
-      return 'li-drawer-start'
+      return 'drawer-start'
   }
 })
 
@@ -139,11 +139,11 @@ defineExpose(exposeObject)
 </script>
 
 <style scoped>
-.li-drawer-title,
-.li-drawer-icon {
+.drawer-title,
+.drawer-icon {
   color: color-mix(in oklab, var(--color-base-100) 20%, var(--color-base-content) 80%);
 }
-.li-drawer-title {
+.drawer-title {
   font-weight: 700;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="space-x-3">
-    <button class="li-btn" @click="toastFunc">此消息条无关闭图标</button>
+    <button class="btn" @click="toastFunc">此消息条无关闭图标</button>
   </div>
 </template>
 
