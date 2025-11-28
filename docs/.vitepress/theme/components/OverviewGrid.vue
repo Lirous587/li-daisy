@@ -4,7 +4,7 @@
       v-for="(item, index) in componentList"
       :key="index"
       :href="item.url"
-      class="li-card rounded-md !transition-transform duration-300 hover:translate-y-[-3px] hover:bg-base-200 !no-underline"
+      class="card rounded-md !transition-transform duration-300 hover:translate-y-[-3px] hover:bg-base-200 !no-underline"
     >
       <figure class="px-4 pt-4">
         <img
@@ -15,8 +15,8 @@
         />
       </figure>
 
-      <div class="li-card-body">
-        <div class="li-card-title">{{ item.title }}</div>
+      <div class="card-body">
+        <div class="card-title">{{ item.title }}</div>
         <div class="text-xs font-serif opacity-70 mt-2">{{ item.details }}</div>
       </div>
     </a>

@@ -20,12 +20,12 @@
     margin-left: auto;
 }
 
-.vp-doc table:not(.li-table) {
+.vp-doc table:not(.table) {
     table-layout: auto;
     width: 100%;
 }
 
-.vp-doc table:not(.li-table) td {
+.vp-doc table:not(.table) td {
     min-width: 120px;
     max-width: 320px;
     word-break: keep-all;
